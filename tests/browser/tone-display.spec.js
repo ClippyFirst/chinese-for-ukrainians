@@ -18,7 +18,7 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
   await expect(page.locator('#result-nanu')).toHaveText(nanu ?? '');
 });
 
-test('tone control is available and checked by default on mobile', async ({ page }) => {
+test('tone control is available and checked by default', async ({ page }) => {
   await page.goto('/');
   const toggle = page.getByRole('checkbox', { name: 'Показувати тони Pinyin' });
   await expect(toggle).toBeChecked();
