@@ -11,8 +11,8 @@ test('adds Chinese-style tone marks to Ukrainian vowels', () => {
 });
 
 test('marks the first Ukrainian vowel in a transcription syllable', () => {
-  assert.equal(applyToneMark('бей', 3), 'б̌ей');
-  assert.equal(applyToneMark('чжоу', 4), 'ч̀жоу');
+  assert.equal(applyToneMark('бей', 3), 'бе̌й');
+  assert.equal(applyToneMark('чжоу', 4), 'чжо̀у');
 });
 
 test('tone 5 and missing tones leave transcription unchanged', () => {
