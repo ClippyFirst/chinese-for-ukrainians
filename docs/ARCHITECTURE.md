@@ -118,7 +118,7 @@ This enables synchronized highlighting, per-syllable debugging, future hover exp
 A validation script must fail CI/build when:
 - required CSV columns are missing;
 - a row has an invalid number of fields;
-- a Pinyin key is duplicated without an explicit alias policy;
+- a Pinyin key violates the current uniqueness policy without an explicit reviewed exception;
 - required output is unexpectedly empty;
 - Unicode normalization changes a source value;
 - generated data differs from the CSV.
