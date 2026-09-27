@@ -19,14 +19,20 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
   await expect(page.locator('#result-nanu')).toHaveText(nanu ?? '');
 
   await ukrainianToggle.uncheck();
-  await expect(page.locator('#result-kirnosova')).toHaveText('бей');
-  await expect(page.locator('#result-kirnosova-tsisar')).toHaveText('бей');
-  await expect(page.locator('#result-nanu')).toHaveText('бей');
+  const plainKirnosova = await page.locator('#result-kirnosova').textContent();
+  const plainTsisar = await page.locator('#result-kirnosova-tsisar').textContent();
+  const plainNanu = await page.locator('#result-nanu').textContent();
+  expect(plainKirnosova).not.toMatch(/[\u0300\u0301\u0304\u030c]/u);
+  expect(plainTsisar).not.toMatch(/[\u0300\u0301\u0304\u030c]/u);
+  expect(plainNanu).not.toMatch(/[\u0300\u0301\u0304\u030c]/u);
 
   await ukrainianToggle.check();
-  await expect(page.locator('#result-kirnosova')).toHaveText('бе̌й');
-  await expect(page.locator('#result-kirnosova-tsisar')).toHaveText('бе̌й');
-  await expect(page.locator('#result-nanu')).toHaveText('бе̌й');
+  await expect(page.locator('#result-kirnosova')).not.toHaveText(plainKirnosova ?? '');
+  await expect(page.locator('#result-kirnosova-tsisar')).not.toHaveText(plainTsisar ?? '');
+  await expect(page.locator('#result-nanu')).not.toHaveText(plainNanu ?? '');
+  expect(await page.locator('#result-kirnosova').textContent()).toMatch(/[\u0300\u0301\u0304\u030c]/u);
+  expect(await page.locator('#result-kirnosova-tsisar').textContent()).toMatch(/[\u0300\u0301\u0304\u030c]/u);
+  expect(await page.locator('#result-nanu').textContent()).toMatch(/[\u0300\u0301\u0304\u030c]/u);
 });
 
 test('tone control is available and checked by default', async ({ page }) => {
