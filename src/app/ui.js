@@ -17,6 +17,7 @@ export function mountApp(root) {
   const mode = root.querySelector('#script-mode');
   const showPinyinTones = root.querySelector('#show-pinyin-tones');
   const showUkrainianTones = root.querySelector('#show-ukrainian-tones');
+  const scriptChoices = root.querySelectorAll('input[name="script-choice"]');
   const characterCount = root.querySelector('#character-count');
   const results = root.querySelector('#results');
   const emptyState = root.querySelector('#empty-state');
@@ -64,6 +65,10 @@ export function mountApp(root) {
 
   input.addEventListener('input', render);
   mode.addEventListener('change', render);
+  scriptChoices.forEach((choice) => choice.addEventListener('change', () => {
+    mode.value = choice.value;
+    render();
+  }));
   showPinyinTones.addEventListener('change', render);
   showUkrainianTones.addEventListener('change', render);
   clearButton.addEventListener('click', () => { input.value = ''; input.focus(); render(); });
@@ -81,5 +86,6 @@ export function mountApp(root) {
     });
   });
 
+  scriptChoices.forEach((choice) => { choice.checked = choice.value === mode.value; });
   render();
 }
