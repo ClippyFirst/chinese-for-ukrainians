@@ -21,18 +21,22 @@ export function normalizePinyinSyllable(value) {
   return { base: base.replace(/v/g, 'ü').replace(/u:/g, 'ü'), tone };
 }
 
-export function formatPinyin(tokens) {
+export function formatPinyin(tokens, { showTones = true } = {}) {
   let output = '';
   let previousWasHan = false;
   for (const token of tokens) {
     if (token.type === 'text') { output += token.source; previousWasHan = false; continue; }
-    const rendered = toToneMarked(token.pinyin);
+    const rendered = showTones ? toToneMarked(token.pinyin) : toToneNumberless(token.pinyin);
     if (!rendered) continue;
     if (previousWasHan) output += ' ';
     output += rendered;
     previousWasHan = true;
   }
   return output;
+}
+
+export function toToneNumberless(value) {
+  return normalizePinyinSyllable(value).base;
 }
 
 export function toToneMarked(value) {

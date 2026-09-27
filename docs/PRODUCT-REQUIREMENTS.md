@@ -26,6 +26,7 @@ A Ukrainian-speaking learner, translator, researcher, editor, or reader can past
 - Character counter.
 - Clear input action.
 - Example input action.
+- Pinyin tone display: enabled by default and can be switched off independently of script selection.
 
 ### Output
 Four independently copyable result panels:
@@ -40,6 +41,7 @@ Four independently copyable result panels:
 - Empty-state before conversion.
 - Clear error state if pronunciation data cannot be resolved.
 - Clearly distinguish transcription from translation: the application does not translate meaning.
+- The Pinyin copy result must match the currently selected tone-display mode.
 
 ### Script detection
 Auto mode must be deterministic and transparent:
@@ -71,7 +73,7 @@ The selected mode is visible and keyboard accessible.
 Auto mode reports the detected script state and confidence category: Simplified, Traditional, Mixed, or Undetermined.
 
 ### FR-04 Pinyin
-The app resolves Mandarin pronunciation and renders Pinyin consistently. Tone marks are preferred in the human-facing result; the implementation may retain a canonical tone-number representation internally.
+The app resolves Mandarin pronunciation and renders Pinyin consistently. Tone marks are displayed by default and can be disabled by the user without changing the underlying pronunciation or any Ukrainian transcription.
 
 ### FR-05 Ukrainian systems
 Each Pinyin syllable is mapped through the corresponding column of zh-in-ua.csv.
@@ -90,6 +92,9 @@ Normal conversion must work entirely in the browser after the static assets have
 
 ### FR-10 Accessibility
 Keyboard-only operation, visible focus, semantic controls, sufficient contrast, screen-reader labels, and reduced-motion support are required.
+
+### FR-11 Tone display
+A checked “Показувати тони Pinyin” control displays tone marks in Pinyin. When unchecked, the same syllables are rendered without tone marks. Changing this option must update the Pinyin result immediately and must not alter the three Ukrainian outputs.
 
 ## Data correctness requirements
 
@@ -139,4 +144,5 @@ MVP is complete when:
 - punctuation and line breaks are preserved;
 - keyboard and mobile use are practical;
 - validation tests pass;
-- the site can be deployed as static files without a backend.
+- the site can be deployed as static files without a backend;
+- Pinyin tone display can be toggled without changing the underlying conversion or Ukrainian outputs.

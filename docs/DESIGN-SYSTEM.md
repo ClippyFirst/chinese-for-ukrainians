@@ -24,6 +24,7 @@ Header
 Main
   input card
     script selector
+    Pinyin tone control
     textarea
     character count
     actions
@@ -59,6 +60,13 @@ The script selector should be a segmented control or radio group:
 - Традиційне.
 
 Use explicit labels; do not rely on flag icons.
+
+Pinyin tone control:
+- use a native checkbox;
+- label it `Показувати тони Pinyin`;
+- default to checked;
+- place it with the script selector in the same control group;
+- changing it must update Pinyin while preserving the three Ukrainian outputs.
 
 Textarea:
 - generous height;
@@ -180,6 +188,7 @@ Preferred labels:
 - Авто
 - Спрощене
 - Традиційне
+- Показувати тони Pinyin
 - Результат
 - Скопіювати
 - Скопійовано
@@ -191,6 +200,7 @@ Preferred labels:
 A reviewer should understand what to do within 3 seconds:
 1. paste Chinese text;
 2. choose script mode or leave Auto;
-3. read four outputs.
+3. optionally disable Pinyin tones;
+4. read four outputs.
 
 No secondary feature should compete with the converter.
