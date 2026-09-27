@@ -19,7 +19,7 @@ test('example produces all four parallel outputs', async ({ page }) => {
 
 test('script selector changes without mutating the input', async ({ page }) => {
   await page.goto('/');
-  const input = page.getByLabel('Введіть китайський текст');
+  const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('中國');
   await page.getByLabel('Система письма').selectOption('traditional');
   await expect(input).toHaveValue('中國');
