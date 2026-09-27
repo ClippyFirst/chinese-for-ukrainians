@@ -27,18 +27,16 @@ for (const required of ['src/app/convert.js', 'src/app/transcribe.js', 'src/app/
 
 const dist = path.join(root, 'dist');
 let totalBytes = 0;
-try {
-  async function sizeDir(dir) {
-    for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) await sizeDir(full);
-      else totalBytes += (await fs.stat(full)).size;
-    }
+await fs.access(dist);
+async function sizeDir(dir) {
+  for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) await sizeDir(full);
+    else totalBytes += (await fs.stat(full)).size;
   }
-  await sizeDir(dist);
-  if (totalBytes > 2_000_000) throw new Error(`Static bundle exceeds 2 MB: ${totalBytes} bytes.`);
-} catch (error) {
-  if (error.code !== 'ENOENT') throw error;
 }
+await sizeDir(dist);
+if (totalBytes === 0) throw new Error('Release check failed: dist/ exists but is empty.');
+if (totalBytes > 2_000_000) throw new Error(`Static bundle exceeds 2 MB: ${totalBytes} bytes.`);
 
 console.log(JSON.stringify({ security: 'pass', requiredFiles: 'pass', distBytes: totalBytes }, null, 2));
