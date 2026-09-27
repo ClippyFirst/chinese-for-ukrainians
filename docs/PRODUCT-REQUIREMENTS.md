@@ -27,6 +27,7 @@ A Ukrainian-speaking learner, translator, researcher, editor, or reader can past
 - Clear input action.
 - Example input action.
 - Pinyin tone display: enabled by default and can be switched off independently of script selection.
+- Ukrainian transcription tone display: enabled by default and can be switched off independently of Pinyin.
 
 ### Output
 Four independently copyable result panels:
@@ -146,3 +147,4 @@ MVP is complete when:
 - validation tests pass;
 - the site can be deployed as static files without a backend;
 - Pinyin tone display can be toggled without changing the underlying conversion or Ukrainian outputs.
+- Ukrainian tone display can be toggled without changing the underlying conversion or source mappings; enabled output uses Unicode combining marks on Ukrainian vowels.
