@@ -104,7 +104,7 @@ Before production release:
 - detect rows where the three systems differ;
 - generate a validation report.
 
-The current repository data contains notable cases including duplicate pou rows and entries with blank output cells. These are data-policy questions, not UI questions. The implementation must document the chosen behavior.
+The current repository data should be validated from the live CSV. Previously discussed duplicate-key concerns must not be carried forward as current defects; validation should report the actual current state of the source file. Blank output cells and special/edge syllable forms remain explicit data-policy cases.
 
 ## Error and uncertainty policy
 
