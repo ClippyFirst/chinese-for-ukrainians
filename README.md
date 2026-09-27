@@ -1,16 +1,71 @@
 # chinese-for-ukrainians
 
-A lightweight browser-based Chinese → Ukrainian transcription tool.
+A lightweight static browser tool for Chinese → Ukrainian transcription.
 
-## Planned static converter
+## What it does
 
-The project is specified as a client-side static web application that accepts Simplified or Traditional Chinese (with Auto detection) and produces:
-- Hanyu Pinyin;
-- Kirnosova;
-- Kirnosova–Tsisar;
-- NANU.
+Enter Simplified or Traditional Chinese and get, locally in the browser:
 
-The three Ukrainian transcription datasets are maintained in [zh-in-ua.csv](./zh-in-ua.csv).
+- Hanyu Pinyin with tone marks;
+- Кірносова;
+- Кірносова—Цісар;
+- НАНУ.
+
+The three Ukrainian systems are shown in parallel. The application does not rank them and does not translate the input.
+
+## Local development
+
+Requirements: Node.js >= 22.12.0.
+
+```bash
+npm install
+npm run validate:data
+npm test
+npm run dev
+```
+
+Production build:
+
+```bash
+npm run build
+npm run check:release
+```
+
+Browser QA:
+
+```bash
+npx playwright install
+npm run test:browser
+```
+
+Optional pronunciation benchmark:
+
+```bash
+npm run benchmark
+```
+
+## Data
+
+`zh-in-ua.csv` is the source of truth for the three Ukrainian transcription systems.
+
+The current source contains 420 data rows and 421 normalized aliases. The current data has no duplicate normalized Pinyin keys. Twelve source cells in the НАНУ column are intentionally blank; these are preserved as missing mappings rather than silently replaced.
+
+Run `npm run validate:data` after editing the CSV. Run `npm run generate:data` to regenerate `src/generated/transcription-map.js`.
+
+## Architecture
+
+```text
+input
+  → Unicode-safe scanner
+  → Simplified/Traditional detector
+  → Mandarin pronunciation resolver
+  → canonical Pinyin tokens
+  → Pinyin renderer
+  → three independent Ukrainian renderers
+  → result UI
+```
+
+Normal conversion does not call a server or upload user text. User-controlled output is rendered with DOM text APIs rather than HTML injection.
 
 ## Documentation
 
@@ -19,12 +74,10 @@ The three Ukrainian transcription datasets are maintained in [zh-in-ua.csv](./zh
 - [Design system](./docs/DESIGN-SYSTEM.md)
 - [Data specification](./docs/DATA-SPEC.md)
 - [QA plan](./docs/QA-PLAN.md)
+- [Accessibility](./docs/ACCESSIBILITY.md)
+- [Release checklist](./docs/RELEASE-CHECKLIST.md)
+- [Usage](./docs/USAGE.md)
 - [Roadmap](./docs/ROADMAP.md)
-
-## Architecture principle
-
-The converter is intentionally static: normal conversion happens locally in the browser. Chinese pronunciation resolution is kept as a separate layer from the Ukrainian transcription mappings so the three systems can share one canonical Pinyin representation.
-
-## Data note
-
-The CSV is the source of truth for the three Ukrainian systems. Keys, aliases, special forms, and blank cells are validated explicitly; current validation reflects the live CSV rather than stale defect snapshots.
+- [Tooling decision](./docs/superpowers/decisions/2026-09-27-tooling.md)
+- [Approved implementation plan](./docs/superpowers/plans/2026-09-27-chinese-converter.md)
+- [Approved design specification](./docs/superpowers/specs/2026-09-27-chinese-converter-design.md)

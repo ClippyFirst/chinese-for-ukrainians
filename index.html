@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none';" />
+    <meta name="description" content="Китайський текст → Hanyu Pinyin і три українські системи транскрипції." />
+    <title>Chinese → українська</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="site-header">
+        <p class="eyebrow">Інструмент для китайського тексту</p>
+        <h1>Chinese → українська</h1>
+        <p class="subtitle">Pinyin і три українські системи транскрипції</p>
+      </header>
+
+      <section class="workspace" aria-labelledby="input-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="input-heading">Введіть китайський текст</h2>
+            <p>Текст обробляється локально у вашому браузері.</p>
+          </div>
+          <span id="character-count" class="character-count">0 символів</span>
+        </div>
+
+        <label class="sr-only" for="source-input">Введіть китайський текст</label>
+        <textarea id="source-input" rows="7" spellcheck="false" placeholder="例如：你好，世界！"></textarea>
+
+        <div class="controls" aria-label="Параметри перетворення">
+          <label for="script-mode">Система письма</label>
+          <select id="script-mode">
+            <option value="auto">Авто</option>
+            <option value="simplified">Спрощене</option>
+            <option value="traditional">Традиційне</option>
+          </select>
+          <button id="example-button" class="button button-secondary" type="button">Приклад</button>
+          <button id="clear-button" class="button button-quiet" type="button">Очистити</button>
+        </div>
+      </section>
+
+      <section id="empty-state" class="empty-state" aria-live="polite">
+        <strong>Результат з’явиться тут.</strong>
+        <span>Введіть китайський текст або натисніть «Приклад».</span>
+      </section>
+
+      <section id="results" class="results" aria-labelledby="results-heading" hidden>
+        <div class="section-heading">
+          <div>
+            <h2 id="results-heading">Результати</h2>
+            <p>Системи показано паралельно — без автоматичного вибору «правильної».</p>
+          </div>
+        </div>
+        <div class="result-grid">
+          <article class="result-card result-card-featured">
+            <div class="result-card-heading"><h3>Pinyin</h3><button class="copy-button" type="button" data-copy-target="result-pinyin">Копіювати</button></div>
+            <p id="result-pinyin" class="result-value result-pinyin" lang="zh-Latn"></p>
+          </article>
+          <article class="result-card">
+            <div class="result-card-heading"><h3>Кірносова</h3><button class="copy-button" type="button" data-copy-target="result-kirnosova">Копіювати</button></div>
+            <p id="result-kirnosova" class="result-value" lang="uk"></p>
+          </article>
+          <article class="result-card">
+            <div class="result-card-heading"><h3>Кірносова—Цісар</h3><button class="copy-button" type="button" data-copy-target="result-kirnosova-tsisar">Копіювати</button></div>
+            <p id="result-kirnosova-tsisar" class="result-value" lang="uk"></p>
+          </article>
+          <article class="result-card">
+            <div class="result-card-heading"><h3>НАНУ</h3><button class="copy-button" type="button" data-copy-target="result-nanu">Копіювати</button></div>
+            <p id="result-nanu" class="result-value" lang="uk"></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="issue-state" class="issue-state" aria-live="polite" hidden>
+        <strong>Потребує уваги</strong>
+        <p id="issue-text"></p>
+      </section>
+
+      <p id="live-region" class="sr-only" aria-live="polite"></p>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
