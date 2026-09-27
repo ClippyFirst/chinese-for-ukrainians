@@ -30,7 +30,13 @@ test('converts Chinese plus punctuation and Latin text without changing source',
   assert.equal(result.source, source);
   assert.equal(result.detectedScript.status, 'simplified');
   assert.equal(result.pinyin, 'zhōng guó! AI');
-  assert.equal(result.kirnosova, 'чжунґо! AI');
+  assert.equal(result.kirnosova, 'чжӯнґо́! AI');
+});
+
+test('can disable Ukrainian tone marks independently of Pinyin tone display', () => {
+  const result = convert('北京', { scriptMode: 'auto', showPinyinTones: false, showUkrainianTones: false });
+  assert.equal(result.pinyin, 'bei jing');
+  assert.equal(result.kirnosova, 'бейбей');
 });
 
 test('keeps Auto shared-only detection undetermined', () => {

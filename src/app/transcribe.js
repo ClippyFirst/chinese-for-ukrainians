@@ -1,6 +1,7 @@
 import { lookupTranscription, SYSTEMS } from '../data/transcription.js';
+import { applyToneMark } from './diacritics.js';
 
-export function transcribe(tokens, system, mappings) {
+export function transcribe(tokens, system, mappings, { showTones = true } = {}) {
   if (!SYSTEMS[system]) throw new Error(`Unknown transcription system: ${system}`);
   let output = '';
   const issues = [];
@@ -21,14 +22,14 @@ export function transcribe(tokens, system, mappings) {
       issues.push({ ...lookup, source: token.source, pinyin: token.pinyin });
       continue;
     }
-    output += lookup.value;
+    output += showTones ? applyToneMark(lookup.value, token.tone) : applyToneMark(lookup.value, 0);
   }
 
   return { text: output, issues };
 }
 
-export function transcribeAll(tokens, mappings) {
+export function transcribeAll(tokens, mappings, { showTones = true } = {}) {
   return Object.fromEntries(
-    Object.keys(SYSTEMS).map((system) => [system, transcribe(tokens, system, mappings)]),
+    Object.keys(SYSTEMS).map((system) => [system, transcribe(tokens, system, mappings, { showTones })]),
   );
 }
