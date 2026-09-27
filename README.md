@@ -6,7 +6,8 @@ A lightweight static browser tool for Chinese → Ukrainian transcription.
 
 Enter Simplified or Traditional Chinese and get, locally in the browser:
 
-- Hanyu Pinyin with tone marks;
+- Hanyu Pinyin with tone marks by default;
+- Hanyu Pinyin without tone marks when the option is disabled;
 - Кірносова;
 - Кірносова—Цісар;
 - НАНУ.
@@ -60,7 +61,7 @@ input
   → Simplified/Traditional detector
   → Mandarin pronunciation resolver
   → canonical Pinyin tokens
-  → Pinyin renderer
+  → Pinyin renderer (tones optional)
   → three independent Ukrainian renderers
   → result UI
 ```
