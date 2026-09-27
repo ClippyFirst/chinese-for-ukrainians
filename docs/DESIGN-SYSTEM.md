@@ -2,205 +2,101 @@
 
 ## Design direction
 
-The product should feel like a small linguistic utility, not a generic AI landing page.
+The interface is a **functional linguistic instrument**. It should feel closer to a reference tool, dictionary workstation, or typographic specimen than to a generic AI product.
 
-Principles:
-- functional;
-- typographic;
-- calm;
-- information-dense but not cramped;
-- visually grounded in Chinese and Ukrainian writing systems;
-- no decorative AI gradients, chat bubbles, robot imagery, or unnecessary illustrations.
+### Principles
 
-The primary visual hierarchy is created by typography, spacing, rules, and aligned comparison panels.
+- **Function first:** the converter is the visual center.
+- **Typography creates hierarchy:** scale, weight, rules, alignment and whitespace do the work.
+- **Chinese and Ukrainian are both visible:** CJK input and readable Latin/Cyrillic output use appropriate fallback stacks.
+- **Parallel, not ranked:** the three Ukrainian systems receive equal treatment.
+- **Calm density:** information-rich without visual clutter.
+- **No AI clichés:** no gradients, robot imagery, chat bubbles, glowing cards or decorative illustrations.
+- **Local by default:** the small LOCAL marker communicates the privacy model.
 
-## Page structure
+## Visual language
 
-Desktop:
-
-Header
-  brand / short description
-
-Main
-  input card
-    script selector
-    Pinyin tone control
-    textarea
-    character count
-    actions
-
-  results
-    Pinyin
-    Kirnosova
-    Kirnosova–Tsisar
-    NANU
-
-Footer
-  data/source note
-
-On mobile, results become a vertical stack.
-
-## Header
-
-Keep the header compact.
-
-Suggested title:
-Chinese → українська
-
-Suggested subtitle:
-Pinyin і три українські системи транскрипції
-
-Do not use a large marketing hero. The tool itself is the hero.
-
-## Input controls
-
-The script selector should be a segmented control or radio group:
-- Авто;
-- Спрощене;
-- Традиційне.
-
-Use explicit labels; do not rely on flag icons.
-
-Pinyin tone control:
-- use a native checkbox;
-- label it `Показувати тони Pinyin`;
-- default to checked;
-- place it with the script selector in the same control group;
-- changing it must update Pinyin while preserving the three Ukrainian outputs.
-
-Textarea:
-- generous height;
-- visible border;
-- monospaced or high-legibility CJK-compatible font for Chinese input;
-- sample placeholder such as 北京大学.
-
-Actions:
-- Очистити;
-- Приклад.
-
-## Results
-
-Each result should be a distinct but visually related panel.
-
-Panel anatomy:
-- system name;
-- one-line explanatory label;
-- output text;
-- copy button.
-
-Pinyin should be visually first because it is the canonical intermediate representation.
-
-The three Ukrainian systems should be aligned as a comparison group, not presented as ranked alternatives.
-
-## Comparison affordance
-
-Use a compact table-like layout on desktop:
-
-| System | Result | Copy |
+| Role | Value | Purpose |
 |---|---|---|
-| Pinyin | Běijīng | copy |
-| Кірносова | Бейцзін | copy |
-| Кірносова—Цісар | Бейдзін | copy |
-| НАНУ | Бейцзін | copy |
+| Paper | #f3f1eb | page background |
+| Surface | #ffffff | work surfaces |
+| Soft surface | #faf9f5 | inputs and secondary results |
+| Ink | #151719 | primary text |
+| Muted | #686b6f | supporting text |
+| Line | #d8d6cf | separators |
+| Strong line | #b9b7af | form borders |
+| Accent | #173f8a | actions and focus |
+| Accent soft | #eef3fb | Pinyin surface |
+| Warning | #725d22 | unresolved-data state |
 
-Do not visually imply that one system is more correct merely by ordering or color. They are parallel systems. Pinyin can be first because it is the shared intermediate representation.
+The accent is functional and is not assigned to one transcription system as a sign of superiority.
 
 ## Typography
 
-Use a Unicode-capable sans-serif stack for interface text.
+- Interface: system sans stack.
+- Chinese input: CJK-compatible sans fallback.
+- Main title: restrained serif stack.
+- Pinyin: readable sans, slightly larger than ordinary result text.
+- Ukrainian: readable Cyrillic-capable sans.
 
-Recommended conceptual stack:
-- UI: system sans;
-- Chinese: system CJK sans fallback;
-- Pinyin/results: a readable sans with strong Latin/Cyrillic support.
+Avoid decorative display fonts and excessive uppercase text.
 
-Avoid decorative display fonts.
+## Page composition
 
-Use large result text (roughly 1.15–1.35rem desktop) and comfortable line height.
+### Header
 
-## Color
+Small Chinese mark, eyebrow, optional LOCAL status, large title and one explanatory sentence. No marketing hero.
 
-Use a restrained neutral palette with one functional accent.
+### Input
 
-Color roles:
-- background;
-- surface;
-- border;
-- primary text;
-- secondary text;
-- accent;
-- success;
-- error.
+The first major block contains section marker, title, local-processing note, character count, large textarea and a compact control strip.
 
-Do not assign separate colors to the three Ukrainian systems. They are parallel systems, not categories with different status.
+### Controls
 
-Contrast must meet WCAG AA for normal text.
+Script mode, Pinyin tone display, Ukrainian tone display, flexible spacer, example and clear actions. On mobile they wrap into a practical touch-friendly layout.
 
-## Spacing
+### Results
 
-Use a small spacing scale, e.g. 4 / 8 / 12 / 16 / 24 / 32 / 48 px.
+Pinyin is full-width and slightly emphasized because it is the canonical pronunciation layer shared by the Ukrainian renderers. This is an architectural distinction, not a ranking.
 
-The interface should have generous outer margins and tighter internal grouping.
+The three Ukrainian systems occupy equal secondary cards. Each card contains an index, system name, short description, copy action and output.
 
-## Responsive behavior
+## Interaction
 
-Desktop:
-- max content width around 960–1100 px;
-- input and results use the full content column;
-- comparison can use a four-row table.
+Primary action is solid accent; quiet actions are neutral bordered controls; copy is compact and local to each result. No unnecessary animation or loading spinner is used for synchronous conversion.
 
-Mobile:
-- one column;
-- easily reachable copy controls;
-- textarea at least 8–10 lines;
-- no horizontal scrolling.
+Both tone controls are independent:
+
+- Pinyin tones affect only Pinyin presentation.
+- Ukrainian tones affect only Ukrainian presentation.
+
+The empty state is understated and is not styled as an error. Data warnings use a muted warm surface rather than aggressive red.
+
+## Responsive rules
+
+Desktop: maximum content width 1120 px, Pinyin full-width, three Ukrainian cards in a two-column grid, controls in one strip where possible.
+
+Tablet: same hierarchy, controls may wrap.
+
+Mobile: 12 px side margin, one-column results, full-width script control, comfortable tone/action controls, no horizontal scrolling, stacked footer.
 
 ## Accessibility
 
-Required:
-- semantic main, header, footer;
-- labels associated with controls;
-- keyboard navigation;
-- visible focus ring;
-- aria-live status for conversion/copy feedback;
-- buttons with text or accessible names;
-- no color-only information;
-- reduced-motion media query.
+Semantic landmarks, explicit labels, visible keyboard focus, native controls, accessible copy buttons, live status, no color-only information, reduced-motion support and readable zoomed layouts are required.
 
-## Interaction style
+## Content rules
 
-No animations are required for conversion.
+Preferred: «Введіть китайський текст», «Письмо», «Авто», «Спрощене», «Традиційне», «Тони Pinyin», «Тони в українській», «Результати», «Копіювати», «Приклад», «Очистити».
 
-Micro-interactions should be subtle:
-- copy confirmation;
-- focus;
-- input validation.
+Avoid marketing claims, AI branding, «магія», «розумний перекладач», «100% точний» and winner-like labels.
 
-Avoid loading spinners for operations expected to complete locally in milliseconds.
+## Design QA checklist
 
-## Content tone
+1. Find the Chinese input immediately.
+2. See that Auto is selected.
+3. Notice the two independent tone controls.
+4. Run an example or paste text.
+5. Read Pinyin and the three parallel Ukrainian systems.
+6. Copy the desired output.
 
-Use concise Ukrainian.
-
-Preferred labels:
-- Введіть китайський текст
-- Письмо
-- Авто
-- Спрощене
-- Традиційне
-- Показувати тони Pinyin
-- Результат
-- Скопіювати
-- Скопійовано
-- Очистити
-- Приклад
-
-## Design acceptance criteria
-
-A reviewer should understand what to do within 3 seconds:
-1. paste Chinese text;
-2. choose script mode or leave Auto;
-3. optionally disable Pinyin tones;
-4. read four outputs.
-
-No secondary feature should compete with the converter.
+Desktop and mobile should preserve this hierarchy; only the layout changes.
