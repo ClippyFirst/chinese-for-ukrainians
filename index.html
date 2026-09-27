@@ -48,11 +48,11 @@
         <div class="control-deck" aria-label="Параметри перетворення">
           <div class="control-cell script-cell">
             <span class="control-label">Письмо</span>
-            <label class="segmented" aria-label="Режим письма">
-              <input id="script-auto" type="radio" name="script-choice" value="auto" checked /><span>Авто</span>
-              <input id="script-simplified" type="radio" name="script-choice" value="simplified" /><span>简 Спрощ.</span>
-              <input id="script-traditional" type="radio" name="script-choice" value="traditional" /><span>繁 Трад.</span>
-            </label>
+            <div class="segmented" role="radiogroup" aria-label="Режим письма">
+              <label><input id="script-auto" type="radio" name="script-choice" value="auto" checked /><span>Авто</span></label>
+              <label><input id="script-simplified" type="radio" name="script-choice" value="simplified" /><span>简 Спрощ.</span></label>
+              <label><input id="script-traditional" type="radio" name="script-choice" value="traditional" /><span>繁 Трад.</span></label>
+            </div>
             <select id="script-mode" class="sr-only" aria-hidden="true" tabindex="-1">
               <option value="auto">Авто</option><option value="simplified">Спрощене</option><option value="traditional">Традиційне</option>
             </select>
