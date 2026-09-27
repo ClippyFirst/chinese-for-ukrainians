@@ -10,96 +10,94 @@
   <body>
     <main class="page-shell">
       <header class="site-header">
-        <div class="brand-line">
-          <span class="brand-mark" aria-hidden="true">中</span>
-          <p class="eyebrow">Лінгвістичний інструмент</p>
-          <span class="local-badge">LOCAL</span>
+        <div class="topline">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">中</span>
+            <span>CHINESE / УКРАЇНСЬКА</span>
+          </div>
+          <span class="local-badge"><i aria-hidden="true"></i> працює локально</span>
         </div>
-        <h1>Chinese <span aria-hidden="true">→</span> українська</h1>
-        <p class="subtitle">Pinyin і три українські системи транскрипції — в одному спокійному робочому просторі.</p>
-      </header>
-      <section class="workspace" aria-labelledby="input-heading">
-        <div class="section-heading">
+        <div class="hero">
+          <div class="hero-index" aria-hidden="true">01</div>
           <div>
-            <p class="section-kicker">01 · Вхід</p>
-            <h2 id="input-heading">Введіть китайський текст</h2>
-            <p>Текст обробляється локально у вашому браузері.</p>
+            <p class="eyebrow">Транскрипційний інструмент</p>
+            <h1>Китайський текст,<br /><em>українське читання.</em></h1>
+            <p class="subtitle">Введіть ієрогліфи — отримайте Hanyu Pinyin та три українські системи транскрипції. Без сервера, без зайвих кроків.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="workspace" aria-labelledby="input-heading">
+        <div class="workspace-bar">
+          <div class="section-title">
+            <span class="section-number">A</span>
+            <div><p class="section-kicker">Вхід</p><h2 id="input-heading">Китайський текст</h2></div>
           </div>
           <span id="character-count" class="character-count">0 символів</span>
         </div>
+
         <label class="sr-only" for="source-input">Введіть китайський текст</label>
-        <textarea id="source-input" rows="7" spellcheck="false" placeholder="例如：你好，世界！"></textarea>
-        <div class="controls" aria-label="Параметри перетворення">
-          <div class="control-group">
-            <label for="script-mode">Письмо</label>
-            <select id="script-mode">
-              <option value="auto">Авто</option>
-              <option value="simplified">Спрощене</option>
-              <option value="traditional">Традиційне</option>
+        <div class="input-frame">
+          <span class="input-corner input-corner-tl" aria-hidden="true"></span>
+          <span class="input-corner input-corner-br" aria-hidden="true"></span>
+          <textarea id="source-input" rows="7" spellcheck="false" placeholder="例如：你好，世界！"></textarea>
+          <div class="input-hint"><span>Unicode</span><span>локальна обробка</span></div>
+        </div>
+
+        <div class="control-deck" aria-label="Параметри перетворення">
+          <div class="control-cell script-cell">
+            <span class="control-label">Письмо</span>
+            <label class="segmented" aria-label="Режим письма">
+              <input id="script-auto" type="radio" name="script-choice" value="auto" checked /><span>Авто</span>
+              <input id="script-simplified" type="radio" name="script-choice" value="simplified" /><span>简 Спрощ.</span>
+              <input id="script-traditional" type="radio" name="script-choice" value="traditional" /><span>繁 Трад.</span>
+            </label>
+            <select id="script-mode" class="sr-only" aria-hidden="true" tabindex="-1">
+              <option value="auto">Авто</option><option value="simplified">Спрощене</option><option value="traditional">Традиційне</option>
             </select>
           </div>
-          <label class="tone-control">
-            <input id="show-pinyin-tones" type="checkbox" checked />
-            <span>Тони Pinyin</span>
-          </label>
-          <label class="tone-control">
-            <input id="show-ukrainian-tones" type="checkbox" checked />
-            <span>Тони в українській</span>
-          </label>
-          <span class="controls-spacer" aria-hidden="true"></span>
-          <button id="example-button" class="button button-secondary" type="button">Приклад</button>
-          <button id="clear-button" class="button button-quiet" type="button">Очистити</button>
-        </div>
-      </section>
-      <section id="empty-state" class="empty-state" aria-live="polite">
-        <div class="empty-index" aria-hidden="true">→</div>
-        <div><strong>Результат з’явиться тут</strong><span>Вставте китайський текст або натисніть «Приклад».</span></div>
-      </section>
-      <section id="results" class="results" aria-labelledby="results-heading" hidden>
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">02 · Вихід</p>
-            <h2 id="results-heading">Результати</h2>
-            <p>Чотири представлення одного читання. Українські системи не ранжуються.</p>
+          <div class="control-cell">
+            <span class="control-label">Відображення</span>
+            <label class="switch-row"><input id="show-pinyin-tones" type="checkbox" checked /><span class="switch" aria-hidden="true"></span><span>Тони Pinyin</span></label>
+            <label class="switch-row"><input id="show-ukrainian-tones" type="checkbox" checked /><span class="switch" aria-hidden="true"></span><span>Тони української</span></label>
+          </div>
+          <div class="action-cell">
+            <button id="example-button" class="button button-primary" type="button"><span>Приклад</span><b aria-hidden="true">↗</b></button>
+            <button id="clear-button" class="button button-secondary" type="button">Очистити</button>
           </div>
         </div>
-        <div class="result-grid">
-          <article class="result-card result-card-featured">
-            <div class="result-card-heading">
-              <div><p class="result-index">A</p><h3>Pinyin</h3><p class="result-description">Латинський запис мандаринської вимови</p></div>
-              <button class="copy-button" type="button" data-copy-target="result-pinyin">Копіювати</button>
-            </div>
-            <p id="result-pinyin" class="result-value result-pinyin" lang="zh-Latn"></p>
-          </article>
-          <article class="result-card">
-            <div class="result-card-heading">
-              <div><p class="result-index">B</p><h3>Кірносова</h3><p class="result-description">Українська система транскрипції</p></div>
-              <button class="copy-button" type="button" data-copy-target="result-kirnosova">Копіювати</button>
-            </div>
-            <p id="result-kirnosova" class="result-value" lang="uk"></p>
-          </article>
-          <article class="result-card">
-            <div class="result-card-heading">
-              <div><p class="result-index">C</p><h3>Кірносова—Цісар</h3><p class="result-description">Українська система транскрипції</p></div>
-              <button class="copy-button" type="button" data-copy-target="result-kirnosova-tsisar">Копіювати</button>
-            </div>
-            <p id="result-kirnosova-tsisar" class="result-value" lang="uk"></p>
-          </article>
-          <article class="result-card">
-            <div class="result-card-heading">
-              <div><p class="result-index">D</p><h3>НАНУ</h3><p class="result-description">Українська система транскрипції</p></div>
-              <button class="copy-button" type="button" data-copy-target="result-nanu">Копіювати</button>
-            </div>
-            <p id="result-nanu" class="result-value" lang="uk"></p>
-          </article>
+      </section>
+
+      <section id="empty-state" class="empty-state" aria-live="polite">
+        <div class="empty-glyph" aria-hidden="true">中</div>
+        <div><strong>Тут з’явиться результат</strong><span>Вставте китайський текст або завантажте приклад, щоб почати.</span></div>
+        <span class="empty-rule" aria-hidden="true"></span>
+      </section>
+
+      <section id="results" class="results" aria-labelledby="results-heading" hidden>
+        <div class="results-bar">
+          <div class="section-title"><span class="section-number">B</span><div><p class="section-kicker">Вихід</p><h2 id="results-heading">Результати</h2></div></div>
+          <p class="results-note">Одне читання · чотири представлення</p>
+        </div>
+        <div class="pinyin-panel result-card">
+          <div class="result-meta"><span class="result-index">01</span><div><h3>Pinyin</h3><p>Латинський запис мандаринської вимови</p></div><button class="copy-button" type="button" data-copy-target="result-pinyin">Копіювати</button></div>
+          <p id="result-pinyin" class="result-value result-pinyin" lang="zh-Latn"></p>
+          <span class="tone-key">Hanyu Pinyin</span>
+        </div>
+        <div class="ukrainian-grid">
+          <article class="result-card"><div class="result-meta"><span class="result-index">02</span><div><h3>Кірносова</h3><p>Українська система</p></div><button class="copy-button" type="button" data-copy-target="result-kirnosova">Копіювати</button></div><p id="result-kirnosova" class="result-value" lang="uk"></p></article>
+          <article class="result-card"><div class="result-meta"><span class="result-index">03</span><div><h3>Кірносова—Цісар</h3><p>Українська система</p></div><button class="copy-button" type="button" data-copy-target="result-kirnosova-tsisar">Копіювати</button></div><p id="result-kirnosova-tsisar" class="result-value" lang="uk"></p></article>
+          <article class="result-card"><div class="result-meta"><span class="result-index">04</span><div><h3>НАНУ</h3><p>Українська система</p></div><button class="copy-button" type="button" data-copy-target="result-nanu">Копіювати</button></div><p id="result-nanu" class="result-value" lang="uk"></p></article>
         </div>
       </section>
+
       <section id="issue-state" class="issue-state" aria-live="polite" hidden>
-        <strong>Потребує уваги</strong><p id="issue-text"></p>
+        <span class="issue-symbol" aria-hidden="true">!</span><div><strong>Потребує уваги</strong><p id="issue-text"></p></div>
       </section>
+
       <footer class="site-footer">
-        <p><strong>Chinese → українська</strong> · локальна конвертація без сервера.</p>
-        <p>Джерело українських відповідників: <code>zh-in-ua.csv</code>.</p>
+        <span>CHINESE → УКРАЇНСЬКА · 2026</span>
+        <span>Локальна конвертація · <code>zh-in-ua.csv</code></span>
       </footer>
       <p id="live-region" class="sr-only" aria-live="polite"></p>
     </main>
