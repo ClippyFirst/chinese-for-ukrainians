@@ -27,4 +27,4 @@ The converter is intentionally static: normal conversion happens locally in the 
 
 ## Data note
 
-The CSV is the source of truth for the three Ukrainian systems. Duplicate keys, aliases, and blank cells must be validated explicitly rather than silently overwritten.
+The CSV is the source of truth for the three Ukrainian systems. Keys, aliases, special forms, and blank cells are validated explicitly; current validation reflects the live CSV rather than stale defect snapshots.
