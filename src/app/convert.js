@@ -16,9 +16,10 @@ function requireConfiguration() {
   return configuration;
 }
 
-export function convert(source, options = { scriptMode: 'auto' }) {
+export function convert(source, options = { scriptMode: 'auto', showPinyinTones: true }) {
   const { mappings, traditionalToSimplified } = requireConfiguration();
   const scriptMode = options.scriptMode ?? 'auto';
+  const showPinyinTones = options.showPinyinTones ?? true;
   if (!['auto', 'simplified', 'traditional'].includes(scriptMode)) {
     throw new Error(`Unknown script mode: ${scriptMode}`);
   }
@@ -30,13 +31,14 @@ export function convert(source, options = { scriptMode: 'auto' }) {
     || (scriptMode === 'auto' && detectedScript.status === 'mixed');
 
   const tokens = resolvePronunciation(spans, source, { traditional });
-  const pinyin = formatPinyin(tokens);
+  const pinyin = formatPinyin(tokens, { showTones: showPinyinTones });
   const transcription = transcribeAll(tokens, mappings);
   const issues = transcriptionIssues(tokens, transcription);
 
   return {
     source,
     scriptMode,
+    showPinyinTones,
     detectedScript,
     tokens,
     pinyin,
