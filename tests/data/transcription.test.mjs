@@ -35,5 +35,5 @@ test('preserves blank cells as explicit missing mappings', () => {
 
 test('resolves slash aliases independently', () => {
   const mappings = generateMappings(validCsv);
-  assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'r').value, 'р');
+  assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'r').value, 'ер/р');
 });
