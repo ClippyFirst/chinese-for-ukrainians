@@ -11,7 +11,7 @@
 body { margin: 0; min-width: 320px; background: #f4f3ef; }
 button, textarea, select { font: inherit; }
 button, select { cursor: pointer; }
-button:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #8fb3ff; outline-offset: 2px; }
+button:focus-visible, select:focus-visible, textarea:focus-visible, input[type="checkbox"]:focus-visible { outline: 3px solid #8fb3ff; outline-offset: 2px; }
 
 .page-shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 64px 0 80px; }
 .site-header { max-width: 760px; margin-bottom: 44px; }
@@ -31,10 +31,12 @@ textarea::placeholder { color: #9a9c9e; }
 .controls { display: flex; align-items: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 .controls label { color: #62676d; font-size: 0.85rem; font-weight: 650; }
 select { min-height: 40px; border: 1px solid #c9c9c3; border-radius: 9px; padding: 0 34px 0 11px; background: #fff; color: #171a1d; }
+.tone-control { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 11px; border: 1px solid #c9c9c3; border-radius: 9px; background: #fff; color: #3f4347; font-size: 0.85rem; font-weight: 650; cursor: pointer; }
+.tone-control input { width: 17px; height: 17px; margin: 0; accent-color: #155eef; }
 .button, .copy-button { border-radius: 9px; border: 1px solid transparent; min-height: 40px; padding: 0 13px; font-weight: 650; }
 .button-secondary { color: #fff; background: #155eef; }
 .button-quiet { color: #3f4347; background: transparent; border-color: #d1d1cb; }
-.button:hover, .copy-button:hover { filter: brightness(0.97); }
+.button:hover, .copy-button:hover, .tone-control:hover { filter: brightness(0.97); }
 
 .empty-state, .issue-state { margin-top: 20px; padding: 22px 24px; border-radius: 14px; }
 .empty-state { display: flex; gap: 10px; align-items: baseline; color: #62676d; border: 1px dashed #c9c9c3; }
@@ -62,7 +64,7 @@ h3 { margin: 0; font-size: 0.85rem; font-weight: 750; letter-spacing: 0.01em; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
   .controls { align-items: stretch; }
   .controls label { align-self: center; }
-  select, .button { flex: 1 1 auto; }
+  select, .button, .tone-control { flex: 1 1 auto; }
   .result-grid { grid-template-columns: 1fr; }
   .result-card-featured { grid-column: auto; }
 }
