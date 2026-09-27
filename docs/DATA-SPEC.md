@@ -43,20 +43,11 @@ Duplicate-key validation remains mandatory, but a duplicate is not assumed to ex
 
 These rows must be preserved and explicitly classified.
 
-## Duplicate policy
+## Key uniqueness policy
 
-Duplicates must never be silently overwritten.
+The build validator checks normalized Pinyin-key uniqueness against the current CSV. The application must never silently overwrite two source rows with the same normalized key.
 
-Recommended generated representation:
-
-{
-  "pou": [
-    {"sourceRow": 260, "kirnosova": "поу", "kirnosova_tsisar": "пов", "nanu": ""},
-    {"sourceRow": 261, "kirnosova": "пу", "kirnosova_tsisar": "пу", "nanu": ""}
-  ]
-}
-
-Then the application layer chooses according to an explicit rule. If no rule exists, mark the result ambiguous instead of guessing.
+If a future data edit introduces a duplicate, the validator must fail and identify every conflicting source row. The conflict must be resolved in the CSV (or explicitly represented as a reviewed alias policy) before release.
 
 ## Missing output policy
 
