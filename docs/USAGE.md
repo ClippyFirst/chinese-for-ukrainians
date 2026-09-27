@@ -21,7 +21,7 @@ The result area contains four independent outputs:
 3. Кірносова—Цісар;
 4. НАНУ.
 
-Pinyin keeps tone information. Ukrainian systems use the same canonical Pinyin tokens but map them independently through their respective CSV columns.
+Pinyin shows tone marks by default. Use **Показувати тони Pinyin** to switch the display to unmarked syllables; this changes only the Pinyin presentation, not pronunciation resolution or the three Ukrainian systems. Ukrainian systems use the same canonical Pinyin tokens but map them independently through their respective CSV columns.
 
 ## 4. Uncertainty
 
