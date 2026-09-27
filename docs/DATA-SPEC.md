@@ -32,13 +32,14 @@ The lookup key must not contain tone numbers or tone marks.
 
 ## Exceptional source rows
 
-The current CSV contains:
-- duplicate Pinyin key pou;
+The current CSV should be treated as the live source and validated rather than described through stale defect assumptions. Special/edge forms may include:
 - aliases such as er/r;
 - standalone consonantal entries such as m, n, ng;
 - entries with blank Ukrainian output cells;
 - a Pinyin ê row;
 - historical/edge entries that do not behave like ordinary Mandarin syllables.
+
+Duplicate-key validation remains mandatory, but a duplicate is not assumed to exist merely because an older snapshot contained one.
 
 These rows must be preserved and explicitly classified.
 
