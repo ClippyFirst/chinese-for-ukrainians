@@ -512,16 +512,16 @@ export const transcriptionMap = {
       "sourceKey": "eng"
     },
     "er": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "r": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "fa": {
       "value": "фа",
@@ -3040,16 +3040,16 @@ export const transcriptionMap = {
       "sourceKey": "eng"
     },
     "er": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "r": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "fa": {
       "value": "фа",
@@ -5568,16 +5568,16 @@ export const transcriptionMap = {
       "sourceKey": "eng"
     },
     "er": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "r": {
-      "value": "ер/р",
+      "value": "ер",
       "missing": false,
       "sourceRow": 86,
-      "sourceKey": "er/r"
+      "sourceKey": "er"
     },
     "fa": {
       "value": "фа",
