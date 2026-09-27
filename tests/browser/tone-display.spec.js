@@ -48,7 +48,7 @@ test('segmented script controls stay synchronized with the converter', async ({ 
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('你好');
-  const traditional = page.getByRole('radio', { name: /繁 Tрад\./ });
+  const traditional = page.getByRole('radio', { name: /繁 Трад\./ });
   const auto = page.getByRole('radio', { name: 'Авто' });
   await expect(auto).toBeChecked();
   await traditional.check();
