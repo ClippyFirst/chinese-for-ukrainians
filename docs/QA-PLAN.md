@@ -41,7 +41,7 @@ Include fixtures covering:
 - numbers and Latin text;
 - polyphonic Chinese characters;
 - an unresolved character;
-- a duplicate/ambiguous CSV mapping such as pou.
+- a synthetic duplicate-key mutation of the current CSV (validator regression only; the current source data is expected to remain duplicate-free).
 
 ## Golden test examples
 

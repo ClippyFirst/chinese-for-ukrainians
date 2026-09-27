@@ -1,6 +1,10 @@
 import fs from 'node:fs/promises';
+import { validateCsv } from '../src/data/transcription.js';
 
-const sourcePath = new URL('../zh-in-ua.csv', import.meta.url);
-const input = await fs.readFile(sourcePath, 'utf8');
-if (!input.trim()) throw new Error('zh-in-ua.csv is empty');
-console.log('Data validation scaffold: CSV is readable.');
+const input = await fs.readFile(new URL('../zh-in-ua.csv', import.meta.url), 'utf8');
+const report = validateCsv(input);
+if (!report.valid) {
+  console.error(report.errors.join('\n'));
+  process.exit(1);
+}
+console.log(JSON.stringify({ rows: report.rows, aliases: report.aliases, warnings: report.warnings }, null, 2));
