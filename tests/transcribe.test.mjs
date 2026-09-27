@@ -30,15 +30,15 @@ const token = (source, pinyin, type = 'han') => ({
 
 test('renders one Ukrainian system independently', () => {
   const result = transcribe([token('chong', 'chong2')], 'kirnosova', mappings);
-  assert.equal(result.text, 'чун');
+  assert.equal(result.text, 'чу̌н');
   assert.deepEqual(result.issues, []);
 });
 
 test('keeps system differences instead of selecting a fallback winner', () => {
   const all = transcribeAll([token('chong', 'chong2')], mappings);
-  assert.equal(all.kirnosova.text, 'чун');
-  assert.equal(all.kirnosova_tsisar.text, 'чон');
-  assert.equal(all.nanu.text, 'чун');
+  assert.equal(all.kirnosova.text, 'чу̌н');
+  assert.equal(all.kirnosova_tsisar.text, 'чо́н');
+  assert.equal(all.nanu.text, 'чу̌н');
 });
 
 test('marks a blank CSV cell as missing without borrowing another system', () => {
