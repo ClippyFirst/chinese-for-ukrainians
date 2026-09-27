@@ -30,17 +30,18 @@ export function resolvePronunciation(tokens, source, options = {}) {
 
     if (!Array.isArray(items)) throw new Error('Pronunciation engine returned an unexpected result.');
 
+    let cursor = span.start;
     for (let offset = 0; offset < items.length; offset += 1) {
       const item = items[offset];
-      const sourceChar = item.origin ?? span.source[offset];
+      const sourceChar = item.origin ?? [...span.source][offset];
       const pinyin = item.pinyin ?? item.result ?? '';
       const normalized = normalizePinyinSyllable(pinyin);
       const unresolved = !item.isZh || !normalized.base;
       const alternatives = Array.isArray(item.polyphonic) ? item.polyphonic : [];
       result.push({
         source: sourceChar,
-        start: span.start + offset,
-        end: span.start + offset + sourceChar.length,
+        start: cursor,
+        end: cursor + sourceChar.length,
         type: 'han',
         pinyin: unresolved ? '' : `${normalized.base}${normalized.tone || ''}`,
         tone: normalized.tone,
@@ -49,6 +50,7 @@ export function resolvePronunciation(tokens, source, options = {}) {
         resolution: alternatives.length > 1 ? 'contextual' : 'character',
         alternatives,
       });
+      cursor += sourceChar.length;
     }
   }
 
