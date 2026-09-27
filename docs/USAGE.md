@@ -21,7 +21,7 @@ The result area contains four independent outputs:
 3. Кірносова—Цісар;
 4. НАНУ.
 
-Pinyin shows tone marks by default. Use **Показувати тони Pinyin** to switch the display to unmarked syllables; this changes only the Pinyin presentation, not pronunciation resolution or the three Ukrainian systems. Ukrainian systems use the same canonical Pinyin tokens but map them independently through their respective CSV columns.
+Pinyin shows tone marks by default. Use **Показувати тони Pinyin** to switch the display to unmarked syllables. Separately, **Показувати тони в українській транскрипції** controls Chinese tone marks applied to the Ukrainian transcription. Tone 1 uses a macron (`◌̄`), tone 2 an acute (`◌́`), tone 3 a caron (`◌̌`), and tone 4 a grave (`◌̀`); tone 5 has no mark. The Ukrainian marks are Unicode combining characters attached to the transcription's vowel, so Cyrillic remains Cyrillic. Each control changes presentation only, not pronunciation resolution or the source CSV mappings.
 
 ## 4. Uncertainty
 
