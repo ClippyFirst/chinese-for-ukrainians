@@ -2,75 +2,73 @@
 
 A lightweight static browser tool for Chinese → Ukrainian transcription.
 
-## What it does
+## Що це
 
-Enter Simplified or Traditional Chinese and get, locally in the browser:
+**Chinese → українська** — локальний браузерний інструмент для передачі китайської вимови українськими засобами.
 
-- Hanyu Pinyin with tone marks by default;
-- Hanyu Pinyin without tone marks when the option is disabled;
-- Ukrainian transcription with Unicode tone marks by default, with a separate option to hide them;
+Введіть китайський текст і отримайте паралельно:
+
+- Hanyu Pinyin з тонами або без них;
 - Кірносова;
 - Кірносова—Цісар;
 - НАНУ.
 
-The three Ukrainian systems are shown in parallel. The application does not rank them and does not translate the input.
+Інструмент **не перекладає значення** китайського тексту і не ранжує українські системи.
 
-## Local development
+## Користування
+
+Повна покрокова інструкція: [docs/USER-GUIDE.md](./docs/USER-GUIDE.md).
+
+Коротко: вставте китайський текст → виберіть або залиште Авто → окремо налаштуйте два режими тонів → прочитайте результати → скопіюйте потрібну систему.
+
+## Дизайн
+
+Інтерфейс побудований як функціональний типографічний інструмент, а не як маркетинговий або AI-лендинг: одна головна робоча область, чітка ієрархія через типографіку, лінії та відступи, китайський текст як головний об'єкт введення, Pinyin як спільний шар вимови та три українські системи як рівноправні результати.
+
+Детальна специфікація: [docs/DESIGN-SYSTEM.md](./docs/DESIGN-SYSTEM.md).
+
+## Розробка
 
 Requirements: Node.js >= 22.12.0.
 
-```bash
+~~~bash
 npm install
 npm run validate:data
 npm test
 npm run dev
-```
+~~~
 
 Production build:
 
-```bash
+~~~bash
 npm run build
 npm run check:release
-```
+~~~
 
 Browser QA:
 
-```bash
+~~~bash
 npx playwright install
 npm run test:browser
-```
+~~~
 
 Optional pronunciation benchmark:
 
-```bash
+~~~bash
 npm run benchmark
-```
+~~~
 
-## Data
+## Дані
 
-`zh-in-ua.csv` is the source of truth for the three Ukrainian transcription systems.
+zh-in-ua.csv — джерело українських відповідників.
 
-The current source contains 420 data rows and 421 normalized aliases. The current data has no duplicate normalized Pinyin keys. Twelve source cells in the НАНУ column are intentionally blank; these are preserved as missing mappings rather than silently replaced.
+Поточний source містить 420 рядків даних і 421 нормалізований alias. Дубльованих нормалізованих Pinyin-ключів немає. У стовпці НАНУ є 12 навмисно порожніх клітинок; вони зберігаються як missing mapping і не замінюються значеннями інших систем.
 
-Run `npm run validate:data` after editing the CSV. Run `npm run generate:data` to regenerate `src/generated/transcription-map.js`.
+Після зміни CSV: npm run validate:data та npm run generate:data.
 
-## Architecture
+## Документація
 
-```text
-input
-  → Unicode-safe scanner
-  → Simplified/Traditional detector
-  → Mandarin pronunciation resolver
-  → canonical Pinyin tokens
-  → Pinyin renderer (tones optional)
-  → three independent Ukrainian renderers (Unicode tones optional)
-  → result UI
-```
-
-Normal conversion does not call a server or upload user text. User-controlled output is rendered with DOM text APIs rather than HTML injection.
-
-## Documentation
-
+- [User guide](./docs/USER-GUIDE.md)
 - [Product requirements](./docs/PRODUCT-REQUIREMENTS.md)
 - [Architecture](./docs/ARCHITECTURE.md)
 - [Design system](./docs/DESIGN-SYSTEM.md)
@@ -80,6 +78,3 @@ Normal conversion does not call a server or upload user text. User-controlled ou
 - [Release checklist](./docs/RELEASE-CHECKLIST.md)
 - [Usage](./docs/USAGE.md)
 - [Roadmap](./docs/ROADMAP.md)
-- [Tooling decision](./docs/superpowers/decisions/2026-09-27-tooling.md)
-- [Approved implementation plan](./docs/superpowers/plans/2026-09-27-chinese-converter.md)
-- [Approved design specification](./docs/superpowers/specs/2026-09-27-chinese-converter-design.md)
