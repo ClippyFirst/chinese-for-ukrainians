@@ -8,6 +8,7 @@ Enter Simplified or Traditional Chinese and get, locally in the browser:
 
 - Hanyu Pinyin with tone marks by default;
 - Hanyu Pinyin without tone marks when the option is disabled;
+- Ukrainian transcription with Unicode tone marks by default, with a separate option to hide them;
 - Кірносова;
 - Кірносова—Цісар;
 - НАНУ.
@@ -62,7 +63,7 @@ input
   → Mandarin pronunciation resolver
   → canonical Pinyin tokens
   → Pinyin renderer (tones optional)
-  → three independent Ukrainian renderers
+  → three independent Ukrainian renderers (Unicode tones optional)
   → result UI
 ```
 
