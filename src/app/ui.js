@@ -15,6 +15,7 @@ export function buildResultLabels(result) {
 export function mountApp(root) {
   const input = root.querySelector('#source-input');
   const mode = root.querySelector('#script-mode');
+  const showPinyinTones = root.querySelector('#show-pinyin-tones');
   const characterCount = root.querySelector('#character-count');
   const results = root.querySelector('#results');
   const emptyState = root.querySelector('#empty-state');
@@ -41,7 +42,10 @@ export function mountApp(root) {
       return;
     }
 
-    const result = convert(source, { scriptMode: mode.value });
+    const result = convert(source, {
+      scriptMode: mode.value,
+      showPinyinTones: showPinyinTones.checked,
+    });
     emptyState.hidden = true;
     results.hidden = false;
     cards.pinyin.textContent = result.pinyin;
@@ -58,6 +62,7 @@ export function mountApp(root) {
 
   input.addEventListener('input', render);
   mode.addEventListener('change', render);
+  showPinyinTones.addEventListener('change', render);
   clearButton.addEventListener('click', () => { input.value = ''; input.focus(); render(); });
   exampleButton.addEventListener('click', () => { input.value = exampleText; input.focus(); render(); });
 
