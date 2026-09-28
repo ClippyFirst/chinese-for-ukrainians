@@ -1,6 +1,6 @@
 import { convert } from './convert.js';
 import { copyText } from './clipboard.js';
-import { speakChinese, stopSpeaking } from './speech.js';
+import { canSpeakChinese, speakChinese, stopSpeaking } from './speech.js';
 
 export const exampleText = '你好，世界！';
 
@@ -99,7 +99,7 @@ export function mountApp(root) {
     render();
   });
 
-  speakButton.addEventListener('click', () => {
+  speakButton.addEventListener('click', async () => {
     if (speakButton.getAttribute('aria-pressed') === 'true') {
       stopSpeaking();
       speakButton.textContent = 'Прослухати';
@@ -110,24 +110,35 @@ export function mountApp(root) {
 
     const source = input.value.trim();
     if (!source) return;
-    const spoken = speakChinese(source, {
+    if (!canSpeakChinese()) {
+      speechNote.textContent = 'У цьому браузері недоступне озвучення тексту.';
+      return;
+    }
+
+    speakButton.disabled = true;
+    speechNote.textContent = 'Пошук китайського голосу…';
+    const spoken = await speakChinese(source, {
       onStart: () => {
+        speakButton.disabled = false;
         speakButton.textContent = 'Зупинити';
         speakButton.setAttribute('aria-pressed', 'true');
         speechNote.textContent = 'Відтворюється стандартна мандаринська вимова.';
       },
       onEnd: () => {
+        speakButton.disabled = false;
         speakButton.textContent = 'Прослухати';
         speakButton.setAttribute('aria-pressed', 'false');
       },
       onError: () => {
+        speakButton.disabled = false;
         speakButton.textContent = 'Прослухати';
         speakButton.setAttribute('aria-pressed', 'false');
         speechNote.textContent = 'Не вдалося відтворити звук у цьому браузері або системі.';
       },
     });
     if (!spoken) {
-      speechNote.textContent = 'У цьому браузері недоступне озвучення тексту.';
+      speakButton.disabled = false;
+      speechNote.textContent = 'Китайський голос не знайдено. Додайте голос для китайської (普通话 / 中文) у налаштуваннях Windows або браузера.';
     }
   });
 
