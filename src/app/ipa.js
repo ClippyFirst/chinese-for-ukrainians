@@ -10,6 +10,8 @@ const FINALS = {
   i: 'i', ia: 'ja', ie: 'jɛ', iao: 'jaʊ', iu: 'joʊ', ian: 'jɛn', in: 'in', iang: 'jɑŋ', ing: 'iŋ', iong: 'jʊŋ',
   u: 'u', ua: 'wa', uo: 'wo', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
   ü: 'y', üe: 'ɥe', üan: 'ɥɛn', ün: 'yn',
+  ya: 'ja', ye: 'jɛ', yao: 'jaʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
+  wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 
 const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩', 5: '˧' };
