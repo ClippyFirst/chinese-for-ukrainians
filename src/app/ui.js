@@ -29,6 +29,7 @@ export function mountApp(root) {
 
   const cards = {
     pinyin: root.querySelector('#result-pinyin'),
+    ipa: root.querySelector('#result-ipa'),
     kirnosova: root.querySelector('#result-kirnosova'),
     kirnosovaTsisar: root.querySelector('#result-kirnosova-tsisar'),
     nanu: root.querySelector('#result-nanu'),
@@ -52,6 +53,7 @@ export function mountApp(root) {
     emptyState.hidden = true;
     results.hidden = false;
     cards.pinyin.textContent = result.pinyin;
+    cards.ipa.textContent = result.ipa;
     cards.kirnosova.textContent = result.kirnosova;
     cards.kirnosovaTsisar.textContent = result.kirnosovaTsisar;
     cards.nanu.textContent = result.nanu;
