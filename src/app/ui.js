@@ -89,9 +89,25 @@ export function mountApp(root) {
     input.focus();
     render();
   });
-  exampleButton.addEventListener('click', () => { input.value = exampleText; input.focus(); render(); });
+  exampleButton.addEventListener('click', () => {
+    stopSpeaking();
+    speakButton.textContent = 'Прослухати';
+    speakButton.setAttribute('aria-pressed', 'false');
+    speechNote.textContent = 'Стандартна мандаринська вимова · голос браузера / ОС';
+    input.value = exampleText;
+    input.focus();
+    render();
+  });
 
   speakButton.addEventListener('click', () => {
+    if (speakButton.getAttribute('aria-pressed') === 'true') {
+      stopSpeaking();
+      speakButton.textContent = 'Прослухати';
+      speakButton.setAttribute('aria-pressed', 'false');
+      speechNote.textContent = 'Стандартна мандаринська вимова · голос браузера / ОС';
+      return;
+    }
+
     const source = input.value.trim();
     if (!source) return;
     const spoken = speakChinese(source, {
