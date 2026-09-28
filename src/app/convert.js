@@ -2,6 +2,7 @@ import { scanText } from './scanner.js';
 import { detectScript } from './detector.js';
 import { configurePronunciationEngine, resolvePronunciation } from './pronunciation.js';
 import { formatPinyin } from './pinyin.js';
+import { formatIPA } from './ipa.js';
 import { transcribeAll } from './transcribe.js';
 
 let configuration = null;
@@ -33,6 +34,7 @@ export function convert(source, options = { scriptMode: 'auto', showPinyinTones:
 
   const tokens = resolvePronunciation(spans, source, { traditional });
   const pinyin = formatPinyin(tokens, { showTones: showPinyinTones });
+  const ipa = formatIPA(tokens);
   const transcription = transcribeAll(tokens, mappings, { showTones: showUkrainianTones });
   const issues = transcriptionIssues(tokens, transcription);
 
@@ -44,6 +46,7 @@ export function convert(source, options = { scriptMode: 'auto', showPinyinTones:
     detectedScript,
     tokens,
     pinyin,
+    ipa,
     kirnosova: transcription.kirnosova.text,
     kirnosovaTsisar: transcription.kirnosova_tsisar.text,
     nanu: transcription.nanu.text,
