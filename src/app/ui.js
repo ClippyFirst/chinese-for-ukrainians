@@ -1,5 +1,6 @@
 import { convert } from './convert.js';
 import { copyText } from './clipboard.js';
+import { speakChinese, stopSpeaking } from './speech.js';
 
 export const exampleText = '你好，世界！';
 
@@ -26,6 +27,8 @@ export function mountApp(root) {
   const liveRegion = root.querySelector('#live-region');
   const clearButton = root.querySelector('#clear-button');
   const exampleButton = root.querySelector('#example-button');
+  const speakButton = root.querySelector('#speak-button');
+  const speechNote = root.querySelector('#speech-note');
 
   const cards = {
     pinyin: root.querySelector('#result-pinyin'),
@@ -65,7 +68,12 @@ export function mountApp(root) {
     }
   }
 
-  input.addEventListener('input', render);
+  input.addEventListener('input', () => {
+    stopSpeaking();
+    speakButton.textContent = 'Прослухати';
+    speakButton.setAttribute('aria-pressed', 'false');
+    render();
+  });
   mode.addEventListener('change', render);
   scriptChoices.forEach((choice) => choice.addEventListener('change', () => {
     mode.value = choice.value;
@@ -73,8 +81,39 @@ export function mountApp(root) {
   }));
   showPinyinTones.addEventListener('change', render);
   showUkrainianTones.addEventListener('change', render);
-  clearButton.addEventListener('click', () => { input.value = ''; input.focus(); render(); });
+  clearButton.addEventListener('click', () => {
+    stopSpeaking();
+    speakButton.textContent = 'Прослухати';
+    speakButton.setAttribute('aria-pressed', 'false');
+    input.value = '';
+    input.focus();
+    render();
+  });
   exampleButton.addEventListener('click', () => { input.value = exampleText; input.focus(); render(); });
+
+  speakButton.addEventListener('click', () => {
+    const source = input.value.trim();
+    if (!source) return;
+    const spoken = speakChinese(source, {
+      onStart: () => {
+        speakButton.textContent = 'Зупинити';
+        speakButton.setAttribute('aria-pressed', 'true');
+        speechNote.textContent = 'Відтворюється стандартна мандаринська вимова.';
+      },
+      onEnd: () => {
+        speakButton.textContent = 'Прослухати';
+        speakButton.setAttribute('aria-pressed', 'false');
+      },
+      onError: () => {
+        speakButton.textContent = 'Прослухати';
+        speakButton.setAttribute('aria-pressed', 'false');
+        speechNote.textContent = 'Не вдалося відтворити звук у цьому браузері або системі.';
+      },
+    });
+    if (!spoken) {
+      speechNote.textContent = 'У цьому браузері недоступне озвучення тексту.';
+    }
+  });
 
   root.querySelectorAll('[data-copy-target]').forEach((button) => {
     button.addEventListener('click', async () => {
