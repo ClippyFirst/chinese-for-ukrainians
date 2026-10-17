@@ -29,3 +29,20 @@ textarea::placeholder { color: #777a7e; }
   .segmented span { padding-inline: 4px; white-space: nowrap; }
 }
 
+/* On phones, anchor contextual help to its card rather than the inline info icon.
+   This keeps even hidden tooltips inside the viewport and prevents page-wide overflow. */
+@media (max-width: 680px) {
+  .result-card { position: relative; }
+  .result-heading,
+  .info-tip { position: static; }
+  .info-popover {
+    top: 42px;
+    left: 0;
+    right: auto;
+    width: min(390px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+}
+
