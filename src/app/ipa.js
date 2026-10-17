@@ -26,6 +26,7 @@ export function formatIPA(tokens) {
     }
     const rendered = pinyinToIPA(token.pinyin);
     if (!rendered) {
+      if (previousWasHan) output += ' ';
       output += `⟦IPA:${token.pinyin || token.source}⟧`;
       previousWasHan = true;
       continue;
