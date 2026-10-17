@@ -61,7 +61,8 @@ export function pinyinToIPA(value) {
   if (initial && ['j', 'q', 'x'].includes(initial)) final = final.replace(/^u/u, 'ü');
 
   // Keep the syllabic apical vowel; ɿ is a sinological, not IPA, convention.
-  if (['zh', 'ch', 'sh', 'r'].includes(initial) && final === 'i') return initialIPA + 'ɻ̩' + toneContour(tone);
+  if (initial === 'r' && final === 'i') return 'ɻ̩' + toneContour(tone);
+  if (['zh', 'ch', 'sh'].includes(initial) && final === 'i') return initialIPA + 'ɻ̩' + toneContour(tone);
   if (['z', 'c', 's'].includes(initial) && final === 'i') return initialIPA + 'ɹ̩' + toneContour(tone);
   const finalIPA = FINALS[final];
   if (!finalIPA) return '';

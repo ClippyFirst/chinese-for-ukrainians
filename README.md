@@ -32,7 +32,7 @@ A lightweight static browser tool for Chinese → Ukrainian transcription.
 Requirements: Node.js >= 22.12.0.
 
 ~~~bash
-npm install
+npm ci
 npm run validate:data
 npm test
 npm run dev
@@ -62,9 +62,7 @@ npm run benchmark
 
 zh-in-ua.csv — джерело українських відповідників.
 
-Поточний source містить 420 рядків даних і 421 нормалізований alias. Дубльованих нормалізованих Pinyin-ключів немає. У стовпці НАНУ є 12 навмисно порожніх клітинок; вони зберігаються як missing mapping і не замінюються значеннями інших систем.
-
-Після зміни CSV: npm run validate:data та npm run generate:data.
+Поточний source містить 420 рядків даних і 420 нормалізованих Pinyin-ключів. Дубльованих нормалізованих Pinyin-ключів немає. У стовпці НАНУ є 12 порожніх клітинок; вони зберігаються як missing mapping і не замінюються значеннями інших систем. Ці числа слід перевіряти після зміни CSV через npm run validate:data; після зміни таблиці запускайте також npm run generate:data.
 
 ## Документація
 
@@ -74,6 +72,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [Design system](./docs/DESIGN-SYSTEM.md)
 - [Data specification](./docs/DATA-SPEC.md)
 - [QA plan](./docs/QA-PLAN.md)
+- [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
 - [Accessibility](./docs/ACCESSIBILITY.md)
 - [Release checklist](./docs/RELEASE-CHECKLIST.md)
 - [Usage](./docs/USAGE.md)

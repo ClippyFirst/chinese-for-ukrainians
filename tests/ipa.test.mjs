@@ -5,7 +5,7 @@ test('retains syllabic apical vowels in retroflex and alveolar sibilant syllable
   assert.equal(pinyinToIPA('zhi1'), 'ʈʂɻ̩˥');
   assert.equal(pinyinToIPA('chi2'), 'ʈʂʰɻ̩˧˥');
   assert.equal(pinyinToIPA('shi4'), 'ʂɻ̩˥˩');
-  assert.equal(pinyinToIPA('ri3'), 'ɻɻ̩˨˩˦');
+  assert.equal(pinyinToIPA('ri3'), 'ɻ̩˨˩˦');
   assert.equal(pinyinToIPA('zi1'), 'tsɹ̩˥');
   assert.equal(pinyinToIPA('ci2'), 'tsʰɹ̩˧˥');
   assert.equal(pinyinToIPA('si4'), 'sɹ̩˥˩');
