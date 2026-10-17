@@ -25,12 +25,13 @@ The required `npm test` suite uses Node's built-in test runner and covers:
 
 `npm run test:browser` covers:
 
-- initial empty state;
-- example flow;
-- script selector;
-- source non-mutation;
-- copy;
-- mobile overflow;
+- current document title and mutually exclusive empty/results/issue states;
+- example flow with all five visible representations (Pinyin, IPA and three Ukrainian systems);
+- keyboard-operable script radio group and source non-mutation;
+- copy exactness and live-region feedback;
+- clear/reset state;
+- keyboard focus and tooltip discoverability;
+- horizontal overflow at 320, 360, 390 and 430 CSS pixels, including populated results;
 - reduced-motion preference.
 
 ## Mandatory fixtures
@@ -60,12 +61,13 @@ Include fixtures covering:
 
 Check:
 
-- tab order;
-- focus visibility;
-- semantic form labels;
-- button names;
-- live-region announcements;
-- narrow viewport;
+- tab order and visible focus;
+- semantic input labels and native script radio controls;
+- descriptive system-help tooltips with keyboard access;
+- button names and live-region announcements;
+- exclusive state visibility (empty, results, unresolved mappings);
+- narrow viewport and horizontal overflow;
+- contrast of small helper text;
 - reduced motion.
 
 ## Performance QA
