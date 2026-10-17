@@ -75,6 +75,13 @@ test('mobile layout has no horizontal overflow at supported narrow widths', asyn
 
   for (const width of [320, 360, 390, 430]) {
     await page.setViewportSize({ width, height: 844 });
+    const helpButton = page.locator('.info-tip').first();
+    await helpButton.focus();
+    const tooltip = await page.locator('#tip-kirnosova').boundingBox();
+    expect(tooltip, `tooltip should render at ${width}px`).not.toBeNull();
+    expect(tooltip.x, `tooltip begins outside viewport at ${width}px: ${JSON.stringify(tooltip)}`).toBeGreaterThanOrEqual(0);
+    expect(tooltip.x + tooltip.width, `tooltip ends outside viewport at ${width}px: ${JSON.stringify(tooltip)}`).toBeLessThanOrEqual(width);
+    await page.locator('#source-input').focus();
     const dimensions = await page.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
       document: document.documentElement.scrollWidth,
