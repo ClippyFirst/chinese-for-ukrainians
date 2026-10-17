@@ -1,32 +1,36 @@
 import { test, expect } from '@playwright/test';
 
-test('loads with a keyboard-accessible empty state', async ({ page }) => {
+test('loads the current interface with exactly one initial state', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveTitle('Chinese → українська');
+  await expect(page).toHaveTitle('中文 / УКРАЇНСЬКА');
   await expect(page.getByRole('textbox', { name: 'Введіть китайський текст' })).toBeVisible();
-  await expect(page.getByText('Результат з’явиться тут.')).toBeVisible();
+  await expect(page.getByText('Тут з’явиться результат')).toBeVisible();
+  await expect(page.locator('#empty-state')).toBeVisible();
+  await expect(page.locator('#results')).toBeHidden();
+  await expect(page.locator('#issue-state')).toBeHidden();
 });
 
-test('example produces all four parallel outputs', async ({ page }) => {
+test('example produces Pinyin, IPA and all three Ukrainian systems without overlapping states', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#results')).toBeVisible();
-  await expect(page.locator('#result-pinyin')).not.toHaveText('');
-  await expect(page.locator('#result-kirnosova')).not.toHaveText('');
-  await expect(page.locator('#result-kirnosova-tsisar')).not.toHaveText('');
-  await expect(page.locator('#result-nanu')).not.toHaveText('');
+  await expect(page.locator('#empty-state')).toBeHidden();
+  await expect(page.locator('#issue-state')).toBeHidden();
+  for (const id of ['result-pinyin', 'result-ipa', 'result-kirnosova', 'result-kirnosova-tsisar', 'result-nanu']) {
+    await expect(page.locator(`#${id}`)).not.toHaveText('');
+  }
 });
 
-test('script selector changes without mutating the input', async ({ page }) => {
+test('script radio group changes mode without mutating source input', async ({ page }) => {
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('中國');
-  await page.getByLabel('Система письма').selectOption('traditional');
+  await page.getByText('繁 Трад.', { exact: true }).click();
+  await expect(page.locator('#script-traditional')).toBeChecked();
   await expect(input).toHaveValue('中國');
 });
 
 test('copy controls write the exact visible result', async ({ page }) => {
-  let copied = '';
   await page.addInitScript(() => {
     window.__copiedText = '';
     Object.defineProperty(navigator, 'clipboard', {
@@ -39,14 +43,46 @@ test('copy controls write the exact visible result', async ({ page }) => {
   const expected = await page.locator('#result-pinyin').textContent();
   await page.locator('[data-copy-target="result-pinyin"]').click();
   await expect(page.locator('#live-region')).toHaveText('Скопійовано.');
-  copied = await page.evaluate(() => window.__copiedText);
-  expect(copied).toBe(expected);
+  await expect.poll(() => page.evaluate(() => window.__copiedText)).toBe(expected);
 });
 
-test('mobile layout has no horizontal overflow', async ({ page }) => {
+test('clear returns to the empty state and hides issue feedback', async ({ page }) => {
   await page.goto('/');
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(overflow).toBe(0);
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  await page.getByRole('button', { name: 'Очистити' }).click();
+  await expect(page.locator('#source-input')).toHaveValue('');
+  await expect(page.locator('#empty-state')).toBeVisible();
+  await expect(page.locator('#results')).toBeHidden();
+  await expect(page.locator('#issue-state')).toBeHidden();
+});
+
+test('keyboard users can reach the input and open contextual system help', async ({ page }) => {
+  await page.goto('/');
+  const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
+  await page.keyboard.press('Tab');
+  await expect(input).toBeFocused();
+
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  const helpButton = page.getByRole('button', { name: 'Довідка: Кірносова 2009' });
+  await expect(helpButton).toHaveAttribute('aria-describedby', 'tip-kirnosova');
+  await helpButton.focus();
+  await expect(page.locator('#tip-kirnosova')).toBeVisible();
+});
+
+test('mobile layout has no horizontal overflow at supported narrow widths', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+
+  for (const width of [320, 360, 390, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    const dimensions = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(dimensions.document, `document overflows at ${width}px: ${JSON.stringify(dimensions)}`).toBeLessThanOrEqual(width);
+    expect(dimensions.body, `body overflows at ${width}px: ${JSON.stringify(dimensions)}`).toBeLessThanOrEqual(width);
+  }
 });
 
 test('reduced-motion preference is respected', async ({ page }) => {
