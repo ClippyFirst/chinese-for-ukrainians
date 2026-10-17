@@ -1,58 +1,32 @@
 import { normalizePinyinSyllable } from './pinyin.js';
-
 let engine = null;
-
-export function configurePronunciationEngine(nextEngine) {
-  engine = nextEngine;
-}
-
+export function configurePronunciationEngine(nextEngine) { engine = nextEngine; }
 function requireEngine() {
   if (!engine) throw new Error('Pronunciation engine is not configured.');
   return engine;
 }
-
 export function resolvePronunciation(tokens, source, options = {}) {
-  const pinyinEngine = requireEngine();
-  const result = [];
-
+  const pinyinEngine = requireEngine(), result = [];
   for (const span of tokens) {
-    if (span.type === 'text') {
-      result.push(span);
-      continue;
-    }
-
-    const items = pinyinEngine(span.source, {
-      type: 'all',
-      toneType: 'symbol',
-      traditional: Boolean(options.traditional),
-      segmentit: 2,
-    });
-
+    if (span.type === 'text') { result.push(span); continue; }
+    const items = pinyinEngine(span.source, { type: 'all', toneType: 'symbol', traditional: Boolean(options.traditional), segmentit: 2 });
     if (!Array.isArray(items)) throw new Error('Pronunciation engine returned an unexpected result.');
-
     let cursor = span.start;
     for (let offset = 0; offset < items.length; offset += 1) {
-      const item = items[offset];
-      const sourceChar = item.origin ?? [...span.source][offset];
-      const pinyin = item.pinyin ?? item.result ?? '';
-      const normalized = normalizePinyinSyllable(pinyin);
+      const item = items[offset], sourceChar = item.origin ?? [...span.source][offset];
+      const pinyin = item.pinyin ?? item.result ?? '', normalized = normalizePinyinSyllable(pinyin);
       const unresolved = !item.isZh || !normalized.base;
       const alternatives = Array.isArray(item.polyphonic) ? item.polyphonic : [];
       result.push({
-        source: sourceChar,
-        start: cursor,
-        end: cursor + sourceChar.length,
-        type: 'han',
+        source: sourceChar, start: cursor, end: cursor + sourceChar.length, type: 'han',
         pinyin: unresolved ? '' : `${normalized.base}${normalized.tone || ''}`,
-        tone: normalized.tone,
-        normalizedPinyin: normalized.base,
-        status: unresolved ? 'unresolved' : 'resolved',
-        resolution: alternatives.length > 1 ? 'contextual' : 'character',
+        tone: normalized.tone, normalizedPinyin: normalized.base, status: unresolved ? 'unresolved' : 'resolved',
+        // The alternatives list is not independent proof that a reading was contextually validated.
+        resolution: alternatives.length > 1 ? 'engine-selected' : 'engine',
         alternatives,
       });
       cursor += sourceChar.length;
     }
   }
-
   return result;
 }

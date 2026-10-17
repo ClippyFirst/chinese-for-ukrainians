@@ -3,79 +3,38 @@
 ## Test layers
 
 ### Data tests
-
-Validate `zh-in-ua.csv` and generated mapping data with `npm run validate:data` and `npm run generate:data`.
+Validate zh-in-ua.csv and generated mapping data with npm run validate:data and npm run generate:data.
 
 ### Unit/integration tests
-
-The required `npm test` suite uses Node's built-in test runner and covers:
-
+The required npm test suite uses Node's built-in test runner and covers:
 - Unicode Han scanning;
 - Simplified/Traditional/mixed/undetermined detection;
 - Pinyin normalization and tone rendering;
+- IPA mappings, apical vowels, tones, and visible unsupported-form markers;
 - phrase/context pronunciation through the injected engine contract;
-- Ukrainian lookup;
-- system-specific differences;
-- missing mappings;
+- integration fixtures against the actual pinned pinyin-pro engine;
+- Ukrainian lookup, including tone-marked input normalization;
+- system-specific differences and missing mappings;
 - punctuation and Latin preservation;
-- deterministic conversion;
-- UI label/view-model helpers.
+- deterministic conversion and generated mapping data.
 
 ### Browser tests
-
-`npm run test:browser` covers:
-
-- current document title and mutually exclusive empty/results/issue states;
-- example flow with all five visible representations (Pinyin, IPA and three Ukrainian systems);
-- keyboard-operable script radio group and source non-mutation;
-- copy exactness and live-region feedback;
-- clear/reset state;
-- keyboard focus and tooltip discoverability;
-- horizontal overflow at 320, 360, 390 and 430 CSS pixels, including populated results;
-- reduced-motion preference.
+npm run test:browser covers empty/results/issue states and all five visible representations; keyboard-operable script controls and source non-mutation; copy exactness, live-region feedback, and reset state; keyboard focus and tooltip discoverability; horizontal overflow at 320, 360, 390 and 430 CSS pixels; and reduced-motion preference.
 
 ## Mandatory fixtures
+Include Simplified Chinese, Traditional Chinese, shared-only Han text, mixed scripts, punctuation/line breaks, numbers/Latin, polyphonic characters, unresolved characters, unsupported IPA forms, and synthetic duplicate-key mutations.
 
-Include fixtures covering:
-
-- Simplified Chinese;
-- Traditional Chinese;
-- a text where both scripts contain shared characters only;
-- mixed Simplified/Traditional text;
-- punctuation and line breaks;
-- numbers and Latin text;
-- polyphonic Chinese characters;
-- an unresolved character;
-- a synthetic duplicate-key mutation of the current CSV (validator regression only; the current source data is expected to remain duplicate-free).
-
-## Property-style invariants
-
+## Invariants
 - Non-Chinese text is preserved.
 - Copying a result returns exactly the displayed text.
-- Changing script mode does not mutate source input.
-- Repeated conversion is deterministic.
-- Generated mapping data is deterministic.
-- One Ukrainian system never borrows a blank value from another system.
+- Script selection does not mutate input.
+- Repeated conversion and generated mappings are deterministic.
+- One Ukrainian system never borrows a blank value from another.
+- Unsupported IPA is visibly marked; it must not silently become a Han character.
+- Tone-marked and tone-number Pinyin resolve to the same Ukrainian table key.
 
-## Accessibility QA
-
-Check:
-
-- tab order and visible focus;
-- semantic input labels and native script radio controls;
-- descriptive system-help tooltips with keyboard access;
-- button names and live-region announcements;
-- exclusive state visibility (empty, results, unresolved mappings);
-- narrow viewport and horizontal overflow;
-- contrast of small helper text;
-- reduced motion.
-
-## Performance QA
-
-`npm run benchmark` measures conversion latency for 1, 10, 100 and 1000 Chinese characters.
-
-`npm run check:release` also checks application-source security constraints and the static bundle size.
+## Performance and release
+npm run benchmark measures conversion latency for 1, 10, 100 and 1000 Chinese characters. npm run check:release checks application-source constraints and static bundle size.
 
 ## Regression policy
-
-Every correction to `zh-in-ua.csv` that affects application output should add or update a regression fixture.
+Every correction to zh-in-ua.csv that affects output should add or update a regression fixture. See PHONETIC-REPRODUCIBILITY.md for the distinction between passing software tests and verified linguistic evidence.
