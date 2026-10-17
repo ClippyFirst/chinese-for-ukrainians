@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = fileURLToPath(new URL('../../', import.meta.url));
+const root = fileURLToPath(new URL('../', import.meta.url));
 
 test('methodology page is a static, linked, source-aware page', async () => {
   const html = await fs.readFile(path.join(root, 'methodology.html'), 'utf8');
