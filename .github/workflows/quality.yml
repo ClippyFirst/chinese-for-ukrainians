@@ -1,0 +1,36 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Run unit and integration tests
+        run: npm test
+      - name: Build production bundle
+        run: npm run build
+      - name: Check release constraints
+        run: npm run check:release
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium webkit
+      - name: Run browser regression tests
+        run: npm run test:browser
