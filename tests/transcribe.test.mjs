@@ -25,20 +25,21 @@ const token = (source, pinyin, type = 'han') => ({
   type,
   pinyin,
   normalizedPinyin: pinyin.replace(/[1-5]$/u, ''),
+  tone: Number(pinyin.match(/[1-5]$/u)?.[0] ?? 0),
   status: 'resolved',
 });
 
 test('renders one Ukrainian system independently', () => {
   const result = transcribe([token('chong', 'chong2')], 'kirnosova', mappings);
-  assert.equal(result.text, 'чу̌н');
+  assert.equal(result.text, 'чу́н');
   assert.deepEqual(result.issues, []);
 });
 
 test('keeps system differences instead of selecting a fallback winner', () => {
   const all = transcribeAll([token('chong', 'chong2')], mappings);
-  assert.equal(all.kirnosova.text, 'чу̌н');
+  assert.equal(all.kirnosova.text, 'чу́н');
   assert.equal(all.kirnosova_tsisar.text, 'чо́н');
-  assert.equal(all.nanu.text, 'чу̌н');
+  assert.equal(all.nanu.text, 'чу́н');
 });
 
 test('marks a blank CSV cell as missing without borrowing another system', () => {
@@ -52,6 +53,6 @@ test('preserves punctuation and Latin text around Chinese spans', () => {
     token('bei', 'bei3'),
     token('!', '!', 'text'),
     token('world', 'world', 'text'),
-  ], 'kirnosova', mappings);
+  ], 'kirnosova', mappings, { showTones: false });
   assert.equal(result.text, 'бей!world');
 });
