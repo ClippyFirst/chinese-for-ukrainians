@@ -33,7 +33,16 @@ test('methodology examples match the canonical CSV columns', async () => {
     ['chong', 'чун', 'чон', 'чун'],
     ['chuo', 'чуо', 'чво', 'чо'],
     ['ji', 'цзі', 'дзі', 'цзі'],
+    ['jia', 'цзя', 'дзя', 'цзя'],
+    ['jie', 'цзє', 'дзє', 'цзє'],
+    ['ou', 'оу', 'ов', 'оу'],
+    ['chou', 'чоу', 'чов', 'чоу'],
+    ['dou', 'доу', 'дов', 'доу'],
+    ['duo', 'дуо', 'дво', 'до'],
+    ['shuo', 'шуо', 'шво', 'шо'],
     ['bie', "б'є", "б'є", 'бє'],
+    ['mie', "м'є", "м'є", 'мє'],
+    ['pie', "п'є", "п'є", 'пє'],
   ]) {
     const [pinyin, kirnosova, tsisar, nanu] = row;
     assert.ok(csv.includes(`${pinyin};${kirnosova};${tsisar};${nanu}`), `CSV row missing for ${pinyin}`);
