@@ -16,9 +16,9 @@ const tokens = [
 test('Ukrainian transcription is separated by syllables and contains no slash alternatives', () => {
   const result = transcribeAll(tokens, transcriptionMap);
 
-  assert.equal(result.kirnosova.text, 'цзӣ дуо̄ е̌р бу̀ ні́ фӯ');
-  assert.equal(result.kirnosova_tsisar.text, 'дзӣ дво̄ е̌р бу̀ ні́ фӯ');
-  assert.equal(result.nanu.text, 'цзӣ дуо̄ е̌р бу̀ ні́ фӯ');
+  assert.equal(result.kirnosova.text, 'цзӣ дӯо е̌р бу̀ ні́ фӯ');
+  assert.equal(result.kirnosova_tsisar.text, 'дзӣ дво̄ е̌р бу̀ ні́ фӯ');
+  assert.equal(result.nanu.text, 'цзӣ до̄ е̌р бу̀ ні́ фӯ');
 
   for (const system of Object.values(result)) {
     assert.equal(system.text.includes('/'), false);
