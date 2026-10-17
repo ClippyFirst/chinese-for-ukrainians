@@ -3,17 +3,17 @@ import { test, expect } from '@playwright/test';
 test('Pinyin tone control toggles displayed tones without changing Ukrainian outputs', async ({ page }) => {
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
-  const toggle = page.getByRole('checkbox', { name: 'Показувати тони Pinyin' });
-  const ukrainianToggle = page.getByRole('checkbox', { name: 'Показувати тони в українській транскрипції' });
+  const toggle = page.getByRole('checkbox', { name: 'Тони Pinyin' });
+  const ukrainianToggle = page.getByRole('checkbox', { name: 'Тони української' });
 
   await input.fill('北京');
-  await expect(page.locator('#result-pinyin')).toHaveText('Běijīng');
+  await expect(page.locator('#result-pinyin')).toHaveText('běi jīng');
   const kirnosova = await page.locator('#result-kirnosova').textContent();
   const tsisar = await page.locator('#result-kirnosova-tsisar').textContent();
   const nanu = await page.locator('#result-nanu').textContent();
 
   await toggle.uncheck();
-  await expect(page.locator('#result-pinyin')).toHaveText('Beijing');
+  await expect(page.locator('#result-pinyin')).toHaveText('bei jing');
   await expect(page.locator('#result-kirnosova')).toHaveText(kirnosova ?? '');
   await expect(page.locator('#result-kirnosova-tsisar')).toHaveText(tsisar ?? '');
   await expect(page.locator('#result-nanu')).toHaveText(nanu ?? '');
@@ -51,7 +51,7 @@ test('segmented script controls stay synchronized with the converter', async ({ 
   const traditional = page.getByRole('radio', { name: /繁 Трад\./ });
   const auto = page.getByRole('radio', { name: 'Авто' });
   await expect(auto).toBeChecked();
-  await traditional.check();
+  await page.getByText('繁 Трад.', { exact: true }).click();
   await expect(traditional).toBeChecked();
   await expect(page.locator('#script-mode')).toHaveValue('traditional');
 });
