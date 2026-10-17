@@ -21,9 +21,12 @@ test('methodology page is a static, linked, source-aware page', async () => {
 test('homepage links to methodology and Vite builds both pages', async () => {
   const index = await fs.readFile(path.join(root, 'index.html'), 'utf8');
   const vite = await fs.readFile(path.join(root, 'vite.config.js'), 'utf8');
+  const releaseCheck = await fs.readFile(path.join(root, 'scripts/release-check.mjs'), 'utf8');
   assert.match(index, /methodology\.html/u);
   assert.match(vite, /methodology\.html/u);
   assert.match(vite, /index\.html/u);
+  assert.match(releaseCheck, /methodology\.html/u);
+  assert.match(releaseCheck, /sourceFiles\.push\(index, methodology\)/u);
 });
 
 test('methodology examples match the canonical CSV columns', async () => {
