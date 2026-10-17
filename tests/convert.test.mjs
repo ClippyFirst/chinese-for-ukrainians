@@ -5,20 +5,20 @@ import { configureConverter, convert } from '../src/app/convert.js';
 const mappings = {
   kirnosova: {
     zhong: { value: 'чжун', missing: false }, guo: { value: 'ґо', missing: false },
-    bei: { value: 'бей', missing: false }, pou: { value: 'поу', missing: false },
+    bei: { value: 'бей', missing: false }, jing: { value: 'цзин', missing: false }, pou: { value: 'поу', missing: false },
   },
   kirnosova_tsisar: {
     zhong: { value: 'чжун', missing: false }, guo: { value: 'ґво', missing: false },
-    bei: { value: 'бей', missing: false }, pou: { value: 'пов', missing: false },
+    bei: { value: 'бей', missing: false }, jing: { value: 'цзин', missing: false }, pou: { value: 'пов', missing: false },
   },
   nanu: {
     zhong: { value: 'чжун', missing: false }, guo: { value: 'ґо', missing: false },
-    bei: { value: 'бей', missing: false }, pou: { value: '', missing: true },
+    bei: { value: 'бей', missing: false }, jing: { value: 'цзин', missing: false }, pou: { value: '', missing: true },
   },
 };
 const engine = (text) => [...text].map((origin) => ({
   origin,
-  pinyin: ({ 中: 'zhōng', 国: 'guó', 北: 'běi' }[origin] ?? 'mā'),
+  pinyin: ({ 中: 'zhōng', 国: 'guó', 北: 'běi', 京: 'jīng' }[origin] ?? 'mā'),
   isZh: true,
   polyphonic: ['mā'],
 }));
@@ -30,13 +30,13 @@ test('converts Chinese plus punctuation and Latin text without changing source',
   assert.equal(result.source, source);
   assert.equal(result.detectedScript.status, 'simplified');
   assert.equal(result.pinyin, 'zhōng guó! AI');
-  assert.equal(result.kirnosova, 'чжӯнґо́! AI');
+  assert.equal(result.kirnosova, 'чжӯн ґо́! AI');
 });
 
 test('can disable Ukrainian tone marks independently of Pinyin tone display', () => {
   const result = convert('北京', { scriptMode: 'auto', showPinyinTones: false, showUkrainianTones: false });
   assert.equal(result.pinyin, 'bei jing');
-  assert.equal(result.kirnosova, 'бейбей');
+  assert.equal(result.kirnosova, 'бей цзин');
 });
 
 test('keeps Auto shared-only detection undetermined', () => {
