@@ -69,12 +69,15 @@ test('keyboard users can reach the input and open contextual system help', async
   await expect(page.locator('#tip-kirnosova')).toBeVisible();
 });
 
-test('mobile layout has no horizontal overflow at supported narrow widths', async ({ page }) => {
+test('mobile layout has no horizontal overflow at supported narrow widths', async ({ page }, testInfo) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Приклад' }).click();
 
-  for (const width of [320, 360, 390, 430]) {
-    await page.setViewportSize({ width, height: 844 });
+  const widths = testInfo.project.name === 'mobile'
+    ? [await page.evaluate(() => window.innerWidth)]
+    : [320, 360, 390, 430];
+  for (const width of widths) {
+    if (testInfo.project.name !== 'mobile') await page.setViewportSize({ width, height: 844 });
     const helpButton = page.locator('.info-tip').first();
     await helpButton.focus();
     const tooltip = await page.locator('#tip-kirnosova').boundingBox();
