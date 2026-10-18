@@ -4,7 +4,7 @@ import { normalizePinyinKey, generateMappings, lookupTranscription, validateCsv 
 const validCsv = '\uFEFF№;Піньїнь;Кірносова;Кірносова—Цісар;НАНУ\n1;bei;бей;бей;бей\n2;er/r;ер/р;ер/р;ер/р\n3;pou;поу;пов;\n';
 
 test('normalizes tone-marked and tone-number Pinyin keys before lookup', () => {
-  for (const [input, expected] of [[' BĚI4 ', 'bei'], ['shì', 'shi'], ['nǚ', 'nü'], ['lü4', 'lü'], ['u:an3', 'üan'], ['v4', 'ü']]) {
+  for (const [input, expected] of [[' BĚI4 ', 'bei'], ['shì', 'shi'], ['nǚ', 'nü'], ['lü4', 'lü'], ['u:an3', 'üan'], ['v4', 'ü'], ['ma0', 'ma'], ['ma5', 'ma']]) {
     assert.equal(normalizePinyinKey(input), expected, input);
   }
   const mappings = generateMappings(validCsv);
@@ -28,4 +28,11 @@ test('preserves blank cells as explicit missing mappings', () => {
 test('resolves slash aliases independently', () => {
   const mappings = generateMappings(validCsv);
   assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'r').value, 'ер/р');
+});
+
+test('rejects Latin-script leakage in Ukrainian output columns', () => {
+  const contaminated = validCsv.replace('1;bei;бей;бей;бей', '1;bei;нюe;бей;бей');
+  const report = validateCsv(contaminated);
+  assert.equal(report.valid, false);
+  assert.match(report.errors.join('\\n'), /Latin-script character/);
 });
