@@ -41,7 +41,7 @@ const cases = [
   ['rang1', 'ɹɑŋ˥'],
   ['zheng1', 'ʈʂəŋ˥'],
   ['zeng4', 'tsəŋ˥˩'],
-  ['zhuang1', 'tswɑŋ˥'],
+  ['zhuang1', 'ʈʂwɑŋ˥'],
   ['chuang2', 'ʈʂʰwɑŋ˧˥'],
   ['shuang4', 'ʂwɑŋ˥˩'],
   // Diphthongs across the palatal, alveolar and retroflex onset families.
