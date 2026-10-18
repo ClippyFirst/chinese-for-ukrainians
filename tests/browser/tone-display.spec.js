@@ -54,7 +54,7 @@ test('segmented script controls stay synchronized with the converter', async ({ 
   const traditional = page.getByRole('radio', { name: /繁 Традиційне/u });
   const auto = page.getByRole('radio', { name: 'Авто' });
   await expect(auto).toBeChecked();
-  await traditional.check();
+  await page.getByText('繁 Традиційне', { exact: true }).click();
   await expect(traditional).toBeChecked();
   await expect(page.locator('#script-mode')).toHaveValue('traditional');
 });
