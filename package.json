@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "description": "Chinese to Ukrainian transcription utility for Ukrainian-speaking users.",
   "type": "module",
-  "engines": { "node": ">=22.12.0" },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "validate:data": "node scripts/validate-data.mjs",
@@ -13,7 +15,8 @@
     "test:browser": "playwright test",
     "benchmark": "node scripts/benchmark.mjs",
     "check:release": "node scripts/release-check.mjs",
-    "build": "npm run validate:data && npm run generate:data && vite build"
+    "build": "npm run validate:data && npm run generate:data && vite build",
+    "audit:ipa:uw": "node scripts/audit-uw-ipa-differential.mjs"
   },
   "dependencies": {
     "@pinyin-pro/data": "1.3.1",
