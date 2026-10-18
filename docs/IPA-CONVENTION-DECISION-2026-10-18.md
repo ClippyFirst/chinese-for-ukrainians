@@ -20,7 +20,8 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 | palatal glide | j | i in glide contexts | Ordinary IPA glide symbol |
 | labial-velar glide | w | u in glide contexts | Ordinary IPA glide symbol |
 | rounded palatal glide | ɥ | y in glide contexts | Ordinary IPA glide symbol |
-| iao | jɑʊ | iau | Ordinary-IPA [j] glide plus [ɑʊ] diphthong; Liu (2026) supports the [ɑ]-type nucleus in this final family |\n| iong | jʊŋ | yuŋ | Unresolved sequence/vowel analysis; not a simple notation conversion |
+| iao | jɑʊ | iau | Ordinary-IPA [j] glide plus [ɑʊ] diphthong; Liu (2026) supports the [ɑ]-type nucleus in this final family 
+| iong | jʊŋ | yuŋ | Unresolved sequence/vowel analysis; not a simple notation conversion |
 | apical vowel after z/c/s | ɹ̩ | ɿ | UW notes ɿ is a non-IPA sinological symbol |
 | apical vowel after zh/ch/sh/r | ɻ̩ | ʅ for retroflex sibilants | Converter distinguishes articulatory context |
 | o after b/p/m/f | uɔ after these initials; standalone `o` remains an edge case | UW syllable chart gives `bo/po/mo/fo` as `puɔ/pʰuɔ/muɔ/fuɔ`; PolyU also describes a short, weak `u` in these syllables | Earlier `pɔ/pʰɔ/mɔ/fɔ` claim was incorrect; implementation and regression tests now preserve the supported labial-conditioned `uo` realization |
