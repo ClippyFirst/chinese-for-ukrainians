@@ -28,12 +28,14 @@ The converter's broad IPA output cannot be validated by literal comparison with 
    - Uses more detailed values such as [ɤə], [iəu̯], [u̯ei̯], and syllabic [ɻ̩]/[ɹ̩] for the special `-i` series.
 5. Hong Kong Polytechnic University, *Simple Finals*: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
    - Describes the weak intermediate [u]-like component in `bo/po/mo/fo`.
+6. Wu, Chen-Huei, and Chilin Shih (2009), “Mandarin Vowels Revisited: Evidence from Electromagnetic Articulography,” *Proceedings of the 35th Berkeley Linguistics Society*. https://doi.org/10.3765/bls.v35i1.3622
+   - Acoustic/articulatory study of Mandarin vowel variation. The study elicited syllables from one Taiwan Mandarin speaker and reports substantial context-conditioned variation; it is useful evidence against treating a single chart as a universal narrow-IPA gold standard, not a complete reference table for this converter.
 
 ## Actions taken / outstanding
 
 - **Taken:** corrected zero-initial `wo` from `wo` to `uɔ`, matching the UW chart and the converter's existing `uo` output.
 - **Taken:** retained the context-conditioned `uɔ` mapping after `b/p/m/f` instead of applying standalone `o → ɔ` indiscriminately.
-- **Outstanding:** review the `a/ɑ` family as a single coherent class, including nasal finals and medial-conditioned variants.
+- **Outstanding:** review the `a/ɑ` family as a single coherent class, including nasal finals and medial-conditioned variants. Wu & Shih (2009) show that [a] variants across `an`, `aŋ`, `aj`, and `aw` differ acoustically/articulatorily in their single-speaker study; this supports keeping context-conditioned distinctions under review, but the sample is not sufficient to impose one universal symbol mapping.
 - **Outstanding:** decide whether the displayed output should remain broad phonemic/broad-phonetic IPA or become a more detailed narrow transcription. Do not mix conventions selectively without documenting each transformation.
 - **Outstanding:** decide the exact ordinary-IPA notation for `ong`, `iong/yong`, and the contracted `iu/ui/un` families using source evidence and audio/acoustic references where available.
 
