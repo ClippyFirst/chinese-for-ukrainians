@@ -23,7 +23,9 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 | iong | jʊŋ | yuŋ | Different glide notation |
 | apical vowel after z/c/s | ɹ̩ | ɿ | UW notes ɿ is a non-IPA sinological symbol |
 | apical vowel after zh/ch/sh/r | ɻ̩ | ʅ for retroflex sibilants | Converter distinguishes articulatory context |
-| o / uo | uɔ | uɔ | Same broad final |
+| o after b/p/m/f | ɔ | UW teaching chart gives [pɔ], [pʰɔ], [mɔ], [fɔ] | Context-specific open-mid back vowel; avoid inserting an extra [u] glide |
+| standalone wo | wo | UW finals chart gives [wo] | Preserve the labial-velar glide in ordinary IPA |
+| uo after an initial | uɔ | UW finals chart gives [wo] for the final | Project keeps a broad [uɔ] realization for the contracted final; requires further phonetic adjudication |
 | er | əɹ | əɹ | Same broad output |
 | neutral tone | no fixed contour | no single contour encoded in chart | Context-dependent; avoid inventing a contour |
 
@@ -49,3 +51,7 @@ One source limitation surfaced during the comparison: the UW Finals page gives t
 The new tests also lock current broad-IPA choices for ong (ʊŋ) and contracted un/ui spellings (twən/tweɪ). UW uses its own broad/sinological notation for these glides and vowels, so these remain convention-sensitive choices. A passing regression test establishes consistency with the project decision record, not independent phonetic validation.
 
 This is a targeted coverage expansion, not exhaustive final-by-final certification.
+
+## Context-sensitive correction (2026-10-18)
+
+The previous shared mapping `o: uɔ` and `wo: uɔ` collapsed distinct Pinyin forms. It produced an unsupported extra [u] element in forms such as `bo` and omitted the [w] glide in standalone `wo`. The mapping is now split: `o` maps to `ɔ` (so `bo/po/mo/fo` map to `pɔ/pʰɔ/mɔ/fɔ`), while `wo` maps to `wo`; `uo` remains `uɔ` pending a more complete source comparison. This is a source-backed targeted correction using the UW syllable chart and the University of Hawaiʻi teaching chart, not a claim that either chart is a complete narrow-IPA authority.
