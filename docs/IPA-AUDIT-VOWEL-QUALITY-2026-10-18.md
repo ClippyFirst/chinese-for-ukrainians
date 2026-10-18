@@ -37,6 +37,6 @@ The converter's broad IPA output cannot be validated by literal comparison with 
 - **Taken:** retained the context-conditioned `uɔ` mapping after `b/p/m/f` instead of applying standalone `o → ɔ` indiscriminately.
 - **Outstanding:** review the `a/ɑ` family as a single coherent class, including nasal finals and medial-conditioned variants. Wu & Shih (2009) show that [a] variants across `an`, `aŋ`, `aj`, and `aw` differ acoustically/articulatorily in their single-speaker study; this supports keeping context-conditioned distinctions under review, but the sample is not sufficient to impose one universal symbol mapping.
 - **Outstanding:** decide whether the displayed output should remain broad phonemic/broad-phonetic IPA or become a more detailed narrow transcription. Do not mix conventions selectively without documenting each transformation.
-- **Outstanding:** decide the exact ordinary-IPA notation for `ong`, `iong/yong`, and the contracted `iu/ui/un` families using source evidence and audio/acoustic references where available.
+- **Outstanding:** decide the exact ordinary-IPA notation for `ong`, `iong/yong`, and the contracted `iu/ui/un` families using source evidence and audio/acoustic references where available. For `iong/yong`, explicitly adjudicate [j] versus [ɥ] as the medial before choosing between candidates such as [jʊŋ], [juŋ], or [ɥuŋ]; current sources are not interchangeable notation variants.
 
 A regression test only prevents an accidental change to a chosen output. It does not by itself prove that the output is scientifically correct.
