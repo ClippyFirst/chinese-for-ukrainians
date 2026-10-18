@@ -42,7 +42,7 @@ Use:
 
 ## High-priority testable questions
 
-1. **Ü-final allomorphs:** Are `nüe` and `lüe` rendered as `nɥe/lɥe` or as a vowel sequence such as `nyɛ/lyɛ` under the project's declared broad convention? Resolve from phonetic sources, not intuition.
+1. **Ü-final glide notation:** The UW chart gives `nüe/ lüe` as `nyɛ/lyɛ`; the converter now renders `nɥɛ/lɥɛ`, converting the chart's glide-like `y` to ordinary IPA `ɥ` while preserving `ɛ`. Confirm this glide-vs-vowel analysis against a second phonetic source and document whether it is appropriate after `n/l` as well as in `j/q/x/y` contexts.
 2. **Apical segments:** Is `ɹ̩/ɻ̩` the most defensible broad IPA representation for the dental and retroflex apical segments, given articulatory/acoustic work arguing for approximant-like segments? If changing it, document the analysis and migration impact.
 3. **R onset:** The branch now uses `ɹ`, matching the UW broad chart and avoiding an unsupported universal retroflex claim. Keep this as a broad convention, not a narrow description of all speakers.
 4. **Vowel qualities:** Confirm `a` vs `ɑ`, `e` vs `ɤ/ə`, `o` vs `ɔ`, and `ong` / `iong` independently. The UW chart is a convention reference, not an automatic IPA gold file.
