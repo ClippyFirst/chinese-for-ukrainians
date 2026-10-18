@@ -23,9 +23,9 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 | iong | jʊŋ | yuŋ | Different glide notation |
 | apical vowel after z/c/s | ɹ̩ | ɿ | UW notes ɿ is a non-IPA sinological symbol |
 | apical vowel after zh/ch/sh/r | ɻ̩ | ʅ for retroflex sibilants | Converter distinguishes articulatory context |
-| o after b/p/m/f | ɔ | UW teaching chart gives [pɔ], [pʰɔ], [mɔ], [fɔ] | Context-specific open-mid back vowel; avoid inserting an extra [u] glide |
-| standalone wo | wo | UW finals chart gives [wo] | Preserve the labial-velar glide in ordinary IPA |
-| uo after an initial | uɔ | UW finals chart gives [wo] for the final | Project keeps a broad [uɔ] realization for the contracted final; requires further phonetic adjudication |
+| o after b/p/m/f | uɔ after these initials; standalone `o` remains an edge case | UW syllable chart gives `bo/po/mo/fo` as `puɔ/pʰuɔ/muɔ/fuɔ`; PolyU also describes a short, weak `u` in these syllables | Earlier `pɔ/pʰɔ/mɔ/fɔ` claim was incorrect; implementation and regression tests now preserve the supported labial-conditioned `uo` realization |
+| standalone wo | wo | UW chart renders `wo` as `uɔ` under its stated convention of using `u` for glides; Open University confirms the Pinyin spelling rule `uo → wo` for zero initial | `wo` is retained as the project's ordinary-IPA glide notation; literal output differs from UW by convention |
+| uo after an initial | uɔ | UW chart gives `duo → tuɔ` and related forms with `uɔ` | Supported as a broad chart-aligned representation; this does not certify narrow phonetic realization for every speaker |
 | er | əɹ | əɹ | Same broad output |
 | neutral tone | no fixed contour | no single contour encoded in chart | Context-dependent; avoid inventing a contour |
 
@@ -55,3 +55,20 @@ This is a targeted coverage expansion, not exhaustive final-by-final certificati
 ## Context-sensitive correction (2026-10-18)
 
 The previous shared mapping `o: uɔ` and `wo: uɔ` collapsed distinct Pinyin forms. It produced an unsupported extra [u] element in forms such as `bo` and omitted the [w] glide in standalone `wo`. The mapping is now split: `o` maps to `ɔ` (so `bo/po/mo/fo` map to `pɔ/pʰɔ/mɔ/fɔ`), while `wo` maps to `wo`; `uo` remains `uɔ` pending a more complete source comparison. This is a source-backed targeted correction using the UW syllable chart and the University of Hawaiʻi teaching chart, not a claim that either chart is a complete narrow-IPA authority.
+
+
+## Source correction and context-sensitive final (2026-10-18, third pass)
+
+A re-read of the University of Washington syllable chart found an error in the earlier decision note: it does **not** give `bo/po/mo/fo` as `pɔ/pʰɔ/mɔ/fɔ`. The chart explicitly renders these as `puɔ/pʰuɔ/muɔ/fuɔ`; the Hong Kong Polytechnic University pronunciation guide independently says that `o` after b/p/m/f contains a short, weak `u` and is close to a `uo` diphthong. A University of Szeged doctoral dissertation likewise describes Pinyin `bo` as `[buo]`. This is evidence for a context-sensitive rule, not a universal change to the standalone `o` entry.
+
+The implementation now uses the `uo` mapping for final `o` after Pinyin initials b, p, m, and f. Standalone `o` remains a separately classified edge form and is not treated as an ordinary standard syllable; its output should not be generalized from the labial-conditioned forms. Regression tests now assert `bo → puɔ`, `po → pʰuɔ`, `mo → muɔ`, and `fo → fuɔ`.
+
+Evidence:
+- University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+- Hong Kong Polytechnic University, *Simple Finals*: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
+- Fan, Libo (2025), *Perception and production of Chinese vowel finals by Hungarian learners*, University of Szeged, discussion of Pinyin `o` after labials: https://doktori.bibl.u-szeged.hu/12676/1/Final%20Dissertation-Libo.pdf
+- Open University, Pinyin spelling convention `uo → wo`: https://www.open.edu/openlearn/mod/oucontent/view.php?id=106435&section=1.3
+
+The University of Washington's broad chart uses a field-specific notation, explicitly substituting `u` for the glide `w` and `i` for `j` in glide contexts. The project's `wo` output therefore remains `wo` in its declared ordinary-IPA notation even though the chart writes the corresponding syllable as `uɔ`. This is a convention conversion, not an assertion that the two strings are identical.
+
+This correction resolves one confirmed implementation/documentation mismatch. It does not complete the exhaustive IPA audit: remaining finals and initial-final combinations still need source-backed expected-output checks, and the standalone `o` edge form needs its own explicit inventory policy.
