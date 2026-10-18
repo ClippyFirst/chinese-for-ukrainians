@@ -78,8 +78,9 @@ test('covers contracted and zero-initial Pinyin forms across final classes', () 
   assert.equal(pinyinToIPA('ong1'), 'ʊŋ˥');
 });
 
-test('keeps numeric tone parsing consistent across the complete reference inventory', () => {
-  const contours = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
+test('renders tone suffixes consistently across the reference inventory (not a lexical legality test)', () => {
+  // This checks deterministic suffix rendering only. It does not assert that every
+  // syllable can occur with every lexical tone in Standard Mandarin.
   for (const syllable of MANDARIN_REFERENCE_SYLLABLES) {
     const segmental = pinyinToIPA(syllable);
     assert.notEqual(segmental, '', `unmapped base syllable: ${syllable}`);
@@ -125,7 +126,7 @@ test('keeps onset r, syllabic ri, standalone er, and erhua conceptually separate
   assert.equal(pinyinToIPA('ra1'), 'ɹa˥');
   assert.equal(pinyinToIPA('ru1'), 'ɹu˥');
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
-  assert.equal(pinyinToIPA('er1'), 'əɹ˥');
+  assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
   // Erhua is not inferred from an ordinary Pinyin syllable in this function.
 });
 
