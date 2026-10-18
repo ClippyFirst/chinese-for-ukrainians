@@ -50,6 +50,14 @@ Sources:
 - University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
 - LibreTexts, *The Sound System of Mandarin*: https://human.libretexts.org/Bookshelves/Languages/Chinese/CHN101_Elementary_Mandarin_I_Textbook/01%3A_Introduction/1.01%3A_The_Sound_System_of_Mandarin
 
+### 4. Zero-initial `wo` and the vowel quality of `o`
+
+The University of Washington Mandarin syllable chart explicitly lists `wo → uɔ`, while the current converter had returned `wo` (with [o], a close-mid vowel). That was not merely a notation difference: it changed the final vowel quality relative to the cited chart. The broad project convention already uses `uɔ` for the `uo` family, so the zero-initial spelling `wo` is now normalized to `uɔ` as well. A regression test covers both `wo` and `uo`.
+
+Source: University of Washington, *Mandarin Chinese Syllables*, zero-initial row and `uo` final: https://courses.washington.edu/chin342/ipa/syllables.html
+
+This correction is source-aligned, but does not resolve the broader question of whether the project's ordinary-IPA display should represent the glide-like first element as [u̯], [w], or another convention. That notation decision remains open and should be applied consistently only after the project declares its transcription level.
+
 ## Regression guardrails added in this pass
 
 The test fixture checks that:
