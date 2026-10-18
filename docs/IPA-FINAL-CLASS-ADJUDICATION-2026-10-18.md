@@ -49,7 +49,7 @@
 | 31 | `uang` | `wɑŋ` | UW writes `uaŋ`; project uses [ɑ] | convention decision needed | Adjudicate [a]/[ɑ] across `ang/iang/uang` rather than independently guessing each row |
 | 32 | `ueng` | `wəŋ` | UW uses `uəŋ` for `weng`; project treats `u` as [w] glide | convention conversion | Verify zero-initial alias `weng` and distinguish from `ong` |
 | 33 | `üe` | `ɥɛ` | UW gives `yɛ`; UCL gives `yɛ`; project uses [ɥ] for glide and [ɛ] for nucleus | convention decision needed | Confirm glide-vs-vowel analysis, especially after n/l and in j/q/x contexts |
-| 34 | `üan` | `ɥɛn` | UCL table gives `yɑn`; UW uses `yɛn` in zero-initial alias `yuan` | unresolved | The [ɛ]/[ɑ] difference is substantive; adjudicate final quality and [y]/[ɥ] analysis before changing code |
+| 34 | `üan` | `ɥɛn` | UW gives `yɛn` (its glide convention maps `y` to /ɥ/); UCL table gives `yɑn`; Liu (2026) acoustic study supports an [ɛ]-type nucleus for the sampled i/ü + n class but has one speaker | unresolved, partially acoustically corroborated | See [targeted `üan` adjudication](./IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md); retain current output provisionally and keep the UCL disagreement visible |
 | 35 | `ün` | `yn` | UW gives `yn` in zero-initial alias `yun`; UCL gives `yn` | source-aligned for sampled alias | Confirm the same vowel quality after every legal onset; check j/q/x spelling normalization |
 | 36 | `er` | `əɹ` | UW gives `ər`; Nguyen Dinh Hien (2018) argues [ɐɹ]; some references use [ɚ] | unresolved | Choose a target convention for central vowel and rhoticity; keep standalone er separate from onset r and erhua |
 
