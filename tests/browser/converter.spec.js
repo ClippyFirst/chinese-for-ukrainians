@@ -123,17 +123,24 @@ test('methodology page loads, links back to converter, and keeps comparison tabl
 });
 
 
-test('Auto, Simplified and Traditional script selector segments have equal widths', async ({ page }) => {
+test('Auto, Simplified and Traditional script selector segments have equal widths and heights', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/');
   const segments = page.locator('.segmented label');
   await expect(segments).toHaveCount(3);
-  const widths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
-  expect(Math.max(...widths) - Math.min(...widths)).toBeLessThanOrEqual(1);
-  for (const width of [390, 320]) {
+
+  for (const width of [1280, 390, 320]) {
     await page.setViewportSize({ width, height: 850 });
-    const mobileWidths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
-    expect(Math.max(...mobileWidths) - Math.min(...mobileWidths)).toBeLessThanOrEqual(1);
+    const dimensions = await segments.evaluateAll((items) => items.map((item) => {
+      const rect = item.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    }));
+    const widths = dimensions.map((item) => item.width);
+    const heights = dimensions.map((item) => item.height);
+    expect(Math.max(...widths) - Math.min(...widths), `unequal segment widths at ${width}px`).toBeLessThanOrEqual(1);
+    expect(Math.max(...heights) - Math.min(...heights), `unequal segment heights at ${width}px`).toBeLessThanOrEqual(1);
+    expect(Math.min(...heights), `segments are too short at ${width}px`).toBeGreaterThanOrEqual(36);
+
     const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
     const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     expect(pageWidth).toBeLessThanOrEqual(viewportWidth);
