@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { formatIPA, pinyinToIPA } from '../src/app/ipa.js';
+import { MANDARIN_REFERENCE_SYLLABLES } from './mandarin-syllable-inventory.mjs';
 test('retains syllabic apical vowels in retroflex and alveolar sibilant syllables', () => {
   assert.equal(pinyinToIPA('zhi1'), 'ʈʂɻ̩˥');
   assert.equal(pinyinToIPA('chi2'), 'ʈʂʰɻ̩˧˥');
@@ -33,4 +34,11 @@ test('maps o, uo, and er finals using the documented Mandarin IPA reference', ()
   assert.equal(pinyinToIPA('duo2'), 'tuɔ˧˥');
   assert.equal(pinyinToIPA('wo3'), 'uɔ˨˩˦');
   assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
+});
+
+test('maps every syllable in the University of Washington reference inventory', () => {
+  assert.equal(MANDARIN_REFERENCE_SYLLABLES.length, 403);
+  for (const syllable of MANDARIN_REFERENCE_SYLLABLES) {
+    assert.notEqual(pinyinToIPA(syllable), '', `unmapped reference syllable: ${syllable}`);
+  }
 });
