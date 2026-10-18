@@ -55,7 +55,7 @@ test('keeps the documented IPA glide and vowel notation distinct from UW convent
   assert.equal(pinyinToIPA('iong1'), 'jʊŋ˥');
   assert.equal(pinyinToIPA('yue1'), 'ɥɛ˥');
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
-  assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɹu˥');
 });
 
 test('covers contracted and zero-initial Pinyin forms across final classes', () => {
@@ -121,8 +121,8 @@ test('keeps tone-marked Pinyin equivalent to numbered tones for common vowel and
 test('keeps onset r, syllabic ri, standalone er, and erhua conceptually separate', () => {
   // Evidence review: Chen, Whalen & Mok (2024), Phonetica 81(5).
   // These assertions lock the project's broad notation, not a narrow universal realization.
-  assert.equal(pinyinToIPA('ra1'), 'ɻa˥');
-  assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
+  assert.equal(pinyinToIPA('ra1'), 'ɹa˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɹu˥');
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
   assert.equal(pinyinToIPA('er1'), 'əɹ˥');
   // Erhua is not inferred from an ordinary Pinyin syllable in this function.
