@@ -35,7 +35,7 @@ Use:
 | Zero-initial y/w spellings | y/w aliases normalize to vowel/glide outputs; `wo` now maps to `uɔ` per the UW syllable chart rather than `wo` | Orthography is not a direct phoneme sequence; glide notation differs by transcription convention | partially verified | Compare each legal zero-initial family against its onset counterpart and independently validate expected output; decide consistently how to render glide-like `u` in ordinary IPA |
 | er and erhua | standalone er → əɹ; productive erhua is not implemented as a general connected-speech process | UW pages differ in their displayed notation for standalone er; erhua has context-sensitive segmental effects | convention decision needed / out of scope | Record the standalone convention; explicitly mark word-level erhua as out of scope unless implemented separately |
 | Syllabic nasals m/n/ng | m̩/n̩/ŋ̍ | Edge forms are not ordinary CV syllables and have limited lexical distribution | partially verified | Confirm symbol choice and source scope; add dedicated fixtures, not just generic inventory tests |
-| Tones 1–4 | ˥, ˧˥, ˨˩˦, ˥˩ appended to every syllable | Tone letters encode canonical contours, not every speaker's realization; third tone is context-sensitive | partially verified | Keep citation-form tests, document contour convention, and test no tone / numbered / marked input equivalence |
+| Tone suffix renderer | Numeric 1–4 append ˥, ˧˥, ˨˩˦, ˥˩; 0/5 append no contour | This is a deterministic formatter, not a lexicon or legal-tone validator. Not every syllable accepts every tone (PolyU notes that standalone er does not occur with first tone). | partially verified | Keep renderer tests separate from lexical tone legality; use a lexicon-backed validity layer if invalid combinations must be rejected |
 | Neutral tone | no fixed contour for tone 0/5 | Neutral-tone pitch and duration depend on context; absence of a contour is a design choice for this segmental/citation layer | verified as a scope decision | Preserve this behavior; never describe neutral tone as a fixed mid-level tone |
 | Third-tone sandhi | not applied | Academic descriptions confirm third-tone sandhi and contextual realization; this layer currently renders lexical/citation tones | out of scope | Keep it explicit in UI/docs; any future surface-tone mode must be a separate contextual engine with its own tests |
 | yi/bu tone alternations and other connected-speech effects | not applied | These require lexical, syntactic/prosodic and contextual analysis | out of scope | Do not add context-free rewrites to this converter |
@@ -68,7 +68,7 @@ The IPA layer can be called **scientifically verified within its declared scope*
 1. every implemented segmental class and every legal initial–final combination is covered by evidence-backed expected outputs;
 2. convention-sensitive cases have a written decision and independent source support;
 3. unsupported or marginal forms are classified and do not silently inherit ordinary-syllable rules;
-4. the four citation tone contours, tone-mark parsing, neutral tone and punctuation formatting have explicit tests;
+4. the four tone suffixes, tone-mark parsing, neutral tone and punctuation formatting have explicit tests, while lexical tone legality is separately validated or explicitly out of scope;
 5. all unresolved cases are either resolved or visibly documented as exceptions;
 6. tests pass after the fixture is independently reviewed; passing tests alone are not the evidence of correctness.
 
