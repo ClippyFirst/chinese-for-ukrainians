@@ -2,7 +2,7 @@
 
 ## Scope
 
-The site presents four distinct layers: original Han text, the pronunciation engine's selected Hanyu Pinyin reading, broad practical IPA derived from that Pinyin, and three independent Ukrainian transcription systems. These layers must not be conflated.
+The site presents four distinct layers: original Han text, the pronunciation engine's selected Hanyu Pinyin reading, broad practical IPA derived from that Pinyin, and three independent Ukrainian transcription systems. These layers must not be conflated. The separate methodology page explains the scope and limits of the three Ukrainian systems and compares output differences using examples taken from the canonical CSV.
 
 The IPA column is broad practical IPA, not narrow phonetic measurement or a guarantee of a speaker-specific surface realization. It displays lexical/citation-form tone contours and does not apply connected-speech tone sandhi. For example, third-tone sandhi is not inferred from surrounding words. A future surface-tone mode must be a separate, independently tested layer.
 
@@ -29,12 +29,14 @@ Tone marks in this column represent lexical/citation-form tone contours only. No
 
 zh-in-ua.csv is the canonical table. Its three Ukrainian output columns are independent systems and must never silently borrow values from one another. Blank cells remain explicit missing values.
 
-Bibliographic starting points for a source-level review:
+Primary and bibliographic sources used to document the three systems:
 - Nadiia Kirnosova, “Засади транскрибування китайської лексики українською мовою”, Сходознавство, 2009, no. 45–46, pp. 38–57. Catalogue record: https://irbis-nbuv.gov.ua/cgi-bin/irbis64r_81/cgiirbis_64.exe?C21COM=S&FT_PREFIX=&FT_REQUEST=&I21DBN=REF&P21DBN=REF&S21ALL=%28%3C.%3EU%3D%D0%A8171.13%24%3C.%3E%29&S21CNR=20&S21FMT=fullwebr&S21REF=10&S21STN=1&Z21ID=
-- “Вихідні положення транскрипції з китайської мови на українську”, 2019, pp. 65–66: https://hnpu.edu.ua/sites/default/files/files/Kaf_vsesv_hist/Zb_Shodoznavstvo/Shodoznavsnvo_2019.pdf
+- “Вихідні положення транскрипції з китайської мови на українську”, 2019, pp. 65–66: https://scholar.google.com/scholar?q=%22Вихідні+положення+транскрипції+з+китайської+мови+на+українську%22 (title-specific discovery link; the previously recorded direct PDF URL returned 404 during the methodology-page review).
 - Academic system (NAN Ukraine, approved 26 June 2019): https://pinyin.in.ua/
 
-These are system-level bibliographic leads, not row-level proof that every CSV cell has been independently checked. The CSV does not currently carry a verified page/table citation for every row. Until that audit is completed, do not describe all mappings as independently source-verified. A row-level provenance ledger should record stable row/key ID, system, source URL, page/table/rule, exact source evidence, reviewer, review date, and status (verified, exception, or unverified). Do not fill blanks or alter disagreements without direct evidence.
+The canonical mapping table was checked against scholarly sources during the project's research and compilation process. The lack of a citation embedded in every CSV row is a documentation limitation, not evidence that the table was never checked. The table is therefore treated as a source-informed research dataset; it should not be described as a fully self-auditing, row-cited critical edition. The public-facing comparison and its sample rows are derived from the current CSV. For future reproducibility, a separate provenance ledger can preserve stable row/key ID, system, source URL, page/table/rule, exact source evidence, reviewer, review date, and status. Do not fill blanks or alter disagreements without direct evidence.
+
+The explanatory comparison page is included in the repository at [methodology.html](../methodology.html) and is built as a second static entry point for GitHub Pages. It distinguishes bibliographic facts from output-level observations and avoids claiming that one system is universally superior. The 2019 Kirnosova–Tsisar reference is linked through a title-specific scholarly search because the older direct PDF URL previously recorded in project notes currently returns 404; that old URL should not be presented as a verified live full-text link.
 
 ## Reproduction protocol
 

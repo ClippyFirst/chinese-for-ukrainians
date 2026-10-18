@@ -59,6 +59,9 @@ test('clear returns to the empty state and hides issue feedback', async ({ page 
 test('keyboard users can reach the input and open contextual system help', async ({ page }) => {
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
+  const methodologyLink = page.getByRole('link', { name: /Методики/u });
+  await page.keyboard.press('Tab');
+  await expect(methodologyLink).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(input).toBeFocused();
 
@@ -100,4 +103,39 @@ test('reduced-motion preference is respected', async ({ page }) => {
   await page.goto('/');
   const reduced = await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   expect(reduced).toBe(true);
+});
+
+
+test('methodology page loads, links back to converter, and keeps comparison tables within the viewport', async ({ page }) => {
+  await page.goto('/methodology.html');
+  await expect(page).toHaveTitle('Методики транскрипції — 中文 / УКРАЇНСЬКА');
+  await expect(page.getByRole('heading', { name: /Три системи\./u })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Методики в контексті' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Відкрити конвертер/u })).toHaveAttribute('href', './index.html');
+  await expect(page.getByRole('link', { name: /Офіційний ресурс АСТКС/u })).toHaveAttribute('href', 'https://pinyin.in.ua/');
+  const dimensions = await page.evaluate(() => ({
+    viewport: document.documentElement.clientWidth,
+    document: document.documentElement.scrollWidth,
+    body: document.body.scrollWidth,
+  }));
+  expect(dimensions.document, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
+  expect(dimensions.body, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
+});
+
+
+test('Auto, Simplified and Traditional script selector segments have equal widths', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+  const segments = page.locator('.segmented label');
+  await expect(segments).toHaveCount(3);
+  const widths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
+  expect(Math.max(...widths) - Math.min(...widths)).toBeLessThanOrEqual(1);
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 850 });
+    const mobileWidths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
+    expect(Math.max(...mobileWidths) - Math.min(...mobileWidths)).toBeLessThanOrEqual(1);
+    const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
+    const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(pageWidth).toBeLessThanOrEqual(viewportWidth);
+  }
 });
