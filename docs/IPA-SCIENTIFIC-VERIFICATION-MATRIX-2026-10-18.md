@@ -54,6 +54,8 @@ Use:
 - University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
 - University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
 - Hong Kong Polytechnic University, *Simple Finals*: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
+- Ohio State University, *IPA Mandarin* vowel chart (2023; updated 2025): https://ielp.ehe.osu.edu/files/2025/09/IPA_Mandarin.pdf
+- Humanities LibreTexts, *The Sound System of Mandarin*: https://human.libretexts.org/Bookshelves/Languages/Chinese/CHN101_Elementary_Mandarin_I_Textbook/01%3A_Introduction/1.01%3A_The_Sound_System_of_Mandarin
 - Lee-Kim, Sang-Im (2014), *Revisiting Mandarin 'apical vowels': An articulatory and acoustic study*: https://scholar.nycu.edu.tw/en/publications/revisiting-mandarin-apical-vowels-an-articulatory-and-acoustic-st/
 - *What R Mandarin Chinese /ɹ/s? Acoustic and articulatory features of Mandarin Chinese rhotics* (2024): https://pmc.ncbi.nlm.nih.gov/articles/PMC11449382/
 - University of Munich, *Mandarin* (tone contours and tone-sandhi demonstrations): https://www.phonetik.uni-muenchen.de/studium/skripten/languagedemos/Demos/mandarin.html
@@ -79,6 +81,10 @@ This is a source-backed correction to one final class. It does **not** mean the 
 
 A second source-backed correction in this pass changes onset `r` from `ɻ` to `ɹ`. The University of Washington chart uses `ɹ`; Chen, Whalen, and Mok (2024) found bunched onset rhotics in their sample and optional frication. This supports a less over-specific broad default. It does not settle every speaker's phonetic realization. Separate cases for onset `r`, syllabic `ri`, standalone `er`, and erhua remain necessary.
 
+
+## Independent vowel-quality cross-check (2026-10-18)
+
+Added [a separate comparison note](./IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md) comparing the UW syllable chart with Ohio State University's IPA vowel chart, LibreTexts, and the PolyU pronunciation guide. The comparison supports the conditioned `uɔ` realization in `wo` and after labials, while documenting that `e`, `a/ɑ`, diphthongs, and `ong/iong` use different transcription depths across sources. Those classes remain partially verified or convention-sensitive; no blanket validation claim is made.
 
 ## Cross-class regression pass (2026-10-18)
 
