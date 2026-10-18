@@ -38,3 +38,14 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 ## Status
 
 Convention documented; linguistic certification remains incomplete. This note explains notation choices but does not certify every mapping or resolve outstanding manual checks in the Ukrainian transcription tables.
+## Follow-up review: final classes and source-internal discrepancy
+
+The regression suite now explicitly covers representative zero-initial spellings and contracted Pinyin forms (yi, wu, yu, you, yuan, yong, jiong, dui, dun, weng, and ong), alongside ei and ou. These assertions protect the implementation's declared broad-IPA output; they are not a claim that the UW symbols can be copied literally into ordinary IPA.
+
+One source limitation surfaced during the comparison: the UW Finals page gives the standalone final er as əɹ, while the UW Mandarin Syllables chart displays the zero-initial syllable er as ər. The converter currently returns əɹ for er. This output agrees with the Finals page but not literally with the syllable chart. The discrepancy is recorded as a source-internal notation difference requiring a convention decision, not silently counted as a converter defect. The two pages are:
+- https://courses.washington.edu/chin342/ipa/finals.html
+- https://courses.washington.edu/chin342/ipa/syllables.html
+
+The new tests also lock current broad-IPA choices for ong (ʊŋ) and contracted un/ui spellings (twən/tweɪ). UW uses its own broad/sinological notation for these glides and vowels, so these remain convention-sensitive choices. A passing regression test establishes consistency with the project decision record, not independent phonetic validation.
+
+This is a targeted coverage expansion, not exhaustive final-by-final certification.
