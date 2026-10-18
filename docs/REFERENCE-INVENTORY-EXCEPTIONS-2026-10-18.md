@@ -27,7 +27,7 @@ The Kirnosova PDF text was extracted automatically. The table contains OCR/extra
 | `me` | Yes (`ме`) | `ме / ме / ме` | Outside UW chart; present in Ukrainian transcription inventory |
 | `n` | Yes (`н`) | `н / н / —` | Syllabic/interjection-like form; outside UW chart; NANU cell blank |
 | `ng` | Yes (`н`) | `н / н / —` | Syllabic/interjection-like form; outside UW chart; NANU cell blank |
-| `nun` | Yes (`нунь`) | `нунь / нвень / нунь` | Candidate data discrepancy: `нвень` in Kirnosova–Tsisar column needs source tracing; do not auto-correct from this note |
+| `nun` | Yes (`нунь`) | `нунь / нвень / нунь` | Confirmed source-specific difference: the published comparative table lists `нвень` for Kirnosova–Tsisar; retain it, do not normalize to other systems |
 | `o` | Yes (extraction: Latin-looking `o`) | `о / о / о` | Outside UW chart; Cyrillic/Latin glyph in extracted source is ambiguous |
 | `rua` | Yes (extraction: `жува`) | `жуа / жва / —` | Candidate discrepancy in both current Ukrainian outputs; verify the printed source cell before any correction; NANU cell blank |
 | `tei` | Yes (`тей`) | `тей / тей / тей` | Outside UW chart; present in Ukrainian transcription inventory |
@@ -42,14 +42,14 @@ The Kirnosova PDF text was extracted automatically. The table contains OCR/extra
 1. **Absence from the UW chart is not evidence of invalidity.** Seventeen of the 18 keys were located in the 2009 Kirnosova table. The remaining key, `ten`, is an independently verified NANU entry.
 2. The 2009 article explicitly says the practical inventory includes 420 syllables, accounting for rarely used forms. Its scope is therefore not expected to be identical to every pedagogical or phonetic reference chart.
 3. The keys `m`, `n`, and `ng` are represented as independent forms in the Ukrainian table. Their status and IPA rendering should be documented separately from ordinary consonant-plus-vowel syllables.
-4. The extracted table flags at least two useful manual-review targets: `rua` (Kirnosova extraction `жува` versus current `жуа`) and `nun` (the current Kirnosova–Tsisar cell `нвень`). Neither is changed here because source-image verification is still required.
+4. The extracted table flags `rua` as a manual-review target (Kirnosova extraction `жува` versus current `жуа`). By contrast, `nun` is **not** a confirmed discrepancy: the published comparative table reproduces `нвень` in the Kirnosova–Tsisar column, so that source-specific value should be retained.
 5. The extracted text cannot reliably distinguish Latin from Cyrillic look-alike glyphs in cells such as `o`, `ê`, and `hng`. Do not treat OCR output as exact character-level evidence.
 
 ## Next verification gate
 
 Before claiming complete source collation:
 
-- inspect the printed table cells for `rua`, `nun`, `hm`, `hng`, `o`, and `ê`;
-- trace the `nun` value in the Kirnosova–Tsisar column to the actual source or commit that introduced it;
+- inspect the printed table cells for `rua`, `hm`, `hng`, `o`, and `ê`;
+- keep `nun → нвень` for Kirnosova–Tsisar as supported by the published comparative table;
 - keep UW chart coverage as a reference-coverage metric, not as the canonical validity test for the Ukrainian inventory;
 - preserve source-specific blanks unless an authoritative source supplies the missing value.
