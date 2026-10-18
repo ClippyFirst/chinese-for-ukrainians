@@ -44,7 +44,11 @@ const cases = [
   ['zhuang1', 'ʈʂwɑŋ˥'],
   ['chuang2', 'ʈʂʰwɑŋ˧˥'],
   ['shuang4', 'ʂwɑŋ˥˩'],
-  // Diphthongs across the palatal, alveolar and retroflex onset families.
+  // Diphthongs across labial, palatal, alveolar and retroflex onset families.
+  // The [ɑ]-type nucleus in ao/iao follows OSU and Liu (2026); the acoustic study is single-speaker evidence.
+  ['bao3', 'pɑʊ˨˩˦'],
+  ['pao2', 'pʰɑʊ˧˥'],
+  ['mao1', 'mɑʊ˥'],
   ['jiao1', 'tɕjɑʊ˥'],
   ['qiao2', 'tɕʰjɑʊ˧˥'],
   ['xiao4', 'ɕjɑʊ˥˩'],
