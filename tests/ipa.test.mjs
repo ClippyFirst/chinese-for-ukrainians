@@ -71,3 +71,20 @@ test('covers contracted and zero-initial Pinyin forms across final classes', () 
   assert.equal(pinyinToIPA('weng1'), 'wəŋ˥');
   assert.equal(pinyinToIPA('ong1'), 'ʊŋ˥');
 });
+
+test('keeps numeric tone parsing consistent across the complete reference inventory', () => {
+  const contours = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
+  for (const syllable of MANDARIN_REFERENCE_SYLLABLES) {
+    const segmental = pinyinToIPA(syllable);
+    assert.notEqual(segmental, '', `unmapped base syllable: ${syllable}`);
+    for (const [tone, contour] of Object.entries(contours)) {
+      assert.equal(
+        pinyinToIPA(`${syllable}${tone}`),
+        segmental + contour,
+        `tone ${tone} mismatch for ${syllable}`,
+      );
+    }
+    assert.equal(pinyinToIPA(`${syllable}0`), segmental, `tone 0 should be neutral for ${syllable}`);
+    assert.equal(pinyinToIPA(`${syllable}5`), segmental, `tone 5 should be neutral for ${syllable}`);
+  }
+});
