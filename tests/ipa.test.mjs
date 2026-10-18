@@ -81,6 +81,7 @@ test('covers contracted and zero-initial Pinyin forms across final classes', () 
 test('renders tone suffixes consistently across the reference inventory (not a lexical legality test)', () => {
   // This checks deterministic suffix rendering only. It does not assert that every
   // syllable can occur with every lexical tone in Standard Mandarin.
+  const contours = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
   for (const syllable of MANDARIN_REFERENCE_SYLLABLES) {
     const segmental = pinyinToIPA(syllable);
     assert.notEqual(segmental, '', `unmapped base syllable: ${syllable}`);
