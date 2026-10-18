@@ -145,3 +145,9 @@ A separate classification note now documents all 18 CSV keys absent from the Uni
 - The source ledger now links the exception note and records these two review targets.
 
 This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and the IPA convention decision remains open.
+
+## IPA convention decision and regression coverage
+
+The converter's broad IPA notation is now documented in [IPA-CONVENTION-DECISION-2026-10-18.md](IPA-CONVENTION-DECISION-2026-10-18.md). The University of Washington explicitly describes its own chart as broad transcription and lists conventions that differ from ordinary IPA glide notation and vowel distinctions. Accordingly, the 403-key UW fixture is a coverage reference, not a literal character-by-character IPA gold standard.
+
+Regression tests now lock representative converter choices for `ai`, `ao`, `ang`, `iong`, `yue`, and the `r/ri` distinction. This makes the current implementation's notation intentional and reviewable, but does not certify every mapping or replace a future source-backed, row-by-row phonetic audit.
