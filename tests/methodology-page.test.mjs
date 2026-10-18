@@ -27,7 +27,7 @@ test('homepage links to methodology and Vite builds both pages', async () => {
   const vite = await fs.readFile(path.join(root, 'vite.config.js'), 'utf8');
   const releaseCheck = await fs.readFile(path.join(root, 'scripts/release-check.mjs'), 'utf8');
   assert.match(index, /methodology\.html/u);
-  assert.match(index, /Китайський текст — <em>українська передача вимови\.<\/em>/u);
+  assert.match(index, /&#x41A;итайський текст, <em>українська передача вимови\.<\/em>/u);
   assert.match(index, /Тут з’являться результати/u);
   assert.match(index, /Всі права застережено/u);
   assert.doesNotMatch(index, /<code>zh-in-ua\.csv<\/code>/u);
