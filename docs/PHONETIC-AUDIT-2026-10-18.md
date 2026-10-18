@@ -68,10 +68,16 @@ This is direct support for the system's general principles. It is not proof that
 
 ### Academic transcription system (NANU / ASTKS)
 
-Official resource:
-https://pinyin.in.ua/
+Official institutional approval page:
+https://www.oriental-studies.org.ua/uk/затверджена-академічна-система-тран/
 
-The resource identifies the system as approved on 26 June 2019 by the Academic Council of the A. Yu. Krymskyi Institute of Oriental Studies of the NAS of Ukraine (protocol no. 4). The official table is the appropriate primary comparison source for the `НАНУ` column. A stable, archived copy and a row-level evidence ledger should be added before calling the entire column fully audited.
+Direct official table copies linked from that page:
+- PDF: https://drive.google.com/open?id=11KU4T2_TdFsIUIFw5zUYBtXfoZi01ZsM
+- DOCX: https://drive.google.com/open?id=1DHC2ykDoKCX99AIu2SVAhFHJMGKmw8uI
+
+The official text states that the system was approved on 26 June 2019 by the Academic Council of the A. Yu. Krymskyi Institute of Oriental Studies, NAS of Ukraine (protocol no. 4). I retrieved the DOCX through its direct download endpoint and compared its syllable table with the CSV's `НАНУ` column. This partial row-level collation identified and corrected four clear issues: `di` was `ди` instead of `ді`; `rou` was `роу` instead of `жоу`; and the previously blank `pou` and `pu` cells were `поу` and `пу`. The official table also contains `ten — тень`, which is absent from the repository's inventory; it has not been added because corresponding entries in the other two systems have not yet been sourced.
+
+This is meaningful primary-source verification, but not yet an exhaustive semantic review of every row or every transcription rule. The audit ledger records the specific comparisons and remaining work.
 
 ### Mandarin IPA reference
 
