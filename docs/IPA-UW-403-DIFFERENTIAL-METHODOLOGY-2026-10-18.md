@@ -31,8 +31,8 @@ A literal match is not proof of phonetic correctness. A different string is not 
 | Status | Rows | Interpretation |
 |---|---:|---|
 | unresolved | 22 | Includes ong, iong, üan, and er contexts whose target sequence/quality remains disputed |
-| convention-decision-needed | 44 | The class needs a documented convention or vowel-quality decision |
-| convention-conversion | 80 | The comparison requires an explicit notation mapping |
+| convention-decision-needed | 38 | The class needs a documented convention or vowel-quality decision |
+| convention-conversion | 86 | The comparison requires an explicit notation mapping |
 | source-aligned-for-sampled-cases | 19 | Agreement exists for sampled cases only, not every possible context |
 | source-aligned-for-sampled-alias | 4 | Sampled zero-initial alias alignment only |
 | broad-convention-decided-with-caveat | 29 | The [ɑʊ]/[jɑʊ] output is consistent with the documented broad convention and available evidence; single-speaker limits remain |
