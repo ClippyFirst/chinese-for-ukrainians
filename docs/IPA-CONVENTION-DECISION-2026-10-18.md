@@ -16,11 +16,13 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 |---|---|---|---|
 | ai | aɪ | ai | Offglide marked explicitly |
 | ao | ɑʊ | au | Offglide marked explicitly; [ɑ]-type nucleus aligns with OSU and Liu (2026) evidence |
-| ang | ɑŋ | aŋ | Converter retains a low-vowel distinction |
+| ang | ɑŋ | aŋ | [ɑ]-type nucleus is part of the documented ao/iao/ang/iang/uang class; supported with caveat by Liu (2026) |
 | palatal glide | j | i in glide contexts | Ordinary IPA glide symbol |
 | labial-velar glide | w | u in glide contexts | Ordinary IPA glide symbol |
 | rounded palatal glide | ɥ | y in glide contexts | Ordinary IPA glide symbol |
 | iao | jɑʊ | iau | Ordinary-IPA [j] glide plus [ɑʊ] diphthong; Liu (2026) supports the [ɑ]-type nucleus in this final family 
+| iang | jɑŋ | iaŋ | Ordinary-IPA [j] glide plus the shared [ɑ]-type nucleus; Liu (2026) supports this final family with single-speaker evidence |
+| uang | wɑŋ | uaŋ | Ordinary-IPA [w] glide plus the shared [ɑ]-type nucleus; Liu (2026) supports this final family with single-speaker evidence |
 | iong | jʊŋ | yuŋ | Unresolved sequence/vowel analysis; not a simple notation conversion |
 | apical vowel after z/c/s | ɹ̩ | ɿ | UW notes ɿ is a non-IPA sinological symbol |
 | apical vowel after zh/ch/sh/r | ɻ̩ | ʅ for retroflex sibilants | Converter distinguishes articulatory context |
