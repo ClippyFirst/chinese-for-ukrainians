@@ -24,7 +24,7 @@
 | 6 | `ü` | `y` | UW and UCL table use [y] for the front-rounded vowel | convention conversion | Verify input normalization and output consistency after n/l vs j/q/x/y |
 | 7 | `ai` | `aɪ` | UW writes `ai`; project explicitly marks the offglide | convention conversion | Keep declared ordinary-IPA convention and check onset contexts/tone-mark parsing |
 | 8 | `ei` | `eɪ` | UW writes `ei`; OSU chart uses [eɪ] | convention conversion | Check the starting-vowel symbol against the chosen broad convention |
-| 9 | `ao` | `aʊ` | UW writes `au`; OSU chart uses [ɑʊ] | convention decision needed | Resolve whether the project standardizes [aʊ] or [ɑʊ] and apply consistently |
+| 9 | `ao` | `ɑʊ` | UW writes `au`; OSU chart and Liu (2026) support an [ɑ]-type nucleus before the [u]-offglide | broad convention decided; partially corroborated | Use [ɑʊ] consistently with `ang/iang/uang`; the acoustic study is one-speaker evidence, not a universal narrow target |
 | 10 | `ou` | `oʊ` | UW writes `ou`; OSU uses [oʊ], while UCL's table gives a different starting-vowel convention | convention conversion | Document diphthong convention and avoid mixing symbol systems within a class |
 | 11 | `an` | `an` | UW writes `an`; OSU distinguishes [a]/[ɑ] in vowel quality | partially corroborated | Compare with `ang`, `ian`, `uan`, `üan`; use same evidence level across derived finals |
 | 12 | `en` | `ən` | UW writes `ən`; OSU/teaching sources support central-vowel notation | partially corroborated | Check `en/uen/un` and contextual reductions without conflating spelling contraction |
@@ -33,7 +33,7 @@
 | 15 | `ong` | `ʊŋ` | UW chart gives `uŋ`; UCL table gives `uŋ`; Nguyen Dinh Hien (2018) argues [uŋ] | unresolved | Decide [u] vs [ʊ] from final-specific phonetic evidence; do not change by glyph substitution alone |
 | 16 | `ia` | `ja` | UW writes `ia` in its glide convention | convention conversion | Check onset + medial analysis and distinguish [i] glide notation from [j] |
 | 17 | `ie` | `jɛ` | UW writes `iɛ`; UCL gives `iɛ` in its own convention | convention conversion | Confirm [j] glide convention and [ɛ] nucleus in the complete onset inventory |
-| 18 | `iao` | `jaʊ` | UW writes `iau`; OSU uses [aʊ]-type diphthong notation | convention conversion | Verify [a] vs [ɑ] and glide notation consistently across `iao/iao` contexts |
+| 18 | `iao` | `jɑʊ` | UW writes `iau`; OSU uses [ɑʊ]-type diphthong notation and Liu (2026) groups `iao` with back [ɑ]-type /a/ finals | broad convention decided; partially corroborated | Use [ɑ] consistently across the `ao/iao/ang/iang/uang` family; preserve the broad glide notation and sample limitation |
 | 19 | `iou` (`iu` in contracted Pinyin) | `joʊ` after onset; `you → joʊ` | UW source entries often preserve `iou`; PolyU notes the medial `o` is especially conspicuous in tones 3/4 | partially corroborated | Audit underlying `iou` vs written `iu`; add separate source-backed checks for zero-initial `you` |
 | 20 | `ian` | `jɛn` | UW uses `iɛn`; PolyU notes a raised/closer articulation relative to `an` | partially corroborated | Check [j] vs [i] notation and vowel quality across palatal, alveolar, retroflex, and labial-velar onsets |
 | 21 | `in` | `in` | UW writes `in`; recent acoustic/perceptual work shows `in/ing` can be confused in dialect acquisition, but that is not a gold transcription | partially corroborated | Verify the target Standard Mandarin quality, not just perceptual contrast |
