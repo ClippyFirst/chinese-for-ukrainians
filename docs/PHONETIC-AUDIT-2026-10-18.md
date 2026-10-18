@@ -160,3 +160,8 @@ The IPA regression suite now checks representative zero-initial and contracted P
 A source-internal discrepancy was recorded for er: UW's Finals page gives əɹ, whereas the Mandarin Syllables chart displays the standalone syllable as ər. The converter retains əɹ for now because it matches the Finals page and the existing regression test, but this should be regarded as a convention choice pending adjudication, not as a fully settled source fact. The same caution applies to ong and the contracted ui/un finals, where the UW chart's glide notation differs from the project's ordinary-IPA notation.
 
 The expanded tests improve regression coverage but do not prove every mapping phonetically correct. Full linguistic certification remains open.
+## Numeric-tone regression coverage (2026-10-18, third pass)
+
+Added a cross-product test over all 403 syllables in the University of Washington reference fixture. For every listed syllable, it checks that numeric tones 1–4 append the configured citation-form contour and that suffixes 0 and 5 add no fixed contour. This validates parser consistency across the inventory rather than only selected examples.
+
+This test is not a pronunciation gold standard: it uses the converter's own segmental output as a baseline and validates tone handling only. It cannot detect a vowel or consonant mapping error shared by every tone variant. Segmental evidence review remains open.
