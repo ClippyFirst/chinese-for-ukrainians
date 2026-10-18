@@ -53,7 +53,7 @@ test('keeps the documented IPA glide and vowel notation distinct from UW convent
   assert.equal(pinyinToIPA('ao2'), 'aʊ˧˥');
   assert.equal(pinyinToIPA('ang4'), 'ɑŋ˥˩');
   assert.equal(pinyinToIPA('iong1'), 'jʊŋ˥');
-  assert.equal(pinyinToIPA('yue1'), 'ɥe˥');
+  assert.equal(pinyinToIPA('yue1'), 'ɥɛ˥');
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
   assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
 });
@@ -134,8 +134,8 @@ test('covers the ü-final family and Pinyin orthographic aliases explicitly', ()
   const expected = [
     ['nü3', 'ny˨˩˦'],
     ['lü4', 'ly˥˩'],
-    ['nüe2', 'nɥe˧˥'],
-    ['lüe2', 'lɥe˧˥'],
+    ['nüe2', 'nɥɛ˧˥'],
+    ['lüe2', 'lɥɛ˧˥'],
     ['nüan3', 'nɥɛn˨˩˦'],
     ['ju1', 'tɕy˥'],
     ['qu2', 'tɕʰy˧˥'],
@@ -143,10 +143,10 @@ test('covers the ü-final family and Pinyin orthographic aliases explicitly', ()
     ['jun1', 'tɕyn˥'],
     ['qun2', 'tɕʰyn˧˥'],
     ['xun4', 'ɕyn˥˩'],
-    ['jue2', 'tɕɥe˧˥'],
-    ['que2', 'tɕʰɥe˧˥'],
-    ['xue2', 'ɕɥe˧˥'],
-    ['yue1', 'ɥe˥'],
+    ['jue2', 'tɕɥɛ˧˥'],
+    ['que2', 'tɕʰɥɛ˧˥'],
+    ['xue2', 'ɕɥɛ˧˥'],
+    ['yue1', 'ɥɛ˥'],
     ['yuan2', 'ɥɛn˧˥'],
     ['yun3', 'yn˨˩˦'],
   ];
