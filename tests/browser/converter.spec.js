@@ -25,7 +25,7 @@ test('script radio group changes mode without mutating source input', async ({ p
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('中國');
-  await page.getByRole('radio', { name: /繁 Традиційне/u }).check();
+  await page.getByText('繁 Традиційне', { exact: true }).click();
   await expect(page.locator('#script-traditional')).toBeChecked();
   await expect(input).toHaveValue('中國');
 });
