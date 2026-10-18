@@ -27,3 +27,10 @@ test('does not assign a fixed pitch contour to neutral tone', () => {
   assert.equal(pinyinToIPA('ma0'), 'ma');
   assert.equal(pinyinToIPA('ma1'), 'ma˥');
 });
+
+test('maps o, uo, and er finals using the documented Mandarin IPA reference', () => {
+  assert.equal(pinyinToIPA('bo1'), 'puɔ˥');
+  assert.equal(pinyinToIPA('duo2'), 'tuɔ˧˥');
+  assert.equal(pinyinToIPA('wo3'), 'uɔ˨˩˦');
+  assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
+});
