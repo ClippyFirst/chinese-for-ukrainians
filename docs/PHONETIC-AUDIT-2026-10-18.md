@@ -143,7 +143,7 @@ A separate classification note now documents all 18 CSV keys absent from the Uni
 - [Reference-inventory exception classification](REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
 - The 2009 table extraction contains 17 of those 18 keys; `ten` is absent there but independently verified in the official NANU table.
 - Absence from the UW chart is explicitly treated as a scope difference, not proof that a key is invalid.
-- `rua` remains a manual/source-image review target: the extracted 2009 cell appears as `жува`, while the current Kirnosova CSV cell is `жуа`; no change was made because the extracted text may be corrupted. The `nun → нвень` value is not treated as an error: a published comparative table reproduces it for Kirnosova–Tsisar, although the primary 2019 source remains preferable.
+- `rua` is no longer treated as a confirmed discrepancy: the extracted 2009 PDF text says `жува`, but a published comparative table reproduces `жуа` for Kirnosova and `жва` for Kirnosova–Tsisar, matching the current CSV. This secondary corroboration makes an extraction artefact more likely; no mapping was changed. The same table corroborates the current `hm`, `hng`, `o`, and `ê` values, but is not a substitute for primary-page verification. The `nun → нвень` value is not treated as an error: a published comparative table reproduces it for Kirnosova–Tsisar, although the primary 2019 source remains preferable.
 - The source ledger now links the exception note and records these two review targets.
 
 This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and the IPA convention decision remains open.
