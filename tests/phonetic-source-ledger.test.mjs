@@ -59,8 +59,8 @@ test('phonetic source ledger is a well-formed nine-column semicolon CSV', async 
 });
 
 test('NANU blanks are explicitly classified as source-absent keys', async () => {
-  const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\\uFEFF/u, '').replace(/\\r\\n?/gu, '\\n');
-  const rows = content.split('\\n').filter((line) => line.length > 0).slice(1).map(parseSemicolonCsvLine);
+  const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
+  const rows = content.split('\n').filter((line) => line.length > 0).slice(1).map(parseSemicolonCsvLine);
   const sourceAbsent = new Set(rows
     .filter((fields) => fields[2] === 'NANU' && fields[6] === 'source-absent')
     .map((fields) => fields[1]));
