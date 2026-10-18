@@ -1,4 +1,4 @@
-"pinyin";"uw_ipa_raw";"current_ipa_broad";"source_kind";"literal_relation";"class_adjudication_status";"normalized_final_class";"note"
+pinyin;uw_ipa_raw;current_ipa_broad;source_kind;literal_relation;class_adjudication_status;normalized_final_class;note
 "a";"a";"a";"syllable-chart-cell";"literal-match";"partially-corroborated-or-pending";"a";"Literal string match only; the UW chart is one broad transcription witness, not a complete gold standard."
 "ai";"ai";"aɪ";"syllable-chart-cell";"different-symbol-string";"convention-conversion";"ai";"String difference is not automatically a phonetic error; map transcription conventions and adjudicate against independent evidence."
 "an";"an";"an";"syllable-chart-cell";"literal-match";"partially-corroborated-or-pending";"an";"Literal string match only; the UW chart is one broad transcription witness, not a complete gold standard."
