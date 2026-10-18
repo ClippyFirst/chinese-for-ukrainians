@@ -121,3 +121,21 @@ test('methodology page loads, links back to converter, and keeps comparison tabl
   expect(dimensions.document, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
   expect(dimensions.body, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
 });
+
+
+test('Auto, Simplified and Traditional script selector segments have equal widths', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+  const segments = page.locator('.segmented label');
+  await expect(segments).toHaveCount(3);
+  const widths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
+  expect(Math.max(...widths) - Math.min(...widths)).toBeLessThanOrEqual(1);
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 850 });
+    const mobileWidths = await segments.evaluateAll((items) => items.map((item) => item.getBoundingClientRect().width));
+    expect(Math.max(...mobileWidths) - Math.min(...mobileWidths)).toBeLessThanOrEqual(1);
+    const viewportWidth = await page.evaluate(() => document.documentElement.clientWidth);
+    const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(pageWidth).toBeLessThanOrEqual(viewportWidth);
+  }
+});
