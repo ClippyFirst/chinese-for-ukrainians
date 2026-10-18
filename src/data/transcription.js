@@ -12,7 +12,7 @@ const TONE_MARKED_VOWELS = Object.freeze({
 export function normalizePinyinKey(value) {
   const normalized = String(value).normalize('NFC').trim().toLowerCase();
   const withoutToneMarks = [...normalized].map((char) => TONE_MARKED_VOWELS[char] || char).join('');
-  return withoutToneMarks.replace(/u:/g, 'ü').replace(/v/g, 'ü').replace(/[1-5]$/u, '');
+  return withoutToneMarks.replace(/u:/g, 'ü').replace(/v/g, 'ü').replace(/[0-5]$/u, '');
 }
 export function parseCsv(input) {
   const text = input.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
@@ -47,6 +47,9 @@ export function validateCsv(input) {
       if (!normalized) { errors.push(`Row ${index + 1}: empty normalized alias in '${sourceKey}'.`); continue; }
       if (keys.has(normalized)) errors.push(`Duplicate normalized Pinyin key '${normalized}' in rows ${keys.get(normalized)} and ${index + 1}.`);
       else keys.set(normalized, index + 1);
+    }
+    for (let column = 2; column <= 4; column += 1) {
+      if (/\p{Script=Latin}/u.test(row[column])) errors.push(`Row ${index + 1}: Ukrainian output column '${EXPECTED_HEADERS[column]}' contains a Latin-script character.`);
     }
     if (!row[2] && !row[3] && !row[4]) warnings.push(`Row ${index + 1}: all Ukrainian mappings are blank.`);
   }

@@ -5,15 +5,15 @@ const INITIALS = [
 ];
 const FINALS = {
   a: 'a', o: 'ɔ', e: 'ɤ', ai: 'aɪ', ei: 'eɪ', ao: 'aʊ', ou: 'oʊ',
-  an: 'an', en: 'ən', ang: 'ɑŋ', eng: 'əŋ', er: 'aɚ',
+  an: 'an', en: 'ən', ang: 'ɑŋ', eng: 'əŋ', er: 'əɹ',
   i: 'i', ia: 'ja', ie: 'jɛ', iao: 'jaʊ', iu: 'joʊ', ian: 'jɛn', in: 'in', iang: 'jɑŋ', ing: 'iŋ', iong: 'jʊŋ',
-  u: 'u', ua: 'wa', uo: 'wo', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
+  u: 'u', ua: 'wa', uo: 'uɔ', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
   ü: 'y', üe: 'ɥe', üan: 'ɥɛn', ün: 'yn',
   ya: 'ja', ye: 'jɛ', yao: 'jaʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
   wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
-const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩', 5: '˧' };
+const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
 
 export function formatIPA(tokens) {
   let output = '';
@@ -44,11 +44,13 @@ export function formatIPA(tokens) {
  */
 export function pinyinToIPA(value) {
   const normalized = String(value).normalize('NFC').trim().toLowerCase();
-  const toneMatch = normalized.match(/([1-5])$/u);
+  const toneMatch = normalized.match(/([0-5])$/u);
   const tone = toneMatch ? Number(toneMatch[1]) : extractTone(normalized);
   let syllable = toneMatch ? normalized.slice(0, -1) : stripToneMark(normalized);
   syllable = syllable.replace(/u:/g, 'ü').replace(/v/g, 'ü');
   if (Object.hasOwn(SPECIAL_IPA, syllable)) return SPECIAL_IPA[syllable] + toneContour(tone);
+  // The standalone syllable er is not the initial r followed by final e.
+  if (syllable === 'er') return FINALS.er + toneContour(tone);
 
   let initial = '';
   let initialIPA = '';

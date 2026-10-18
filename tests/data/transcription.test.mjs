@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { normalizePinyinKey, generateMappings, lookupTranscription, validateCsv } from '../../src/data/transcription.js';
 const validCsv = '\uFEFF№;Піньїнь;Кірносова;Кірносова—Цісар;НАНУ\n1;bei;бей;бей;бей\n2;er/r;ер/р;ер/р;ер/р\n3;pou;поу;пов;\n';
 
 test('normalizes tone-marked and tone-number Pinyin keys before lookup', () => {
-  for (const [input, expected] of [[' BĚI4 ', 'bei'], ['shì', 'shi'], ['nǚ', 'nü'], ['lü4', 'lü'], ['u:an3', 'üan'], ['v4', 'ü']]) {
+  for (const [input, expected] of [[' BĚI4 ', 'bei'], ['shì', 'shi'], ['nǚ', 'nü'], ['lü4', 'lü'], ['u:an3', 'üan'], ['v4', 'ü'], ['ma0', 'ma'], ['ma5', 'ma']]) {
     assert.equal(normalizePinyinKey(input), expected, input);
   }
   const mappings = generateMappings(validCsv);
@@ -28,4 +29,22 @@ test('preserves blank cells as explicit missing mappings', () => {
 test('resolves slash aliases independently', () => {
   const mappings = generateMappings(validCsv);
   assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'r').value, 'ер/р');
+});
+
+test('rejects Latin-script leakage in Ukrainian output columns', () => {
+  const contaminated = validCsv.replace('1;bei;бей;бей;бей', '1;bei;нюe;бей;бей');
+  const report = validateCsv(contaminated);
+  assert.equal(report.valid, false);
+  assert.match(report.errors.join('\\n'), /Latin-script character/);
+});
+
+
+test('keeps the NANU syllable table aligned with verified official-source corrections', async () => {
+  const actualCsv = await readFile(new URL('../../zh-in-ua.csv', import.meta.url), 'utf8');
+  const mappings = generateMappings(actualCsv);
+  for (const [key, expected] of [['di', 'ді'], ['rou', 'жоу'], ['pou', 'поу'], ['pu', 'пу'], ['ten', 'тень']]) {
+    assert.equal(lookupTranscription(mappings, 'nanu', key).value, expected, key);
+  }
+  assert.equal(lookupTranscription(mappings, 'kirnosova', 'ten').status, 'missing');
+  assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'ten').status, 'missing');
 });
