@@ -10,7 +10,7 @@ const FINALS = {
   u: 'u', ua: 'wa', uo: 'uɔ', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
   ü: 'y', üe: 'ɥɛ', üan: 'ɥɛn', ün: 'yn',
   ya: 'ja', ye: 'jɛ', yao: 'jaʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
-  wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
+  wa: 'wa', wo: 'uɔ', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
 const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
