@@ -78,3 +78,16 @@ This is a source-backed correction to one final class. It does **not** mean the 
 
 
 A second source-backed correction in this pass changes onset `r` from `ɻ` to `ɹ`. The University of Washington chart uses `ɹ`; Chen, Whalen, and Mok (2024) found bunched onset rhotics in their sample and optional frication. This supports a less over-specific broad default. It does not settle every speaker's phonetic realization. Separate cases for onset `r`, syllabic `ri`, standalone `er`, and erhua remain necessary.
+
+
+## Cross-class regression pass (2026-10-18)
+
+A separate fixture, `tests/ipa-cross-class-audit.test.mjs`, now exercises high-risk combinations rather than testing each final only in isolation. It covers:
+- `j/q/x + üe/üan/ün` (including orthographic `u` after palatal initials);
+- `jiong/qiong/xiong/yong` versus `ong` after other initials;
+- contracted `iu/ui/un` across multiple onset classes;
+- `an/en/ang/eng/uang` across alveolar, retroflex and labial-velar contexts;
+- diphthong combinations across palatal, alveolar and retroflex onsets;
+- context-conditioned `o` after labials versus `uo` after other initials.
+
+This is a cross-class regression layer, not a complete 403-entry gold-standard table. Its expected strings are manually authored under the declared broad-IPA convention. Independent source evidence still needs to be attached to each class before the entire matrix can be marked verified. The current 403-syllable inventory loop remains a coverage gate, not an accuracy claim.
