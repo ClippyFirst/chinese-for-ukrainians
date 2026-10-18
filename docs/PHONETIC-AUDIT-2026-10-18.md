@@ -60,11 +60,13 @@ N. A. Kirnosova and N. Z. Tsisar, “Вихідні положення тран�
 Full source:
 http://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf
 
-Specific evidence located:
-- PDF pp. 65–66: the system is intended as practical Ukrainian transcription, not as a substitute for studying Chinese phonetics; the authors distinguish Pinyin spelling from the sound values it represents.
-- PDF pp. 66–67: explanation of medial/terminal i and u, Ukrainian й/в adaptations, the treatment of i in iou/iong, and the rationale for j/z/zh being rendered as дз/дз/дж in this system.
+Specific evidence extracted from the primary-source PDF:
+- PDF pp. 65–66: the authors explicitly define the target as practical Ukrainian transcription for ordinary Ukrainian readers, not a tool for learning Chinese phonetics. They reject mechanical Pinyin-to-Cyrillic transliteration while retaining Pinyin as an important international representation.
+- PDF p. 66: they describe the Mandarin syllable as initial plus final; the final may be analysed as medial, central vowel, and terminal. In their account, medial and terminal positions contain only non-syllabic i/u, and Ukrainian й/в are proposed as the closest practical representations.
+- PDF pp. 66–67: the authors discuss Ukrainian handling of i in ia/ie and nasal counterparts versus iou/iong, and justify дз/дз/дж for Pinyin j/z/zh in their practical system.
+- The article is a three-page statement of principles (printed pp. 65–67); it does **not** provide a 420-syllable comparison table. Its prose supports system-level rationale, not direct cell-by-cell verification of the CSV.
 
-This is direct support for the system's general principles. The paper's complete 420-syllable table is now retrievable, but a reliable row-by-row collation of the Kirnosova column remains outstanding because automated text extraction is noisy.
+The separate Kirnosova (2009) article is the source with the 420-syllable table. Its automated text extraction remains noisy, so candidate differences must be verified against page images or an independently faithful transcription before editing the Kirnosova column.
 
 ### Academic transcription system (NANU / ASTKS)
 
