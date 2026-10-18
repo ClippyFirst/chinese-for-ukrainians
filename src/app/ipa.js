@@ -4,13 +4,13 @@ const INITIALS = [
   ['j', 'tɕ'], ['q', 'tɕʰ'], ['x', 'ɕ'], ['r', 'ɻ'], ['z', 'ts'], ['c', 'tsʰ'], ['s', 's'],
 ];
 const FINALS = {
-  a: 'a', o: 'ɔ', e: 'ɤ', ai: 'aɪ', ei: 'eɪ', ao: 'aʊ', ou: 'oʊ',
-  an: 'an', en: 'ən', ang: 'ɑŋ', eng: 'əŋ', er: 'aɚ',
+  a: 'a', o: 'uɔ', e: 'ɤ', ai: 'aɪ', ei: 'eɪ', ao: 'aʊ', ou: 'oʊ',
+  an: 'an', en: 'ən', ang: 'ɑŋ', eng: 'əŋ', er: 'əɹ',
   i: 'i', ia: 'ja', ie: 'jɛ', iao: 'jaʊ', iu: 'joʊ', ian: 'jɛn', in: 'in', iang: 'jɑŋ', ing: 'iŋ', iong: 'jʊŋ',
-  u: 'u', ua: 'wa', uo: 'wo', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
+  u: 'u', ua: 'wa', uo: 'uɔ', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
   ü: 'y', üe: 'ɥe', üan: 'ɥɛn', ün: 'yn',
   ya: 'ja', ye: 'jɛ', yao: 'jaʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
-  wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
+  wa: 'wa', wo: 'uɔ', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
 const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
