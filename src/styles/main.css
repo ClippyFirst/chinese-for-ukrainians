@@ -56,3 +56,8 @@ textarea::placeholder { color: #777a7e; }
 .segmented label{display:flex;flex:1 1 0;align-items:stretch;min-width:0}
 .segmented span{display:flex;align-items:center;justify-content:center;width:100%;min-height:36px;height:100%;padding:8px;text-align:center;white-space:nowrap;line-height:1.2}
 @media(max-width:390px){.segmented span{padding-inline:4px;font-size:.64rem}}
+
+/* Keep explanatory IPA copy in distinct, readable paragraphs. */
+.ipa-explanation > p { margin: 0; }
+.ipa-explanation > strong { display: block; }
+.ipa-tones > strong { display: block; }
