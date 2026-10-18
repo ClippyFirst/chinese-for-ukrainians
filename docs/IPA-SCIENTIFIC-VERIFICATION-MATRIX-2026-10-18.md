@@ -30,7 +30,7 @@ Use:
 | Nasal finals | an/en/ang/eng and derived finals | Converter uses a/ɑ and ə distinctions; chart conventions differ | partially verified | Check place/quality and the derived i-/u-/ü-series as separate classes |
 | i-series finals | ia/ie/iao/iu/ian/in/iang/ing/iong | Uses j glides and several conventional vowel qualities; some finals combine glide and vowel analyses | convention decision needed | Verify all finals and their zero-initial aliases separately; pay special attention to iong/yong and iou/you |
 | u-series finals | ua/uo/uai/ui/uan/un/uang/ong | Uses w glides; ui/un are contracted Pinyin spellings and ong has a convention-sensitive vowel | convention decision needed | Validate underlying/contracted analyses against independent sources; ensure zero-initial and onset forms are consistent |
-| ü-series finals | ü/üe/üan/ün | Current outputs y/ɥe/ɥɛn/yn; glide vs vowel notation may vary by onset and transcription system | unresolved | Explicitly test üe after n/l and the orthographic ju/qu/xu/jue/que/xue/yue/yuan series; do not assume one string substitution settles all contexts |
+| ü-series finals | ü/üe/üan/ün | Source chart gives üe as yɛ; in the project's glide notation this is ɥɛ. The prior ɥe mapping omitted the open-mid vowel quality and is corrected in this branch. Other ü-final classes still need class-wide adjudication. | partially verified | Keep regression cases for n/l/j/q/x/y forms; verify üan/ün and all legal combinations independently |
 | Pinyin o after b/p/m/f | context-specific uɔ; standalone o stays distinct | UW chart and PolyU guide support the short/weak u component in bo/po/mo/fo | partially verified | Keep four regression cases; separately adjudicate standalone o and rare/interjectional status |
 | Zero-initial y/w spellings | y/w aliases normalize to vowel/glide outputs | Orthography is not a direct phoneme sequence; mappings are partly convention-based | partially verified | Compare each legal zero-initial family against its onset counterpart and independently validate expected output |
 | er and erhua | standalone er → əɹ; productive erhua is not implemented as a general connected-speech process | UW pages differ in their displayed notation for standalone er; erhua has context-sensitive segmental effects | convention decision needed / out of scope | Record the standalone convention; explicitly mark word-level erhua as out of scope unless implemented separately |
@@ -68,3 +68,10 @@ The IPA layer can be called **scientifically verified within its declared scope*
 4. the four citation tone contours, tone-mark parsing, neutral tone and punctuation formatting have explicit tests;
 5. all unresolved cases are either resolved or visibly documented as exceptions;
 6. tests pass after the fixture is independently reviewed; passing tests alone are not the evidence of correctness.
+
+
+## New evidence from the second review pass
+
+A direct comparison of the project's ordinary-IPA convention with the University of Washington final and syllable charts found a concrete mismatch in `üe`: the chart uses `yɛ`, while the converter had `ɥe`. Because the project maps the chart's glide symbol `y` to `ɥ`, the vowel quality `ɛ` must be retained. The branch changes this to `ɥɛ` and expands regression tests to `nüe`, `lüe`, `jue`, `que`, `xue`, and `yue`.
+
+This is a source-backed correction to one final class. It does **not** mean the whole ü-series is certified: `üan`, `ün`, and the complete set of legal onset-final combinations remain subject to independent class review. See [the adjudication note](./IPA-ADJUDICATION-APICALS-RHOTICS-TONES-2026-10-18.md) and [the convention decision record](./IPA-CONVENTION-DECISION-2026-10-18.md).
