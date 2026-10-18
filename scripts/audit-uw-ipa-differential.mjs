@@ -10,7 +10,7 @@ const checkOnly = process.argv.includes('--check');
 const quote = (value) => '"' + String(value ?? '').replace(/"/gu, '""') + '"';
 const initials = ['zh','ch','sh','b','p','m','f','d','t','n','l','g','k','h','j','q','x','r','z','c','s'];
 const aliases = {yi:'i',ya:'ia',ye:'ie',yao:'iao',you:'iou',yan:'ian',yang:'iang',yin:'in',ying:'ing',yong:'iong',yu:'ü',yue:'üe',yuan:'üan',yun:'ün',wu:'u',wa:'ua',wo:'uo',wai:'uai',wei:'uei',wan:'uan',wang:'uang',wen:'uen',weng:'ueng'};
-const statuses = {ong:'unresolved',iong:'unresolved','üan':'unresolved',er:'unresolved',ao:'broad-convention-decided-with-caveat',ang:'convention-decision-needed',iang:'convention-decision-needed',uang:'convention-decision-needed','üe':'convention-decision-needed',uo:'source-aligned-for-sampled-cases','ün':'source-aligned-for-sampled-alias','ü':'convention-conversion',ai:'convention-conversion',ei:'convention-conversion',ou:'convention-conversion',ia:'convention-conversion',ie:'convention-conversion',iao:'broad-convention-decided-with-caveat',ua:'convention-conversion',uai:'convention-conversion',ueng:'convention-conversion'};
+const statuses = {ong:'unresolved',iong:'unresolved','üan':'unresolved',er:'unresolved',ao:'broad-convention-decided-with-caveat',ang:'broad-convention-decided-with-caveat',iang:'broad-convention-decided-with-caveat',uang:'broad-convention-decided-with-caveat','üe':'convention-decision-needed',uo:'source-aligned-for-sampled-cases','ün':'source-aligned-for-sampled-alias','ü':'convention-conversion',ai:'convention-conversion',ei:'convention-conversion',ou:'convention-conversion',ia:'convention-conversion',ie:'convention-conversion',iao:'broad-convention-decided-with-caveat',ua:'convention-conversion',uai:'convention-conversion',ueng:'convention-conversion'};
 function finalClass(p) {
   if (p === 'er') return 'er';
   const initial = initials.find((item) => p.startsWith(item)) ?? '';
@@ -36,8 +36,8 @@ const records = parseFixture(await fs.readFile(fixturePath, 'utf8')).map(({pinyi
   const status = statuses[fc] ?? 'partially-corroborated-or-pending';
   const note = current === uw
     ? 'Literal string match only; the UW chart is one broad transcription witness, not a complete gold standard.'
-    : ['ao','iao'].includes(fc)
-      ? 'Broad output standardized to an [ɑ]-type nucleus in ao/iao based on OSU and Liu (2026); single-speaker acoustic evidence, not a universal narrow target.'
+    : ['ao','iao','ang','iang','uang'].includes(fc)
+      ? 'Broad output standardized to an [ɑ]-type nucleus across ao/iao/ang/iang/uang based on OSU and Liu (2026); single-speaker acoustic evidence, not a universal narrow target.'
       : 'String difference is not automatically a phonetic error; map transcription conventions and adjudicate against independent evidence.';
   return [pinyin,uw,current,kind,relation,status,fc,note];
 });
