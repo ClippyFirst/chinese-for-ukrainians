@@ -93,6 +93,16 @@ A mechanical comparison of the chart's IPA spellings with the project's generate
 
 Source: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
 
+### Blank-output inventory
+
+A programmatic pass over the corrected CSV found:
+- 420 data rows and no rows with all three Ukrainian outputs blank;
+- 0 blank cells in the Kirnosova column;
+- 0 blank cells in the Kirnosova–Tsisar column;
+- 12 blank cells in the NANU column.
+
+The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `kei`, 196 `m`, 216 `n`, 226 `ng`, 260 `pou`, 261 `pu`, 286 `rua`, and 377 `yo`. These remain explicit missing mappings; this audit does not fill them by borrowing values from another system. Their rationale should be checked against the official system's own table/rules and then documented individually.
+
 ## Important audit observations
 
 1. The CSV contains 420 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
