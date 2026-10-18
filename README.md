@@ -79,6 +79,9 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
 - [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
 - [Raw UW IPA source comparison](./docs/IPA-UW-RAW-SOURCE-COMPARISON-2026-10-18.md)
+- [403-key machine-generated UW IPA differential](./docs/IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv)
+
+Regenerate the differential after changing the IPA converter with `npm run audit:ipa:uw`; `npm test` checks that the committed CSV matches the current converter and all 403 source keys are covered.
 - [Contracted finals and vowel-quality audit](./docs/IPA-AUDIT-CONTRACTED-FINALS-2026-10-18.md)
 - [Independent vowel-quality cross-check](./docs/IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md)
 - [Apical segments, rhotics, and tone adjudication](./docs/IPA-ADJUDICATION-APICALS-RHOTICS-TONES-2026-10-18.md)
