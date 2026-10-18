@@ -42,3 +42,13 @@ test('maps every syllable in the University of Washington reference inventory', 
     assert.notEqual(pinyinToIPA(syllable), '', `unmapped reference syllable: ${syllable}`);
   }
 });
+
+test('keeps the documented IPA glide and vowel notation distinct from UW conventions', () => {
+  assert.equal(pinyinToIPA('ai1'), 'aɪ˥');
+  assert.equal(pinyinToIPA('ao2'), 'aʊ˧˥');
+  assert.equal(pinyinToIPA('ang4'), 'ɑŋ˥˩');
+  assert.equal(pinyinToIPA('iong1'), 'jʊŋ˥');
+  assert.equal(pinyinToIPA('yue1'), 'ɥe˥');
+  assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
+});
