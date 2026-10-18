@@ -2,7 +2,7 @@
 
 ## Status and scope
 
-This is a reproducible first-pass audit, not a claim that all 420 rows have been individually re-derived from the three source systems. The repository has 420 CSV data rows. The table is a practical transcription inventory, not a dictionary of all Chinese words or all context-dependent pronunciations.
+This is a reproducible first-pass audit, not a claim that all 420 rows have been individually re-derived from the three source systems. The repository has 421 CSV data rows after adding the source-specific NANU entry `ten`. The table is a practical transcription inventory, not a dictionary of all Chinese words or all context-dependent pronunciations.
 
 Reviewed:
 - canonical `zh-in-ua.csv`;
@@ -75,7 +75,7 @@ Direct official table copies linked from that page:
 - PDF: https://drive.google.com/open?id=11KU4T2_TdFsIUIFw5zUYBtXfoZi01ZsM
 - DOCX: https://drive.google.com/open?id=1DHC2ykDoKCX99AIu2SVAhFHJMGKmw8uI
 
-The official text states that the system was approved on 26 June 2019 by the Academic Council of the A. Yu. Krymskyi Institute of Oriental Studies, NAS of Ukraine (protocol no. 4). I retrieved the DOCX through its direct download endpoint and compared its syllable table with the CSV's `НАНУ` column. This partial row-level collation found 410 distinct Pinyin keys in the official table. After correction, 409 of those keys are present in the repository with an exact matching NANU output. Four discrepancies were corrected: `di` was `ди` instead of `ді`; `rou` was `роу` instead of `жоу`; and the previously blank `pou` and `pu` cells were `поу` and `пу`. The official table also contains `ten — тень`, which is absent from the repository's inventory; it has not been added because corresponding entries in the other two systems have not yet been sourced. A regression test now checks all four corrected values against the canonical CSV.
+The official text states that the system was approved on 26 June 2019 by the Academic Council of the A. Yu. Krymskyi Institute of Oriental Studies, NAS of Ukraine (protocol no. 4). I retrieved the DOCX through its direct download endpoint and compared its syllable table with the CSV's `НАНУ` column. This partial row-level collation found 410 distinct Pinyin keys in the official table. The CSV now represents all 410 with exact NANU outputs. Four existing cells were corrected: `di` was `ди` instead of `ді`; `rou` was `роу` instead of `жоу`; and the previously blank `pou` and `pu` cells were `поу` and `пу`. The official table's additional `ten — тень` entry has been added as a NANU-only row; the Kirnosova and Kirnosova—Tsisar cells are explicitly blank because corresponding mappings have not yet been verified in those sources. Regression tests check the four corrections and the source-specific `ten` entry.
 
 This is meaningful primary-source verification, but not yet an exhaustive semantic review of every row or every transcription rule. The audit ledger records the specific comparisons and remaining work.
 
@@ -91,7 +91,7 @@ This provides a useful syllable-by-syllable Pinyin/IPA comparison, including api
 I parsed the chart's published syllable table and compared its Pinyin entries with the canonical CSV:
 - 403 unique syllable keys in the chart;
 - all 403 are represented in the CSV;
-- 17 additional CSV keys are absent from that chart: `cei`, `den`, `dia`, `fiao`, `hm`, `hng`, `lo`, `m`, `me`, `n`, `ng`, `nun`, `o`, `rua`, `tei`, `yo`, and `ê`.
+- 18 additional CSV keys are absent from that chart: `cei`, `den`, `dia`, `fiao`, `hm`, `hng`, `lo`, `m`, `me`, `n`, `ng`, `nun`, `o`, `rua`, `tei`, `ten`, `yo`, and `ê`.
 
 This is a coverage comparison, not proof that the 17 additional forms are invalid. Some are syllabic nasals or interjections/marginal forms; each should receive an explicit inventory-status label and a source before the table is described as a standard-syllable inventory.
 
@@ -104,16 +104,16 @@ Source: University of Washington, “Mandarin Chinese Syllables”: https://cour
 ### Blank-output inventory
 
 A programmatic pass over the corrected CSV found:
-- 420 data rows and no rows with all three Ukrainian outputs blank;
-- 0 blank cells in the Kirnosova column;
-- 0 blank cells in the Kirnosova–Tsisar column;
+- 421 data rows and no rows with all three Ukrainian outputs blank;
+- 1 blank cell in the Kirnosova column (`ten`);
+- 1 blank cell in the Kirnosova–Tsisar column (`ten`);
 - 10 blank cells in the NANU column.
 
 The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. The remaining blanks stay explicit until the official source or its rules establish whether a mapping is intended.
 
 ## Important audit observations
 
-1. The CSV contains 420 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
+1. The CSV contains 421 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
 2. A blank output remains a real missing mapping. Do not fill it by copying another system's value.
 3. A syllable table cannot resolve a polyphonic Han character by itself. The selected Pinyin reading depends on the upstream pronunciation engine and its dictionary/context coverage.
 4. The IPA layer is a finite mapping. The current regression tests cover apical vowels, selected tone-marked forms, ü normalization, unsupported `ê`, punctuation, and neutral tone. They do not yet establish exhaustive correctness for every legal Pinyin syllable.
@@ -122,7 +122,7 @@ The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`
 ## Remaining work before claiming a complete audit
 
 - Collate all 420 rows against the exact published tables for each Ukrainian system; record source page/table/rule and reviewer status per row.
-- Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 17 extra CSV keys requiring classification.
+- Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 18 extra CSV keys requiring classification.
 - Decide the global IPA convention before treating the four final changes as final: align all relevant mappings to the selected chart, or keep a distinct convention with independently sourced justification. The 403-syllable fixture currently tests coverage only.
 - Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
 - Complete the existing provenance ledger with exact source evidence for every row in all three systems, plus review date, status, and documented resolution of disagreements.
@@ -131,4 +131,4 @@ The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`
 
 ## Verdict
 
-The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official ASTKS table has now been directly compared with the NANU column for its listed syllables; four discrepancies were corrected and regression-tested, but the full linguistic audit remains open. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
+The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official ASTKS table has now been directly compared with the NANU column for its 410 listed syllables; four cell discrepancies were corrected, the source-specific `ten` entry was added, and regression tests cover those decisions. The full linguistic audit remains open. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
