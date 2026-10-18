@@ -29,7 +29,7 @@ Source:
 
 ### Current implementation and decision
 
-The converter currently returns:
+The converter currently returns: (the notation below is unchanged for the syllabic/apical series; onset `r` is separately normalized to `[ɹ]` in this branch)
 - zhi/chi/shi: [ʈʂɻ̩], [ʈʂʰɻ̩], [ʂɻ̩]
 - ri: [ɻ̩]
 - zi/ci/si: [tsɹ̩], [tsʰɹ̩], [sɹ̩]
@@ -60,7 +60,7 @@ Source:
 
 ### Consequence for this converter
 
-The existing onset mapping r → [ɻ] is a practical broad choice, not a universal narrow description. The 2024 study does not justify collapsing onset r and the apical segment in ri into one unqualified rule: the segment positions and observed articulatory patterns differ. Keep separate regression cases for:
+The current onset mapping `r → [ɹ]` follows the UW broad chart and is a practical broad choice, not a universal narrow description. The 2024 study does not justify collapsing onset r and the apical segment in ri into one unqualified rule: the segment positions and observed articulatory patterns differ. Keep separate regression cases for:
 - ru / ra / re (onset r before a vowel);
 - ri (syllabic/apical segment);
 - er (syllabic rhotic vowel);
@@ -68,7 +68,7 @@ The existing onset mapping r → [ɻ] is a practical broad choice, not a univers
 
 ### Decision status
 
-**Convention decision needed.** Retain the current broad onset mapping for now, but describe it as an approximation. Do not make it more narrowly retroflex without stronger justification.
+**Partially adjudicated.** The branch uses `r → [ɹ]` as a broad default, matching the UW chart and avoiding an unsupported universal retroflex claim. The 2024 study supports caution about treating any single realization as universal. Keep the output separate from syllabic `ri`, standalone `er`, and erhua.
 
 ## 3. Lexical citation tones versus surface tones
 
