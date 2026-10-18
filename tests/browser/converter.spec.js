@@ -146,3 +146,56 @@ test('Auto, Simplified and Traditional script selector segments have equal width
     expect(pageWidth).toBeLessThanOrEqual(viewportWidth);
   }
 });
+
+
+test('methodology page stays within the viewport across mobile and desktop widths', async ({ page }, testInfo) => {
+  await page.goto('/methodology.html');
+  await expect(page.getByRole('heading', { name: /Різні розв'язки/u })).toBeVisible();
+  await expect(page.locator('.site-nav').getByRole('link', { name: /Конвертер/u })).toBeVisible();
+  await expect(page.locator('.site-nav').getByRole('link', { name: 'Методики' })).toBeVisible();
+
+  const widths = testInfo.project.name === 'mobile'
+    ? [320, 360, 390, 430]
+    : [320, 360, 390, 430, 560, 768, 1280];
+
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: 900 });
+    const dimensions = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(dimensions.document, `methodology document overflows at ${width}px: ${JSON.stringify(dimensions)}`)
+      .toBeLessThanOrEqual(dimensions.viewport);
+    expect(dimensions.body, `methodology body overflows at ${width}px: ${JSON.stringify(dimensions)}`)
+      .toBeLessThanOrEqual(dimensions.viewport);
+
+    const tables = await page.locator('.table-scroll').evaluateAll((items) => items.map((item) => {
+      const table = item.querySelector('table');
+      const wrapper = item.getBoundingClientRect();
+      const content = table.getBoundingClientRect();
+      return {
+        wrapperWidth: wrapper.width,
+        contentWidth: content.width,
+        overflowX: getComputedStyle(item).overflowX,
+      };
+    }));
+    for (const table of tables) {
+      expect(table.wrapperWidth, `table wrapper wider than viewport at ${width}px`).toBeLessThanOrEqual(width);
+      if (table.contentWidth > table.wrapperWidth) {
+        expect(['auto', 'scroll'], `wide comparison table must scroll internally at ${width}px`).toContain(table.overflowX);
+      }
+    }
+  }
+});
+
+test('methodology external references open safely in a new tab', async ({ page }) => {
+  await page.goto('/methodology.html');
+  const externalLinks = page.locator('a[target="_blank"]');
+  const count = await externalLinks.count();
+  expect(count).toBeGreaterThan(0);
+  for (const link of await externalLinks.all()) {
+    await expect(link).toHaveAttribute('rel', /noreferrer/u);
+    await expect(link).toHaveAttribute('href', /^https:\/\//u);
+  }
+});
