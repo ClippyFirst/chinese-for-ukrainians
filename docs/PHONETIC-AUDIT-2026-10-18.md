@@ -153,3 +153,10 @@ This follow-up narrows the next manual review but does not change the overall au
 The converter's broad IPA notation is now documented in [IPA-CONVENTION-DECISION-2026-10-18.md](IPA-CONVENTION-DECISION-2026-10-18.md). The University of Washington explicitly describes its own chart as broad transcription and lists conventions that differ from ordinary IPA glide notation and vowel distinctions. Accordingly, the 403-key UW fixture is a coverage reference, not a literal character-by-character IPA gold standard.
 
 Regression tests now lock representative converter choices for `ai`, `ao`, `ang`, `iong`, `yue`, and the `r/ri` distinction. This makes the current implementation's notation intentional and reviewable, but does not certify every mapping or replace a future source-backed, row-by-row phonetic audit.
+## Follow-up IPA finals audit (2026-10-18, second pass)
+
+The IPA regression suite now checks representative zero-initial and contracted Pinyin forms across several final classes: yi, wu, yu, you, yuan, yong, jiong, ei, ou, dui, dun, weng, and ong. The assertions are based on the converter's documented broad-IPA convention; they do not treat UW's broad/sinological symbols as literal ordinary-IPA gold outputs.
+
+A source-internal discrepancy was recorded for er: UW's Finals page gives əɹ, whereas the Mandarin Syllables chart displays the standalone syllable as ər. The converter retains əɹ for now because it matches the Finals page and the existing regression test, but this should be regarded as a convention choice pending adjudication, not as a fully settled source fact. The same caution applies to ong and the contracted ui/un finals, where the UW chart's glide notation differs from the project's ordinary-IPA notation.
+
+The expanded tests improve regression coverage but do not prove every mapping phonetically correct. Full linguistic certification remains open.
