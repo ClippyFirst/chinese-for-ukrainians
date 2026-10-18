@@ -63,6 +63,7 @@ Use:
 - University of Munich, *Mandarin* (tone contours and tone-sandhi demonstrations): https://www.phonetik.uni-muenchen.de/studium/skripten/languagedemos/Demos/mandarin.html
 - *The role of phonological alternation in speech production: evidence from Mandarin tone sandhi*: https://pmc.ncbi.nlm.nih.gov/articles/PMC4066894/
 - Wu, Chen-Huei, and Chilin Shih (2009), “Mandarin Vowels Revisited: Evidence from Electromagnetic Articulography,” *Proceedings of the 35th Berkeley Linguistics Society*: https://doi.org/10.3765/bls.v35i1.3622. This one-speaker EMA/acoustic study supports context-conditioned vowel variation; it is not a class-complete IPA target table.
+- Liu, Y. (2026), “Backness Agreement in Consonant + Glide Onsets: Evidence from Mandarin,” *Glossa* 11(1): https://doi.org/10.16995/glossa.24850. It analyzes [j], [ɥ], and [w] as distinct glides in consonant–glide onsets; it does not directly settle the `iong/yong` final.
 
 ## Completion criteria
 
