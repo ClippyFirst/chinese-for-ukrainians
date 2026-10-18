@@ -21,3 +21,9 @@ test('marks unsupported edge forms instead of copying Han into the IPA field', (
 test('preserves punctuation and Latin text while spacing IPA syllables', () => {
   assert.equal(formatIPA([{ type: 'han', source: '你', pinyin: 'ni3' }, { type: 'han', source: '好', pinyin: 'hao3' }, { type: 'text', source: '，hello!' }]), 'ni˨˩˦ xaʊ˨˩˦，hello!');
 });
+
+test('does not assign a fixed pitch contour to neutral tone', () => {
+  assert.equal(pinyinToIPA('ma5'), 'ma');
+  assert.equal(pinyinToIPA('ma0'), 'ma');
+  assert.equal(pinyinToIPA('ma1'), 'ma˥');
+});
