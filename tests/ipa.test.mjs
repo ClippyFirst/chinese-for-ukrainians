@@ -37,7 +37,8 @@ test('uses the contracted uo realization after labial initials while keeping sta
   assert.equal(pinyinToIPA('fo1'), 'fuɔ˥');
   assert.equal(pinyinToIPA('o1'), 'ɔ˥');
   assert.equal(pinyinToIPA('duo2'), 'tuɔ˧˥');
-  assert.equal(pinyinToIPA('wo3'), 'wo˨˩˦');
+  assert.equal(pinyinToIPA('wo3'), 'uɔ˨˩˦');
+  assert.equal(pinyinToIPA('uo3'), 'uɔ˨˩˦');
   assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
 });
 
