@@ -62,7 +62,7 @@ npm run benchmark
 
 zh-in-ua.csv — джерело українських відповідників.
 
-Поточний source містить 420 рядків даних і 420 нормалізованих Pinyin-ключів. Дубльованих нормалізованих Pinyin-ключів немає. У стовпці НАНУ є 12 порожніх клітинок; вони зберігаються як missing mapping і не замінюються значеннями інших систем. Ці числа слід перевіряти після зміни CSV через npm run validate:data; після зміни таблиці запускайте також npm run generate:data.
+Поточний `zh-in-ua.csv` містить 421 рядок даних і 421 нормалізований Pinyin-ключ без дублікатів. У колонці Кірносової та Кірносової—Цісар є по одному порожньому значенню для `ten`; у колонці НАНУ залишаються 10 порожніх значень, які не можна автоматично заповнювати з інших систем. Ці числа слід перевіряти після зміни CSV через `npm run validate:data`; після зміни таблиці запускайте також `npm run generate:data`.
 
 ## Документація
 
@@ -73,6 +73,10 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [Data specification](./docs/DATA-SPEC.md)
 - [QA plan](./docs/QA-PLAN.md)
 - [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
+- [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
+- [Phonetic audit report](./docs/PHONETIC-AUDIT-2026-10-18.md)
+- [Phonetic source ledger](./docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
+- [Reference-inventory exceptions](./docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
 - [Accessibility](./docs/ACCESSIBILITY.md)
 - [Release checklist](./docs/RELEASE-CHECKLIST.md)
 - [Usage](./docs/USAGE.md)
