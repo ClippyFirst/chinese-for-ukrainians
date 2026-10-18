@@ -148,6 +148,10 @@ A separate classification note now documents all 18 CSV keys absent from the Uni
 
 This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and IPA mapping classes still require independent evidence review.
 
+## Secondary full-table comparison (2026-10-18)
+
+An automated screening comparison was completed against the public comparative table of the Kirnosova and Kirnosova–Tsisar systems: [secondary comparison report](SECONDARY-COMPARISON-2026-10-18.md). It covered 419 unique extracted keys from 420 numbered entries. The apparent differences were limited to the combined `er/r` row, a Latin/Cyrillic look-alike in `nüe`, and a duplicate `pou` row that likely represents `pu`. These are recorded as secondary-source issues or structural differences, not confirmed errors in the repository. The comparison does **not** replace primary-page collation of Kirnosova (2009), and it does not authorize bulk edits.
+
 ## IPA convention decision and regression coverage
 
 The converter's broad IPA notation is now documented in [IPA-CONVENTION-DECISION-2026-10-18.md](IPA-CONVENTION-DECISION-2026-10-18.md). The University of Washington explicitly describes its own chart as broad transcription and lists conventions that differ from ordinary IPA glide notation and vowel distinctions. Accordingly, the 403-key UW fixture is a coverage reference, not a literal character-by-character IPA gold standard.
