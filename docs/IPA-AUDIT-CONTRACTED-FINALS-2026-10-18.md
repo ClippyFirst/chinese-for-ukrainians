@@ -26,7 +26,7 @@ The implementation uses `ong → ʊŋ` and `iong/yong → jʊŋ`, with ordinary-
 
 - The source comparison supports that `ong` and `iong` are distinct final classes and that `yong` is the zero-initial spelling counterpart of `iong`.
 - It does **not** establish that `ʊ` is the uniquely correct vowel symbol across all broad-IPA conventions or speakers.
-- Decision: **retain as a documented provisional convention**. Do not replace `ʊ` with `u`, or `jʊŋ` with a different sequence, solely to make strings match a chart that uses a different glide convention.
+- Decision: **unresolved; keep the current mapping provisionally without calling it verified**. The sources disagree on vowel quality and segment sequence, not just notation. Do not replace `ʊ` with `u`, or `jʊŋ` with a different sequence, solely to make strings match a chart. See [the targeted adjudication note](./IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md).
 - Required next step: adjudicate the vowel quality using sources that state the target accent and transcription level; preserve separate fixtures for `ong`, `iong`, `yong`, and legal onset combinations such as `jiong`, `qiong`, `xiong`.
 
 Sources:
