@@ -107,7 +107,7 @@ A programmatic pass over the corrected CSV found:
 - 420 data rows and no rows with all three Ukrainian outputs blank;
 - 0 blank cells in the Kirnosova column;
 - 0 blank cells in the Kirnosova–Tsisar column;
-- 12 blank cells in the NANU column.
+- 10 blank cells in the NANU column.
 
 The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. The remaining blanks stay explicit until the official source or its rules establish whether a mapping is intended.
 
@@ -125,7 +125,7 @@ The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`
 - Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 17 extra CSV keys requiring classification.
 - Decide the global IPA convention before treating the four final changes as final: align all relevant mappings to the selected chart, or keep a distinct convention with independently sourced justification. The 403-syllable fixture currently tests coverage only.
 - Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
-- Add a provenance ledger with stable key, output system, exact source URL, page/table/rule, cited evidence, review date, status, and notes for unresolved disagreement.
+- Complete the existing provenance ledger with exact source evidence for every row in all three systems, plus review date, status, and documented resolution of disagreements.
 - Add context-sensitive polyphonic regression cases for the pinned Pinyin engine, covering simplified and traditional input.
 - Publish a versioned audit report and rerun all CI checks before merging.
 
