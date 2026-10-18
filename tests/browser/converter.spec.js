@@ -4,7 +4,7 @@ test('loads the current interface with exactly one initial state', async ({ page
   await page.goto('/');
   await expect(page).toHaveTitle('中文 / УКРАЇНСЬКА');
   await expect(page.getByRole('textbox', { name: 'Введіть китайський текст' })).toBeVisible();
-  await expect(page.getByText('Тут з’явиться результат')).toBeVisible();
+  await expect(page.getByText('Тут з’являться результати.')).toBeVisible();
   await expect(page.locator('#empty-state')).toBeVisible();
   await expect(page.locator('#results')).toBeHidden();
   await expect(page.locator('#issue-state')).toBeHidden();
@@ -25,7 +25,7 @@ test('script radio group changes mode without mutating source input', async ({ p
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('中國');
-  await page.getByText('繁 Трад.', { exact: true }).click();
+  await page.getByText('繁 Традиційне', { exact: true }).click();
   await expect(page.locator('#script-traditional')).toBeChecked();
   await expect(input).toHaveValue('中國');
 });

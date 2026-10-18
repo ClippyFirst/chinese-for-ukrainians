@@ -4,7 +4,7 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   const toggle = page.getByRole('checkbox', { name: 'Тони Pinyin' });
-  const ukrainianToggle = page.getByRole('checkbox', { name: 'Тони української' });
+  const ukrainianToggle = page.getByRole('checkbox', { name: 'Тони в українському записі' });
 
   await input.fill('北京');
   await expect(page.locator('#result-pinyin')).toHaveText('běi jīng');
@@ -19,7 +19,7 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
   await expect(page.locator('#result-kirnosova-tsisar')).toHaveText(tsisar ?? '');
   await expect(page.locator('#result-nanu')).toHaveText(nanu ?? '');
 
-  await page.getByText('Тони української', { exact: true }).click();
+  await page.getByText('Тони в українському записі', { exact: true }).click();
   await expect(ukrainianToggle).not.toBeChecked();
   const plainKirnosova = await page.locator('#result-kirnosova').textContent();
   const plainTsisar = await page.locator('#result-kirnosova-tsisar').textContent();
@@ -28,7 +28,7 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
   expect(plainTsisar).not.toMatch(/[\u0300\u0301\u0304\u030c]/u);
   expect(plainNanu).not.toMatch(/[\u0300\u0301\u0304\u030c]/u);
 
-  await page.getByText('Тони української', { exact: true }).click();
+  await page.getByText('Тони в українському записі', { exact: true }).click();
   await expect(ukrainianToggle).toBeChecked();
   await expect(page.locator('#result-kirnosova')).not.toHaveText(plainKirnosova ?? '');
   await expect(page.locator('#result-kirnosova-tsisar')).not.toHaveText(plainTsisar ?? '');
@@ -41,7 +41,7 @@ test('Pinyin tone control toggles displayed tones without changing Ukrainian out
 test('tone control is available and checked by default', async ({ page }) => {
   await page.goto('/');
   const toggle = page.getByRole('checkbox', { name: 'Тони Pinyin' });
-  const ukrainianToggle = page.getByRole('checkbox', { name: 'Тони української' });
+  const ukrainianToggle = page.getByRole('checkbox', { name: 'Тони в українському записі' });
   await expect(toggle).toBeChecked();
   await expect(ukrainianToggle).toBeChecked();
 });
@@ -51,10 +51,10 @@ test('segmented script controls stay synchronized with the converter', async ({ 
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   await input.fill('你好');
-  const traditional = page.getByRole('radio', { name: /繁 Трад\./ });
+  const traditional = page.getByRole('radio', { name: /繁 Традиційне/u });
   const auto = page.getByRole('radio', { name: 'Авто' });
   await expect(auto).toBeChecked();
-  await page.getByText('繁 Трад.', { exact: true }).click();
+  await page.getByText('繁 Традиційне', { exact: true }).click();
   await expect(traditional).toBeChecked();
   await expect(page.locator('#script-mode')).toHaveValue('traditional');
 });
