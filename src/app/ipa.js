@@ -67,7 +67,9 @@ export function pinyinToIPA(value) {
   if (initial === 'r' && final === 'i') return 'ɻ̩' + toneContour(tone);
   if (['zh', 'ch', 'sh'].includes(initial) && final === 'i') return initialIPA + 'ɻ̩' + toneContour(tone);
   if (['z', 'c', 's'].includes(initial) && final === 'i') return initialIPA + 'ɹ̩' + toneContour(tone);
-  const finalIPA = FINALS[final];
+  // Pinyin spells the /uo/ final as -o after b, p, m, and f. The UW syllable chart
+  // gives bo/po/mo/fo as puɔ/pʰuɔ/muɔ/fuɔ; keep standalone o distinct.
+  const finalIPA = ['b', 'p', 'm', 'f'].includes(initial) && final === 'o' ? FINALS.uo : FINALS[final];
   if (!finalIPA) return '';
   return initialIPA + finalIPA + toneContour(tone);
 }

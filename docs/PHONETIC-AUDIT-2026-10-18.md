@@ -58,7 +58,7 @@ The full article PDF was subsequently retrieved through the repository's bitstre
 N. A. Kirnosova and N. Z. Tsisar, “Вихідні положення транскрипції з китайської мови на українську,” in *Питання сходознавства в Україні* (2019), pp. 65–67 in the PDF pagination.
 
 Full source:
-http://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf
+https://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf
 
 Specific evidence extracted from the primary-source PDF:
 - PDF pp. 65–66: the authors explicitly define the target as practical Ukrainian transcription for ordinary Ukrainian readers, not a tool for learning Chinese phonetics. They reject mechanical Pinyin-to-Cyrillic transliteration while retaining Pinyin as an important international representation.
@@ -174,6 +174,40 @@ The test checks representation equivalence, not the linguistic correctness of th
 
 The independent chart comparison identified a concrete mapping issue in the previous converter: `o` was represented as `uɔ`, causing `bo/po/mo/fo` to gain an extra [u]-like element, while standalone `wo` was also represented as `uɔ`, omitting the glide [w]. The implementation now maps `o` to `ɔ` and `wo` to `wo`; `uo` remains `uɔ` pending a more complete adjudication. Regression tests cover `o`, `bo`, `po`, `mo`, `fo`, `wo`, and `duo`.
 
-Evidence: University of Washington's Mandarin syllable chart lists the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ] and its finals chart lists `wo` as [wo]. The University of Hawaiʻi teaching chart independently presents the same initial-vowel contrast, though its extracted table contains other inconsistencies. Sources: https://courses.washington.edu/chin342/ipa/syllables.html ; https://courses.washington.edu/chin342/ipa/finals.html ; https://laulima.hawaii.edu/access/content/group/613e6b40-7843-4d5c-94ca-41a9e0831b95/CBasic1/u1/u1_p1.html .
+Historical note: the earlier source interpretation incorrectly reported the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ]. This was corrected after re-reading the chart; see A-04 below. The UW chart uses its own broad/sinological convention for glides, so `wo` versus `uɔ` is a notation difference and should not be treated as literal string equivalence.
 
 This is the first source-supported segmental mapping correction in this pass. It does not close the full IPA audit; `uo`, rhotic/apical vowels, and the broader finals inventory still need independent comparison.
+
+
+## Current adjudication update — 2026-10-18, third pass
+
+This section supersedes earlier interim descriptions of the labial `o` final. It records a confirmed documentation/implementation issue found by re-reading the source chart, not just by comparing glyph strings.
+
+### A-04 — Pinyin `o` after labial initials was mapped too narrowly
+
+**Previous implementation:** `bo/po/mo/fo → pɔ/pʰɔ/mɔ/fɔ`.
+
+**Primary/academic evidence:**
+- The University of Washington's Mandarin syllable chart explicitly renders `bo/po/mo/fo` as `puɔ/pʰuɔ/muɔ/fuɔ`: https://courses.washington.edu/chin342/ipa/syllables.html
+- The Hong Kong Polytechnic University phonetics guide says that `o` in `bo/po/mo/fo` is close to the `uo` diphthong and contains a short, weak `u`: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
+- Libo Fan's 2025 University of Szeged doctoral dissertation describes the actual pronunciation of `bo` as `[buo]`: https://doktori.bibl.u-szeged.hu/12676/1/Final%20Dissertation-Libo.pdf
+
+**Correction:** the converter now uses the existing `uo → uɔ` mapping when final `o` follows Pinyin initial `b`, `p`, `m`, or `f`. Standalone `o` remains separate because it is an edge form and should not be generalized from these four syllables. Regression tests assert `bo → puɔ`, `po → pʰuɔ`, `mo → muɔ`, and `fo → fuɔ`.
+
+**Interpretation limit:** the University of Washington chart uses its declared broad/sinological convention, including `u` for glide contexts. This correction aligns the conditioned forms with direct examples and an independent pedagogical explanation; it does not establish a narrow phonetic target for every speaker or resolve the standalone `o` edge case.
+
+### A-05 — Recovered a direct primary-source link for Kirnosova–Tsisar (2019)
+
+The full proceedings PDF is accessible at https://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf. The contents list the article “Вихідні положення транскрипції з китайської мови на українську” on printed pages 65–66. The public methodology page and reproducibility documentation now link directly to the PDF, with a scholarly search link retained as a fallback. This replaces the earlier claim that only a search link was available.
+
+### Updated implementation and test status
+
+- The broad-IPA convention is documented, but the 403-syllable fixture remains a **coverage** gate, not an independent gold-standard transcription.
+- Representative mapping and tone tests exist; exhaustive expected IPA assertions for all legal Pinyin initial-final combinations do not.
+- The official NANU table has a row-level collation recorded in prior audit notes, but this does not replace a separate rule-level linguistic review.
+- The Kirnosova (2009) source table still needs visual/manual row-by-row collation because machine-extracted text is unreliable for look-alike Cyrillic/Latin glyphs.
+- The Kirnosova–Tsisar (2019) article supports system-level principles but does not itself contain a complete 420-syllable table.
+
+### Current verdict
+
+The audit is **not complete**. A specific IPA mapping defect and a source-link limitation have been corrected, and the regression suite now protects the labial-conditioned `o` forms. Remaining blockers are the manual Kirnosova table collation, independent review of all IPA mapping classes, and explicit classification of edge/marginal Pinyin entries and source-specific blanks. Do not describe the dataset as fully source-certified until these gates are completed.

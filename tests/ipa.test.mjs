@@ -29,11 +29,12 @@ test('does not assign a fixed pitch contour to neutral tone', () => {
   assert.equal(pinyinToIPA('ma1'), 'ma˥');
 });
 
-test('maps o, uo, and er finals using the documented Mandarin IPA reference', () => {
-  assert.equal(pinyinToIPA('bo1'), 'pɔ˥');
-  assert.equal(pinyinToIPA('po1'), 'pʰɔ˥');
-  assert.equal(pinyinToIPA('mo1'), 'mɔ˥');
-  assert.equal(pinyinToIPA('fo1'), 'fɔ˥');
+test('uses the contracted uo realization after labial initials while keeping standalone o distinct', () => {
+  // University of Washington's syllable chart gives bo/po/mo/fo as puɔ/pʰuɔ/muɔ/fuɔ.
+  assert.equal(pinyinToIPA('bo1'), 'puɔ˥');
+  assert.equal(pinyinToIPA('po1'), 'pʰuɔ˥');
+  assert.equal(pinyinToIPA('mo1'), 'muɔ˥');
+  assert.equal(pinyinToIPA('fo1'), 'fuɔ˥');
   assert.equal(pinyinToIPA('o1'), 'ɔ˥');
   assert.equal(pinyinToIPA('duo2'), 'tuɔ˧˥');
   assert.equal(pinyinToIPA('wo3'), 'wo˨˩˦');
