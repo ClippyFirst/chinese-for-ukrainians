@@ -117,3 +117,57 @@ test('keeps tone-marked Pinyin equivalent to numbered tones for common vowel and
     );
   }
 });
+
+test('keeps onset r, syllabic ri, standalone er, and erhua conceptually separate', () => {
+  // Evidence review: Chen, Whalen & Mok (2024), Phonetica 81(5).
+  // These assertions lock the project's broad notation, not a narrow universal realization.
+  assert.equal(pinyinToIPA('ra1'), 'ɻa˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
+  assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
+  assert.equal(pinyinToIPA('er1'), 'əɹ˥');
+  // Erhua is not inferred from an ordinary Pinyin syllable in this function.
+});
+
+test('covers the ü-final family and Pinyin orthographic aliases explicitly', () => {
+  // Broad-IPA project convention: [ɥ] is used for the rounded palatal glide.
+  // This is a regression fixture, not independent proof of the convention.
+  const expected = [
+    ['nü3', 'ny˨˩˦'],
+    ['lü4', 'ly˥˩'],
+    ['nüe2', 'nɥe˧˥'],
+    ['lüe2', 'lɥe˧˥'],
+    ['nüan3', 'nɥɛn˨˩˦'],
+    ['ju1', 'tɕy˥'],
+    ['qu2', 'tɕʰy˧˥'],
+    ['xu4', 'ɕy˥˩'],
+    ['jun1', 'tɕyn˥'],
+    ['qun2', 'tɕʰyn˧˥'],
+    ['xun4', 'ɕyn˥˩'],
+    ['jue2', 'tɕɥe˧˥'],
+    ['que2', 'tɕʰɥe˧˥'],
+    ['xue2', 'ɕɥe˧˥'],
+    ['yue1', 'ɥe˥'],
+    ['yuan2', 'ɥɛn˧˥'],
+    ['yun3', 'yn˨˩˦'],
+  ];
+  for (const [pinyin, ipa] of expected) {
+    assert.equal(pinyinToIPA(pinyin), ipa, `unexpected broad IPA for ${pinyin}`);
+  }
+});
+
+test('keeps tone-marked and numbered forms equivalent across the ü-final family', () => {
+  const pairs = [
+    ['nǚ', 'nü3'],
+    ['lǜ', 'lü4'],
+    ['nüè', 'nüe4'],
+    ['lüè', 'lüe4'],
+    ['jué', 'jue2'],
+    ['quán', 'quan2'],
+    ['xuě', 'xue3'],
+    ['yuán', 'yuan2'],
+    ['yùn', 'yun4'],
+  ];
+  for (const [marked, numbered] of pairs) {
+    assert.equal(pinyinToIPA(marked), pinyinToIPA(numbered), `${marked} differs from ${numbered}`);
+  }
+});
