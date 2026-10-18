@@ -21,13 +21,13 @@ Correction: changed it to `нюе`.
 
 Prevention: CSV validation now rejects Latin-script letters in the three Ukrainian output columns. This check is deliberately scoped to output cells; Pinyin keys are expected to use Latin script.
 
-### F-02 — IPA convention mismatch: four finals changed provisionally, global decision still open
+### F-02 — IPA notation mismatch required a documented convention and context-specific review
 
-The University of Washington Mandarin syllable chart gives `o` as [uɔ], `uo` as [uɔ], the zero-initial syllable `wo` as [uɔ], and `er` as [əɹ]. The previous implementation used [ɔ], [wo], [wo], and [aɚ], respectively. These are literal mismatches with that chart, but a mismatch alone does not prove the previous forms are linguistically wrong: the project has not yet selected and documented one global transcription convention.
+The project now declares **broad practical IPA using ordinary IPA glide symbols**, rather than treating the University of Washington (UW) chart's teaching notation as a literal gold standard. The UW source itself uses some non-IPA conventions, so literal differences such as `ai`/`aɪ`, `aŋ`/`ɑŋ`, `yɛ`/`ɥe`, and `ɹ`/`ɻ` must be adjudicated by phonetic evidence and the project's declared notation, not by string matching alone.
 
-The four mappings were aligned with the chart and regression tests were added, but this is a **provisional convention-alignment change**, not a fully established phonetic correction. The same chart differs systematically from the converter in other finals (`ai`/`aɪ`, `ao`/`aʊ`, `ang`/`ɑŋ`, `iong`/`jʊŋ` vs `yuŋ`, among others) and in the treatment of `r` and apical vowels. Selectively matching only four cells risks mixing conventions. Before merge, either align the full segmental mapping to one declared source convention or retain a deliberately different IPA analysis and justify the relevant differences from additional authoritative phonetics sources.
+The context-sensitive Pinyin final `o` after `b`, `p`, `m`, and `f` is now mapped through the project's `uo` realization (`uɔ`), supported by the UW chart's `bo/po/mo/fo` entries and the PolyU explanation of a short, weak `u` in these forms. Standalone `o` remains `ɔ`; `uo`, `wo`, and `er` retain distinct mappings. This is a source-supported correction for the labial-conditioned forms, not a complete validation of every final class.
 
-Evidence: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
+Evidence: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html; Hong Kong Polytechnic University, “Simple Finals”: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/.
 
 ### F-03 — Neutral tone was rendered as a fixed mid-level contour
 
@@ -111,29 +111,29 @@ A programmatic pass over the corrected CSV found:
 - 1 blank cell in the Kirnosova–Tsisar column (`ten`);
 - 10 blank cells in the NANU column.
 
-The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. The remaining blanks stay explicit until the official source or its rules establish whether a mapping is intended.
+The 10 NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The official ASTKS table comparison covers 410 listed keys; these ten keys are absent from that source inventory. They are therefore classified in the ledger as `source-absent`, not as failed transcriptions of entries that appear in the official table. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. Preserve the ten blanks rather than copying another system's values; any future claim that the official system covers them would require a newer or more comprehensive primary source.
 
 ## Important audit observations
 
 1. The CSV contains 421 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
-2. A blank output remains a real missing mapping. Do not fill it by copying another system's value.
+2. A blank output is a real absence in this merged dataset, but its reason must be source-specific: the ten NANU blanks are keys absent from the official 410-key inventory, while `ten` is absent from the two Kirnosova columns. Do not fill any of these by copying another system's value.
 3. A syllable table cannot resolve a polyphonic Han character by itself. The selected Pinyin reading depends on the upstream pronunciation engine and its dictionary/context coverage.
 4. The IPA layer is a finite mapping. The current regression tests cover apical vowels, selected tone-marked forms, ü normalization, unsupported `ê`, punctuation, and neutral tone. They do not yet establish exhaustive correctness for every legal Pinyin syllable.
 5. A passing build or test suite verifies implemented invariants, not all linguistic decisions in the CSV.
 
 ## Remaining work before claiming a complete audit
 
-- Collate all 420 rows against the exact published tables for each Ukrainian system; record source page/table/rule and reviewer status per row.
-- Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 18 extra CSV keys requiring classification.
-- Decide the global IPA convention before treating the four final changes as final: align all relevant mappings to the selected chart, or keep a distinct convention with independently sourced justification. The 403-syllable fixture currently tests coverage only.
-- Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
-- Complete the existing provenance ledger with exact source evidence for every row in all three systems, plus review date, status, and documented resolution of disagreements.
+- Complete visual/manual collation of Kirnosova's 420-syllable table against the primary PDF; record page/cell evidence and reviewer status, and do not treat OCR-only differences as confirmed errors.
+- Keep the source scopes distinct: the Kirnosova–Tsisar 2019 article is a statement of principles, not a 420-row table; the official NANU/ASTKS table has a separate 410-key row-level collation.
+- Classify every CSV key as standard, marginal/interjection, historical/edge, source-specific, or unresolved. The UW chart's 403 keys are all present; the 18 extra keys are documented in the exception note, but some need primary-page verification.
+- Independently review every IPA initial/final class, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone. The current fixture is a coverage gate, not an IPA gold standard.
+- Preserve and explain source-specific blanks: distinguish keys absent from a source inventory from cells that remain unverified within a listed source.
 - Add context-sensitive polyphonic regression cases for the pinned Pinyin engine, covering simplified and traditional input.
-- Publish a versioned audit report and rerun all CI checks before merging.
+- Publish a versioned audit report and rerun all CI checks before calling the software release verified.
 
 ## Verdict
 
-The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official ASTKS table has now been directly compared with the NANU column for its 410 listed syllables; four cell discrepancies were corrected, the source-specific `ten` entry was added, and regression tests cover those decisions. The full linguistic audit remains open. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
+The first pass fixed one confirmed Latin/Cyrillic data-integrity error and removed an overly categorical fixed contour for neutral tone. The IPA convention is now documented, and a context-sensitive `o` mapping after `b/p/m/f` is supported by the cited teaching chart and an independent phonetics guide. The official ASTKS table has a separate 410-key collation; four cell discrepancies were corrected and the source-specific `ten` row was added. The full linguistic audit remains open: Kirnosova's 420-row table still needs reliable visual/manual collation, and IPA segmental accuracy has not been independently established for every final class. The dataset must not be described as fully source-certified.
 
 
 ## Follow-up inventory cross-check (2026-10-18)
@@ -146,7 +146,15 @@ A separate classification note now documents all 18 CSV keys absent from the Uni
 - `rua` is no longer treated as a confirmed discrepancy: the extracted 2009 PDF text says `жува`, but a published comparative table reproduces `жуа` for Kirnosova and `жва` for Kirnosova–Tsisar, matching the current CSV. This secondary corroboration makes an extraction artefact more likely; no mapping was changed. The same table corroborates the current `hm`, `hng`, `o`, and `ê` values, but is not a substitute for primary-page verification. The `nun → нвень` value is not treated as an error: a published comparative table reproduces it for Kirnosova–Tsisar, although the primary 2019 source remains preferable.
 - The source ledger now links the exception note and records these two review targets.
 
-This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and the IPA convention decision remains open.
+This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and IPA mapping classes still require independent evidence review.
+
+## Primary PDF text-extraction follow-up (2026-10-18)
+
+The original 2009 PDF was successfully retrieved through the DSpace bitstream content endpoint and parsed into a 420-row text table. The extraction remains noisy, so the comparison is a candidate-finding pass, not a visual verification. Two cells need priority inspection against page images: primary extraction gives `chuo → чо` (table row 49) and `duo → до` (table row 80), while the repository's Kirnosova column and the online secondary comparison give `чуо` and `дуо`. These could be genuine source-versus-copy discrepancies or extraction errors; **no data was changed**. Both are recorded as `visual-review-required` in the source ledger. The remaining automated text differences include obvious Latin/Cyrillic confusions and other OCR artefacts and must not be bulk-applied.
+
+## Secondary full-table comparison (2026-10-18)
+
+An automated screening comparison was completed against the public comparative table of the Kirnosova and Kirnosova–Tsisar systems: [secondary comparison report](SECONDARY-COMPARISON-2026-10-18.md). It covered 419 unique extracted keys from 420 numbered entries. The apparent differences were limited to the combined `er/r` row, a Latin/Cyrillic look-alike in `nüe`, and a duplicate `pou` row that likely represents `pu`. These are recorded as secondary-source issues or structural differences, not confirmed errors in the repository. The comparison does **not** replace primary-page collation of Kirnosova (2009), and it does not authorize bulk edits.
 
 ## IPA convention decision and regression coverage
 
@@ -172,11 +180,11 @@ Added regression coverage comparing tone-marked Pinyin with its numbered equival
 The test checks representation equivalence, not the linguistic correctness of the chosen segmental symbols or tone contours. It is paired with the all-inventory numeric-tone test and does not replace an independently annotated IPA gold set.
 ## Segmental audit finding: `o` and `wo` were conflated (2026-10-18)
 
-The independent chart comparison identified a concrete mapping issue in the previous converter: `o` was represented as `uɔ`, causing `bo/po/mo/fo` to gain an extra [u]-like element, while standalone `wo` was also represented as `uɔ`, omitting the glide [w]. The implementation now maps `o` to `ɔ` and `wo` to `wo`; `uo` remains `uɔ` pending a more complete adjudication. Regression tests cover `o`, `bo`, `po`, `mo`, `fo`, `wo`, and `duo`.
+The source review identified a context-sensitive issue: Pinyin `o` after `b/p/m/f` is not equivalent to the standalone `o` mapping. The implementation now maps those four forms through `uo` (`uɔ`), while standalone `o` remains `ɔ`, `wo` remains `wo`, and `uo` remains `uɔ`. Regression tests cover `o`, `bo`, `po`, `mo`, `fo`, `wo`, and `duo`.
 
 Historical note: the earlier source interpretation incorrectly reported the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ]. This was corrected after re-reading the chart; see A-04 below. The UW chart uses its own broad/sinological convention for glides, so `wo` versus `uɔ` is a notation difference and should not be treated as literal string equivalence.
 
-This is the first source-supported segmental mapping correction in this pass. It does not close the full IPA audit; `uo`, rhotic/apical vowels, and the broader finals inventory still need independent comparison.
+This is a source-supported correction for the labial-conditioned forms. It does not close the full IPA audit; standalone `o`, `uo`, rhotic/apical vowels, and the broader finals inventory still need independent comparison.
 
 
 ## Current adjudication update — 2026-10-18, third pass
@@ -210,4 +218,4 @@ The full proceedings PDF is accessible at https://foreign-languages.karazin.ua/r
 
 ### Current verdict
 
-The audit is **not complete**. A specific IPA mapping defect and a source-link limitation have been corrected, and the regression suite now protects the labial-conditioned `o` forms. Remaining blockers are the manual Kirnosova table collation, independent review of all IPA mapping classes, and explicit classification of edge/marginal Pinyin entries and source-specific blanks. Do not describe the dataset as fully source-certified until these gates are completed.
+The audit is **not complete**. A source-supported context-sensitive IPA mapping correction has been made, the methodology source links have been improved, and the ten NANU blank cells are now explicitly classified as keys absent from the official 410-key inventory rather than unresolved values inside listed rows. Remaining blockers are visual/manual collation of Kirnosova's table, independent review of all IPA mapping classes, and stronger primary-source classification of marginal/edge Pinyin forms. Do not describe the dataset as fully source-certified until these gates are completed.
