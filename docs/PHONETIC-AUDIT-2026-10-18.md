@@ -21,11 +21,11 @@ Correction: changed it to `нюе`.
 
 Prevention: CSV validation now rejects Latin-script letters in the three Ukrainian output columns. This check is deliberately scoped to output cells; Pinyin keys are expected to use Latin script.
 
-### F-02 — Pinyin finals `o`, `uo`, `wo`, and `er` disagreed with the selected reference chart
+### F-02 — IPA convention mismatch: four finals changed provisionally, global decision still open
 
-The University of Washington Mandarin syllable chart gives `o` as [uɔ], `uo` as [uɔ], the zero-initial syllable `wo` as [uɔ], and `er` as [əɹ]. The previous implementation used [ɔ], [wo], [wo], and [aɚ], respectively. Those are materially different outputs under the reference convention selected for this project.
+The University of Washington Mandarin syllable chart gives `o` as [uɔ], `uo` as [uɔ], the zero-initial syllable `wo` as [uɔ], and `er` as [əɹ]. The previous implementation used [ɔ], [wo], [wo], and [aɚ], respectively. These are literal mismatches with that chart, but a mismatch alone does not prove the previous forms are linguistically wrong: the project has not yet selected and documented one global transcription convention.
 
-Correction: aligned these four mappings with the cited chart and added regression tests. Broad IPA conventions can differ across references, so the site should continue to label its IPA as a practical transcription and name the reference convention rather than imply a single uniquely canonical narrow transcription.
+The four mappings were aligned with the chart and regression tests were added, but this is a **provisional convention-alignment change**, not a fully established phonetic correction. The same chart differs systematically from the converter in other finals (`ai`/`aɪ`, `ao`/`aʊ`, `ang`/`ɑŋ`, `iong`/`jʊŋ` vs `yuŋ`, among others) and in the treatment of `r` and apical vowels. Selectively matching only four cells risks mixing conventions. Before merge, either align the full segmental mapping to one declared source convention or retain a deliberately different IPA analysis and justify the relevant differences from additional authoritative phonetics sources.
 
 Evidence: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
 
@@ -91,7 +91,7 @@ This is a coverage comparison, not proof that the 17 additional forms are invali
 
 The chart's 403 unique Pinyin keys are now stored as a source-attributed regression fixture at `tests/mandarin-syllable-inventory.mjs`; an automated test requires the IPA converter to map every one. This is a coverage gate, not a pronunciation-accuracy assertion.
 
-A mechanical comparison of the chart's 404 populated syllable cells (403 unique keys) with the project's generated broad IPA found 244 literal string differences. This is **not** a count of 244 proven pronunciation errors; it is a review queue, because many differences are systematic notation choices. It shows that the project needs an explicit phonetic convention and evidence-backed decisions for each difference class. Examples include `ai` vs `aɪ`, `iɛ` vs `jɛ`, `aŋ` vs `ɑŋ`, `yɛ` vs `ɥe`, and `ɹ` vs `ɻ`). These are not automatically phonetic errors: the chart uses a different broad transcription convention in several places. They do, however, mean the project must state its chosen convention and review every mismatch class against a second phonetics source instead of treating raw string equality as a gold standard. The `o/uo/wo/er` changes above were selected because the prior values conflicted directly with the chosen chart's displayed values.
+A mechanical comparison of the chart's 404 populated syllable cells (403 unique keys) with the project's generated broad IPA found 244 literal string differences. This is **not** a count of 244 proven pronunciation errors; it is a review queue, because many differences are systematic notation choices. It shows that the project needs an explicit phonetic convention and evidence-backed decisions for each difference class. Examples include `ai` vs `aɪ`, `iɛ` vs `jɛ`, `aŋ` vs `ɑŋ`, `yɛ` vs `ɥe`, and `ɹ` vs `ɻ`). These are not automatically phonetic errors: the chart uses a different broad transcription convention in several places. They do, however, mean the project must state its chosen convention and review every mismatch class against a second phonetics source instead of treating raw string equality as a gold standard. The `o/uo/wo/er` changes above currently match the chart's displayed values, but remain provisional until the project adopts a consistent global convention.
 
 Source: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
 
@@ -117,7 +117,7 @@ The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `
 
 - Collate all 420 rows against the exact published tables for each Ukrainian system; record source page/table/rule and reviewer status per row.
 - Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 17 extra CSV keys requiring classification.
-- Review the chart-to-project IPA differences as classes, decide and document the intended broad-IPA convention, and add evidence-backed expected-output tests. The 403-syllable fixture currently tests coverage only.
+- Decide the global IPA convention before treating the four final changes as final: align all relevant mappings to the selected chart, or keep a distinct convention with independently sourced justification. The 403-syllable fixture currently tests coverage only.
 - Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
 - Add a provenance ledger with stable key, output system, exact source URL, page/table/rule, cited evidence, review date, status, and notes for unresolved disagreement.
 - Add context-sensitive polyphonic regression cases for the pinned Pinyin engine, covering simplified and traditional input.
@@ -125,4 +125,4 @@ The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `
 
 ## Verdict
 
-The first pass found and fixed one confirmed table character error and two IPA-layer issues (the selected reference's `o/uo/wo/er` finals and neutral-tone rendering). It also established direct access to the 2019 Kirnosova–Tsisar paper and identified the appropriate primary source for the academic system. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA coverage remain open tasks.
+The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official source for the academic Ukrainian system has been located. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
