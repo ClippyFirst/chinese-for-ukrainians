@@ -58,7 +58,7 @@ The full article PDF was subsequently retrieved through the repository's bitstre
 N. A. Kirnosova and N. Z. Tsisar, “Вихідні положення транскрипції з китайської мови на українську,” in *Питання сходознавства в Україні* (2019), pp. 65–67 in the PDF pagination.
 
 Full source:
-http://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf
+https://foreign-languages.karazin.ua/resources/38a431e26e297a45b2a1b5d0c7d34ac9.pdf
 
 Specific evidence extracted from the primary-source PDF:
 - PDF pp. 65–66: the authors explicitly define the target as practical Ukrainian transcription for ordinary Ukrainian readers, not a tool for learning Chinese phonetics. They reject mechanical Pinyin-to-Cyrillic transliteration while retaining Pinyin as an important international representation.
