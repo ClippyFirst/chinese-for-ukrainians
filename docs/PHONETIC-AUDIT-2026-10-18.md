@@ -170,3 +170,10 @@ This test is not a pronunciation gold standard: it uses the converter's own segm
 Added regression coverage comparing tone-marked Pinyin with its numbered equivalent for first through fourth tones, common diphthongs, the `uo/ui` families, and `ü` forms (including `nǚ`, `lǜ`, `jué`, `yuán`, and `xiōng`). These checks target a separate risk from the numeric-tone cross-product: the mark-extraction and diacritic-stripping path could fail even when numeric suffixes work.
 
 The test checks representation equivalence, not the linguistic correctness of the chosen segmental symbols or tone contours. It is paired with the all-inventory numeric-tone test and does not replace an independently annotated IPA gold set.
+## Segmental audit finding: `o` and `wo` were conflated (2026-10-18)
+
+The independent chart comparison identified a concrete mapping issue in the previous converter: `o` was represented as `uɔ`, causing `bo/po/mo/fo` to gain an extra [u]-like element, while standalone `wo` was also represented as `uɔ`, omitting the glide [w]. The implementation now maps `o` to `ɔ` and `wo` to `wo`; `uo` remains `uɔ` pending a more complete adjudication. Regression tests cover `o`, `bo`, `po`, `mo`, `fo`, `wo`, and `duo`.
+
+Evidence: University of Washington's Mandarin syllable chart lists the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ] and its finals chart lists `wo` as [wo]. The University of Hawaiʻi teaching chart independently presents the same initial-vowel contrast, though its extracted table contains other inconsistencies. Sources: https://courses.washington.edu/chin342/ipa/syllables.html ; https://courses.washington.edu/chin342/ipa/finals.html ; https://laulima.hawaii.edu/access/content/group/613e6b40-7843-4d5c-94ca-41a9e0831b95/CBasic1/u1/u1_p1.html .
+
+This is the first source-supported segmental mapping correction in this pass. It does not close the full IPA audit; `uo`, rhotic/apical vowels, and the broader finals inventory still need independent comparison.
