@@ -112,7 +112,11 @@ test('methodology page loads, links back to converter, and keeps comparison tabl
   await expect(page.getByRole('heading', { name: /Три системи\./u })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Методики в контексті' })).toBeVisible();
   await expect(page.getByRole('link', { name: /Відкрити конвертер/u })).toHaveAttribute('href', './index.html');
-  await expect(page.getByRole('link', { name: /Сторінка затвердження в Інституті сходознавства/u }).first()).toHaveAttribute('href', 'https://www.oriental-studies.org.ua/uk/затверджена-академічна-система-тран/');
+  const approvalLinks = page.getByRole('link', { name: /Сторінка затвердження в Інституті сходознавства/u });
+  await expect(approvalLinks).toHaveCount(2);
+  for (const link of await approvalLinks.all()) {
+    await expect(link).toHaveAttribute('href', 'https://www.oriental-studies.org.ua/uk/затверджена-академічна-система-тран/');
+  }
   await expect(page.getByRole('link', { name: /Таблиця АСТКС \(PDF\)/u }).first()).toHaveAttribute('href', 'https://drive.google.com/open?id=11KU4T2_TdFsIUIFw5zUYBtXfoZi01ZsM');
   await expect(page.getByRole('link', { name: /Інтерактивний ресурс АСТКС/u }).first()).toHaveAttribute('href', 'https://pinyin.in.ua/');
   const dimensions = await page.evaluate(() => ({
