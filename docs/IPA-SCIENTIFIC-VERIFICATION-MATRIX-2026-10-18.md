@@ -102,3 +102,7 @@ A separate fixture, `tests/ipa-cross-class-audit.test.mjs`, now exercises high-r
 - context-conditioned `o` after labials versus `uo` after other initials.
 
 This is a cross-class regression layer, not a complete 403-entry gold-standard table. Its expected strings are manually authored under the declared broad-IPA convention. Independent source evidence still needs to be attached to each class before the entire matrix can be marked verified. The current 403-syllable inventory loop remains a coverage gate, not an accuracy claim.
+
+## Additional competing transcription evidence (2026-10-18)
+
+Nguyen Dinh Hien (2018), *Research on Several Points of Modern Chinese Final* (Journal of China Studies 21(2), 177–186; [DOI](https://doi.org/10.20288/JCS.2018.21.2.177)), argues for `ong [uŋ]`, `iong [yŋ]`, and standalone `er [ɐɹ]`. This is a direct published alternative to the current `[ʊŋ]`, `[jʊŋ]`, and `[əɹ]` outputs. It exposes two separate convention decisions: whether `iong/yong` contains a front-rounded vowel [y] or a glide [ɥ] plus a separate [u] nucleus, and which central vowel/rhotic notation to use for standalone `er`. The code is intentionally unchanged: this paper is an important competing analysis, not a speaker-sampled acoustic gold table for the full converter inventory.
