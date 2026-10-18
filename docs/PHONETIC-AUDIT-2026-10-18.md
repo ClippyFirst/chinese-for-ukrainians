@@ -21,7 +21,15 @@ Correction: changed it to `нюе`.
 
 Prevention: CSV validation now rejects Latin-script letters in the three Ukrainian output columns. This check is deliberately scoped to output cells; Pinyin keys are expected to use Latin script.
 
-### F-02 — Neutral tone was rendered as a fixed mid-level contour
+### F-02 — Pinyin finals `o`, `uo`, `wo`, and `er` disagreed with the selected reference chart
+
+The University of Washington Mandarin syllable chart gives `o` as [uɔ], `uo` as [uɔ], the zero-initial syllable `wo` as [uɔ], and `er` as [əɹ]. The previous implementation used [ɔ], [wo], [wo], and [aɚ], respectively. Those are materially different outputs under the reference convention selected for this project.
+
+Correction: aligned these four mappings with the cited chart and added regression tests. Broad IPA conventions can differ across references, so the site should continue to label its IPA as a practical transcription and name the reference convention rather than imply a single uniquely canonical narrow transcription.
+
+Evidence: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
+
+### F-03 — Neutral tone was rendered as a fixed mid-level contour
 
 The IPA function previously mapped tone 5 to `˧`. That is too categorical for Mandarin neutral tone: its surface pitch is context-sensitive and is affected especially by the preceding tone. A fixed mid-level contour can therefore be misleading in an output presented as practical IPA.
 
@@ -91,4 +99,4 @@ This provides a useful syllable-by-syllable Pinyin/IPA comparison, including api
 
 ## Verdict
 
-The first pass found and fixed one confirmed table character error and one IPA tone-rendering issue. It also established direct access to the 2019 Kirnosova–Tsisar paper and identified the appropriate primary source for the academic system. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA coverage remain open tasks.
+The first pass found and fixed one confirmed table character error and two IPA-layer issues (the selected reference's `o/uo/wo/er` finals and neutral-tone rendering). It also established direct access to the 2019 Kirnosova–Tsisar paper and identified the appropriate primary source for the academic system. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA coverage remain open tasks.
