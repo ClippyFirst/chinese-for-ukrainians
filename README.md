@@ -77,6 +77,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
 - [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
 - [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
+- [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
 - [Raw UW IPA source comparison](./docs/IPA-UW-RAW-SOURCE-COMPARISON-2026-10-18.md)
 - [Contracted finals and vowel-quality audit](./docs/IPA-AUDIT-CONTRACTED-FINALS-2026-10-18.md)
 - [Independent vowel-quality cross-check](./docs/IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md)
