@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { normalizePinyinKey, generateMappings, lookupTranscription, validateCsv } from '../../src/data/transcription.js';
 const validCsv = '\uFEFF№;Піньїнь;Кірносова;Кірносова—Цісар;НАНУ\n1;bei;бей;бей;бей\n2;er/r;ер/р;ер/р;ер/р\n3;pou;поу;пов;\n';
 
@@ -35,4 +36,13 @@ test('rejects Latin-script leakage in Ukrainian output columns', () => {
   const report = validateCsv(contaminated);
   assert.equal(report.valid, false);
   assert.match(report.errors.join('\\n'), /Latin-script character/);
+});
+
+
+test('keeps the NANU syllable table aligned with verified official-source corrections', async () => {
+  const actualCsv = await readFile(new URL('../../zh-in-ua.csv', import.meta.url), 'utf8');
+  const mappings = generateMappings(actualCsv);
+  for (const [key, expected] of [['di', 'ді'], ['rou', 'жоу'], ['pou', 'поу'], ['pu', 'пу']]) {
+    assert.equal(lookupTranscription(mappings, 'nanu', key).value, expected, key);
+  }
 });
