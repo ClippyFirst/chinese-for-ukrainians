@@ -97,3 +97,15 @@ Do not promote the IPA layer to “fully scientifically verified” while:
 4. no independent expected-output fixture covers each final class and legal initial-final combination.
 
 The implementation should change only when an adjudication record identifies the evidence, the precise decision, representative fixtures, and any trade-off in broadness versus phonetic detail.
+
+## 4. Source-backed broad choice for onset r
+
+The University of Washington syllable chart represents Pinyin onset `r` with [ɹ], not [ɻ]. The 2024 Chen, Whalen, and Mok study also found bunched (rather than tip-up retroflex) tongue shapes for onset rhotics in its 18-speaker sample, while observing optional initial frication. These sources do not prove that every speaker uses [ɹ], but they make a universal retroflex approximant [ɻ] an unnecessarily narrow default for this broad converter.
+
+**Branch decision:** use [ɹ] for the onset mapping `r`, while keeping the syllabic apical/rhotic form `ri` separate as [ɻ̩]. Keep `er` as the project's current broad [əɹ] convention. Erhua remains outside the scope of this syllable-level function.
+
+Sources:
+- University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+- Chen, Whalen, and Mok (2024): https://pmc.ncbi.nlm.nih.gov/articles/PMC11449382/
+
+This is a broad-transcription convention decision supported by published evidence, not a claim that the surface sound is invariant across all speakers or contexts.
