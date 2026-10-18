@@ -25,7 +25,7 @@ Use:
 | Palatal initials | j/q/x → [tɕ, tɕʰ, ɕ] | Conventional broad IPA; exact place/diacritics vary across analyses | partially verified | Confirm with an independent phonetics source and document the chosen level of detail |
 | Retroflex series | zh/ch/sh → [ʈʂ, ʈʂʰ, ʂ]; onset r → [ɹ] after source-backed correction | UW uses [ɹ] for onset r; a 2024 articulatory/acoustic study found bunched onset rhotics and optional frication in its sample | partially verified | Keep onset r distinct from ri, er, and erhua; retain broad-scope caveat for speaker variation |
 | Apical vowels after z/c/s vs zh/ch/sh/r | [ɹ̩] vs [ɻ̩] | The literature disputes whether the apical segments are vowels or approximant-like sonorants; [ɿ]/[ʅ] are common sinological symbols, not IPA | convention decision needed | Choose a defensible broad IPA analysis, cite the articulatory/acoustic evidence, and test all seven forms |
-| Simple vowels | a, o, e, i, u, ü | Current mappings are a/ɔ/ɤ/i/u/y; sources differ in vowel quality symbols and the status of Mandarin vowel categories | partially verified | Compare the full class against two sources with explicit conventions; avoid equating Pinyin letters with IPA |
+| Simple vowels | a, o, e, i, u, ü | Current mappings are a/ɔ/ɤ/i/u/y; sources differ in vowel quality symbols and the status of Mandarin vowel categories. Wu & Shih (2009) report context-conditioned acoustic/articulatory differences, but studied one Taiwan Mandarin speaker and do not provide universal gold strings | partially verified | Compare the full class against two sources with explicit conventions; avoid equating Pinyin letters with IPA and keep sample limits explicit |
 | Diphthongs | ai/ei/ao/ou → aɪ/eɪ/aʊ/oʊ | Notation is conventional and should represent the glide trajectory, not merely copy Pinyin | partially verified | Verify each final class, including tone-marked input and all legal onset combinations |
 | Nasal finals | an/en/ang/eng and derived finals | Converter uses a/ɑ and ə distinctions; chart conventions differ | partially verified | Check place/quality and the derived i-/u-/ü-series as separate classes |
 | i-series finals | ia/ie/iao/iu/ian/in/iang/ing/iong | Uses j glides and several conventional vowel qualities; some finals combine glide and vowel analyses | convention decision needed | Verify all finals and their zero-initial aliases separately; pay special attention to iong/yong and iou/you |
@@ -61,6 +61,7 @@ Use:
 - *What R Mandarin Chinese /ɹ/s? Acoustic and articulatory features of Mandarin Chinese rhotics* (2024): https://pmc.ncbi.nlm.nih.gov/articles/PMC11449382/
 - University of Munich, *Mandarin* (tone contours and tone-sandhi demonstrations): https://www.phonetik.uni-muenchen.de/studium/skripten/languagedemos/Demos/mandarin.html
 - *The role of phonological alternation in speech production: evidence from Mandarin tone sandhi*: https://pmc.ncbi.nlm.nih.gov/articles/PMC4066894/
+- Wu, Chen-Huei, and Chilin Shih (2009), “Mandarin Vowels Revisited: Evidence from Electromagnetic Articulography,” *Proceedings of the 35th Berkeley Linguistics Society*: https://doi.org/10.3765/bls.v35i1.3622. This one-speaker EMA/acoustic study supports context-conditioned vowel variation; it is not a class-complete IPA target table.
 
 ## Completion criteria
 
