@@ -109,7 +109,7 @@ A programmatic pass over the corrected CSV found:
 - 0 blank cells in the Kirnosova–Tsisar column;
 - 12 blank cells in the NANU column.
 
-The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `kei`, 196 `m`, 216 `n`, 226 `ng`, 260 `pou`, 261 `pu`, 286 `rua`, and 377 `yo`. These remain explicit missing mappings; this audit does not fill them by borrowing values from another system. Their rationale should be checked against the official system's own table/rules and then documented individually.
+The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. The remaining blanks stay explicit until the official source or its rules establish whether a mapping is intended.
 
 ## Important audit observations
 
@@ -131,4 +131,4 @@ The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `
 
 ## Verdict
 
-The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official source for the academic Ukrainian system has been located. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
+The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official ASTKS table has now been directly compared with the NANU column for its listed syllables; four clear discrepancies were corrected, but the full linguistic audit remains open. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
