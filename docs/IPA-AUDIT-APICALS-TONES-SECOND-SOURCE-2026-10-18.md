@@ -61,3 +61,14 @@ The current converter appends citation-form tone contours independently to sylla
 ## Conclusion
 
 The source audit justifies a cautious broad transcription policy and the current separation of segment positions. It does not yet certify the exact apical symbols or every final's phonetic realization. The release should remain labelled a research preview until the unresolved classes are adjudicated and class-complete expected-output fixtures are independently sourced.
+
+## 5. Additional independent check of üe: evidence does not settle glide notation
+
+A separate UCL-hosted phonetics dissertation table transcribes Pinyin `üe` as `[yɛ]`, alongside `üan [yɑn]` and `ün [yn]`. This supports the open-mid quality in the nucleus and confirms that `üe` is not simply `[ɥe]`; however, it does not independently validate converting the first element to the approximant `[ɥ]` in the project's chosen notation.
+
+- UCL repository, *A Speech Pattern Processing Method for Chinese*: https://discovery.ucl.ac.uk/id/eprint/10103942/1/A_speech_pattern_processing_me.pdf
+
+A separate phonology summary gives `yue [ɥe]`, which illustrates that sources differ in the phonetic representation and vowel-quality detail. It is not a primary phonetic source and should be treated only as a notation comparison:
+- https://wiki.chogus.org/content/wikipedia_en_all_maxi_2025-08/Neutral_tone
+
+**Decision:** retain `ɥɛ` as the project's explicit broad-IPA convention for now because the UW chart gives `yɛ` and the code converts the glide-like first element to `ɥ` while preserving `ɛ`. Mark the glide-versus-vowel analysis as unresolved, particularly for `nüe/lüe`; do not claim the exact string `nɥɛ/lɥɛ` has been independently established by two primary phonetic sources. A better next step is to consult a dedicated Mandarin phonetics reference or articulatory/acoustic study that explicitly analyzes this final after n/l and j/q/x.
