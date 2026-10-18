@@ -52,3 +52,22 @@ test('keeps the documented IPA glide and vowel notation distinct from UW convent
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
   assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
 });
+
+test('covers contracted and zero-initial Pinyin forms across final classes', () => {
+  // Source inventory: University of Washington, Mandarin Chinese Syllables.
+  // Expected strings use this project’s documented broad-IPA convention,
+  // not literal character-for-character copies of UW's sinological notation.
+  assert.equal(pinyinToIPA('yi1'), 'i˥');
+  assert.equal(pinyinToIPA('wu1'), 'u˥');
+  assert.equal(pinyinToIPA('yu1'), 'y˥');
+  assert.equal(pinyinToIPA('you2'), 'joʊ˧˥');
+  assert.equal(pinyinToIPA('yuan3'), 'ɥɛn˨˩˦');
+  assert.equal(pinyinToIPA('yong4'), 'jʊŋ˥˩');
+  assert.equal(pinyinToIPA('jiong1'), 'tɕjʊŋ˥');
+  assert.equal(pinyinToIPA('ei1'), 'eɪ˥');
+  assert.equal(pinyinToIPA('ou1'), 'oʊ˥');
+  assert.equal(pinyinToIPA('dui1'), 'tweɪ˥');
+  assert.equal(pinyinToIPA('dun1'), 'twən˥');
+  assert.equal(pinyinToIPA('weng1'), 'wəŋ˥');
+  assert.equal(pinyinToIPA('ong1'), 'ʊŋ˥');
+});
