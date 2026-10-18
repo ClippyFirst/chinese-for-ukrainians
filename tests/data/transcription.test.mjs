@@ -42,7 +42,9 @@ test('rejects Latin-script leakage in Ukrainian output columns', () => {
 test('keeps the NANU syllable table aligned with verified official-source corrections', async () => {
   const actualCsv = await readFile(new URL('../../zh-in-ua.csv', import.meta.url), 'utf8');
   const mappings = generateMappings(actualCsv);
-  for (const [key, expected] of [['di', 'ді'], ['rou', 'жоу'], ['pou', 'поу'], ['pu', 'пу']]) {
+  for (const [key, expected] of [['di', 'ді'], ['rou', 'жоу'], ['pou', 'поу'], ['pu', 'пу'], ['ten', 'тень']]) {
     assert.equal(lookupTranscription(mappings, 'nanu', key).value, expected, key);
   }
+  assert.equal(lookupTranscription(mappings, 'kirnosova', 'ten').status, 'missing');
+  assert.equal(lookupTranscription(mappings, 'kirnosova_tsisar', 'ten').status, 'missing');
 });
