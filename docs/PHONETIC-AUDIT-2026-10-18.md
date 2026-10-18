@@ -132,3 +132,16 @@ The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`
 ## Verdict
 
 The first pass found and fixed one confirmed table character error, removed a misleading fixed contour for neutral tone, and provisionally aligned four IPA finals with one reference chart. Further inspection showed that the converter and chart use systematic notation differences elsewhere, so the four final changes must not be presented as final phonetic corrections until a global IPA convention is chosen. The official ASTKS table has now been directly compared with the NANU column for its 410 listed syllables; four cell discrepancies were corrected, the source-specific `ten` entry was added, and regression tests cover those decisions. The full linguistic audit remains open. The table is **not yet certified as fully audited**: row-by-row source evidence and exhaustive IPA review remain open tasks.
+
+
+## Follow-up inventory cross-check (2026-10-18)
+
+A separate classification note now documents all 18 CSV keys absent from the University of Washington syllable chart and cross-checks them against the extracted Kirnosova (2009) table and current CSV values:
+
+- [Reference-inventory exception classification](REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
+- The 2009 table extraction contains 17 of those 18 keys; `ten` is absent there but independently verified in the official NANU table.
+- Absence from the UW chart is explicitly treated as a scope difference, not proof that a key is invalid.
+- Two candidate discrepancies were flagged for manual/source tracing: `rua` (the extracted 2009 cell appears as `жува`, while the current Kirnosova CSV cell is `жуа`) and `nun` (the current Kirnosova–Tsisar cell is `нвень`). Neither value was changed because OCR/extraction and provenance need to be checked first.
+- The source ledger now links the exception note and records these two review targets.
+
+This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and the IPA convention decision remains open.
