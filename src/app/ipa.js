@@ -49,6 +49,8 @@ export function pinyinToIPA(value) {
   let syllable = toneMatch ? normalized.slice(0, -1) : stripToneMark(normalized);
   syllable = syllable.replace(/u:/g, 'ü').replace(/v/g, 'ü');
   if (Object.hasOwn(SPECIAL_IPA, syllable)) return SPECIAL_IPA[syllable] + toneContour(tone);
+  // The standalone syllable er is not the initial r followed by final e.
+  if (syllable === 'er') return FINALS.er + toneContour(tone);
 
   let initial = '';
   let initialIPA = '';
