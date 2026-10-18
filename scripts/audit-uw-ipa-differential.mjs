@@ -24,8 +24,17 @@ function finalClass(p) {
   return final;
 }
 function parseFixture(text) {
-  return text.trim().split(/\r?\n/u).slice(1).map((line) => {
-    const [pinyin, uw, kind] = line.split(';');
+  const lines = text.trim().split(/\r?\n/u);
+  const header = lines.shift();
+  if (header !== 'pinyin;uw_ipa;source_kind') {
+    throw new Error('Unexpected UW fixture header: ' + header);
+  }
+  return lines.map((line, index) => {
+    const fields = line.split(';');
+    if (fields.length !== 3 || fields.some((field) => field === '')) {
+      throw new Error(`Malformed UW fixture row ${index + 2}: expected three non-empty columns`);
+    }
+    const [pinyin, uw, kind] = fields;
     return { pinyin, uw, kind };
   });
 }
@@ -42,6 +51,8 @@ const records = parseFixture(await fs.readFile(fixturePath, 'utf8')).map(({pinyi
   return [pinyin,uw,current,kind,relation,status,fc,note];
 });
 if (records.length !== 403) throw new Error('Expected 403 source keys; found ' + records.length);
+const keys = records.map((record) => record[0]);
+if (new Set(keys).size !== keys.length) throw new Error('Duplicate Pinyin keys found in the UW differential source inventory.');
 const missing = records.filter((r) => !r[2]);
 if (missing.length) throw new Error('Converter returned no IPA for: ' + missing.map((r) => r[0]).join(', '));
 const csv = [['pinyin','uw_ipa_raw','current_ipa_broad','source_kind','literal_relation','class_adjudication_status','normalized_final_class','note'].join(';'), ...records.map((r) => r.map(quote).join(';')), ''].join('\n');
