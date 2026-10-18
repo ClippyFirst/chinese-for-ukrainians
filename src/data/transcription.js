@@ -49,7 +49,7 @@ export function validateCsv(input) {
       else keys.set(normalized, index + 1);
     }
     for (let column = 2; column <= 4; column += 1) {
-      if (/\\p{Script=Latin}/u.test(row[column])) errors.push(`Row ${index + 1}: Ukrainian output column '${EXPECTED_HEADERS[column]}' contains a Latin-script character.`);
+      if (/\p{Script=Latin}/u.test(row[column])) errors.push(`Row ${index + 1}: Ukrainian output column '${EXPECTED_HEADERS[column]}' contains a Latin-script character.`);
     }
     if (!row[2] && !row[3] && !row[4]) warnings.push(`Row ${index + 1}: all Ukrainian mappings are blank.`);
   }
