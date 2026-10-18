@@ -88,3 +88,27 @@ test('keeps numeric tone parsing consistent across the complete reference invent
     assert.equal(pinyinToIPA(`${syllable}5`), segmental, `tone 5 should be neutral for ${syllable}`);
   }
 });
+
+test('keeps tone-marked Pinyin equivalent to numbered tones for common vowel and ü patterns', () => {
+  const pairs = [
+    ['mā', 'ma1'],
+    ['má', 'ma2'],
+    ['mǎ', 'ma3'],
+    ['mà', 'ma4'],
+    ['hǎo', 'hao3'],
+    ['guó', 'guo2'],
+    ['shuǐ', 'shui3'],
+    ['nǚ', 'nü3'],
+    ['lǜ', 'lü4'],
+    ['jué', 'jue2'],
+    ['yuán', 'yuan2'],
+    ['xiōng', 'xiong1'],
+  ];
+  for (const [marked, numbered] of pairs) {
+    assert.equal(
+      pinyinToIPA(marked),
+      pinyinToIPA(numbered),
+      `tone-marked and numbered forms differ: ${marked} vs ${numbered}`,
+    );
+  }
+});
