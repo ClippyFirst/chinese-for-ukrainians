@@ -51,7 +51,7 @@ https://irbis-nbuv.gov.ua/cgi-bin/irbis64_r_81/cgiirbis_64.exe?C21COM=S&FT_PREFI
 Full-text file currently indexed at:
 https://nasplib.isofts.kiev.ua/bitstreams/e3cc5ddf-1548-45ff-856c-55cb34f722c7/download
 
-The direct file endpoint returned HTTP 403 to the audit browser, so a complete row-by-row collation against this article is not marked as completed in this audit.
+The full article PDF was subsequently retrieved through the repository's bitstream content endpoint (20 pages). It includes the author's 420-syllable table and is now available for comparison. An automated extraction yields noisy text (including Latin/Cyrillic substitutions and malformed cells), so its raw differences cannot safely be treated as confirmed errors; the next stage must verify the relevant cells against page images or an independently faithful transcription before editing the Kirnosova column.
 
 ### Kirnosova–Tsisar (2019)
 
@@ -64,7 +64,7 @@ Specific evidence located:
 - PDF pp. 65–66: the system is intended as practical Ukrainian transcription, not as a substitute for studying Chinese phonetics; the authors distinguish Pinyin spelling from the sound values it represents.
 - PDF pp. 66–67: explanation of medial/terminal i and u, Ukrainian й/в adaptations, the treatment of i in iou/iong, and the rationale for j/z/zh being rendered as дз/дз/дж in this system.
 
-This is direct support for the system's general principles. It is not proof that every cell in the current CSV exactly matches the source; a full row/rule collation remains outstanding.
+This is direct support for the system's general principles. The paper's complete 420-syllable table is now retrievable, but a reliable row-by-row collation of the Kirnosova column remains outstanding because automated text extraction is noisy.
 
 ### Academic transcription system (NANU / ASTKS)
 
