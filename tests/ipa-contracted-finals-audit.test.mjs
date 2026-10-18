@@ -9,7 +9,7 @@ import { pinyinToIPA } from '../src/app/ipa.js';
 // convention-sensitive and is tracked in the linked audit note.
 test('keeps contracted finals and their zero-initial spellings distinct', () => {
   const expected = [
-    ['liu1', 'lj oʊ˥'.replace(' ', '')],
+    ['liu1', 'ljoʊ˥'],
     ['you2', 'joʊ˧˥'],
     ['dui1', 'tweɪ˥'],
     ['wei2', 'weɪ˧˥'],
