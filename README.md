@@ -76,6 +76,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [QA plan](./docs/QA-PLAN.md)
 - [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
 - [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
+- [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
 - [Phonetic audit report](./docs/PHONETIC-AUDIT-2026-10-18.md)
 - [Phonetic source ledger](./docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
 - [Reference-inventory exceptions](./docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
