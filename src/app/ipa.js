@@ -13,7 +13,7 @@ const FINALS = {
   wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
-const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩', 5: '˧' };
+const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
 
 export function formatIPA(tokens) {
   let output = '';
@@ -44,7 +44,7 @@ export function formatIPA(tokens) {
  */
 export function pinyinToIPA(value) {
   const normalized = String(value).normalize('NFC').trim().toLowerCase();
-  const toneMatch = normalized.match(/([1-5])$/u);
+  const toneMatch = normalized.match(/([0-5])$/u);
   const tone = toneMatch ? Number(toneMatch[1]) : extractTone(normalized);
   let syllable = toneMatch ? normalized.slice(0, -1) : stripToneMark(normalized);
   syllable = syllable.replace(/u:/g, 'ü').replace(/v/g, 'ü');
