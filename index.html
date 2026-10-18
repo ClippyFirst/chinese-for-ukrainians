@@ -25,8 +25,8 @@
           
           <div>
             <p class="eyebrow">Транскрипційний інструмент</p>
-            <h1>Китайський текст, <em>українське читання.</em></h1>
-            <p class="subtitle">Введіть ієрогліфи — отримайте Hanyu Pinyin та три українські системи транскрипції. Без сервера, без зайвих кроків.</p>
+            <h1>Китайський текст — <em>українська передача вимови.</em></h1>
+            <p class="subtitle">Введіть китайський текст, щоб отримати його запис системою Hanyu Pinyin і результати за трьома українськими системами транскрипції. Усе обробляється локально.</p>
           </div>
         </div>
       </header>
@@ -45,7 +45,7 @@
           <span class="input-corner input-corner-tl" aria-hidden="true"></span>
           <span class="input-corner input-corner-br" aria-hidden="true"></span>
           <textarea id="source-input" rows="7" spellcheck="false" placeholder="例如：你好，世界！"></textarea>
-          <div class="input-hint"><span>Unicode</span><span>локальна обробка</span></div>
+          <div class="input-hint"><span>Текст Unicode</span><span>локальна обробка</span></div>
         </div>
 
         <div class="control-deck" aria-label="Параметри перетворення">
@@ -53,11 +53,11 @@
             <span class="control-label">Письмо</span>
             <div class="segmented" role="radiogroup" aria-label="Режим письма">
               <label><input id="script-auto" type="radio" name="script-choice" value="auto" checked /><span>Авто</span></label>
-              <label><input id="script-simplified" type="radio" name="script-choice" value="simplified" /><span>简 Спрощ.</span></label>
-              <label><input id="script-traditional" type="radio" name="script-choice" value="traditional" /><span>繁 Трад.</span></label>
+              <label><input id="script-simplified" type="radio" name="script-choice" value="simplified" /><span>简 Спрощене</span></label>
+              <label><input id="script-traditional" type="radio" name="script-choice" value="traditional" /><span>繁 Традиційне</span></label>
             </div>
             <select id="script-mode" class="sr-only" aria-hidden="true" tabindex="-1">
-              <option value="auto">Авто</option><option value="simplified">Спрощене</option><option value="traditional">Традиційне</option>
+              <option value="auto">Авто</option><option value="simplified">Спрощене письмо</option><option value="traditional">Традиційне письмо</option>
             </select>
           </div>
           <div class="control-cell">
@@ -68,7 +68,7 @@
           </div>
           <div class="speech-cell">
             <button id="speak-button" class="button button-speech" type="button" aria-pressed="false">Прослухати</button>
-            <p id="speech-note">Стандартна мандаринська вимова · голос браузера / ОС</p>
+            <p id="speech-note">Стандартна вимова китайської мови путунхуа · голос браузера або операційної системи</p>
           </div>
           <div class="action-cell">
             <button id="example-button" class="button button-primary" type="button"><span>Приклад</span><b aria-hidden="true">↗</b></button>
@@ -79,7 +79,7 @@
 
       <section id="empty-state" class="empty-state" aria-live="polite">
         <div class="empty-glyph" aria-hidden="true">中</div>
-        <div><strong>Тут з’явиться результат</strong><span>Вставте китайський текст або завантажте приклад, щоб почати.</span></div>
+        <div><strong>Тут з’являться результати.</strong><span>Вставте китайський текст або завантажте приклад, щоб почати.</span></div>
         <span class="empty-rule" aria-hidden="true"></span>
       </section>
 
@@ -89,14 +89,14 @@
           <p class="results-note">Одне читання · п’ять представлень</p>
         </div>
         <div class="pinyin-panel result-card">
-          <div class="result-meta"><span class="result-index">01</span><div><h3>Pinyin</h3><p>Латинський запис мандаринської вимови</p></div><button class="copy-button" type="button" data-copy-target="result-pinyin">Копіювати</button></div>
+          <div class="result-meta"><span class="result-index">01</span><div><h3>Pinyin</h3><p>Латинський запис вимови китайської мови путунхуа</p></div><button class="copy-button" type="button" data-copy-target="result-pinyin">Копіювати</button></div>
           <p id="result-pinyin" class="result-value result-pinyin" lang="zh-Latn"></p>
           <span class="tone-key">Hanyu Pinyin</span>
         </div>
         <div class="ipa-panel result-card">
-          <div class="result-meta"><span class="result-index">02</span><div><h3>IPA</h3><p>Міжнародна фонетична абетка — фонетичний запис вимови</p></div><button class="copy-button" type="button" data-copy-target="result-ipa">Копіювати</button></div>
+          <div class="result-meta"><span class="result-index">02</span><div><h3>IPA</h3><p>Міжнародна фонетична абетка (IPA) — система запису звуків мовлення</p></div><button class="copy-button" type="button" data-copy-target="result-ipa">Копіювати</button></div>
           <p id="result-ipa" class="result-value result-ipa" lang="und-fonipa"></p>
-          <div class="ipa-explanation"><strong>Що таке IPA?</strong><span>Міжнародна фонетична абетка (International Phonetic Alphabet) — стандартизована система символів для точного запису мовлення. Тут вона показує вимову стандартної мандаринської китайської: приголосні, голосні та контури чотирьох основних тонів і нейтрального тону.</span><div class="ipa-tones"><strong>Як читати тони?</strong><span><b>˥</b> — високий і рівний: 1-й тон. <b>˧˥</b> — підвищення: 2-й тон. <b>˨˩˦</b> — падіння з подальшим підйомом: 3-й тон. <b>˥˩</b> — різке падіння: 4-й тон. <b>˧</b> — середній, нейтральний контур: нейтральний тон.</span><em>Ці знаки показують рух висоти голосу всередині складу: ˥ — найвищий рівень, ˧ — середній, ˩ — найнижчий. Наприклад, <b>nǐ</b> → <b>ni˨˩˦</b>: висота голосу спочатку знижується, а потім підвищується.</em></div><em>IPA не є перекладом і не є окремою системою транскрипції китайських назв українською — це фонетичний запис, який можна зіставити з реальною вимовою.</em></div>
+          <div class="ipa-explanation"><strong>Що таке IPA?</strong><p>Міжнародна фонетична абетка (International Phonetic Alphabet, IPA) — стандартизована система символів для запису звуків мовлення. У цьому конвертері вона використовується для відображення вимови китайської мови путунхуа, зокрема приголосних, голосних і тонів.</p><div class="ipa-tones"><strong>Як читати тони?</strong><span><b>˥</b> — високий рівний тон (1-й тон). <b>˧˥</b> — висхідний тон (2-й тон). <b>˨˩˦</b> — спадно-висхідний тон (3-й тон). <b>˥˩</b> — спадний тон (4-й тон). <b>˧</b> — умовне позначення середнього рівня тону.</span><em>Ці знаки позначають висоту голосу та її зміну в межах складу: ˥ — високий рівень, ˧ — середній, ˩ — низький. Наприклад, <b>nǐ</b> можна передати в IPA як <b>ni˨˩˦</b>: висота голосу спочатку знижується, а потім підвищується.</em></div><p>IPA не є перекладом і не замінює українських систем практичної транскрипції. Це фонетичний запис, який дає змогу зіставити позначення звуків із вимовою.</p></div>
         </div>
         <div class="ukrainian-grid">
           <article class="result-card"><div class="result-meta"><span class="result-index">03</span><div class="result-heading"><h3>Кірносова 2009</h3><button class="info-tip" type="button" aria-label="Довідка: Кірносова 2009" aria-describedby="tip-kirnosova"><span aria-hidden="true">i</span><span id="tip-kirnosova" class="info-popover" role="tooltip"><strong>Засади транскрибування китайської лексики українською мовою</strong><small>Надія Кірносова · 2009</small><span>Праця про принципи уніфікації української передачі китайської лексики, зокрема власних імен, географічних назв і реалій.</span><em>«Сходознавство», № 45–46, с. 38–57.</em></span></button><p>Українська система</p></div><button class="copy-button" type="button" data-copy-target="result-kirnosova">Копіювати</button></div><p id="result-kirnosova" class="result-value" lang="uk"></p></article>
@@ -106,11 +106,11 @@
       </section>
 
       <section id="issue-state" class="issue-state" aria-live="polite" hidden>
-        <span class="issue-symbol" aria-hidden="true">!</span><div><strong>Потребує уваги</strong><p id="issue-text"></p></div>
+        <span class="issue-symbol" aria-hidden="true">!</span><div><strong>Зверніть увагу</strong><p id="issue-text"></p></div>
       </section>
 
       <section class="feedback-panel" aria-labelledby="feedback-heading">
-        <div class="feedback-copy"><p class="section-kicker">Зворотний зв’язок</p><h2 id="feedback-heading">Помітили неточність або маєте пропозицію?</h2><p>Напишіть у GitHub Issues — там можна повідомити про помилку в транскрипції, запропонувати покращення або поставити запитання.</p></div>
+        <div class="feedback-copy"><p class="section-kicker">Зворотний зв’язок</p><h2 id="feedback-heading">Помітили неточність або маєте пропозиції?</h2><p>Напишіть у GitHub Issues — там можна повідомити про помилку в транскрипції, запропонувати покращення або поставити запитання.</p></div>
         <a class="feedback-link" href="https://github.com/ClippyFirst/chinese-for-ukrainians/issues/new" target="_blank" rel="noreferrer">Відкрити GitHub Issue <span aria-hidden="true">↗</span></a>
       </section>
 
@@ -120,7 +120,7 @@
           <span>Інструмент для передачі китайського тексту українською мовою та порівняння транскрипційних систем.</span>
         </div>
         <div>
-          <span>© 2026 Vitalii Tkachuk · Усі права застережено</span>
+          <span>© 2026 Vitalii Tkachuk · Усі права захищено</span>
           <span><a href="https://github.com/ClippyFirst" target="_blank" rel="noreferrer">Автор: ClippyFirst</a> · <a href="https://github.com/ClippyFirst/chinese-for-ukrainians" target="_blank" rel="noreferrer">GitHub</a> · <code>zh-in-ua.csv</code></span>
         </div>
       </footer>
