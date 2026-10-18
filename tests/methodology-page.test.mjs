@@ -18,6 +18,7 @@ test('methodology page is a static, linked, source-aware page', async () => {
   assert.match(html, /Як передають китайські склади українською мовою/u);
   assert.match(html, /Один склад у піньїнь/u);
   assert.match(html, /Як аналізувати розбіжності/u);
+  assert.match(html, /Всі права застережено/u);
   assert.match(html, /Content-Security-Policy/u);
 });
 
@@ -28,7 +29,10 @@ test('homepage links to methodology and Vite builds both pages', async () => {
   assert.match(index, /methodology\.html/u);
   assert.match(index, /Китайський текст — <em>українська передача вимови\.<\/em>/u);
   assert.match(index, /Тут з’являться результати/u);
-  assert.match(index, /Усі права захищено/u);
+  assert.match(index, /Всі права застережено/u);
+  assert.doesNotMatch(index, /<code>zh-in-ua\.csv<\/code>/u);
+  assert.match(index, /<span>简 Спрощ\.<\/span>/u);
+  assert.match(index, /<span>繁 Трад\.<\/span>/u);
   assert.match(vite, /methodology\.html/u);
   assert.match(vite, /index\.html/u);
   assert.match(releaseCheck, /methodology\.html/u);
