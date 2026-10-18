@@ -53,3 +53,42 @@ Before claiming complete source collation:
 - keep `nun → нвень` for Kirnosova–Tsisar as supported by the published comparative table;
 - keep UW chart coverage as a reference-coverage metric, not as the canonical validity test for the Ukrainian inventory;
 - preserve source-specific blanks unless an authoritative source supplies the missing value.
+
+## Follow-up inventory classification from independent syllable inventories (2026-10-18)
+
+A further cross-check was made against two public inventories that explicitly distinguish ordinary Mandarin syllables from rare, dialectal, interjectional, or dictionary-only readings:
+
+- PinyinJS, **Syllables**: https://pinyinjs.dev/syllables/ — its dictionary inventory explicitly calls out rare forms including cei, fiao, lo, rua, and tei; it notes that lo is tone-limited and separates dictionary readings from the attested standard inventory.
+- **Mandarin-Chinese-Syllable-Dataset**: https://github.com/danielwei0214/Mandarin-Chinese-Syllable-Dataset — its description annotates several uncovered syllables with provenance such as rare characters, polyphonic characters, and dialect pronunciations. This is a community dataset, not a normative standard, so it is corroborating inventory evidence rather than a formal ruling.
+
+### Updated status labels
+
+| Key(s) | Best-supported status | Evidence and limits |
+|---|---|---|
+| cei | Rare/dictionary-attested | The syllable inventories classify it as rare; a dataset note associates it with an uncommon character. Do not treat it as a common standard syllable. |
+| den | Dialectal/rare reading | The dataset associates it with 扽. It is outside the UW teaching chart and should be tagged as dialectal rather than silently deleted. |
+| dia | Dialectal reading | The dataset associates it with 嗲. |
+| fiao | Rare/dictionary-attested edge form | PinyinJS explicitly includes it among rare dictionary syllables; no claim is made here about ordinary Putonghua frequency. |
+| hm, hng | Interjectional/onomatopoeic or syllabic-nasal edge forms | The community inventory links hng to an alternative reading of 嗯 and hm to a rare character. Keep distinct from ordinary CV syllables. |
+| lo | Polyphonic, tone-limited reading | PinyinJS identifies 咯 (lo) as a reading and reports neutral-tone-only use in its inventory. |
+| m, n, ng | Syllabic nasal / interjectional edge forms | These have dictionary and phonological references but are not ordinary consonant-plus-vowel syllables; the IPA layer must treat them explicitly. |
+| me | Attested but outside the UW chart's scope | Preserve the source-specific transcription. Its tone and lexical distribution need a separate tone-aware inventory check before describing it as unrestricted. |
+| nun | Rare-character reading | The community dataset associates it with 黁. Keep it as a rare attested form, not a productive standard syllable. |
+| o | Marginal standalone/interjectional form | Preserve the Ukrainian source-table entry but keep its IPA and inventory policy separate from ordinary syllables and from labial-conditioned bo/po/mo/fo. |
+| rua | Rare-character reading | The community dataset associates it with 挼; this supports treating it as rare/lexical rather than as an ordinary productive syllable. |
+| tei | Dialectal/rare reading | The dataset associates it with 忒; PinyinJS also lists it as rare. |
+| yo | Unresolved marginal form | The sources reviewed here do not establish its exact lexical/tone status. Retain it as source-attested, but do not label it a standard syllable without further evidence. |
+| ê | Dictionary/interjection edge form | It is present in specialist dictionary inventories but is not part of the ordinary UW syllable chart. It remains unsupported in the IPA converter and should continue to be marked as such. |
+
+### Special caution: ten
+
+The current CSV contains a NANU/ASTKS mapping for **ten → тень**, but the standard/rare syllable inventories reviewed here list **tei**, not **ten**, among the unusual T-series forms. The 2009 Kirnosova PDF extraction does not show a ten row, while a 2013 public Ukrainian transcription table and the current official ASTKS table do contain ten. This is a **source-specific unresolved entry**, possibly a legacy table convention or a typographical/key error; the evidence does not justify either silently deleting it or claiming it is a standard Mandarin Pinyin syllable.
+
+Action taken: no CSV value was changed. The existing ten row remains source-faithful to the official ASTKS table, but future UI or documentation should label it as source-specific/unresolved until the original table and the system authors' intended spelling can be confirmed. The Kirnosova and Kirnosova–Tsisar cells remain blank because their corresponding ten mappings have not been verified.
+
+Sources for the special caution:
+- Public Ukrainian transcription table listing ten — тень: https://www.epochtimes.com.ua/china/chinese-characters/znayomtesya-nova-ukrayinska-sistema-transkriptsiyi-kitayskikh-ieroglifiv-107641.html
+- Official interactive ASTKS resource and approval statement: https://pinyin.in.ua/
+- Standard syllable-combination chart: https://pinyin.info/rules/initials_finals.html
+
+This classification improves inventory provenance but is not a replacement for a primary Chinese dictionary citation for every rare key. In particular, yo and the precise status of standalone o remain unresolved.
