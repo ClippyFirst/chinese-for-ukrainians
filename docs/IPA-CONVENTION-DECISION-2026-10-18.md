@@ -71,3 +71,13 @@ Evidence:
 The University of Washington's broad chart uses a field-specific notation, explicitly substituting `u` for the glide `w` and `i` for `j` in glide contexts. The project's `wo` output therefore remains `wo` in its declared ordinary-IPA notation even though the chart writes the corresponding syllable as `uɔ`. This is a convention conversion, not an assertion that the two strings are identical.
 
 This correction resolves one confirmed implementation/documentation mismatch. It does not complete the exhaustive IPA audit: remaining finals and initial-final combinations still need source-backed expected-output checks, and the standalone `o` edge form needs its own explicit inventory policy.
+
+## Source-backed correction: üe vowel quality (2026-10-18)
+
+The converter originally used `üe → ɥe`. The University of Washington finals chart represents `üe` as `yɛ`, and its syllable chart shows forms including `nüe → nyɛ`, `lüe → lyɛ`, `jue → tɕyɛ`, `que → tɕʰyɛ`, and `yue → yɛ`. In the project's declared notation, the chart's glide symbol `y` is rendered as ordinary IPA `ɥ`; the vowel `ɛ` must be preserved. The mapping is therefore corrected to `üe → ɥɛ`, not `ɥe`.
+
+Evidence:
+- University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
+- University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+
+Regression coverage now includes `nüe`, `lüe`, `jue`, `que`, `xue`, and `yue`. This resolves the identified vowel-quality mismatch for this final class under the project's current convention. It does not certify all other final classes or settle the broader articulatory analysis of Mandarin rounded palatal glides.
