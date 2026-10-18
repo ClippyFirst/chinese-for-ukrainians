@@ -45,8 +45,8 @@ function parseSemicolonCsvLine(line) {
 }
 
 test('phonetic source ledger is a well-formed nine-column semicolon CSV', async () => {
-  const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\\uFEFF/u, '').replace(/\\r\\n?/gu, '\\n');
-  const lines = content.split('\\n').filter((line) => line.length > 0);
+  const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
+  const lines = content.split('\n').filter((line) => line.length > 0);
   assert.ok(lines.length > 1, 'source ledger should contain a header and evidence rows');
   assert.deepEqual(parseSemicolonCsvLine(lines[0]), HEADER);
   for (const [index, line] of lines.slice(1).entries()) {
