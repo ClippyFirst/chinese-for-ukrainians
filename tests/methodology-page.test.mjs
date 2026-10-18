@@ -14,7 +14,10 @@ test('methodology page is a static, linked, source-aware page', async () => {
   assert.match(html, /АСТКС/u);
   assert.match(html, /zh-in-ua\.csv/u);
   assert.match(html, /pinyin\.in\.ua/u);
-  assert.match(html, /не виставляє системам оцінок/u);
+  assert.match(html, /не оцінює системи/u);
+  assert.match(html, /Як передають китайські склади українською мовою/u);
+  assert.match(html, /Один склад у піньїнь/u);
+  assert.match(html, /Як аналізувати розбіжності/u);
   assert.match(html, /Content-Security-Policy/u);
 });
 
