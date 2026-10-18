@@ -1,7 +1,7 @@
 # IPA adjudication notes: apical segments, Mandarin r, and tone scope
 
 **Date:** 2026-10-18  
-**Status:** evidence reviewed; final notation decision still pending where noted.  
+**Status:** apical-segment broad notation decision recorded on 2026-10-19; exact speaker-specific phonetic realization remains variable.  
 **Scope:** broad practical IPA for standard Putonghua, not narrow transcription of an individual speaker.
 
 ## 1. Apical segments in zhi/chi/shi/ri and zi/ci/si
@@ -18,23 +18,27 @@ Source:
 ### What this supports
 
 - The converter should not map these syllables to an ordinary high front [i].
-- A sonorant/approximant analysis is evidence-backed.
-- The distinction between the dental/alveolar series and retroflex series should remain visible in the chosen notation.
+- A sonorant/approximant analysis is evidence-backed: the segments show periodicity and formant structure, with no inherent sustained frication in the studied data.
+- The two series should remain distinct: the segment after dental/alveolar sibilants is analyzed as a dental(-like) approximant, while the retroflex series is analyzed as a retroflex approximant.
+- Independent descriptions of Standard Mandarin also use [ɹ̩] and [ɻ̩] for the two apical series; a later JIPA article's literature review explicitly notes that [ɿ]/[ʅ] are sinological symbols rather than accepted IPA symbols. Sources: Lee-Kim (2014), https://doi.org/10.1017/S0025100314000267; *On the nature of apical vowel in Jixi-Hui Chinese* (JIPA), https://www.cambridge.org/core/journals/journal-of-the-international-phonetic-association/article/on-the-nature-of-apical-vowel-in-jixihui-chinese-acoustic-and-articulatory-data/C59E63F44526C4D7C3A43E5FE7EF603D.
 
 ### What it does not settle by itself
 
-- A broad IPA output must decide whether to use a syllabic approximant notation such as [ɹ̩] / [ɻ̩], add a dental diacritic, or adopt another explicit transcription convention.
-- The paper's articulatory analysis is not a universal claim that all speakers produce identical tongue shapes.
+- It does not prove that one exact broad symbol sequence fits every Standard Mandarin speaker, dialect, or phonetic context.
+- It does not require the project to encode every fine-grained dental/apical gesture using diacritics; that is a transcription-depth decision.
 - A sinological [ɿ]/[ʅ] notation must not be described as ordinary IPA without qualification.
 
 ### Current implementation and decision
 
-The converter currently returns: (the notation below is unchanged for the syllabic/apical series; onset `r` is separately normalized to `[ɹ]` in this branch)
+**Decision (2026-10-19): retain the existing two-series broad notation; no code change is warranted by the evidence reviewed.**
+
 - zhi/chi/shi: [ʈʂɻ̩], [ʈʂʰɻ̩], [ʂɻ̩]
 - ri: [ɻ̩]
 - zi/ci/si: [tsɹ̩], [tsʰɹ̩], [sɹ̩]
 
-This is a documented broad convention, but it is not yet fully adjudicated against the dental-place detail in Lee-Kim's analysis. Do **not** claim the seven exact strings are uniquely required by the paper. The notation decision must explicitly state what detail the broad layer preserves and what it abstracts away.
+Rationale: the distinction between the alveolar/dental and retroflex series is evidence-backed, and [ɹ̩]/[ɻ̩] is an established broad convention in descriptions of Standard Mandarin. This project uses [ts]/[s] for the first onset family and [ʈʂ]/[ʂ] for the retroflex family; the following syllabic approximant mirrors that place-series distinction. The broad output deliberately does not add further dental diacritics. This is a documented choice of transcription depth, not a claim that Lee-Kim's paper uniquely requires these exact strings for every speaker.
+
+The existing regression tests assert all seven outputs, ensure they are not collapsed to plain [i], and keep onset `r`, syllabic `ri`, standalone `er`, and erhua as separate scope items.
 
 ### Required tests after the decision
 
@@ -91,7 +95,7 @@ The current IPA function attaches a citation-form contour to each syllable indep
 ## 4. Release-gating recommendation
 
 Do not promote the IPA layer to “fully scientifically verified” while:
-1. the seven apical outputs have no explicit convention decision grounded in the above evidence;
+1. the seven apical outputs have a recorded broad convention decision, but that decision is not a narrow speaker-specific gold standard;
 2. onset r, syllabic ri, standalone er, and erhua are not distinguished in the written scope;
 3. the 403-key test still proves coverage rather than class-complete accuracy;
 4. no independent expected-output fixture covers each final class and legal initial-final combination.
