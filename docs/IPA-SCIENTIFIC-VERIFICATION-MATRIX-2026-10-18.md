@@ -20,7 +20,7 @@ Use:
 | Domain | Current implementation | Evidence / concern | Status | Required action |
 |---|---|---|---|---|
 | Inventory coverage | 403 keys from the University of Washington (UW) chart must map to a non-empty output | Coverage establishes that a mapping exists, not that it is correct | partially verified | Keep coverage gate separate from linguistic accuracy gates |
-| Initials: aspiration | Pinyin b/p, d/t, g/k, j/q, zh/ch, z/c pairs use unaspirated/aspirated IPA pairs | The existing cross-check covers one tone-1 example per onset family; the source is a broad chart, not an acoustic gold standard | partially verified | Add class-level expected outputs and check the symbols against independent descriptions of Standard Mandarin |
+| Initials: aspiration | Pinyin b/p, d/t, g/k, j/q, zh/ch, z/c pairs use unaspirated/aspirated IPA pairs | `tests/ipa-initials-crosscheck.test.mjs` covers all 21 onset classes; UW's syllable chart gives the corresponding symbols, and Munich's phonetics teaching resource explicitly documents the six aspiration contrasts | partially verified | Keep the broad place/manner symbols explicit; add a multi-context corpus if the output is to be claimed as independently validated beyond representative forms |
 | Velar and glottal fricatives | h → [x] | Realization varies by context and speaker; [x] is a broad convention | convention decision needed | Explicitly define the broad target and test examples without claiming narrow realization |
 | Palatal initials | j/q/x → [tɕ, tɕʰ, ɕ] | Conventional broad IPA; exact place/diacritics vary across analyses | partially verified | Confirm with an independent phonetics source and document the chosen level of detail |
 | Retroflex series | zh/ch/sh → [ʈʂ, ʈʂʰ, ʂ]; onset r → [ɹ] after source-backed correction | UW uses [ɹ] for onset r; a 2024 articulatory/acoustic study found bunched onset rhotics and optional frication in its sample | partially verified | Keep onset r distinct from ri, er, and erhua; retain broad-scope caveat for speaker variation |
@@ -53,6 +53,7 @@ Use:
 
 - University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
 - University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
+- University of Munich, *Mandarin fricatives, affricates and tone*: https://www.phonetik.uni-muenchen.de/studium/skripten/languagedemos/Demos/mandarin.html
 - Hong Kong Polytechnic University, *Simple Finals*: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
 - Ohio State University, *IPA Mandarin* vowel chart (2023; updated 2025): https://ielp.ehe.osu.edu/files/2025/09/IPA_Mandarin.pdf
 - Humanities LibreTexts, *The Sound System of Mandarin*: https://human.libretexts.org/Bookshelves/Languages/Chinese/CHN101_Elementary_Mandarin_I_Textbook/01%3A_Introduction/1.01%3A_The_Sound_System_of_Mandarin
