@@ -35,7 +35,7 @@ The Kirnosova PDF text was extracted automatically. The table contains OCR/extra
 | `yo` | Yes (`йо`) | `йо / йо / —` | Outside UW chart; present in Kirnosova; NANU cell blank |
 | `ê` | Yes (PDF extraction returns Latin-looking `e`) | `е / е / —` | Secondary comparison reproduces `е / е`; keep current values while noting NANU cell blank |
 
-`—` means an empty CSV cell.
+`—` means an empty CSV cell. For the ten NANU blanks (`ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, `yo`), comparison with the official 410-key NANU/ASTKS inventory shows that each key is absent from the official table. These are source-coverage gaps, not unreviewed values in rows the official table actually lists. Keep them blank unless a revised authoritative source adds them.
 
 ## Findings
 
