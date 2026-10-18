@@ -151,8 +151,8 @@ test('Auto, Simplified and Traditional script selector segments have equal width
 test('methodology page stays within the viewport across mobile and desktop widths', async ({ page }, testInfo) => {
   await page.goto('/methodology.html');
   await expect(page.getByRole('heading', { name: /Різні розв'язки/u })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Конвертер' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Методики' })).toBeVisible();
+  await expect(page.locator('.site-nav').getByRole('link', { name: /Конвертер/u })).toBeVisible();
+  await expect(page.locator('.site-nav').getByRole('link', { name: 'Методики' })).toBeVisible();
 
   const widths = testInfo.project.name === 'mobile'
     ? [320, 360, 390, 430]
