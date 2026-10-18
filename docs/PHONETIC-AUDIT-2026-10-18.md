@@ -165,3 +165,8 @@ The expanded tests improve regression coverage but do not prove every mapping ph
 Added a cross-product test over all 403 syllables in the University of Washington reference fixture. For every listed syllable, it checks that numeric tones 1–4 append the configured citation-form contour and that suffixes 0 and 5 add no fixed contour. This validates parser consistency across the inventory rather than only selected examples.
 
 This test is not a pronunciation gold standard: it uses the converter's own segmental output as a baseline and validates tone handling only. It cannot detect a vowel or consonant mapping error shared by every tone variant. Segmental evidence review remains open.
+## Tone-mark parsing equivalence (2026-10-18, fourth pass)
+
+Added regression coverage comparing tone-marked Pinyin with its numbered equivalent for first through fourth tones, common diphthongs, the `uo/ui` families, and `ü` forms (including `nǚ`, `lǜ`, `jué`, `yuán`, and `xiōng`). These checks target a separate risk from the numeric-tone cross-product: the mark-extraction and diacritic-stripping path could fail even when numeric suffixes work.
+
+The test checks representation equivalence, not the linguistic correctness of the chosen segmental symbols or tone contours. It is paired with the all-inventory numeric-tone test and does not replace an independently annotated IPA gold set.
