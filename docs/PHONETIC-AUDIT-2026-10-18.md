@@ -174,7 +174,7 @@ The test checks representation equivalence, not the linguistic correctness of th
 
 The independent chart comparison identified a concrete mapping issue in the previous converter: `o` was represented as `uɔ`, causing `bo/po/mo/fo` to gain an extra [u]-like element, while standalone `wo` was also represented as `uɔ`, omitting the glide [w]. The implementation now maps `o` to `ɔ` and `wo` to `wo`; `uo` remains `uɔ` pending a more complete adjudication. Regression tests cover `o`, `bo`, `po`, `mo`, `fo`, `wo`, and `duo`.
 
-Evidence: University of Washington's Mandarin syllable chart lists the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ] and its finals chart lists `wo` as [wo]. The University of Hawaiʻi teaching chart independently presents the same initial-vowel contrast, though its extracted table contains other inconsistencies. Sources: https://courses.washington.edu/chin342/ipa/syllables.html ; https://courses.washington.edu/chin342/ipa/finals.html ; https://laulima.hawaii.edu/access/content/group/613e6b40-7843-4d5c-94ca-41a9e0831b95/CBasic1/u1/u1_p1.html .
+Historical note: the earlier source interpretation incorrectly reported the labial-initial examples as [pɔ], [pʰɔ], [mɔ], [fɔ]. This was corrected after re-reading the chart; see A-04 below. The UW chart uses its own broad/sinological convention for glides, so `wo` versus `uɔ` is a notation difference and should not be treated as literal string equivalence.
 
 This is the first source-supported segmental mapping correction in this pass. It does not close the full IPA audit; `uo`, rhotic/apical vowels, and the broader finals inventory still need independent comparison.
 
