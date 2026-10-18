@@ -89,6 +89,8 @@ I parsed the chart's published syllable table and compared its Pinyin entries wi
 
 This is a coverage comparison, not proof that the 17 additional forms are invalid. Some are syllabic nasals or interjections/marginal forms; each should receive an explicit inventory-status label and a source before the table is described as a standard-syllable inventory.
 
+The chart's 403 unique Pinyin keys are now stored as a source-attributed regression fixture at `tests/mandarin-syllable-inventory.mjs`; an automated test requires the IPA converter to map every one. This is a coverage gate, not a pronunciation-accuracy assertion.
+
 A mechanical comparison of the chart's IPA spellings with the project's generated broad IPA shows many systematic notation differences (for example, `ai` vs `aɪ`, `iɛ` vs `jɛ`, `aŋ` vs `ɑŋ`, `yɛ` vs `ɥe`, and `ɹ` vs `ɻ`). These are not automatically phonetic errors: the chart uses a different broad transcription convention in several places. They do, however, mean the project must state its chosen convention and review every mismatch class against a second phonetics source instead of treating raw string equality as a gold standard. The `o/uo/wo/er` changes above were selected because the prior values conflicted directly with the chosen chart's displayed values.
 
 Source: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
@@ -115,6 +117,7 @@ The 12 NANU blanks are rows/keys: 82 `ê`, 93 `fiao`, 125 `hm`, 126 `hng`, 157 `
 
 - Collate all 420 rows against the exact published tables for each Ukrainian system; record source page/table/rule and reviewer status per row.
 - Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 17 extra CSV keys requiring classification.
+- Review the chart-to-project IPA differences as classes, decide and document the intended broad-IPA convention, and add evidence-backed expected-output tests. The 403-syllable fixture currently tests coverage only.
 - Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
 - Add a provenance ledger with stable key, output system, exact source URL, page/table/rule, cited evidence, review date, status, and notes for unresolved disagreement.
 - Add context-sensitive polyphonic regression cases for the pinned Pinyin engine, covering simplified and traditional input.
