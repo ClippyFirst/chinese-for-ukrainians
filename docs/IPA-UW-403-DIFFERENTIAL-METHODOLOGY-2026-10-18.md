@@ -31,11 +31,11 @@ A literal match is not proof of phonetic correctness. A different string is not 
 | Status | Rows | Interpretation |
 |---|---:|---|
 | unresolved | 22 | Includes ong, iong, üan, and er contexts whose target sequence/quality remains disputed |
-| convention-decision-needed | 38 | The class needs a documented convention or vowel-quality decision |
+| convention-decision-needed | 6 | The class needs a documented convention or vowel-quality decision |
 | convention-conversion | 86 | The comparison requires an explicit notation mapping |
 | source-aligned-for-sampled-cases | 19 | Agreement exists for sampled cases only, not every possible context |
 | source-aligned-for-sampled-alias | 4 | Sampled zero-initial alias alignment only |
-| broad-convention-decided-with-caveat | 29 | The [ɑʊ]/[jɑʊ] output is consistent with the documented broad convention and available evidence; single-speaker limits remain |
+| broad-convention-decided-with-caveat | 61 | The [ɑ]-type nucleus is standardized across ao/iao/ang/iang/uang; single-speaker acoustic limits remain |
 | partially-corroborated-or-pending | 205 | Class needs further independent adjudication; this is not a pass |
 
 The row counts describe how many syllable keys inherit a class status; they are not 403 independent research findings. A class with many rows does not have more evidence than a class with fewer rows.
