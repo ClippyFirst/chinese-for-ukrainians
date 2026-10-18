@@ -53,6 +53,8 @@
 | 35 | `ün` | `yn` | UW gives `yn` in zero-initial alias `yun`; UCL gives `yn` | source-aligned for sampled alias | Confirm the same vowel quality after every legal onset; check j/q/x spelling normalization |
 | 36 | `er` | `əɹ` | UW gives `ər`; Nguyen Dinh Hien (2018) argues [ɐɹ]; some references use [ɚ] | unresolved | Choose a target convention for central vowel and rhoticity; keep standalone er separate from onset r and erhua |
 
+The machine-readable inventory/differential is available in [the 403-key CSV](./IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv); its interpretation, snapshot counts, and regeneration procedure are documented in [the differential methodology note](./IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md). The CSV is reproducible and complete for the captured key inventory, but it does not make the keys independent gold-standard judgments.
+
 ## 2. Cross-class review grid
 
 The 403-key chart is the current **inventory backbone**, not a 403-row gold IPA table. Use the following strata to ensure a class is not verified only in one easy context.
