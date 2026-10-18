@@ -10,6 +10,15 @@ test('loads the current interface with exactly one initial state', async ({ page
   await expect(page.locator('#issue-state')).toBeHidden();
 });
 
+test('IPA help accurately states broad transcription and neutral-tone limitations', async ({ page }) => {
+  await page.goto('/');
+  const help = page.locator('.ipa-explanation');
+  await expect(help).toContainText('широку практичну транскрипцію');
+  await expect(help).toContainText('нейтральний тон не отримує фіксованого контуру');
+  await expect(help).toContainText('Тонові сандхі');
+  await expect(help).not.toContainText('умовне позначення середнього рівня тону');
+});
+
 test('example produces Pinyin, IPA and all three Ukrainian systems without overlapping states', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Приклад' }).click();

@@ -2,6 +2,8 @@
 
 A lightweight static browser tool for Chinese → Ukrainian transcription.
 
+**Release status: public beta / research preview.** The app is deployed and usable, but the IPA layer and merged source table are still under linguistic source audit. See [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md) before treating results as authoritative.
+
 ## Що це
 
 **Chinese → українська** — локальний браузерний інструмент для передачі китайської вимови українськими засобами.
