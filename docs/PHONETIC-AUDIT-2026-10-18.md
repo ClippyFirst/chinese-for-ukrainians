@@ -210,4 +210,4 @@ The full proceedings PDF is accessible at https://foreign-languages.karazin.ua/r
 
 ### Current verdict
 
-The audit is **not complete**. A specific IPA mapping defect and a source-link limitation have been corrected, and the regression suite now protects the labial-conditioned `o` forms. Remaining blockers are the manual Kirnosova table collation, independent review of all IPA mapping classes, and explicit classification of edge/marginal Pinyin entries and source-specific blanks. Do not describe the dataset as fully source-certified until these gates are completed.
+The audit is **not complete**. A source-supported context-sensitive IPA mapping correction has been made, the methodology source links have been improved, and the ten NANU blank cells are now explicitly classified as keys absent from the official 410-key inventory rather than unresolved values inside listed rows. Remaining blockers are visual/manual collation of Kirnosova's table, independent review of all IPA mapping classes, and stronger primary-source classification of marginal/edge Pinyin forms. Do not describe the dataset as fully source-certified until these gates are completed.
