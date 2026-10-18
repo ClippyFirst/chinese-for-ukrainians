@@ -72,3 +72,11 @@ A separate phonology summary gives `yue [ɥe]`, which illustrates that sources d
 - https://wiki.chogus.org/content/wikipedia_en_all_maxi_2025-08/Neutral_tone
 
 **Decision:** retain `ɥɛ` as the project's explicit broad-IPA convention for now because the UW chart gives `yɛ` and the code converts the glide-like first element to `ɥ` while preserving `ɛ`. Mark the glide-versus-vowel analysis as unresolved, particularly for `nüe/lüe`; do not claim the exact string `nɥɛ/lɥɛ` has been independently established by two primary phonetic sources. A better next step is to consult a dedicated Mandarin phonetics reference or articulatory/acoustic study that explicitly analyzes this final after n/l and j/q/x.
+
+## 5. Tone renderer versus lexical tone legality
+
+The converter currently accepts a Pinyin syllable plus a tone digit and appends a contour mechanically. This is a formatting contract, not proof that the resulting syllable-tone pair exists in Standard Mandarin. PolyU's pronunciation guide explicitly notes that standalone `er` does not occur with first tone. Therefore, a regression such as “every inventory syllable with tones 1–4 produces the expected suffix” must be read strictly as a renderer test, not a lexical-validity test.
+
+- PolyU, *Compound final groups* (note on `er`): https://www.polyu.edu.hk/bepth/introduction-to-phonetics/compound-finals/compound-final-groups/
+
+**Decision:** preserve the lightweight converter behavior for now, rename tests/comments to make their scope explicit, and avoid using `er1` as a positive example of a valid citation-form syllable. If the UI should reject impossible combinations, implement a separate source-backed lexical/tone legality layer; do not mix dictionary validation into the IPA mapping function without a clear requirement.
