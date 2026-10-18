@@ -78,6 +78,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
 - [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
 - [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
+- [Targeted `ong` / `iong` / `er` adjudication](./docs/IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md)
 - [Raw UW IPA source comparison](./docs/IPA-UW-RAW-SOURCE-COMPARISON-2026-10-18.md)
 - [403-key machine-generated UW IPA differential](./docs/IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv)
 - [403-key differential methodology and limitations](./docs/IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
