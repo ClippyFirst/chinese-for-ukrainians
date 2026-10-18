@@ -52,10 +52,9 @@ The new tests also lock current broad-IPA choices for ong (ʊŋ) and contracted 
 
 This is a targeted coverage expansion, not exhaustive final-by-final certification.
 
-## Context-sensitive correction (2026-10-18)
+## Interim correction note (superseded by the third pass)
 
-The previous shared mapping `o: uɔ` and `wo: uɔ` collapsed distinct Pinyin forms. It produced an unsupported extra [u] element in forms such as `bo` and omitted the [w] glide in standalone `wo`. The mapping is now split: `o` maps to `ɔ` (so `bo/po/mo/fo` map to `pɔ/pʰɔ/mɔ/fɔ`), while `wo` maps to `wo`; `uo` remains `uɔ` pending a more complete source comparison. This is a source-backed targeted correction using the UW syllable chart and the University of Hawaiʻi teaching chart, not a claim that either chart is a complete narrow-IPA authority.
-
+An earlier pass separated `o`, `uo`, and `wo` after noticing that one shared mapping collapsed distinct Pinyin spellings. That pass incorrectly concluded that the UW chart supported `pɔ/pʰɔ/mɔ/fɔ` for `bo/po/mo/fo`. The chart actually gives `puɔ/pʰuɔ/muɔ/fuɔ`; see the source correction below. The current implementation and tests supersede the earlier interim mapping.
 
 ## Source correction and context-sensitive final (2026-10-18, third pass)
 
