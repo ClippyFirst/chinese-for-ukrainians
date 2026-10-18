@@ -148,6 +148,10 @@ A separate classification note now documents all 18 CSV keys absent from the Uni
 
 This follow-up narrows the next manual review but does not change the overall audit status: the Kirnosova table still requires faithful cell-by-cell collation, and IPA mapping classes still require independent evidence review.
 
+## Primary PDF text-extraction follow-up (2026-10-18)
+
+The original 2009 PDF was successfully retrieved through the DSpace bitstream content endpoint and parsed into a 420-row text table. The extraction remains noisy, so the comparison is a candidate-finding pass, not a visual verification. Two cells need priority inspection against page images: primary extraction gives `chuo → чо` (table row 49) and `duo → до` (table row 80), while the repository's Kirnosova column and the online secondary comparison give `чуо` and `дуо`. These could be genuine source-versus-copy discrepancies or extraction errors; **no data was changed**. Both are recorded as `visual-review-required` in the source ledger. The remaining automated text differences include obvious Latin/Cyrillic confusions and other OCR artefacts and must not be bulk-applied.
+
 ## Secondary full-table comparison (2026-10-18)
 
 An automated screening comparison was completed against the public comparative table of the Kirnosova and Kirnosova–Tsisar systems: [secondary comparison report](SECONDARY-COMPARISON-2026-10-18.md). It covered 419 unique extracted keys from 420 numbered entries. The apparent differences were limited to the combined `er/r` row, a Latin/Cyrillic look-alike in `nüe`, and a duplicate `pou` row that likely represents `pu`. These are recorded as secondary-source issues or structural differences, not confirmed errors in the repository. The comparison does **not** replace primary-page collation of Kirnosova (2009), and it does not authorize bulk edits.
