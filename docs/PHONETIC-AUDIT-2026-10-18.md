@@ -80,6 +80,19 @@ https://courses.washington.edu/chin342/ipa/syllables.html
 
 This provides a useful syllable-by-syllable Pinyin/IPA comparison, including apical vowels and finals. The project’s IPA is explicitly broad practical IPA, so transcription conventions must be stated and applied consistently; no single broad IPA convention should be described as the only possible narrow phonetic realization.
 
+## Inventory comparison against the University of Washington chart
+
+I parsed the chart's published syllable table and compared its Pinyin entries with the canonical CSV:
+- 403 unique syllable keys in the chart;
+- all 403 are represented in the CSV;
+- 17 additional CSV keys are absent from that chart: `cei`, `den`, `dia`, `fiao`, `hm`, `hng`, `lo`, `m`, `me`, `n`, `ng`, `nun`, `o`, `rua`, `tei`, `yo`, and `ê`.
+
+This is a coverage comparison, not proof that the 17 additional forms are invalid. Some are syllabic nasals or interjections/marginal forms; each should receive an explicit inventory-status label and a source before the table is described as a standard-syllable inventory.
+
+A mechanical comparison of the chart's IPA spellings with the project's generated broad IPA shows many systematic notation differences (for example, `ai` vs `aɪ`, `iɛ` vs `jɛ`, `aŋ` vs `ɑŋ`, `yɛ` vs `ɥe`, and `ɹ` vs `ɻ`). These are not automatically phonetic errors: the chart uses a different broad transcription convention in several places. They do, however, mean the project must state its chosen convention and review every mismatch class against a second phonetics source instead of treating raw string equality as a gold standard. The `o/uo/wo/er` changes above were selected because the prior values conflicted directly with the chosen chart's displayed values.
+
+Source: University of Washington, “Mandarin Chinese Syllables”: https://courses.washington.edu/chin342/ipa/syllables.html
+
 ## Important audit observations
 
 1. The CSV contains 420 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
@@ -91,7 +104,7 @@ This provides a useful syllable-by-syllable Pinyin/IPA comparison, including api
 ## Remaining work before claiming a complete audit
 
 - Collate all 420 rows against the exact published tables for each Ukrainian system; record source page/table/rule and reviewer status per row.
-- Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. Explicitly identify any valid standard syllable absent from the inventory.
+- Build a canonical Mandarin syllable inventory and classify each CSV key as standard, marginal, historical/edge, or unsupported. The current reference-chart comparison found all 403 chart keys present and 17 extra CSV keys requiring classification.
 - Independently review every IPA initial/final combination, including `o`, `e`, `er`, `ong`, `iong`, `zhi/chi/shi/ri`, `zi/ci/si`, `ju/qu/xu`, `jue/que/xue`, tone-marked Pinyin, numeric tones, and neutral tone.
 - Add a provenance ledger with stable key, output system, exact source URL, page/table/rule, cited evidence, review date, status, and notes for unresolved disagreement.
 - Add context-sensitive polyphonic regression cases for the pinned Pinyin engine, covering simplified and traditional input.
