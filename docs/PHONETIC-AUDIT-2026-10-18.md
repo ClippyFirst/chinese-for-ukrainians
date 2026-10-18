@@ -111,12 +111,12 @@ A programmatic pass over the corrected CSV found:
 - 1 blank cell in the Kirnosova–Tsisar column (`ten`);
 - 10 blank cells in the NANU column.
 
-The 10 remaining NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. The remaining blanks stay explicit until the official source or its rules establish whether a mapping is intended.
+The 10 NANU blanks are keys `ê`, `fiao`, `hm`, `hng`, `kei`, `m`, `n`, `ng`, `rua`, and `yo`. The official ASTKS table comparison covers 410 listed keys; these ten keys are absent from that source inventory. They are therefore classified in the ledger as `source-absent`, not as failed transcriptions of entries that appear in the official table. The previously blank `pou` and `pu` cells were filled from the official ASTKS table. Preserve the ten blanks rather than copying another system's values; any future claim that the official system covers them would require a newer or more comprehensive primary source.
 
 ## Important audit observations
 
 1. The CSV contains 421 rows, including non-ordinary or marginal forms (for example `ê`, `hm`, `hng`, and syllabic `m`, `n`, `ng`) and entries with deliberately blank outputs. These should be tagged by status (standard syllable, marginal/interjection, phonetic edge form, unsupported/unresolved) rather than all being presented as equally ordinary Mandarin syllables.
-2. A blank output remains a real missing mapping. Do not fill it by copying another system's value.
+2. A blank output is a real absence in this merged dataset, but its reason must be source-specific: the ten NANU blanks are keys absent from the official 410-key inventory, while `ten` is absent from the two Kirnosova columns. Do not fill any of these by copying another system's value.
 3. A syllable table cannot resolve a polyphonic Han character by itself. The selected Pinyin reading depends on the upstream pronunciation engine and its dictionary/context coverage.
 4. The IPA layer is a finite mapping. The current regression tests cover apical vowels, selected tone-marked forms, ü normalization, unsupported `ê`, punctuation, and neutral tone. They do not yet establish exhaustive correctness for every legal Pinyin syllable.
 5. A passing build or test suite verifies implemented invariants, not all linguistic decisions in the CSV.
