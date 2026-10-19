@@ -73,7 +73,7 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
   const lines = content.split('\n').filter((line) => line.length > 0);
   const rows = lines.slice(1).map(parseSemicolonCsvLine);
-  assert.equal(rows.length, 83, 'expected 83 evidence rows in the current ledger snapshot');
+  assert.equal(rows.length, 85, 'expected 85 evidence rows in the current ledger snapshot');
   const erEvidence = rows.find((fields) => fields[1] === 'standalone er / syllabic rhotic');
   assert.ok(erEvidence, 'the direct rhotic study should be represented in the ledger');
   assert.match(erEvidence[3], /10\.1515\/phon-2023-0023/u);
@@ -85,4 +85,12 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   assert.ok(onsetREvidence, 'the independent onset-r articulatory study should be represented in the ledger');
   assert.ok(onsetREvidence[3].includes('10.1177/00238309251350082'));
   assert.equal(onsetREvidence[6], 'corroborative-with-variation');
+  const auspeech = rows.find((fields) => fields[1] === 'candidate multi-speaker acoustic corpus / Standard Mandarin monosyllables');
+  assert.ok(auspeech, 'AUSpeech should be recorded as a candidate corpus');
+  assert.equal(auspeech[6], 'candidate-corpus-not-yet-audited');
+  assert.ok(auspeech[3].includes('10.1038/s41597-025-04917-w'));
+  const taiwan = rows.find((fields) => fields[1] === 'comparative syllable acoustics / Taiwanese Mandarin');
+  assert.ok(taiwan, 'the Taiwanese acoustic dataset should be recorded with its target-variety limitation');
+  assert.equal(taiwan[6], 'comparative-only-target-variety-mismatch');
+  assert.ok(taiwan[5].includes('37,946 measured syllable tokens'));
 });
