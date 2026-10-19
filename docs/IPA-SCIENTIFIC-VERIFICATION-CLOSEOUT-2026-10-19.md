@@ -31,6 +31,7 @@ The sources serve different roles and must not be treated as interchangeable:
 - **Nguyen Dinh Hien (2018):** a published competing analysis proposing `ong [uŋ]`, `iong [yŋ]`, and `er [ɐɹ]`. This is material disagreement, not grounds to mechanically replace current outputs.
 - **Chen, Whalen & Mok (2024):** acoustic/articulatory evidence on Mandarin rhotics from 18 northern Chinese speakers. It supports treating rhotic realizations as variable and keeping onset `r`, syllabic `ri`, standalone `er`, and erhua separate; it does not establish one universal standalone-`er` transcription.
 - **University of Munich phonetics resource:** independently uses `[ɚ]` for the rhotic nucleus and distinguishes restricted apical syllabic approximants from productive erhua. This confirms that `[ɚ]` is a legitimate competing broad representation; it does not, by itself, prove that the converter's `[əɹ]` is wrong or right.
+- **Luo (first published online 2025), *Language and Speech*:** a separate ultrasound/acoustic study of Putonghua onset `/r/` finds both tip-up retroflex and tip-down bunched tongue postures, with little or no frication in most tokens and a low F3. This strengthens the rationale for a broad approximant-style output but confirms that `[ɹ]` must not be presented as a universal narrow realization.
 
 ## Final status by domain
 
