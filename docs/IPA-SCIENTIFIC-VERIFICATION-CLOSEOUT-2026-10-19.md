@@ -73,7 +73,7 @@ These are evidence gates, not a request to change expected outputs until tests t
 
 No IPA mappings were changed in this closeout. Preserve the existing provisional outputs until evidence justifies a specific change. In particular, keep `ong → ʊŋ`, `iong/yong → jʊŋ`, `üan/yuan → ɥɛn`, and standalone `er → əɹ` marked **provisional**, not verified.
 
-The exact branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; this follow-up evidence-ledger/test update must itself pass CI before merge. A green workflow is software validation, not scientific certification.
+The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; subsequent source-ledger/test changes still need a run on the exact current head. A green workflow is software validation, not scientific certification.
 
 ## Primary links
 
