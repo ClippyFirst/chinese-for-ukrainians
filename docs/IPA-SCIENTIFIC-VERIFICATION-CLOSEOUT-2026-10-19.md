@@ -73,7 +73,7 @@ These are evidence gates, not a request to change expected outputs until tests t
 
 No IPA mappings were changed in this closeout. Preserve the existing provisional outputs until evidence justifies a specific change. In particular, keep `ong → ʊŋ`, `iong/yong → jʊŋ`, `üan/yuan → ɥɛn`, and standalone `er → əɹ` marked **provisional**, not verified.
 
-The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; subsequent source-ledger/test changes still need a run on the exact current head. The protocol now documents how to acquire and audit an empirical corpus, including explicit limits for automated alignments and Taiwanese-Mandarin-only acoustic references. No corpus audio has yet been measured in this workflow. A green workflow is software validation, not scientific certification.
+The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; subsequent source-ledger/test changes still need a run on the exact current head. The protocol now documents how to acquire and audit an empirical corpus, including explicit limits for automated alignments and Taiwanese-Mandarin-only acoustic references. Added a pinned Praat-Parselmouth extraction utility, a token-index template, and dependency-light tests for verified boundaries, duplicate IDs, quality status and path safety. The extractor records raw eight-point F1/F2/F3 trajectories; it does not decide IPA or manufacture measurements. No corpus audio has yet been measured in this workflow. A green workflow is software validation, not scientific certification.
 
 ## Primary links
 
@@ -84,3 +84,4 @@ The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a success
 - [403-key differential methodology](./IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
 - [Phonetic source ledger](./PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
 - [Acoustic validation execution protocol](./IPA-ACOUSTIC-VALIDATION-EXECUTION-PROTOCOL-2026-10-19.md)
+- [Acoustic measurement workspace](../research/ipa-acoustic/README.md)
