@@ -77,7 +77,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
 - [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
 - [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
-- [IPA scientific verification closeout (2026-10-19)](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md) — records the completed audit pass and explains why full scientific certification remains blocked by unresolved evidence
+- [IPA scientific verification closeout (2026-10-19)](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md) — historical audit record; its stricter certification status is superseded for release decisions by the [literature-based adjudication closeout](./docs/IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), which defines the project's agreed release criterion.
 - [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
 - [Targeted `ong` / `iong` / `er` adjudication](./docs/IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md) — includes the 2024 multi-speaker acoustic/articulatory study of syllabic rhotics
 - [Targeted `üan` low-vowel adjudication](./docs/IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md)
