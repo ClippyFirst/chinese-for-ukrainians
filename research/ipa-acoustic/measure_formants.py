@@ -87,19 +87,24 @@ def extract_rows(rows: list[dict[str, str]], corpus_root: Path) -> list[dict[str
         ) from exc
 
     output: list[dict[str, object]] = []
-    sound_cache: dict[Path, tuple[object, object]] = {}
+    sound_cache: dict[Path, object] = {}
+    formant_cache: dict[tuple[Path, float], object] = {}
     for row in rows:
         audio_path = safe_audio_path(corpus_root, row["recording_path"])
+        ceiling = float(row.get("max_formant_hz") or 5500)
         if audio_path not in sound_cache:
-            sound = parselmouth.Sound(str(audio_path))
-            sound_cache[audio_path] = (sound, sound.to_formant_burg(
+            sound_cache[audio_path] = parselmouth.Sound(str(audio_path))
+        sound = sound_cache[audio_path]
+        cache_key = (audio_path, ceiling)
+        if cache_key not in formant_cache:
+            formant_cache[cache_key] = sound.to_formant_burg(
                 time_step=0.01,
                 max_number_of_formants=5,
-                maximum_formant=float(row.get("max_formant_hz") or 5500),
+                maximum_formant=ceiling,
                 window_length=0.025,
                 pre_emphasis_from=50.0,
-            ))
-        sound, formants = sound_cache[audio_path]
+            )
+        formants = formant_cache[cache_key]
         start = float(row["nucleus_start_s"])
         end = float(row["nucleus_end_s"])
         if end > sound.get_total_duration():
