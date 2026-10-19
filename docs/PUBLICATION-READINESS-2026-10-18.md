@@ -2,7 +2,7 @@
 
 ## Decision
 
-**Suitable for a public beta / research-preview release, not yet suitable to advertise as a fully linguistically validated or academically certified transcription service.**
+**Suitable for a clearly labelled public beta / research-preview release using a documented literature-based broad-IPA convention. Do not advertise it as universally narrow-phonetic or academically certified.**
 
 The app is already deployed as a static GitHub Pages site. This assessment distinguishes operational publication readiness from completion of the underlying phonetic research.
 
@@ -26,10 +26,10 @@ The app is already deployed as a static GitHub Pages site. This assessment disti
 
 The current interface's IPA explanation was updated to make the first qualification visible, and a browser regression test now guards against reintroducing the incorrect fixed-mid-level-neutral-tone wording.
 
-## Remaining scientific work — not a blocker for a clearly labelled beta
+## Optional follow-up research — not a blocker for the selected literature-based release
 
 - Visually collate all rows of Kirnosova (2009) against the original table. Automated PDF extraction has Latin/Cyrillic look-alike and table-cell errors; it is not a reliable authority for mass edits.
-- Review all IPA final classes against independent references with their transcription conventions stated, and create an independently adjudicated gold fixture. Current inventory tests prove coverage and internal consistency, not that every segmental symbol is correct.
+- Optional future work: expand the independent source comparison or perform acoustic measurements. The selected release criterion is literature-based; see [final adjudication closeout](./IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md). Inventory tests prove coverage and internal consistency, not that every segmental symbol is universally correct.
 - Verify marginal or source-specific keys, especially `ten`, `yo`, and standalone `o`, against primary lexicographic or authorial evidence.
 - Revisit the published examples and table summaries after the manual source collation, and record every confirmed correction as a regression test.
 
