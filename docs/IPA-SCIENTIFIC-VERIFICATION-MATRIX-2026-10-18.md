@@ -1,6 +1,8 @@
 # Scientific verification matrix for the broad-IPA layer
 
 **Status:** active research audit; this is not a linguistic certification.
+
+**Closeout:** see [IPA scientific verification closeout (2026-10-19)](./IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md). The audit pass is documented as complete, but scientific certification remains blocked by unresolved class-level evidence.
 **Target:** `src/app/ipa.js` and the Pinyin syllable inventory consumed by the converter.
 **Scope:** standard Putonghua citation-form segmental IPA and lexical tone notation. Connected-speech rules are a separate layer and are not silently implied.
 
