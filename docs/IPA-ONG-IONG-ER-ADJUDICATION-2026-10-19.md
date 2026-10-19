@@ -43,3 +43,18 @@
 Do not change any of these three mappings until the review records (a) the target dialect/variety, (b) intended transcription depth, (c) at least one source with direct phonetic/acoustic evidence relevant to the exact class, (d) why the chosen symbol sequence fits that evidence better than the alternatives, and (e) regression cases for the legal onset contexts. If the evidence supports more than one accepted broad analysis, state the project's convention explicitly instead of labelling alternatives incorrect.
 
 **Outcome:** the 36-class register remains accurate in marking these three classes unresolved. No code change is made in this pass.
+
+
+## Additional direct acoustic/articulatory evidence for standalone er (2026-10-19)
+
+Chen, Whalen & Mok (2024), *Phonetica* 81(5), 509–552, DOI [10.1515/phon-2023-0023](https://doi.org/10.1515/phon-2023-0023), is more directly relevant to `er` than the chart-only sources above. The study recorded **18 native Mandarin speakers from northern China** with ultrasound and examined rhotics in onset position, syllable-nucleus position (`er`), and postvocalic/r-suffix position. The authors explicitly describe the nucleus-position rhotic as commonly transcribed either as a rhotacized vowel **[ɚ]** or a syllabic approximant **[ɹ̩]**; their own analysis uses **[ɹ̩]** for syllabic position. They report variation in tongue shape among syllabic/postvocalic rhotics and no significant F1–F3 differences between the two tongue-shape groups.
+
+Primary source:
+- Chen, Shuwen, Douglas H. Whalen & Peggy Pik Ki Mok (2024), “What R Mandarin Chinese /ɹ/s? – acoustic and articulatory features of Mandarin Chinese rhotics,” *Phonetica* 81(5), 509–552. https://pmc.ncbi.nlm.nih.gov/articles/PMC11449382/ ; https://doi.org/10.1515/phon-2023-0023
+
+### What this evidence changes—and what it does not
+
+- It upgrades the evidence base from competing tables to a direct multi-speaker articulatory/acoustic study of Mandarin rhotics in the relevant syllable position.
+- It supports keeping `er` conceptually separate from onset `r` and from erhua. It also makes **[ɚ]** and **[ɹ̩]** explicit alternatives that should be evaluated against the project's chosen broad-output convention.
+- It does **not** directly adjudicate whether this project's practical broad output should be `əɹ`, `ɚ`, or `ɹ̩`: the study describes a transcription convention and measures rhotic articulation, but does not supply a universal one-string broad-IPA target for all Standard Mandarin speakers. Its participants are northern Chinese speakers, and rhotic realization varies.
+- Therefore the implementation remains unchanged for now. `er → əɹ` is still a provisional project convention, not a verified consensus mapping. A later decision should compare the three options for user interpretability, segmental consistency, and compatibility with the declared broad-IPA layer, and then add tests for `er` separately from onset `r`/`ri` and erhua.
