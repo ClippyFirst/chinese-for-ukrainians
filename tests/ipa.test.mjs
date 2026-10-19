@@ -20,7 +20,7 @@ test('marks unsupported edge forms instead of copying Han into the IPA field', (
   assert.equal(formatIPA([{ type: 'han', source: '欸', pinyin: 'ê' }]), '⟦IPA:ê⟧');
 });
 test('preserves punctuation and Latin text while spacing IPA syllables', () => {
-  assert.equal(formatIPA([{ type: 'han', source: '你', pinyin: 'ni3' }, { type: 'han', source: '好', pinyin: 'hao3' }, { type: 'text', source: '，hello!' }]), 'ni˨˩˦ xaʊ˨˩˦，hello!');
+  assert.equal(formatIPA([{ type: 'han', source: '你', pinyin: 'ni3' }, { type: 'han', source: '好', pinyin: 'hao3' }, { type: 'text', source: '，hello!' }]), 'ni˨˩˦ xɑʊ˨˩˦，hello!');
 });
 
 test('does not assign a fixed pitch contour to neutral tone', () => {
@@ -37,7 +37,8 @@ test('uses the contracted uo realization after labial initials while keeping sta
   assert.equal(pinyinToIPA('fo1'), 'fuɔ˥');
   assert.equal(pinyinToIPA('o1'), 'ɔ˥');
   assert.equal(pinyinToIPA('duo2'), 'tuɔ˧˥');
-  assert.equal(pinyinToIPA('wo3'), 'wo˨˩˦');
+  assert.equal(pinyinToIPA('wo3'), 'uɔ˨˩˦');
+  assert.equal(pinyinToIPA('uo3'), 'uɔ˨˩˦');
   assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
 });
 
@@ -50,12 +51,13 @@ test('maps every syllable in the University of Washington reference inventory', 
 
 test('keeps the documented IPA glide and vowel notation distinct from UW conventions', () => {
   assert.equal(pinyinToIPA('ai1'), 'aɪ˥');
-  assert.equal(pinyinToIPA('ao2'), 'aʊ˧˥');
+  assert.equal(pinyinToIPA('ao2'), 'ɑʊ˧˥');
+  assert.equal(pinyinToIPA('yao2'), 'jɑʊ˧˥');
   assert.equal(pinyinToIPA('ang4'), 'ɑŋ˥˩');
   assert.equal(pinyinToIPA('iong1'), 'jʊŋ˥');
-  assert.equal(pinyinToIPA('yue1'), 'ɥe˥');
+  assert.equal(pinyinToIPA('yue1'), 'ɥɛ˥');
   assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
-  assert.equal(pinyinToIPA('ru1'), 'ɻu˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɹu˥');
 });
 
 test('covers contracted and zero-initial Pinyin forms across final classes', () => {
@@ -77,7 +79,9 @@ test('covers contracted and zero-initial Pinyin forms across final classes', () 
   assert.equal(pinyinToIPA('ong1'), 'ʊŋ˥');
 });
 
-test('keeps numeric tone parsing consistent across the complete reference inventory', () => {
+test('renders tone suffixes consistently across the reference inventory (not a lexical legality test)', () => {
+  // This checks deterministic suffix rendering only. It does not assert that every
+  // syllable can occur with every lexical tone in Standard Mandarin.
   const contours = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
   for (const syllable of MANDARIN_REFERENCE_SYLLABLES) {
     const segmental = pinyinToIPA(syllable);
@@ -115,5 +119,59 @@ test('keeps tone-marked Pinyin equivalent to numbered tones for common vowel and
       pinyinToIPA(numbered),
       `tone-marked and numbered forms differ: ${marked} vs ${numbered}`,
     );
+  }
+});
+
+test('keeps onset r, syllabic ri, standalone er, and erhua conceptually separate', () => {
+  // Evidence review: Chen, Whalen & Mok (2024), Phonetica 81(5).
+  // These assertions lock the project's broad notation, not a narrow universal realization.
+  assert.equal(pinyinToIPA('ra1'), 'ɹa˥');
+  assert.equal(pinyinToIPA('ru1'), 'ɹu˥');
+  assert.equal(pinyinToIPA('ri1'), 'ɻ̩˥');
+  assert.equal(pinyinToIPA('er4'), 'əɹ˥˩');
+  // Erhua is not inferred from an ordinary Pinyin syllable in this function.
+});
+
+test('covers the ü-final family and Pinyin orthographic aliases explicitly', () => {
+  // Broad-IPA project convention: [ɥ] is used for the rounded palatal glide.
+  // This is a regression fixture, not independent proof of the convention.
+  const expected = [
+    ['nü3', 'ny˨˩˦'],
+    ['lü4', 'ly˥˩'],
+    ['nüe2', 'nɥɛ˧˥'],
+    ['lüe2', 'lɥɛ˧˥'],
+    ['nüan3', 'nɥɛn˨˩˦'],
+    ['ju1', 'tɕy˥'],
+    ['qu2', 'tɕʰy˧˥'],
+    ['xu4', 'ɕy˥˩'],
+    ['jun1', 'tɕyn˥'],
+    ['qun2', 'tɕʰyn˧˥'],
+    ['xun4', 'ɕyn˥˩'],
+    ['jue2', 'tɕɥɛ˧˥'],
+    ['que2', 'tɕʰɥɛ˧˥'],
+    ['xue2', 'ɕɥɛ˧˥'],
+    ['yue1', 'ɥɛ˥'],
+    ['yuan2', 'ɥɛn˧˥'],
+    ['yun3', 'yn˨˩˦'],
+  ];
+  for (const [pinyin, ipa] of expected) {
+    assert.equal(pinyinToIPA(pinyin), ipa, `unexpected broad IPA for ${pinyin}`);
+  }
+});
+
+test('keeps tone-marked and numbered forms equivalent across the ü-final family', () => {
+  const pairs = [
+    ['nǚ', 'nü3'],
+    ['lǜ', 'lü4'],
+    ['nüè', 'nüe4'],
+    ['lüè', 'lüe4'],
+    ['jué', 'jue2'],
+    ['quán', 'quan2'],
+    ['xuě', 'xue3'],
+    ['yuán', 'yuan2'],
+    ['yùn', 'yun4'],
+  ];
+  for (const [marked, numbered] of pairs) {
+    assert.equal(pinyinToIPA(marked), pinyinToIPA(numbered), `${marked} differs from ${numbered}`);
   }
 });

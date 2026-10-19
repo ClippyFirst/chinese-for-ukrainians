@@ -26,6 +26,12 @@ jobs:
         run: npm install
       - name: Run unit and integration tests
         run: npm test
+      - name: Set up Python for acoustic-pipeline validation tests
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate acoustic measurement pipeline input guards
+        run: python research/ipa-acoustic/test_measure_formants.py
       - name: Build production bundle
         run: npm run build
       - name: Check release constraints

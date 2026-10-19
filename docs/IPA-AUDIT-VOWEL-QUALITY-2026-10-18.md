@@ -1,0 +1,52 @@
+# Independent vowel-quality cross-check (2026-10-18)
+
+**Status: partial adjudication; not a complete IPA gold standard.**
+
+## Why this review exists
+
+The converter's broad IPA output cannot be validated by literal comparison with one chart. Authoritative teaching and phonetics sources use different transcription depths and symbol conventions, and some explicitly describe conditioned allophones rather than a one-to-one Pinyin-letter mapping. This note records what the sources do and do not establish.
+
+## Source comparison
+
+| Topic | University of Washington chart | Ohio State University vowel chart (2023; updated 2025) | LibreTexts Mandarin sound-system guide | Audit conclusion |
+|---|---|---|---|---|
+| Zero-initial `wo` / labial `bo, po, mo, fo` | Gives `wo → uɔ` and `bo/po/mo/fo → puɔ/pʰuɔ/muɔ/fuɔ` | Describes `[uɔ]` as a conditioned allophone of /ɤ/ | Says `o` in `bo, po, mo, fo, wo` sounds like `-uo` | The converter's `wo → uɔ` and labial `o → uɔ` are source-aligned. Preserve standalone `o → ɔ` as a declared broad convention, not as a universal analysis of every token written with Pinyin `o`. |
+| Pinyin `e` | `ɤ` | Lists `ɤ` among back close-mid vowels and describes allophones of /ɤ/ | Gives a more detailed `[ɤə]` transcription | Current `e → ɤ` is a broad simplification compatible with the UW convention. It should not be described as a narrow transcription capturing every audible movement. |
+| Pinyin `a` and `ang` | Uses `a` and `aŋ` in its broad chart | Distinguishes allophones `[a, ɑ]` and shows the conditioned environment | Uses pedagogical rather than consistent narrow IPA notation across all examples | Current `a → a`, `ang → ɑŋ` is a deliberate broad-IPA choice that preserves a low-vowel distinction. It is not a literal copy of UW and needs an explicit consistency review across `an/ang/ian/iang/uan/uang`. |
+| Standalone `er` | UW chart gives `ər`; converter uses `əɹ` | Nguyen Dinh Hien (2018) argues for `[ɐɹ]`, treating it as a central vowel plus approximant; other teaching sources use rhotic-vowel or `ər` conventions | `əɹ` is a declared broad convention, not a source-universal exact transcription. Keep `er` separate from onset `r` and word-level erhua; the vowel quality and r-symbol need an explicit convention decision. |
+| `ong` and `iong/yong` | Gives `ong → uŋ` and `iong → yuŋ` in its own broad/glide convention | Its vowel chart documents conditioned rounded back-vowel qualities, but does not alone settle a syllable-by-syllable output for all these finals | Gives a pedagogical description of `ong`, not a single exact narrow-IPA target for every context | The raw source snapshot gives `dong → tuŋ`, `jiong → tɕyuŋ`, and `yong → yuŋ`; current outputs are `tʊŋ`, `tɕjʊŋ`, and `jʊŋ`. Nguyen Dinh Hien (2018) explicitly argues for `ong [uŋ]` and `iong [yŋ]`, a materially different analysis from both the project's `[ʊŋ]/[jʊŋ]` and the UW chart's `yuŋ`. The paper is a useful published competing analysis, but it is not an acoustic gold table for every syllable. Liu (2026, *Glossa*) distinguishes [j], [ɥ], and [w] as glides in consonant–glide onsets, but does not adjudicate `iong`. Therefore `ong/iong/yong` remain unresolved at the phonetic-analysis level; do not reduce the disagreement to glide notation or change code solely to match one chart. See [the targeted adjudication note](./IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md).
+
+A newly reviewed acoustic study of Mandarin /a/-class finals (Liu 2026, *Modern Linguistics*, DOI 10.12677/ml.2026.146578) measured one standard-Mandarin male speaker and groups `ian/üan` as an [ɛ]-type allophone. This partially supports the converter's `ɥɛn` nucleus for `üan`, but the UCL table's `yɑn` remains a competing source analysis and the sample is too small for universal claims. See [the targeted `üan` adjudication note](./IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md). |
+| Diphthongs `ai/ei/ao/ou` | Uses `ai/ei/au/ou` without consistently marking IPA nonsyllabicity | Displays `aɪ, eɪ, ɑʊ, oʊ` as diphthongs | Uses `ai̯, ei̯, au̯, ou̯` | Current `aɪ/eɪ/ɑʊ/oʊ` is a readable ordinary-IPA convention. OSU and Liu (2026) support the back [ɑ]-type nucleus in `ao/iao`; the converter now uses [ɑʊ]/[jɑʊ] to align this class with `ang/iang/uang`. The acoustic study has one speaker, so this is a broad-convention decision with a stated limit, not a universal narrow-IPA claim. |
+
+## Source details
+
+1. University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+   - Broad Pinyin/IPA syllable chart; gives the conditioned `uɔ` pattern for `wo` and labial-initial `o`.
+2. University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
+   - Final-class comparison and broad chart conventions.
+3. Philip Neal Whitman, Ohio State University Intercultural English Language Programs, *IPA Mandarin* vowel chart (2023; updated November 2025): https://ielp.ehe.osu.edu/files/2025/09/IPA_Mandarin.pdf
+   - Distinguishes [a]/[ɑ], gives conditioned allophones of /ɤ/ including [ɤ], [iɛ], [uɔ], and represents the diphthongs with IPA glide notation.
+4. *The Sound System of Mandarin*, Humanities LibreTexts: https://human.libretexts.org/Bookshelves/Languages/Chinese/CHN101_Elementary_Mandarin_I_Textbook/01%3A_Introduction/1.01%3A_The_Sound_System_of_Mandarin
+   - Uses more detailed values such as [ɤə], [iəu̯], [u̯ei̯], and syllabic [ɻ̩]/[ɹ̩] for the special `-i` series.
+5. Hong Kong Polytechnic University, *Simple Finals*: https://www.polyu.edu.hk/bepth/introduction-to-phonetics/simple-finals/
+   - Describes the weak intermediate [u]-like component in `bo/po/mo/fo`.
+6. Wu, Chen-Huei, and Chilin Shih (2009), “Mandarin Vowels Revisited: Evidence from Electromagnetic Articulography,” *Proceedings of the 35th Berkeley Linguistics Society*. https://doi.org/10.3765/bls.v35i1.3622
+   - Acoustic/articulatory study of Mandarin vowel variation. The study elicited syllables from one Taiwan Mandarin speaker and reports substantial context-conditioned variation; it is useful evidence against treating a single chart as a universal narrow-IPA gold standard, not a complete reference table for this converter.
+7. Liu, Y. (2026), “Backness Agreement in Consonant + Glide Onsets: Evidence from Mandarin,” *Glossa: a journal of general linguistics* 11(1). https://doi.org/10.16995/glossa.24850
+   - Treats Mandarin [j], [ɥ], and [w] as distinct glides and discusses the restricted distribution of [ɥ]. The paper concerns consonant–glide onsets, so it is indirect evidence for (not a resolution of) the `iong/yong` final analysis.
+
+## Actions taken / outstanding
+
+- **Taken:** corrected zero-initial `wo` from `wo` to `uɔ`, matching the UW chart and the converter's existing `uo` output.
+- **Taken:** retained the context-conditioned `uɔ` mapping after `b/p/m/f` instead of applying standalone `o → ɔ` indiscriminately.
+- **Outstanding:** review the `a/ɑ` family as a single coherent class, including nasal finals and medial-conditioned variants. Wu & Shih (2009) show that [a] variants across `an`, `aŋ`, `aj`, and `aw` differ acoustically/articulatorily in their single-speaker study; this supports keeping context-conditioned distinctions under review, but the sample is not sufficient to impose one universal symbol mapping.
+- **Outstanding:** decide whether the displayed output should remain broad phonemic/broad-phonetic IPA or become a more detailed narrow transcription. Do not mix conventions selectively without documenting each transformation.
+- **Outstanding:** decide the exact ordinary-IPA notation for standalone `er`, `ong`, `iong/yong`, and the contracted `iu/ui/un` families using source evidence and audio/acoustic references where available. Nguyen Dinh Hien (2018) argues for standalone `er [ɐɹ]`, while UW gives `ər` and the converter currently uses `əɹ`; record this as another convention difference rather than silently treating the forms as identical. Nguyen Dinh Hien (2018) adds a direct competing analysis `[uŋ]` vs `[yŋ]`; the UW chart uses `yuŋ` under its own glide convention. These are not interchangeable strings. For `iong/yong`, adjudicate whether the rounded-front element is a glide [ɥ] or a vowel [y], and whether an additional [u] nucleus is present, before choosing a target. Current `[jʊŋ]` is still provisional and must not be promoted to gold.
+
+A regression test only prevents an accidental change to a chosen output. It does not by itself prove that the output is scientifically correct.
+
+
+## Targeted decision update (2026-10-19)
+
+The `ao/iao` mapping is standardized to `[ɑʊ]/[jɑʊ]` rather than `[aʊ]/[jaʊ]`, and the existing `[ɑŋ]/[jɑŋ]/[wɑŋ]` mappings for `ang/iang/uang` now share the same explicit class-level decision. This follows the Ohio State University chart's `[ɑʊ]` and Liu (2026)'s acoustic grouping of `ao/iao/ang/iang/uang` with a back [ɑ]-type /a/. Liu's study used one male speaker, so this is a documented broad-convention decision with limited acoustic corroboration—not a claim of a universal narrow realization. The 403-key differential and its generator were updated together; the literal-match count remains 165 because the UW chart writes the diphthong as `au/iau`.

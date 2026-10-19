@@ -1,16 +1,16 @@
 const INITIALS = [
   ['zh', 'ʈʂ'], ['ch', 'ʈʂʰ'], ['sh', 'ʂ'], ['b', 'p'], ['p', 'pʰ'], ['m', 'm'], ['f', 'f'],
   ['d', 't'], ['t', 'tʰ'], ['n', 'n'], ['l', 'l'], ['g', 'k'], ['k', 'kʰ'], ['h', 'x'],
-  ['j', 'tɕ'], ['q', 'tɕʰ'], ['x', 'ɕ'], ['r', 'ɻ'], ['z', 'ts'], ['c', 'tsʰ'], ['s', 's'],
+  ['j', 'tɕ'], ['q', 'tɕʰ'], ['x', 'ɕ'], ['r', 'ɹ'], ['z', 'ts'], ['c', 'tsʰ'], ['s', 's'],
 ];
 const FINALS = {
-  a: 'a', o: 'ɔ', e: 'ɤ', ai: 'aɪ', ei: 'eɪ', ao: 'aʊ', ou: 'oʊ',
+  a: 'a', o: 'ɔ', e: 'ɤ', ai: 'aɪ', ei: 'eɪ', ao: 'ɑʊ', ou: 'oʊ',
   an: 'an', en: 'ən', ang: 'ɑŋ', eng: 'əŋ', er: 'əɹ',
-  i: 'i', ia: 'ja', ie: 'jɛ', iao: 'jaʊ', iu: 'joʊ', ian: 'jɛn', in: 'in', iang: 'jɑŋ', ing: 'iŋ', iong: 'jʊŋ',
+  i: 'i', ia: 'ja', ie: 'jɛ', iao: 'jɑʊ', iu: 'joʊ', ian: 'jɛn', in: 'in', iang: 'jɑŋ', ing: 'iŋ', iong: 'jʊŋ',
   u: 'u', ua: 'wa', uo: 'uɔ', uai: 'waɪ', ui: 'weɪ', uan: 'wan', un: 'wən', uang: 'wɑŋ', ong: 'ʊŋ',
-  ü: 'y', üe: 'ɥe', üan: 'ɥɛn', ün: 'yn',
-  ya: 'ja', ye: 'jɛ', yao: 'jaʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
-  wa: 'wa', wo: 'wo', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
+  ü: 'y', üe: 'ɥɛ', üan: 'ɥɛn', ün: 'yn',
+  ya: 'ja', ye: 'jɛ', yao: 'jɑʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
+  wa: 'wa', wo: 'uɔ', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
 const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
 const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };

@@ -14,7 +14,7 @@ test('covers all Mandarin Pinyin onset classes in the broad-IPA converter', () =
     ['ga1', 'ka˥'], ['ka1', 'kʰa˥'], ['ha1', 'xa˥'],
     ['jia1', 'tɕja˥'], ['qia1', 'tɕʰja˥'], ['xia1', 'ɕja˥'],
     ['zha1', 'ʈʂa˥'], ['cha1', 'ʈʂʰa˥'], ['sha1', 'ʂa˥'],
-    ['ra1', 'ɻa˥'], ['za1', 'tsa˥'], ['ca1', 'tsʰa˥'], ['sa1', 'sa˥'],
+    ['ra1', 'ɹa˥'], ['za1', 'tsa˥'], ['ca1', 'tsʰa˥'], ['sa1', 'sa˥'],
     // Pinyin y/w are handled as zero-onset glide spellings in this converter.
     ['ya1', 'ja˥'], ['wa1', 'wa˥'],
   ];

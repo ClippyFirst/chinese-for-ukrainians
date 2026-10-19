@@ -15,16 +15,19 @@ The UW page explicitly describes its transcription as broad. It merges [a] and [
 | Feature | Converter | UW chart | Note |
 |---|---|---|---|
 | ai | aɪ | ai | Offglide marked explicitly |
-| ao | aʊ | au | Offglide marked explicitly |
-| ang | ɑŋ | aŋ | Converter retains a low-vowel distinction |
+| ao | ɑʊ | au | Offglide marked explicitly; [ɑ]-type nucleus aligns with OSU and Liu (2026) evidence |
+| ang | ɑŋ | aŋ | [ɑ]-type nucleus is part of the documented ao/iao/ang/iang/uang class; supported with caveat by Liu (2026) |
 | palatal glide | j | i in glide contexts | Ordinary IPA glide symbol |
 | labial-velar glide | w | u in glide contexts | Ordinary IPA glide symbol |
 | rounded palatal glide | ɥ | y in glide contexts | Ordinary IPA glide symbol |
-| iong | jʊŋ | yuŋ | Different glide notation |
+| iao | jɑʊ | iau | Ordinary-IPA [j] glide plus [ɑʊ] diphthong; Liu (2026) supports the [ɑ]-type nucleus in this final family 
+| iang | jɑŋ | iaŋ | Ordinary-IPA [j] glide plus the shared [ɑ]-type nucleus; Liu (2026) supports this final family with single-speaker evidence |
+| uang | wɑŋ | uaŋ | Ordinary-IPA [w] glide plus the shared [ɑ]-type nucleus; Liu (2026) supports this final family with single-speaker evidence |
+| iong | jʊŋ | yuŋ | Unresolved sequence/vowel analysis; not a simple notation conversion |
 | apical vowel after z/c/s | ɹ̩ | ɿ | UW notes ɿ is a non-IPA sinological symbol |
 | apical vowel after zh/ch/sh/r | ɻ̩ | ʅ for retroflex sibilants | Converter distinguishes articulatory context |
 | o after b/p/m/f | uɔ after these initials; standalone `o` remains an edge case | UW syllable chart gives `bo/po/mo/fo` as `puɔ/pʰuɔ/muɔ/fuɔ`; PolyU also describes a short, weak `u` in these syllables | Earlier `pɔ/pʰɔ/mɔ/fɔ` claim was incorrect; implementation and regression tests now preserve the supported labial-conditioned `uo` realization |
-| standalone wo | wo | UW chart renders `wo` as `uɔ` under its stated convention of using `u` for glides; Open University confirms the Pinyin spelling rule `uo → wo` for zero initial | `wo` is retained as the project's ordinary-IPA glide notation; literal output differs from UW by convention |
+| standalone wo | uɔ | UW chart gives `wo → uɔ`; Open University documents the Pinyin spelling rule `uo → wo`, which explains the spelling but is not itself an IPA target | The converter currently follows the UW segmental target `uɔ` for `wo`. This is a deliberate source-aligned choice; do not describe the output as `wo`.
 | uo after an initial | uɔ | UW chart gives `duo → tuɔ` and related forms with `uɔ` | Supported as a broad chart-aligned representation; this does not certify narrow phonetic realization for every speaker |
 | er | əɹ | əɹ | Same broad output |
 | neutral tone | no fixed contour | no single contour encoded in chart | Context-dependent; avoid inventing a contour |
@@ -68,6 +71,26 @@ Evidence:
 - Fan, Libo (2025), *Perception and production of Chinese vowel finals by Hungarian learners*, University of Szeged, discussion of Pinyin `o` after labials: https://doktori.bibl.u-szeged.hu/12676/1/Final%20Dissertation-Libo.pdf
 - Open University, Pinyin spelling convention `uo → wo`: https://www.open.edu/openlearn/mod/oucontent/view.php?id=106435&section=1.3
 
-The University of Washington's broad chart uses a field-specific notation, explicitly substituting `u` for the glide `w` and `i` for `j` in glide contexts. The project's `wo` output therefore remains `wo` in its declared ordinary-IPA notation even though the chart writes the corresponding syllable as `uɔ`. This is a convention conversion, not an assertion that the two strings are identical.
+The University of Washington's broad chart uses a field-specific notation, explicitly substituting `u` for the glide `w` and `i` for `j` in glide contexts. For zero-initial `wo`, however, the chart explicitly gives `uɔ`, and the implementation now outputs `uɔ`. The Open University spelling rule `uo → wo` explains the Pinyin spelling alternation; it does not override the chart's pronunciation target.
 
 This correction resolves one confirmed implementation/documentation mismatch. It does not complete the exhaustive IPA audit: remaining finals and initial-final combinations still need source-backed expected-output checks, and the standalone `o` edge form needs its own explicit inventory policy.
+
+## Source-backed correction: üe vowel quality (2026-10-18)
+
+The converter originally used `üe → ɥe`. The University of Washington finals chart represents `üe` as `yɛ`, and its syllable chart shows forms including `nüe → nyɛ`, `lüe → lyɛ`, `jue → tɕyɛ`, `que → tɕʰyɛ`, and `yue → yɛ`. In the project's declared notation, the chart's glide symbol `y` is rendered as ordinary IPA `ɥ`; the vowel `ɛ` must be preserved. The mapping is therefore corrected to `üe → ɥɛ`, not `ɥe`.
+
+Evidence:
+- University of Washington, *Mandarin IPA finals*: https://courses.washington.edu/chin342/ipa/finals.html
+- University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+
+Regression coverage now includes `nüe`, `lüe`, `jue`, `que`, `xue`, and `yue`. This resolves the identified vowel-quality mismatch for this final class under the project's current convention. It does not certify all other final classes or settle the broader articulatory analysis of Mandarin rounded palatal glides.
+
+## Source-backed broad choice: onset r (2026-10-18)
+
+The onset mapping for Pinyin `r` was changed from [ɻ] to [ɹ]. The University of Washington syllable chart uses [ɹ] for this onset. Chen, Whalen, and Mok (2024) found bunched tongue shapes for prevocalic Mandarin rhotics in their 18-speaker sample and observed that onset frication can be present or absent. Together, these sources support [ɹ] as the less over-specific default for this broad converter; they do not imply that all speakers have identical realizations.
+
+This choice is deliberately separate from `ri`, whose apical/syllabic segment remains represented as [ɻ̩], and from `er`, retained as [əɹ] under the project's current broad convention. Erhua is not generated by this syllable-level function.
+
+Evidence:
+- University of Washington, *Mandarin Chinese Syllables*: https://courses.washington.edu/chin342/ipa/syllables.html
+- Chen, Shuwen, Douglas H. Whalen, and Peggy Pik Ki Mok (2024), https://pmc.ncbi.nlm.nih.gov/articles/PMC11449382/

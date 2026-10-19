@@ -2,7 +2,7 @@
 
 A lightweight static browser tool for Chinese → Ukrainian transcription.
 
-**Release status: public beta / research preview.** The app is deployed and usable, but the IPA layer and merged source table are still under linguistic source audit. See [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md) before treating results as authoritative.
+**Release status: public beta / research preview.** The literature-based broad-IPA review is closed for publication purposes; this is not a claim of universal narrow-phonetic accuracy. See the [literature-based IPA adjudication closeout](./docs/IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md), and [methodology notes](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md).
 
 ## Що це
 
@@ -76,6 +76,20 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [QA plan](./docs/QA-PLAN.md)
 - [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
 - [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
+- [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
+- [IPA scientific verification closeout (2026-10-19)](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md) — records the completed audit pass and explains why full scientific certification remains blocked by unresolved evidence
+- [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
+- [Targeted `ong` / `iong` / `er` adjudication](./docs/IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md) — includes the 2024 multi-speaker acoustic/articulatory study of syllabic rhotics
+- [Targeted `üan` low-vowel adjudication](./docs/IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md)
+- [Raw UW IPA source comparison](./docs/IPA-UW-RAW-SOURCE-COMPARISON-2026-10-18.md)
+- [403-key machine-generated UW IPA differential](./docs/IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv)
+- [403-key differential methodology and limitations](./docs/IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
+
+Regenerate the differential after changing the IPA converter with `npm run audit:ipa:uw`; `npm test` checks that the committed CSV matches the current converter, all 403 source keys are covered, and the source ledger retains its nine-column schema and key evidence entries.
+- [Contracted finals and vowel-quality audit](./docs/IPA-AUDIT-CONTRACTED-FINALS-2026-10-18.md)
+- [Independent vowel-quality cross-check](./docs/IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md)
+- [Apical segments, rhotics, and tone adjudication](./docs/IPA-ADJUDICATION-APICALS-RHOTICS-TONES-2026-10-18.md)
+- [Independent apical-segment and tone audit](./docs/IPA-AUDIT-APICALS-TONES-SECOND-SOURCE-2026-10-18.md)
 - [Phonetic audit report](./docs/PHONETIC-AUDIT-2026-10-18.md)
 - [Phonetic source ledger](./docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
 - [Reference-inventory exceptions](./docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
