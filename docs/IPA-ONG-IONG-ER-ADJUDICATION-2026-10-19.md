@@ -80,3 +80,18 @@ The targeted search has not yet found a high-quality multi-speaker acoustic stud
 3. The corpus should sample more than one onset class and tone, or explicitly model those factors; a single lexical token cannot support a class-wide rule.
 
 **Implementation decision unchanged:** keep `ong → ʊŋ` and `iong → jʊŋ` as provisional declared outputs, not as fully scientifically verified targets. No mapping change is justified by this search result.
+
+
+## Additional rhotic evidence pass (2026-10-19)
+
+### Standalone `er`: broaden the competing-source set, not the conclusion
+
+The University of Munich phonetics resource represents the rhotic nucleus as [ɚ] and separately illustrates productive rhotacization of existing finals (erhua). This is an independent teaching-source witness for [ɚ] as a legitimate broad representation. It does not decide between the project's [əɹ], Nguyen Dinh Hien's [ɐɹ], [ɚ], and syllabic-rhotic [ɹ̩] analyses.
+
+- University of Munich, *Mandarin*: https://www.phonetik.uni-muenchen.de/studium/skripten/languagedemos/Demos/mandarin.html
+- Chen, Whalen & Mok (2024), *What R Mandarin Chinese /ɹ/s?*, *Phonetica* 81(5), DOI https://doi.org/10.1515/phon-2023-0023. Their ultrasound/acoustic study includes 18 speakers from northern China and examines onset, syllabic, and postvocalic rhotics. It demonstrates articulatory variability and discusses [ɚ] versus [ɹ̩], but does not establish a universal project-specific broad string.
+- Luo (first published online 2025), *The Articulatory and Acoustic Variability in Putonghua Onset /r/*, *Language and Speech* 69(2), DOI https://doi.org/10.1177/00238309251350082. This study concerns onset /r/, not standalone er: it reports tip-up retroflex and tip-down bunched postures, with onset /r/ most often produced without frication and characterized by low F3. It supports treating [ɹ] as a broad convention, but cannot adjudicate the standalone-rhotic nucleus.
+
+**Separation rule:** onset `r-`, apical `-i` after `r/zh/ch/sh/z/c/s`, standalone `er`, and productive erhua are distinct categories. Evidence for one category must not be used as if it directly determined the transcription of another.
+
+**Updated conclusion:** standalone `er → əɹ` remains provisional. The evidence base is now broader, but no single output is elevated to verified until the target variety and broad-transcription convention explicitly choose among the competing representations.
