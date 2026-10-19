@@ -26,10 +26,11 @@ Yang et al. (2025), *An Audio-Ultrasound Synchronized Database of Tongue Movemen
 - Paper: https://pmc.ncbi.nlm.nih.gov/articles/PMC11992241/
 - Data record: https://cstr.cn/31253.11.sciencedb.18722
 - Preprocessing/validation code: https://github.com/huanraozhineng1/AUSpeech_code
-- Reported scope: 43 healthy native Mandarin speakers plus 11 speakers with dysarthria; 22.31 hours of synchronized audio, ultrasound tongue imaging, and text; a curated 405-item monosyllable list; TextGrid and .lab annotations.
+- Reported scope: 43 healthy native Mandarin speakers plus 11 speakers with dysarthria; 22.31 hours of synchronized audio, ultrasound tongue imaging, and text; a curated 405-item monosyllable inventory; TextGrid and .lab annotations.
+- Important sampling limitation: each healthy participant produced only 15 distinct items from the 405-item set, with three repetitions per selected item. The controlled monosyllable task therefore cannot be assumed to provide 20 speakers per disputed syllable. The 375-sentence recordings per participant must also be indexed for target-final coverage, and any sentence tokens must receive manually verified boundaries. If a class fails the preregistered speaker/token threshold, leave it unresolved rather than treating the corpus as sufficient.
 - The full release is reported at approximately 676 GB. Do not download the full release blindly. First inspect the data record and folder manifest, then fetch only the healthy-speaker Audio/ and Text/ files needed for the candidate syllables. Ultrasound is valuable for tongue configuration but does not directly measure lip rounding.
 
-**Gate A — inventory feasibility:** before measuring anything, extract the 405-item list and check whether it actually contains ong, iong, üan, and standalone er, with sufficient onset/tone contexts. The paper's overall dataset description does not prove that every disputed item is in the controlled list. If a class is absent, record it as absent; do not infer coverage from the abstract.
+**Gate A — inventory feasibility:** before measuring anything, extract the 405-item list and check whether it actually contains ong, iong, üan, and standalone er, with sufficient onset/tone contexts. Then index the transcript/TextGrid files for the 375-sentence sets and count usable occurrences by class, speaker, tone, and onset. The paper's overall dataset description does not prove that every disputed item is in the controlled list or that it meets the speaker threshold. If a class is absent or undersampled, record that fact; do not infer coverage from the abstract.
 
 ### Secondary candidate: AISHELL-1 plus aligned recordings
 
