@@ -77,4 +77,8 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   const erEvidence = rows.find((fields) => fields[1] === 'standalone er / syllabic rhotic');
   assert.ok(erEvidence, 'the direct rhotic study should be represented in the ledger');
   assert.match(erEvidence[3], /10\.1515\/phon-2023-0023/u);
+  const munichEvidence = rows.find((fields) => fields[1] === 'standalone er / rhotic nucleus / erhua');
+  assert.ok(munichEvidence, 'the university phonetics resource should be represented in the ledger');
+  assert.ok(munichEvidence[3].includes('phonetik.uni-muenchen.de'));
+  assert.equal(munichEvidence[6], 'corroborative-not-decisive');
 });
