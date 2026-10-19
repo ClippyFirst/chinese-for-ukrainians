@@ -30,6 +30,7 @@ The sources serve different roles and must not be treated as interchangeable:
 - **Liu (2026):** quantitative evidence for context-conditioned Mandarin /a/-class realizations, including a back [ɑ]-type class before -u/-ŋ. Its reported sample is one speaker, so it supports a broad convention decision with a sample caveat rather than universal narrow transcription.
 - **Nguyen Dinh Hien (2018):** a published competing analysis proposing `ong [uŋ]`, `iong [yŋ]`, and `er [ɐɹ]`. This is material disagreement, not grounds to mechanically replace current outputs.
 - **Chen, Whalen & Mok (2024):** acoustic/articulatory evidence on Mandarin rhotics from 18 northern Chinese speakers. It supports treating rhotic realizations as variable and keeping onset `r`, syllabic `ri`, standalone `er`, and erhua separate; it does not establish one universal standalone-`er` transcription.
+- **University of Munich phonetics resource:** independently uses `[ɚ]` for the rhotic nucleus and distinguishes restricted apical syllabic approximants from productive erhua. This confirms that `[ɚ]` is a legitimate competing broad representation; it does not, by itself, prove that the converter's `[əɹ]` is wrong or right.
 
 ## Final status by domain
 
@@ -71,7 +72,7 @@ These are evidence gates, not a request to change expected outputs until tests t
 
 No IPA mappings were changed in this closeout. Preserve the existing provisional outputs until evidence justifies a specific change. In particular, keep `ong → ʊŋ`, `iong/yong → jʊŋ`, `üan/yuan → ɥɛn`, and standalone `er → əɹ` marked **provisional**, not verified.
 
-The branch's most recent code-independent literature update does not itself create a new test run. Re-run required CI on the exact head before merge; do not infer that a documentation-only commit has been validated by an older workflow result.
+The exact branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; this follow-up evidence-ledger/test update must itself pass CI before merge. A green workflow is software validation, not scientific certification.
 
 ## Primary links
 
