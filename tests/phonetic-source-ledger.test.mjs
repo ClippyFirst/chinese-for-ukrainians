@@ -73,7 +73,7 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
   const lines = content.split('\n').filter((line) => line.length > 0);
   const rows = lines.slice(1).map(parseSemicolonCsvLine);
-  assert.equal(rows.length, 81, 'expected 81 evidence rows in the current ledger snapshot');
+  assert.equal(rows.length, 82, 'expected 82 evidence rows in the current ledger snapshot');
   const erEvidence = rows.find((fields) => fields[1] === 'standalone er / syllabic rhotic');
   assert.ok(erEvidence, 'the direct rhotic study should be represented in the ledger');
   assert.match(erEvidence[3], /10\.1515\/phon-2023-0023/u);
