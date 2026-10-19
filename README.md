@@ -2,7 +2,7 @@
 
 A lightweight static browser tool for Chinese → Ukrainian transcription.
 
-**Release status: public beta / research preview.** The app is deployed and usable, but the IPA layer and merged source table are still under linguistic source audit. See [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md) before treating results as authoritative.
+**Release status: public beta / research preview.** The literature-based broad-IPA review is closed for publication purposes; this is not a claim of universal narrow-phonetic accuracy. See the [literature-based IPA adjudication closeout](./docs/IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md), and [methodology notes](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md).
 
 ## Що це
 
