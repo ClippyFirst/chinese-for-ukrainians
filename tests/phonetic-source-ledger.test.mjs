@@ -73,7 +73,7 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   const content = (await fs.readFile(ledgerUrl, 'utf8')).replace(/^\uFEFF/u, '').replace(/\r\n?/gu, '\n');
   const lines = content.split('\n').filter((line) => line.length > 0);
   const rows = lines.slice(1).map(parseSemicolonCsvLine);
-  assert.equal(rows.length, 82, 'expected 82 evidence rows in the current ledger snapshot');
+  assert.equal(rows.length, 83, 'expected 83 evidence rows in the current ledger snapshot');
   const erEvidence = rows.find((fields) => fields[1] === 'standalone er / syllabic rhotic');
   assert.ok(erEvidence, 'the direct rhotic study should be represented in the ledger');
   assert.match(erEvidence[3], /10\.1515\/phon-2023-0023/u);
@@ -81,4 +81,8 @@ test('source ledger records the direct multi-speaker rhotic study and current ev
   assert.ok(munichEvidence, 'the university phonetics resource should be represented in the ledger');
   assert.ok(munichEvidence[3].includes('phonetik.uni-muenchen.de'));
   assert.equal(munichEvidence[6], 'corroborative-not-decisive');
+  const onsetREvidence = rows.find((fields) => fields[1] === 'onset r / prevocalic Mandarin rhotic');
+  assert.ok(onsetREvidence, 'the independent onset-r articulatory study should be represented in the ledger');
+  assert.ok(onsetREvidence[3].includes('10.1177/00238309251350082'));
+  assert.equal(onsetREvidence[6], 'corroborative-with-variation');
 });
