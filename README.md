@@ -84,7 +84,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 - [403-key machine-generated UW IPA differential](./docs/IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv)
 - [403-key differential methodology and limitations](./docs/IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
 
-Regenerate the differential after changing the IPA converter with `npm run audit:ipa:uw`; `npm test` checks that the committed CSV matches the current converter and all 403 source keys are covered.
+Regenerate the differential after changing the IPA converter with `npm run audit:ipa:uw`; `npm test` checks that the committed CSV matches the current converter, all 403 source keys are covered, and the source ledger retains its nine-column schema and key evidence entries.
 - [Contracted finals and vowel-quality audit](./docs/IPA-AUDIT-CONTRACTED-FINALS-2026-10-18.md)
 - [Independent vowel-quality cross-check](./docs/IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md)
 - [Apical segments, rhotics, and tone adjudication](./docs/IPA-ADJUDICATION-APICALS-RHOTICS-TONES-2026-10-18.md)
