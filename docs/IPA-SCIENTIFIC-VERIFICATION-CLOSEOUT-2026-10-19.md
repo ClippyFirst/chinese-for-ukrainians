@@ -16,7 +16,7 @@ This is not a claim that the converter is generally unusable. It is the stricter
 2. **Reproducible differential:** committed a 403-row comparison of raw UW strings with current converter outputs, plus a generator/check command. The recorded snapshot is 403 covered keys, 0 missing outputs, 165 literal string matches, and 238 literal string differences. These are string relations, not accuracy scores.
 3. **Final-class register:** reviewed all 36 canonical final classes and aliases in `IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md`.
 4. **Cross-class regression:** added representative tests for high-risk combinations, including palatalized ü-spellings, nasal classes, contractions, labial `o/uo`, and `ong/iong` distinctions.
-5. **Source ledger:** the ledger test currently asserts 81 evidence rows and a nine-column schema, including a record for the 2024 multi-speaker Mandarin rhotic study.
+5. **Source ledger:** the ledger test asserts 85 evidence rows and a nine-column schema, including the 2024 multi-speaker Mandarin rhotic study, independent rhotic witnesses, an unaudited AUSpeech corpus candidate, and a Taiwanese acoustic dataset explicitly marked comparative-only.
 6. **Targeted dispute review:** documented the evidence conflict for `ong`, `iong`, and standalone `er`, including a follow-up literature screen for acoustic work. The candidate 2025 formant-classification paper does not directly discriminate the disputed analyses, so it was not promoted as affirmative evidence.
 7. **Scope boundaries:** citation-form lexical tones remain separate from tone sandhi, neutral tone is not assigned a universal contour, and lexical tone legality is not checked by the segmental renderer.
 
@@ -73,7 +73,7 @@ These are evidence gates, not a request to change expected outputs until tests t
 
 No IPA mappings were changed in this closeout. Preserve the existing provisional outputs until evidence justifies a specific change. In particular, keep `ong → ʊŋ`, `iong/yong → jʊŋ`, `üan/yuan → ɥɛn`, and standalone `er → əɹ` marked **provisional**, not verified.
 
-The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; subsequent source-ledger/test changes still need a run on the exact current head. A green workflow is software validation, not scientific certification.
+The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a successful GitHub Actions `Quality checks` run (`39209946069`). That result validates that head only; subsequent source-ledger/test changes still need a run on the exact current head. The protocol now documents how to acquire and audit an empirical corpus, including explicit limits for automated alignments and Taiwanese-Mandarin-only acoustic references. No corpus audio has yet been measured in this workflow. A green workflow is software validation, not scientific certification.
 
 ## Primary links
 
@@ -83,3 +83,4 @@ The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a success
 - [Targeted `üan` adjudication](./IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md)
 - [403-key differential methodology](./IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
 - [Phonetic source ledger](./PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
+- [Acoustic validation execution protocol](./IPA-ACOUSTIC-VALIDATION-EXECUTION-PROTOCOL-2026-10-19.md)
