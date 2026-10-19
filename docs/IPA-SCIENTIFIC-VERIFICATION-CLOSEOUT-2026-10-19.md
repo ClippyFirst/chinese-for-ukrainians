@@ -85,3 +85,8 @@ The earlier branch head `6af000f8bd9ceb4d0592ee4866fa4f1b540d18ff` had a success
 - [Phonetic source ledger](./PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
 - [Acoustic validation execution protocol](./IPA-ACOUSTIC-VALIDATION-EXECUTION-PROTOCOL-2026-10-19.md)
 - [Acoustic measurement workspace](../research/ipa-acoustic/README.md)
+
+
+## Superseding release decision — literature-based method (2026-10-19)
+
+The project owner has selected literature-based adjudication as the appropriate completion criterion; original acoustic corpus collection and formant measurement are not required for this practical service. The operational convention decisions and sources are recorded in [IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md](./IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md). Read the earlier sections above as an honest record of the stricter experimental-verification route considered, not as a blocker to the selected literature-based release. The claim remains limited to a documented broad-IPA convention, not universal narrow-phonetic certification.
