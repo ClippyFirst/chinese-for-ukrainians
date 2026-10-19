@@ -58,3 +58,25 @@ Primary source:
 - It supports keeping `er` conceptually separate from onset `r` and from erhua. It also makes **[ɚ]** and **[ɹ̩]** explicit alternatives that should be evaluated against the project's chosen broad-output convention.
 - It does **not** directly adjudicate whether this project's practical broad output should be `əɹ`, `ɚ`, or `ɹ̩`: the study describes a transcription convention and measures rhotic articulation, but does not supply a universal one-string broad-IPA target for all Standard Mandarin speakers. Its participants are northern Chinese speakers, and rhotic realization varies.
 - Therefore the implementation remains unchanged for now. `er → əɹ` is still a provisional project convention, not a verified consensus mapping. A later decision should compare the three options for user interpretability, segmental consistency, and compatibility with the declared broad-IPA layer, and then add tests for `er` separately from onset `r`/`ri` and erhua.
+
+
+## Follow-up literature screen: what current acoustic studies can and cannot decide (2026-10-19)
+
+A targeted search for acoustic/formant work on the exact `ong` and `iong` finals found a recent open-access paper, “Acoustic Inspired Brain-to-Sentence Decoder for Logosyllabic Language” (*Cyborg and Bionic Systems*, 2025; DOI [10.34133/cbsystems.0257](https://doi.org/10.34133/cbsystems.0257); full text: https://pmc.ncbi.nlm.nih.gov/articles/PMC12038182/).
+
+### Relevance assessment
+
+- The paper treats `ong` and `iong` as members of the Mandarin compound-final inventory and extracts F1/F2 features.
+- Its reported simple-final experiment covers six simple finals and shows clustering; when compound finals are added, classification drops to 15.46% and is reported as not significantly above chance (P = 0.14).
+- The reported results do **not** isolate a controlled `ong` comparison of [u] versus [ʊ], nor do they discriminate [yŋ] from [iʊŋ] or [jʊŋ] for `iong`. The paper is therefore not direct adjudicating evidence for the disputed mappings.
+- The paper is retained here as a screened-out candidate, not promoted as a source that supports either transcription. It should not be added as affirmative evidence in the source ledger unless a specific table/experiment directly relevant to these contrasts is identified.
+
+### Updated evidence conclusion
+
+The targeted search has not yet found a high-quality multi-speaker acoustic study that directly distinguishes the project's exact competing hypotheses for both finals. Existing sources provide meaningful competing phonological analyses and teaching conventions, but those are not equivalent to a controlled acoustic adjudication. In particular:
+
+1. `ong`: the [u] vs [ʊ] question requires vowel-quality measurements from the relevant standard-Mandarin population, with the vowel portion separated from effects of the velar nasal coda and tone.
+2. `iong`: the [yŋ] vs [iʊŋ]/[jʊŋ] question requires temporal evidence as well as formants—especially whether there is a stable front-rounded vowel target, a changing vowel trajectory, or a separate palatal glide interval. A single midpoint F1/F2 measurement would not by itself establish the segment sequence.
+3. The corpus should sample more than one onset class and tone, or explicitly model those factors; a single lexical token cannot support a class-wide rule.
+
+**Implementation decision unchanged:** keep `ong → ʊŋ` and `iong → jʊŋ` as provisional declared outputs, not as fully scientifically verified targets. No mapping change is justified by this search result.
