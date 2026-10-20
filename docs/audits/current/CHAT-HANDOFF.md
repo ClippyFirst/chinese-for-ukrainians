@@ -1,14 +1,16 @@
 # Chat handoff — Chinese-to-Ukrainian transcription
-**Updated:** 2026-10-20  
+**Updated:** 2026-10-20 (after current-HEAD CI verification)  
 **Repository:** https://github.com/ClippyFirst/chinese-for-ukrainians  
 **Plan:** [MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 
 ## Snapshot
-- Latest commit observed by GitHub commit search: `069c6e639454b238c9973d8ab152e9b067e6b46f`, dated 2026-10-19. It clarifies the literature-based IPA release criterion.
+- Latest verified `main` commit: `0c173deeace88428fd2919fe47ce8e438adca3b6` (2026-10-20), which links the canonical plan and handoff.
 - Working branch in the remote snapshot: `main`. The branch listing includes a research branch `research/full-ipa-scientific-verification-2026-10-18` and several audit/fix branches; do not assume any are merged without comparing SHAs.
 - Package: `chinese-for-ukrainians@0.1.0`; Node requirement >=22.12.0.
-- No local runtime was used in the audit snapshot. Do not report tests/build/browser/benchmark as passing.
-- Combined status for the observed latest commit returned no status entries, not a green status.
+- GitHub Actions **Quality checks** passed on the exact latest SHA: [run 39482425883](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39482425883). Its `verify` job passed unit/integration tests, acoustic-pipeline input guards, build (including data validation and generation), release checks and browser regression tests.
+- GitHub Pages deployment passed on the exact latest SHA: [run 39482425963](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39482425963).
+- Local `git clone` could not resolve `github.com`; no independent local transcript exists. Optional `npm run benchmark` remains unexecuted and is not a CI step.
+- The combined-status endpoint was empty, but the direct Actions run results above are explicit successful evidence.
 - `CITATION.cff` was not found at root. `LICENSE` exists (MIT; copyright line “The Clippy First”).
 - Expected `docs/audits/current/` paths for earlier plan/readiness/IPA closeout did not exist. Actual relevant documents are in `docs/`. This plan and handoff now provide a canonical continuation point.
 
@@ -34,5 +36,8 @@
 - Never cross-fill blank Ukrainian mapping cells from another system.
 - Do not invent citation authors/ORCIDs, license coverage, release tags, or DOI.
 
-## Exact next step
-Run the commands in the plan from a clean local checkout with Node >=22.12.0, record all exit codes and output, and update task IDs/statuses only when supported by evidence. Then test the actual deployed site and confirm author/citation metadata before drafting `CITATION.cff`.
+## Exact next steps
+1. Complete live Pages smoke test and visual/mobile review (320/360/390/430px); deployment success is not visual QA.
+2. Confirm credited author(s), title, version, repository URL, license scope and ORCID only if supplied/verified before creating `CITATION.cff`.
+3. Complete source/data license provenance and CSV blank-cell/edge-key audits. Preserve the independence of all three Ukrainian systems.
+4. Keep release status at public beta/research preview; no stable-release, universal narrow-IPA, archive or DOI claims without direct evidence.
