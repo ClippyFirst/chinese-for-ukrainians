@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { pinyin } from 'pinyin-pro';
+import { pinyinProEngine } from '../src/app/pinyin-pro-adapter.js';
 import { normalizePinyinSyllable } from '../src/app/pinyin.js';
 
 // Independent lexical reference cases are sourced from Han Dian (zdic.net),
@@ -14,7 +14,7 @@ const rows = (await fs.readFile(fixtureUrl, 'utf8')).trim().split(/\r?\n/u).slic
   });
 
 function actualPinyin(text, traditional) {
-  return pinyin(text, {
+  return pinyinProEngine(text, {
     type: 'all',
     toneType: 'symbol',
     traditional,
@@ -39,7 +39,7 @@ test('independent lexical Pinyin corpus matches the pinned engine on sourced phr
 });
 
 test('unsegmented polyphonic character is treated as a context-sensitive limitation, not a universal gold reading', () => {
-  const readings = pinyin('长', { type: 'all', toneType: 'symbol', segmentit: 2 });
+  const readings = pinyinProEngine('长', { type: 'all', toneType: 'symbol', segmentit: 2 });
   assert.equal(readings.length, 1);
   assert.ok(readings[0].pinyin, 'the engine should expose its selected reading');
   // Han Dian records both zhǎng and cháng; this test deliberately does not assert
