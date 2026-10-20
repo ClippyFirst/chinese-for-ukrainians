@@ -68,6 +68,7 @@ zh-in-ua.csv — джерело українських відповідникі�
 
 ## Робочий план і передача контексту
 
+- [Release-readiness and IPA traceability audit (2026-10-20)](./docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md) — current release gates, PR #5 assessment, conversion-chain provenance, and residual limitations.
 - [Master execution plan and audit register](./docs/audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 - [Chat handoff](./docs/audits/current/CHAT-HANDOFF.md)
 
