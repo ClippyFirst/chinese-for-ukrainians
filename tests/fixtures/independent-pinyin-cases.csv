@@ -3,5 +3,5 @@ zdic-bank-simplified;银行;yin2 hang2;false;https://zdic.net/hans/%E9%93%B6%E8%
 zdic-bank-traditional;銀行;yin2 hang2;true;https://zdic.net/hans/%E9%8A%80%E8%A1%8C;Traditional-script counterpart gives yín háng
 zdic-chongqing;重庆;chong2 qing4;false;https://zdic.net/hans/%E9%87%8D%E6%85%B6;Place name 重庆 gives chóng qìng
 zdic-music;音乐;yin1 yue4;false;https://zdic.net/hans/%E9%9F%B3%E4%B9%90;Lexical entry gives yīn yuè
-zdic-grow-up;长大;zhang3 da4;false;https://zdic.net/hans/%E9%95%BF%E5%A4%A7;Fixture selects the documented grow-up reading; dictionary also records an alternate cháng dà reading
+zdic-grow-up;长大;zhang3 da4;false;https://zdic.net/hans/%E9%95%BF%E5%A4%A7;Fixture selects the documented grow-up reading, while the dictionary also records an alternate cháng dà reading
 zdic-agricultural-bank;中国农业银行;zhong1 guo2 nong2 ye4 yin2 hang2;false;https://zdic.net/hans/%E4%B8%AD%E5%9B%BD%E5%86%9C%E4%B8%9A%E9%93%B6%E8%A1%8C;Long institutional name tests phrase segmentation and context-sensitive 银行 reading
