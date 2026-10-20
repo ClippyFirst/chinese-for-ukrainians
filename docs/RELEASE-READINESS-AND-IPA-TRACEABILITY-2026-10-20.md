@@ -106,3 +106,13 @@ The generated artifact was regenerated from the canonical CSV in commit [`5c6d91
 
 **Verification status:** this regeneration was checked against the current CSV and generator logic, but a successful full GitHub Actions run for commit `5c6d913` has not been confirmed in the available run/status results. Do not mark the CI gate green until the workflow run for this commit completes successfully.
 
+## 8. Follow-up — CI confirmation after generated-map repair (2026-10-20)
+
+The previous section's verification caveat is now superseded by completed GitHub Actions runs:
+
+- Quality checks passed on the exact map-fix commit [`5c6d913`](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39488751239). The workflow reports success for dependency installation, unit/integration tests, acoustic-pipeline guards, production build, generated-map determinism, benchmark, release constraints, browser installation, and browser regression tests.
+- The audit-documentation commit [`2320c10`](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39488978171) also passed Quality checks.
+- GitHub Pages deployment succeeded for the current main commit [`2320c10`](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39488978183).
+
+This resolves the generated-map CI failure: the generator output is now committed and the dedicated drift gate passes on the repaired code commit. It does **not** resolve the separate lockfile blocker: `package-lock.json` still needs to be regenerated with npm in a network-enabled environment and verified with `npm ci`. Source-data rights review and manual production QA also remain open.
+
