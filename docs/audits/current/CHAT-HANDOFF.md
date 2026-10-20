@@ -4,7 +4,7 @@
 **Plan:** [MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 
 ## Snapshot
-- Latest verified `main` commit: `0c173deeace88428fd2919fe47ce8e438adca3b6` (2026-10-20), which links the canonical plan and handoff.
+- Latest application/code SHA with verified quality CI: `0c173deeace88428fd2919fe47ce8e438adca3b6` (2026-10-20). Later commits in this audit update documentation only; their new CI runs were triggered and should be checked before the next handoff.
 - Working branch in the remote snapshot: `main`. The branch listing includes a research branch `research/full-ipa-scientific-verification-2026-10-18` and several audit/fix branches; do not assume any are merged without comparing SHAs.
 - Package: `chinese-for-ukrainians@0.1.0`; Node requirement >=22.12.0.
 - GitHub Actions **Quality checks** passed on the exact latest SHA: [run 39482425883](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39482425883). Its `verify` job passed unit/integration tests, acoustic-pipeline input guards, build (including data validation and generation), release checks and browser regression tests.
