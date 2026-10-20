@@ -34,6 +34,10 @@ jobs:
         run: python research/ipa-acoustic/test_measure_formants.py
       - name: Build production bundle
         run: npm run build
+      - name: Verify generated mappings are committed and deterministic
+        run: git diff --exit-code -- src/generated/transcription-map.js
+      - name: Run conversion benchmark
+        run: npm run benchmark
       - name: Check release constraints
         run: npm run check:release
       - name: Install browsers
