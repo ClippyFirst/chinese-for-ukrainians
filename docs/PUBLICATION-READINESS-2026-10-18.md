@@ -6,6 +6,10 @@
 
 The app is already deployed as a static GitHub Pages site. This assessment distinguishes operational publication readiness from completion of the underlying phonetic research.
 
+## Current audit follow-up (2026-10-20)
+
+See the [release-readiness and IPA traceability audit](./RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md) for the current main/PR #5 comparison, output-by-output data-flow trace, independent Pinyin corpus, CI evidence, and residual blockers. In particular, the package lockfile is incomplete at the audited baseline, source-data rights are not fully cleared, and author metadata for `CITATION.cff` remains unconfirmed. The public beta / research-preview decision remains unchanged.
+
 ## What is ready for public use
 
 - Static client-side workflow; no user account or backend is required for conversion.
