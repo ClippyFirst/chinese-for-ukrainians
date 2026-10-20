@@ -8,7 +8,7 @@
 
 - The repository root contains an MIT `LICENSE` with the notice `Copyright (c) 2026 The Clippy First`.
 - The application is a static browser tool. Its canonical Ukrainian transcription inventory is `zh-in-ua.csv`; the repository documents scholarly and institutional sources in `docs/PHONETIC-REPRODUCIBILITY.md`, `docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md`, and `docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv`.
-- `package.json` pins `pinyin-pro@3.29.4` and `@pinyin-pro/data@1.3.1`. Their license and notices belong to the upstream packages and must be retained/handled according to their own terms.
+- `package.json` pins `pinyin-pro@3.29.4` and `@pinyin-pro/data@1.3.1`. Public package metadata identifies `pinyin-pro` as MIT-licensed and `@pinyin-pro/data@1.3.1` as ISC-licensed ([npm package metadata](https://www.npmjs.com/package/pinyin-pro?activeTab=dependencies), [jsDelivr version metadata](https://www.jsdelivr.com/package/npm/%40pinyin-pro/data?tab=files)). Preserve and comply with each package's own notice/terms; do not apply the repository's root MIT notice to the ISC package or assume its included dictionary data has no separate provenance questions.
 - The repository also cites scholarly publications, institutional tables, and external reference charts. A citation or URL establishes provenance, not permission to reproduce or relicense the source.
 
 ## Safe interpretation
@@ -19,7 +19,7 @@ Do not describe the CSV as a universally cleared, public-domain, or wholly MIT-l
 
 ## Required release hygiene
 
-1. Preserve the root MIT notice and upstream dependency license/notice files when distributing builds, as required by their respective terms.
+1. Preserve the root MIT notice and the upstream dependency license/notice files when distributing builds. The core `pinyin-pro@3.29.4` is published as MIT; `@pinyin-pro/data@1.3.1` is published as ISC. Verify the exact installed package archives and their included notices before a stable release.
 2. Maintain source URLs, bibliographic references, and source-specific evidence in the existing provenance ledger. Keep reproduced source content limited to what has been reviewed for the intended use.
 3. Before a stable release or dataset redistribution, review applicable terms for each upstream package, source table, and substantial reproduced material; record attribution or redistribution conditions and unresolved questions.
 4. Keep the three Ukrainian transcription columns independent. Provenance uncertainty is not permission to fill blanks or normalize disagreements between systems.
