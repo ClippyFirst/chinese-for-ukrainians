@@ -1436,7 +1436,7 @@ export const transcriptionMap = {
       "sourceKey": "nuan"
     },
     "nüe": {
-      "value": "нюe",
+      "value": "нюе",
       "missing": false,
       "sourceRow": 240,
       "sourceKey": "nüe"
@@ -1993,532 +1993,538 @@ export const transcriptionMap = {
       "sourceRow": 332,
       "sourceKey": "tei"
     },
+    "ten": {
+      "value": "",
+      "missing": true,
+      "sourceRow": 333,
+      "sourceKey": "ten"
+    },
     "teng": {
       "value": "тен",
       "missing": false,
-      "sourceRow": 333,
+      "sourceRow": 334,
       "sourceKey": "teng"
     },
     "ti": {
       "value": "ті",
       "missing": false,
-      "sourceRow": 334,
+      "sourceRow": 335,
       "sourceKey": "ti"
     },
     "tian": {
       "value": "тянь",
       "missing": false,
-      "sourceRow": 335,
+      "sourceRow": 336,
       "sourceKey": "tian"
     },
     "tiao": {
       "value": "тяо",
       "missing": false,
-      "sourceRow": 336,
+      "sourceRow": 337,
       "sourceKey": "tiao"
     },
     "tie": {
       "value": "тє",
       "missing": false,
-      "sourceRow": 337,
+      "sourceRow": 338,
       "sourceKey": "tie"
     },
     "ting": {
       "value": "тін",
       "missing": false,
-      "sourceRow": 338,
+      "sourceRow": 339,
       "sourceKey": "ting"
     },
     "tong": {
       "value": "тун",
       "missing": false,
-      "sourceRow": 339,
+      "sourceRow": 340,
       "sourceKey": "tong"
     },
     "tou": {
       "value": "тоу",
       "missing": false,
-      "sourceRow": 340,
+      "sourceRow": 341,
       "sourceKey": "tou"
     },
     "tu": {
       "value": "ту",
       "missing": false,
-      "sourceRow": 341,
+      "sourceRow": 342,
       "sourceKey": "tu"
     },
     "tuan": {
       "value": "туань",
       "missing": false,
-      "sourceRow": 342,
+      "sourceRow": 343,
       "sourceKey": "tuan"
     },
     "tui": {
       "value": "туй",
       "missing": false,
-      "sourceRow": 343,
+      "sourceRow": 344,
       "sourceKey": "tui"
     },
     "tun": {
       "value": "тунь",
       "missing": false,
-      "sourceRow": 344,
+      "sourceRow": 345,
       "sourceKey": "tun"
     },
     "tuo": {
       "value": "туо",
       "missing": false,
-      "sourceRow": 345,
+      "sourceRow": 346,
       "sourceKey": "tuo"
     },
     "wa": {
       "value": "ва",
       "missing": false,
-      "sourceRow": 346,
+      "sourceRow": 347,
       "sourceKey": "wa"
     },
     "wai": {
       "value": "вай",
       "missing": false,
-      "sourceRow": 347,
+      "sourceRow": 348,
       "sourceKey": "wai"
     },
     "wan": {
       "value": "вань",
       "missing": false,
-      "sourceRow": 348,
+      "sourceRow": 349,
       "sourceKey": "wan"
     },
     "wang": {
       "value": "ван",
       "missing": false,
-      "sourceRow": 349,
+      "sourceRow": 350,
       "sourceKey": "wang"
     },
     "wei": {
       "value": "вей",
       "missing": false,
-      "sourceRow": 350,
+      "sourceRow": 351,
       "sourceKey": "wei"
     },
     "wen": {
       "value": "вень",
       "missing": false,
-      "sourceRow": 351,
+      "sourceRow": 352,
       "sourceKey": "wen"
     },
     "weng": {
       "value": "вен",
       "missing": false,
-      "sourceRow": 352,
+      "sourceRow": 353,
       "sourceKey": "weng"
     },
     "wo": {
       "value": "во",
       "missing": false,
-      "sourceRow": 353,
+      "sourceRow": 354,
       "sourceKey": "wo"
     },
     "wu": {
       "value": "у",
       "missing": false,
-      "sourceRow": 354,
+      "sourceRow": 355,
       "sourceKey": "wu"
     },
     "xi": {
       "value": "сі",
       "missing": false,
-      "sourceRow": 355,
+      "sourceRow": 356,
       "sourceKey": "xi"
     },
     "xia": {
       "value": "ся",
       "missing": false,
-      "sourceRow": 356,
+      "sourceRow": 357,
       "sourceKey": "xia"
     },
     "xian": {
       "value": "сянь",
       "missing": false,
-      "sourceRow": 357,
+      "sourceRow": 358,
       "sourceKey": "xian"
     },
     "xiang": {
       "value": "сян",
       "missing": false,
-      "sourceRow": 358,
+      "sourceRow": 359,
       "sourceKey": "xiang"
     },
     "xiao": {
       "value": "сяо",
       "missing": false,
-      "sourceRow": 359,
+      "sourceRow": 360,
       "sourceKey": "xiao"
     },
     "xie": {
       "value": "сє",
       "missing": false,
-      "sourceRow": 360,
+      "sourceRow": 361,
       "sourceKey": "xie"
     },
     "xin": {
       "value": "сінь",
       "missing": false,
-      "sourceRow": 361,
+      "sourceRow": 362,
       "sourceKey": "xin"
     },
     "xing": {
       "value": "сін",
       "missing": false,
-      "sourceRow": 362,
+      "sourceRow": 363,
       "sourceKey": "xing"
     },
     "xiong": {
       "value": "сюн",
       "missing": false,
-      "sourceRow": 363,
+      "sourceRow": 364,
       "sourceKey": "xiong"
     },
     "xiu": {
       "value": "сю",
       "missing": false,
-      "sourceRow": 364,
+      "sourceRow": 365,
       "sourceKey": "xiu"
     },
     "xu": {
       "value": "сюй",
       "missing": false,
-      "sourceRow": 365,
+      "sourceRow": 366,
       "sourceKey": "xu"
     },
     "xuan": {
       "value": "сюань",
       "missing": false,
-      "sourceRow": 366,
+      "sourceRow": 367,
       "sourceKey": "xuan"
     },
     "xue": {
       "value": "сюе",
       "missing": false,
-      "sourceRow": 367,
+      "sourceRow": 368,
       "sourceKey": "xue"
     },
     "xun": {
       "value": "сюнь",
       "missing": false,
-      "sourceRow": 368,
+      "sourceRow": 369,
       "sourceKey": "xun"
     },
     "ya": {
       "value": "я",
       "missing": false,
-      "sourceRow": 369,
+      "sourceRow": 370,
       "sourceKey": "ya"
     },
     "yan": {
       "value": "янь",
       "missing": false,
-      "sourceRow": 370,
+      "sourceRow": 371,
       "sourceKey": "yan"
     },
     "yang": {
       "value": "ян",
       "missing": false,
-      "sourceRow": 371,
+      "sourceRow": 372,
       "sourceKey": "yang"
     },
     "yao": {
       "value": "яо",
       "missing": false,
-      "sourceRow": 372,
+      "sourceRow": 373,
       "sourceKey": "yao"
     },
     "ye": {
       "value": "є",
       "missing": false,
-      "sourceRow": 373,
+      "sourceRow": 374,
       "sourceKey": "ye"
     },
     "yi": {
       "value": "ї",
       "missing": false,
-      "sourceRow": 374,
+      "sourceRow": 375,
       "sourceKey": "yi"
     },
     "yin": {
       "value": "їнь",
       "missing": false,
-      "sourceRow": 375,
+      "sourceRow": 376,
       "sourceKey": "yin"
     },
     "ying": {
       "value": "їн",
       "missing": false,
-      "sourceRow": 376,
+      "sourceRow": 377,
       "sourceKey": "ying"
     },
     "yo": {
       "value": "йо",
       "missing": false,
-      "sourceRow": 377,
+      "sourceRow": 378,
       "sourceKey": "yo"
     },
     "yong": {
       "value": "юн",
       "missing": false,
-      "sourceRow": 378,
+      "sourceRow": 379,
       "sourceKey": "yong"
     },
     "you": {
       "value": "ю",
       "missing": false,
-      "sourceRow": 379,
+      "sourceRow": 380,
       "sourceKey": "you"
     },
     "yu": {
       "value": "юй",
       "missing": false,
-      "sourceRow": 380,
+      "sourceRow": 381,
       "sourceKey": "yu"
     },
     "yuan": {
       "value": "юань",
       "missing": false,
-      "sourceRow": 381,
+      "sourceRow": 382,
       "sourceKey": "yuan"
     },
     "yue": {
       "value": "юе",
       "missing": false,
-      "sourceRow": 382,
+      "sourceRow": 383,
       "sourceKey": "yue"
     },
     "yun": {
       "value": "юнь",
       "missing": false,
-      "sourceRow": 383,
+      "sourceRow": 384,
       "sourceKey": "yun"
     },
     "za": {
       "value": "цза",
       "missing": false,
-      "sourceRow": 384,
+      "sourceRow": 385,
       "sourceKey": "za"
     },
     "zai": {
       "value": "цзай",
       "missing": false,
-      "sourceRow": 385,
+      "sourceRow": 386,
       "sourceKey": "zai"
     },
     "zan": {
       "value": "цзань",
       "missing": false,
-      "sourceRow": 386,
+      "sourceRow": 387,
       "sourceKey": "zan"
     },
     "zang": {
       "value": "цзан",
       "missing": false,
-      "sourceRow": 387,
+      "sourceRow": 388,
       "sourceKey": "zang"
     },
     "zao": {
       "value": "цзао",
       "missing": false,
-      "sourceRow": 388,
+      "sourceRow": 389,
       "sourceKey": "zao"
     },
     "ze": {
       "value": "цзе",
       "missing": false,
-      "sourceRow": 389,
+      "sourceRow": 390,
       "sourceKey": "ze"
     },
     "zei": {
       "value": "цзей",
       "missing": false,
-      "sourceRow": 390,
+      "sourceRow": 391,
       "sourceKey": "zei"
     },
     "zen": {
       "value": "цзень",
       "missing": false,
-      "sourceRow": 391,
+      "sourceRow": 392,
       "sourceKey": "zen"
     },
     "zeng": {
       "value": "цзен",
       "missing": false,
-      "sourceRow": 392,
+      "sourceRow": 393,
       "sourceKey": "zeng"
     },
     "zha": {
       "value": "чжа",
       "missing": false,
-      "sourceRow": 393,
+      "sourceRow": 394,
       "sourceKey": "zha"
     },
     "zhai": {
       "value": "чжай",
       "missing": false,
-      "sourceRow": 394,
+      "sourceRow": 395,
       "sourceKey": "zhai"
     },
     "zhan": {
       "value": "чжань",
       "missing": false,
-      "sourceRow": 395,
+      "sourceRow": 396,
       "sourceKey": "zhan"
     },
     "zhang": {
       "value": "чжан",
       "missing": false,
-      "sourceRow": 396,
+      "sourceRow": 397,
       "sourceKey": "zhang"
     },
     "zhao": {
       "value": "чжао",
       "missing": false,
-      "sourceRow": 397,
+      "sourceRow": 398,
       "sourceKey": "zhao"
     },
     "zhe": {
       "value": "чже",
       "missing": false,
-      "sourceRow": 398,
+      "sourceRow": 399,
       "sourceKey": "zhe"
     },
     "zhei": {
       "value": "чжей",
       "missing": false,
-      "sourceRow": 399,
+      "sourceRow": 400,
       "sourceKey": "zhei"
     },
     "zhen": {
       "value": "чжень",
       "missing": false,
-      "sourceRow": 400,
+      "sourceRow": 401,
       "sourceKey": "zhen"
     },
     "zheng": {
       "value": "чжен",
       "missing": false,
-      "sourceRow": 401,
+      "sourceRow": 402,
       "sourceKey": "zheng"
     },
     "zhi": {
       "value": "чжи",
       "missing": false,
-      "sourceRow": 402,
+      "sourceRow": 403,
       "sourceKey": "zhi"
     },
     "zhong": {
       "value": "чжун",
       "missing": false,
-      "sourceRow": 403,
+      "sourceRow": 404,
       "sourceKey": "zhong"
     },
     "zhou": {
       "value": "чжоу",
       "missing": false,
-      "sourceRow": 404,
+      "sourceRow": 405,
       "sourceKey": "zhou"
     },
     "zhu": {
       "value": "чжу",
       "missing": false,
-      "sourceRow": 405,
+      "sourceRow": 406,
       "sourceKey": "zhu"
     },
     "zhua": {
       "value": "чжуа",
       "missing": false,
-      "sourceRow": 406,
+      "sourceRow": 407,
       "sourceKey": "zhua"
     },
     "zhuai": {
       "value": "чжуай",
       "missing": false,
-      "sourceRow": 407,
+      "sourceRow": 408,
       "sourceKey": "zhuai"
     },
     "zhuan": {
       "value": "чжуань",
       "missing": false,
-      "sourceRow": 408,
+      "sourceRow": 409,
       "sourceKey": "zhuan"
     },
     "zhuang": {
       "value": "чжуан",
       "missing": false,
-      "sourceRow": 409,
+      "sourceRow": 410,
       "sourceKey": "zhuang"
     },
     "zhui": {
       "value": "чжуй",
       "missing": false,
-      "sourceRow": 410,
+      "sourceRow": 411,
       "sourceKey": "zhui"
     },
     "zhun": {
       "value": "чжунь",
       "missing": false,
-      "sourceRow": 411,
+      "sourceRow": 412,
       "sourceKey": "zhun"
     },
     "zhuo": {
       "value": "чжо",
       "missing": false,
-      "sourceRow": 412,
+      "sourceRow": 413,
       "sourceKey": "zhuo"
     },
     "zi": {
       "value": "цзи",
       "missing": false,
-      "sourceRow": 413,
+      "sourceRow": 414,
       "sourceKey": "zi"
     },
     "zong": {
       "value": "цзун",
       "missing": false,
-      "sourceRow": 414,
+      "sourceRow": 415,
       "sourceKey": "zong"
     },
     "zou": {
       "value": "цзоу",
       "missing": false,
-      "sourceRow": 415,
+      "sourceRow": 416,
       "sourceKey": "zou"
     },
     "zu": {
       "value": "цзу",
       "missing": false,
-      "sourceRow": 416,
+      "sourceRow": 417,
       "sourceKey": "zu"
     },
     "zuan": {
       "value": "цзуань",
       "missing": false,
-      "sourceRow": 417,
+      "sourceRow": 418,
       "sourceKey": "zuan"
     },
     "zui": {
       "value": "цзуй",
       "missing": false,
-      "sourceRow": 418,
+      "sourceRow": 419,
       "sourceKey": "zui"
     },
     "zun": {
       "value": "цзунь",
       "missing": false,
-      "sourceRow": 419,
+      "sourceRow": 420,
       "sourceKey": "zun"
     },
     "zuo": {
       "value": "цзо",
       "missing": false,
-      "sourceRow": 420,
+      "sourceRow": 421,
       "sourceKey": "zuo"
     }
   },
@@ -4515,532 +4521,538 @@ export const transcriptionMap = {
       "sourceRow": 332,
       "sourceKey": "tei"
     },
+    "ten": {
+      "value": "",
+      "missing": true,
+      "sourceRow": 333,
+      "sourceKey": "ten"
+    },
     "teng": {
       "value": "тен",
       "missing": false,
-      "sourceRow": 333,
+      "sourceRow": 334,
       "sourceKey": "teng"
     },
     "ti": {
       "value": "ті",
       "missing": false,
-      "sourceRow": 334,
+      "sourceRow": 335,
       "sourceKey": "ti"
     },
     "tian": {
       "value": "тянь",
       "missing": false,
-      "sourceRow": 335,
+      "sourceRow": 336,
       "sourceKey": "tian"
     },
     "tiao": {
       "value": "тяо",
       "missing": false,
-      "sourceRow": 336,
+      "sourceRow": 337,
       "sourceKey": "tiao"
     },
     "tie": {
       "value": "тє",
       "missing": false,
-      "sourceRow": 337,
+      "sourceRow": 338,
       "sourceKey": "tie"
     },
     "ting": {
       "value": "тін",
       "missing": false,
-      "sourceRow": 338,
+      "sourceRow": 339,
       "sourceKey": "ting"
     },
     "tong": {
       "value": "тон",
       "missing": false,
-      "sourceRow": 339,
+      "sourceRow": 340,
       "sourceKey": "tong"
     },
     "tou": {
       "value": "тов",
       "missing": false,
-      "sourceRow": 340,
+      "sourceRow": 341,
       "sourceKey": "tou"
     },
     "tu": {
       "value": "ту",
       "missing": false,
-      "sourceRow": 341,
+      "sourceRow": 342,
       "sourceKey": "tu"
     },
     "tuan": {
       "value": "твань",
       "missing": false,
-      "sourceRow": 342,
+      "sourceRow": 343,
       "sourceKey": "tuan"
     },
     "tui": {
       "value": "твей",
       "missing": false,
-      "sourceRow": 343,
+      "sourceRow": 344,
       "sourceKey": "tui"
     },
     "tun": {
       "value": "твень",
       "missing": false,
-      "sourceRow": 344,
+      "sourceRow": 345,
       "sourceKey": "tun"
     },
     "tuo": {
       "value": "тво",
       "missing": false,
-      "sourceRow": 345,
+      "sourceRow": 346,
       "sourceKey": "tuo"
     },
     "wa": {
       "value": "ва",
       "missing": false,
-      "sourceRow": 346,
+      "sourceRow": 347,
       "sourceKey": "wa"
     },
     "wai": {
       "value": "вай",
       "missing": false,
-      "sourceRow": 347,
+      "sourceRow": 348,
       "sourceKey": "wai"
     },
     "wan": {
       "value": "вань",
       "missing": false,
-      "sourceRow": 348,
+      "sourceRow": 349,
       "sourceKey": "wan"
     },
     "wang": {
       "value": "ван",
       "missing": false,
-      "sourceRow": 349,
+      "sourceRow": 350,
       "sourceKey": "wang"
     },
     "wei": {
       "value": "вей",
       "missing": false,
-      "sourceRow": 350,
+      "sourceRow": 351,
       "sourceKey": "wei"
     },
     "wen": {
       "value": "вень",
       "missing": false,
-      "sourceRow": 351,
+      "sourceRow": 352,
       "sourceKey": "wen"
     },
     "weng": {
       "value": "вен",
       "missing": false,
-      "sourceRow": 352,
+      "sourceRow": 353,
       "sourceKey": "weng"
     },
     "wo": {
       "value": "во",
       "missing": false,
-      "sourceRow": 353,
+      "sourceRow": 354,
       "sourceKey": "wo"
     },
     "wu": {
       "value": "ву",
       "missing": false,
-      "sourceRow": 354,
+      "sourceRow": 355,
       "sourceKey": "wu"
     },
     "xi": {
       "value": "сі",
       "missing": false,
-      "sourceRow": 355,
+      "sourceRow": 356,
       "sourceKey": "xi"
     },
     "xia": {
       "value": "ся",
       "missing": false,
-      "sourceRow": 356,
+      "sourceRow": 357,
       "sourceKey": "xia"
     },
     "xian": {
       "value": "сянь",
       "missing": false,
-      "sourceRow": 357,
+      "sourceRow": 358,
       "sourceKey": "xian"
     },
     "xiang": {
       "value": "сян",
       "missing": false,
-      "sourceRow": 358,
+      "sourceRow": 359,
       "sourceKey": "xiang"
     },
     "xiao": {
       "value": "сяо",
       "missing": false,
-      "sourceRow": 359,
+      "sourceRow": 360,
       "sourceKey": "xiao"
     },
     "xie": {
       "value": "сє",
       "missing": false,
-      "sourceRow": 360,
+      "sourceRow": 361,
       "sourceKey": "xie"
     },
     "xin": {
       "value": "сінь",
       "missing": false,
-      "sourceRow": 361,
+      "sourceRow": 362,
       "sourceKey": "xin"
     },
     "xing": {
       "value": "сін",
       "missing": false,
-      "sourceRow": 362,
+      "sourceRow": 363,
       "sourceKey": "xing"
     },
     "xiong": {
       "value": "сьон",
       "missing": false,
-      "sourceRow": 363,
+      "sourceRow": 364,
       "sourceKey": "xiong"
     },
     "xiu": {
       "value": "сьов",
       "missing": false,
-      "sourceRow": 364,
+      "sourceRow": 365,
       "sourceKey": "xiu"
     },
     "xu": {
       "value": "сю",
       "missing": false,
-      "sourceRow": 365,
+      "sourceRow": 366,
       "sourceKey": "xu"
     },
     "xuan": {
       "value": "сюань",
       "missing": false,
-      "sourceRow": 366,
+      "sourceRow": 367,
       "sourceKey": "xuan"
     },
     "xue": {
       "value": "сюе",
       "missing": false,
-      "sourceRow": 367,
+      "sourceRow": 368,
       "sourceKey": "xue"
     },
     "xun": {
       "value": "сюнь",
       "missing": false,
-      "sourceRow": 368,
+      "sourceRow": 369,
       "sourceKey": "xun"
     },
     "ya": {
       "value": "я",
       "missing": false,
-      "sourceRow": 369,
+      "sourceRow": 370,
       "sourceKey": "ya"
     },
     "yan": {
       "value": "янь",
       "missing": false,
-      "sourceRow": 370,
+      "sourceRow": 371,
       "sourceKey": "yan"
     },
     "yang": {
       "value": "ян",
       "missing": false,
-      "sourceRow": 371,
+      "sourceRow": 372,
       "sourceKey": "yang"
     },
     "yao": {
       "value": "яо",
       "missing": false,
-      "sourceRow": 372,
+      "sourceRow": 373,
       "sourceKey": "yao"
     },
     "ye": {
       "value": "є",
       "missing": false,
-      "sourceRow": 373,
+      "sourceRow": 374,
       "sourceKey": "ye"
     },
     "yi": {
       "value": "ї",
       "missing": false,
-      "sourceRow": 374,
+      "sourceRow": 375,
       "sourceKey": "yi"
     },
     "yin": {
       "value": "їнь",
       "missing": false,
-      "sourceRow": 375,
+      "sourceRow": 376,
       "sourceKey": "yin"
     },
     "ying": {
       "value": "їн",
       "missing": false,
-      "sourceRow": 376,
+      "sourceRow": 377,
       "sourceKey": "ying"
     },
     "yo": {
       "value": "йо",
       "missing": false,
-      "sourceRow": 377,
+      "sourceRow": 378,
       "sourceKey": "yo"
     },
     "yong": {
       "value": "йон",
       "missing": false,
-      "sourceRow": 378,
+      "sourceRow": 379,
       "sourceKey": "yong"
     },
     "you": {
       "value": "йов",
       "missing": false,
-      "sourceRow": 379,
+      "sourceRow": 380,
       "sourceKey": "you"
     },
     "yu": {
       "value": "ю",
       "missing": false,
-      "sourceRow": 380,
+      "sourceRow": 381,
       "sourceKey": "yu"
     },
     "yuan": {
       "value": "юань",
       "missing": false,
-      "sourceRow": 381,
+      "sourceRow": 382,
       "sourceKey": "yuan"
     },
     "yue": {
       "value": "юе",
       "missing": false,
-      "sourceRow": 382,
+      "sourceRow": 383,
       "sourceKey": "yue"
     },
     "yun": {
       "value": "юнь",
       "missing": false,
-      "sourceRow": 383,
+      "sourceRow": 384,
       "sourceKey": "yun"
     },
     "za": {
       "value": "дза",
       "missing": false,
-      "sourceRow": 384,
+      "sourceRow": 385,
       "sourceKey": "za"
     },
     "zai": {
       "value": "дзай",
       "missing": false,
-      "sourceRow": 385,
+      "sourceRow": 386,
       "sourceKey": "zai"
     },
     "zan": {
       "value": "дзань",
       "missing": false,
-      "sourceRow": 386,
+      "sourceRow": 387,
       "sourceKey": "zan"
     },
     "zang": {
       "value": "дзан",
       "missing": false,
-      "sourceRow": 387,
+      "sourceRow": 388,
       "sourceKey": "zang"
     },
     "zao": {
       "value": "дзао",
       "missing": false,
-      "sourceRow": 388,
+      "sourceRow": 389,
       "sourceKey": "zao"
     },
     "ze": {
       "value": "дзе",
       "missing": false,
-      "sourceRow": 389,
+      "sourceRow": 390,
       "sourceKey": "ze"
     },
     "zei": {
       "value": "дзей",
       "missing": false,
-      "sourceRow": 390,
+      "sourceRow": 391,
       "sourceKey": "zei"
     },
     "zen": {
       "value": "дзень",
       "missing": false,
-      "sourceRow": 391,
+      "sourceRow": 392,
       "sourceKey": "zen"
     },
     "zeng": {
       "value": "дзен",
       "missing": false,
-      "sourceRow": 392,
+      "sourceRow": 393,
       "sourceKey": "zeng"
     },
     "zha": {
       "value": "джа",
       "missing": false,
-      "sourceRow": 393,
+      "sourceRow": 394,
       "sourceKey": "zha"
     },
     "zhai": {
       "value": "джай",
       "missing": false,
-      "sourceRow": 394,
+      "sourceRow": 395,
       "sourceKey": "zhai"
     },
     "zhan": {
       "value": "джань",
       "missing": false,
-      "sourceRow": 395,
+      "sourceRow": 396,
       "sourceKey": "zhan"
     },
     "zhang": {
       "value": "джан",
       "missing": false,
-      "sourceRow": 396,
+      "sourceRow": 397,
       "sourceKey": "zhang"
     },
     "zhao": {
       "value": "джао",
       "missing": false,
-      "sourceRow": 397,
+      "sourceRow": 398,
       "sourceKey": "zhao"
     },
     "zhe": {
       "value": "дже",
       "missing": false,
-      "sourceRow": 398,
+      "sourceRow": 399,
       "sourceKey": "zhe"
     },
     "zhei": {
       "value": "джей",
       "missing": false,
-      "sourceRow": 399,
+      "sourceRow": 400,
       "sourceKey": "zhei"
     },
     "zhen": {
       "value": "джень",
       "missing": false,
-      "sourceRow": 400,
+      "sourceRow": 401,
       "sourceKey": "zhen"
     },
     "zheng": {
       "value": "джен",
       "missing": false,
-      "sourceRow": 401,
+      "sourceRow": 402,
       "sourceKey": "zheng"
     },
     "zhi": {
       "value": "джи",
       "missing": false,
-      "sourceRow": 402,
+      "sourceRow": 403,
       "sourceKey": "zhi"
     },
     "zhong": {
       "value": "джон",
       "missing": false,
-      "sourceRow": 403,
+      "sourceRow": 404,
       "sourceKey": "zhong"
     },
     "zhou": {
       "value": "джов",
       "missing": false,
-      "sourceRow": 404,
+      "sourceRow": 405,
       "sourceKey": "zhou"
     },
     "zhu": {
       "value": "джу",
       "missing": false,
-      "sourceRow": 405,
+      "sourceRow": 406,
       "sourceKey": "zhu"
     },
     "zhua": {
       "value": "джва",
       "missing": false,
-      "sourceRow": 406,
+      "sourceRow": 407,
       "sourceKey": "zhua"
     },
     "zhuai": {
       "value": "джвай",
       "missing": false,
-      "sourceRow": 407,
+      "sourceRow": 408,
       "sourceKey": "zhuai"
     },
     "zhuan": {
       "value": "джвань",
       "missing": false,
-      "sourceRow": 408,
+      "sourceRow": 409,
       "sourceKey": "zhuan"
     },
     "zhuang": {
       "value": "джван",
       "missing": false,
-      "sourceRow": 409,
+      "sourceRow": 410,
       "sourceKey": "zhuang"
     },
     "zhui": {
       "value": "джвей",
       "missing": false,
-      "sourceRow": 410,
+      "sourceRow": 411,
       "sourceKey": "zhui"
     },
     "zhun": {
       "value": "джвень",
       "missing": false,
-      "sourceRow": 411,
+      "sourceRow": 412,
       "sourceKey": "zhun"
     },
     "zhuo": {
       "value": "джво",
       "missing": false,
-      "sourceRow": 412,
+      "sourceRow": 413,
       "sourceKey": "zhuo"
     },
     "zi": {
       "value": "дзи",
       "missing": false,
-      "sourceRow": 413,
+      "sourceRow": 414,
       "sourceKey": "zi"
     },
     "zong": {
       "value": "дзон",
       "missing": false,
-      "sourceRow": 414,
+      "sourceRow": 415,
       "sourceKey": "zong"
     },
     "zou": {
       "value": "дзов",
       "missing": false,
-      "sourceRow": 415,
+      "sourceRow": 416,
       "sourceKey": "zou"
     },
     "zu": {
       "value": "дзу",
       "missing": false,
-      "sourceRow": 416,
+      "sourceRow": 417,
       "sourceKey": "zu"
     },
     "zuan": {
       "value": "дзвань",
       "missing": false,
-      "sourceRow": 417,
+      "sourceRow": 418,
       "sourceKey": "zuan"
     },
     "zui": {
       "value": "дзвей",
       "missing": false,
-      "sourceRow": 418,
+      "sourceRow": 419,
       "sourceKey": "zui"
     },
     "zun": {
       "value": "дзвень",
       "missing": false,
-      "sourceRow": 419,
+      "sourceRow": 420,
       "sourceKey": "zun"
     },
     "zuo": {
       "value": "дзво",
       "missing": false,
-      "sourceRow": 420,
+      "sourceRow": 421,
       "sourceKey": "zuo"
     }
   },
@@ -5442,7 +5454,7 @@ export const transcriptionMap = {
       "sourceKey": "deng"
     },
     "di": {
-      "value": "ди",
+      "value": "ді",
       "missing": false,
       "sourceRow": 67,
       "sourceKey": "di"
@@ -6600,14 +6612,14 @@ export const transcriptionMap = {
       "sourceKey": "po"
     },
     "pou": {
-      "value": "",
-      "missing": true,
+      "value": "поу",
+      "missing": false,
       "sourceRow": 260,
       "sourceKey": "pou"
     },
     "pu": {
-      "value": "",
-      "missing": true,
+      "value": "пу",
+      "missing": false,
       "sourceRow": 261,
       "sourceKey": "pu"
     },
@@ -6744,7 +6756,7 @@ export const transcriptionMap = {
       "sourceKey": "rong"
     },
     "rou": {
-      "value": "роу",
+      "value": "жоу",
       "missing": false,
       "sourceRow": 284,
       "sourceKey": "rou"
@@ -7037,532 +7049,538 @@ export const transcriptionMap = {
       "sourceRow": 332,
       "sourceKey": "tei"
     },
+    "ten": {
+      "value": "тень",
+      "missing": false,
+      "sourceRow": 333,
+      "sourceKey": "ten"
+    },
     "teng": {
       "value": "тен",
       "missing": false,
-      "sourceRow": 333,
+      "sourceRow": 334,
       "sourceKey": "teng"
     },
     "ti": {
       "value": "ті",
       "missing": false,
-      "sourceRow": 334,
+      "sourceRow": 335,
       "sourceKey": "ti"
     },
     "tian": {
       "value": "тянь",
       "missing": false,
-      "sourceRow": 335,
+      "sourceRow": 336,
       "sourceKey": "tian"
     },
     "tiao": {
       "value": "тяо",
       "missing": false,
-      "sourceRow": 336,
+      "sourceRow": 337,
       "sourceKey": "tiao"
     },
     "tie": {
       "value": "тє",
       "missing": false,
-      "sourceRow": 337,
+      "sourceRow": 338,
       "sourceKey": "tie"
     },
     "ting": {
       "value": "тін",
       "missing": false,
-      "sourceRow": 338,
+      "sourceRow": 339,
       "sourceKey": "ting"
     },
     "tong": {
       "value": "тун",
       "missing": false,
-      "sourceRow": 339,
+      "sourceRow": 340,
       "sourceKey": "tong"
     },
     "tou": {
       "value": "тоу",
       "missing": false,
-      "sourceRow": 340,
+      "sourceRow": 341,
       "sourceKey": "tou"
     },
     "tu": {
       "value": "ту",
       "missing": false,
-      "sourceRow": 341,
+      "sourceRow": 342,
       "sourceKey": "tu"
     },
     "tuan": {
       "value": "туань",
       "missing": false,
-      "sourceRow": 342,
+      "sourceRow": 343,
       "sourceKey": "tuan"
     },
     "tui": {
       "value": "туй",
       "missing": false,
-      "sourceRow": 343,
+      "sourceRow": 344,
       "sourceKey": "tui"
     },
     "tun": {
       "value": "тунь",
       "missing": false,
-      "sourceRow": 344,
+      "sourceRow": 345,
       "sourceKey": "tun"
     },
     "tuo": {
       "value": "то",
       "missing": false,
-      "sourceRow": 345,
+      "sourceRow": 346,
       "sourceKey": "tuo"
     },
     "wa": {
       "value": "ва",
       "missing": false,
-      "sourceRow": 346,
+      "sourceRow": 347,
       "sourceKey": "wa"
     },
     "wai": {
       "value": "вай",
       "missing": false,
-      "sourceRow": 347,
+      "sourceRow": 348,
       "sourceKey": "wai"
     },
     "wan": {
       "value": "вань",
       "missing": false,
-      "sourceRow": 348,
+      "sourceRow": 349,
       "sourceKey": "wan"
     },
     "wang": {
       "value": "ван",
       "missing": false,
-      "sourceRow": 349,
+      "sourceRow": 350,
       "sourceKey": "wang"
     },
     "wei": {
       "value": "вей",
       "missing": false,
-      "sourceRow": 350,
+      "sourceRow": 351,
       "sourceKey": "wei"
     },
     "wen": {
       "value": "вень",
       "missing": false,
-      "sourceRow": 351,
+      "sourceRow": 352,
       "sourceKey": "wen"
     },
     "weng": {
       "value": "вен",
       "missing": false,
-      "sourceRow": 352,
+      "sourceRow": 353,
       "sourceKey": "weng"
     },
     "wo": {
       "value": "во",
       "missing": false,
-      "sourceRow": 353,
+      "sourceRow": 354,
       "sourceKey": "wo"
     },
     "wu": {
       "value": "у",
       "missing": false,
-      "sourceRow": 354,
+      "sourceRow": 355,
       "sourceKey": "wu"
     },
     "xi": {
       "value": "сі",
       "missing": false,
-      "sourceRow": 355,
+      "sourceRow": 356,
       "sourceKey": "xi"
     },
     "xia": {
       "value": "ся",
       "missing": false,
-      "sourceRow": 356,
+      "sourceRow": 357,
       "sourceKey": "xia"
     },
     "xian": {
       "value": "сянь",
       "missing": false,
-      "sourceRow": 357,
+      "sourceRow": 358,
       "sourceKey": "xian"
     },
     "xiang": {
       "value": "сян",
       "missing": false,
-      "sourceRow": 358,
+      "sourceRow": 359,
       "sourceKey": "xiang"
     },
     "xiao": {
       "value": "сяо",
       "missing": false,
-      "sourceRow": 359,
+      "sourceRow": 360,
       "sourceKey": "xiao"
     },
     "xie": {
       "value": "сє",
       "missing": false,
-      "sourceRow": 360,
+      "sourceRow": 361,
       "sourceKey": "xie"
     },
     "xin": {
       "value": "сінь",
       "missing": false,
-      "sourceRow": 361,
+      "sourceRow": 362,
       "sourceKey": "xin"
     },
     "xing": {
       "value": "сін",
       "missing": false,
-      "sourceRow": 362,
+      "sourceRow": 363,
       "sourceKey": "xing"
     },
     "xiong": {
       "value": "сюн",
       "missing": false,
-      "sourceRow": 363,
+      "sourceRow": 364,
       "sourceKey": "xiong"
     },
     "xiu": {
       "value": "сю",
       "missing": false,
-      "sourceRow": 364,
+      "sourceRow": 365,
       "sourceKey": "xiu"
     },
     "xu": {
       "value": "сюй",
       "missing": false,
-      "sourceRow": 365,
+      "sourceRow": 366,
       "sourceKey": "xu"
     },
     "xuan": {
       "value": "сюань",
       "missing": false,
-      "sourceRow": 366,
+      "sourceRow": 367,
       "sourceKey": "xuan"
     },
     "xue": {
       "value": "сюе",
       "missing": false,
-      "sourceRow": 367,
+      "sourceRow": 368,
       "sourceKey": "xue"
     },
     "xun": {
       "value": "сюнь",
       "missing": false,
-      "sourceRow": 368,
+      "sourceRow": 369,
       "sourceKey": "xun"
     },
     "ya": {
       "value": "я",
       "missing": false,
-      "sourceRow": 369,
+      "sourceRow": 370,
       "sourceKey": "ya"
     },
     "yan": {
       "value": "янь",
       "missing": false,
-      "sourceRow": 370,
+      "sourceRow": 371,
       "sourceKey": "yan"
     },
     "yang": {
       "value": "ян",
       "missing": false,
-      "sourceRow": 371,
+      "sourceRow": 372,
       "sourceKey": "yang"
     },
     "yao": {
       "value": "яо",
       "missing": false,
-      "sourceRow": 372,
+      "sourceRow": 373,
       "sourceKey": "yao"
     },
     "ye": {
       "value": "є",
       "missing": false,
-      "sourceRow": 373,
+      "sourceRow": 374,
       "sourceKey": "ye"
     },
     "yi": {
       "value": "ї",
       "missing": false,
-      "sourceRow": 374,
+      "sourceRow": 375,
       "sourceKey": "yi"
     },
     "yin": {
       "value": "їнь",
       "missing": false,
-      "sourceRow": 375,
+      "sourceRow": 376,
       "sourceKey": "yin"
     },
     "ying": {
       "value": "їн",
       "missing": false,
-      "sourceRow": 376,
+      "sourceRow": 377,
       "sourceKey": "ying"
     },
     "yo": {
       "value": "",
       "missing": true,
-      "sourceRow": 377,
+      "sourceRow": 378,
       "sourceKey": "yo"
     },
     "yong": {
       "value": "юн",
       "missing": false,
-      "sourceRow": 378,
+      "sourceRow": 379,
       "sourceKey": "yong"
     },
     "you": {
       "value": "ю",
       "missing": false,
-      "sourceRow": 379,
+      "sourceRow": 380,
       "sourceKey": "you"
     },
     "yu": {
       "value": "юй",
       "missing": false,
-      "sourceRow": 380,
+      "sourceRow": 381,
       "sourceKey": "yu"
     },
     "yuan": {
       "value": "юань",
       "missing": false,
-      "sourceRow": 381,
+      "sourceRow": 382,
       "sourceKey": "yuan"
     },
     "yue": {
       "value": "юе",
       "missing": false,
-      "sourceRow": 382,
+      "sourceRow": 383,
       "sourceKey": "yue"
     },
     "yun": {
       "value": "юнь",
       "missing": false,
-      "sourceRow": 383,
+      "sourceRow": 384,
       "sourceKey": "yun"
     },
     "za": {
       "value": "цза",
       "missing": false,
-      "sourceRow": 384,
+      "sourceRow": 385,
       "sourceKey": "za"
     },
     "zai": {
       "value": "цзай",
       "missing": false,
-      "sourceRow": 385,
+      "sourceRow": 386,
       "sourceKey": "zai"
     },
     "zan": {
       "value": "цзань",
       "missing": false,
-      "sourceRow": 386,
+      "sourceRow": 387,
       "sourceKey": "zan"
     },
     "zang": {
       "value": "цзан",
       "missing": false,
-      "sourceRow": 387,
+      "sourceRow": 388,
       "sourceKey": "zang"
     },
     "zao": {
       "value": "цзао",
       "missing": false,
-      "sourceRow": 388,
+      "sourceRow": 389,
       "sourceKey": "zao"
     },
     "ze": {
       "value": "цзе",
       "missing": false,
-      "sourceRow": 389,
+      "sourceRow": 390,
       "sourceKey": "ze"
     },
     "zei": {
       "value": "цзей",
       "missing": false,
-      "sourceRow": 390,
+      "sourceRow": 391,
       "sourceKey": "zei"
     },
     "zen": {
       "value": "цзень",
       "missing": false,
-      "sourceRow": 391,
+      "sourceRow": 392,
       "sourceKey": "zen"
     },
     "zeng": {
       "value": "цзен",
       "missing": false,
-      "sourceRow": 392,
+      "sourceRow": 393,
       "sourceKey": "zeng"
     },
     "zha": {
       "value": "чжа",
       "missing": false,
-      "sourceRow": 393,
+      "sourceRow": 394,
       "sourceKey": "zha"
     },
     "zhai": {
       "value": "чжай",
       "missing": false,
-      "sourceRow": 394,
+      "sourceRow": 395,
       "sourceKey": "zhai"
     },
     "zhan": {
       "value": "чжань",
       "missing": false,
-      "sourceRow": 395,
+      "sourceRow": 396,
       "sourceKey": "zhan"
     },
     "zhang": {
       "value": "чжан",
       "missing": false,
-      "sourceRow": 396,
+      "sourceRow": 397,
       "sourceKey": "zhang"
     },
     "zhao": {
       "value": "чжао",
       "missing": false,
-      "sourceRow": 397,
+      "sourceRow": 398,
       "sourceKey": "zhao"
     },
     "zhe": {
       "value": "чже",
       "missing": false,
-      "sourceRow": 398,
+      "sourceRow": 399,
       "sourceKey": "zhe"
     },
     "zhei": {
       "value": "чжей",
       "missing": false,
-      "sourceRow": 399,
+      "sourceRow": 400,
       "sourceKey": "zhei"
     },
     "zhen": {
       "value": "чжень",
       "missing": false,
-      "sourceRow": 400,
+      "sourceRow": 401,
       "sourceKey": "zhen"
     },
     "zheng": {
       "value": "чжен",
       "missing": false,
-      "sourceRow": 401,
+      "sourceRow": 402,
       "sourceKey": "zheng"
     },
     "zhi": {
       "value": "чжи",
       "missing": false,
-      "sourceRow": 402,
+      "sourceRow": 403,
       "sourceKey": "zhi"
     },
     "zhong": {
       "value": "чжун",
       "missing": false,
-      "sourceRow": 403,
+      "sourceRow": 404,
       "sourceKey": "zhong"
     },
     "zhou": {
       "value": "чжоу",
       "missing": false,
-      "sourceRow": 404,
+      "sourceRow": 405,
       "sourceKey": "zhou"
     },
     "zhu": {
       "value": "чжу",
       "missing": false,
-      "sourceRow": 405,
+      "sourceRow": 406,
       "sourceKey": "zhu"
     },
     "zhua": {
       "value": "чжуа",
       "missing": false,
-      "sourceRow": 406,
+      "sourceRow": 407,
       "sourceKey": "zhua"
     },
     "zhuai": {
       "value": "чжуай",
       "missing": false,
-      "sourceRow": 407,
+      "sourceRow": 408,
       "sourceKey": "zhuai"
     },
     "zhuan": {
       "value": "чжуань",
       "missing": false,
-      "sourceRow": 408,
+      "sourceRow": 409,
       "sourceKey": "zhuan"
     },
     "zhuang": {
       "value": "чжуан",
       "missing": false,
-      "sourceRow": 409,
+      "sourceRow": 410,
       "sourceKey": "zhuang"
     },
     "zhui": {
       "value": "чжуй",
       "missing": false,
-      "sourceRow": 410,
+      "sourceRow": 411,
       "sourceKey": "zhui"
     },
     "zhun": {
       "value": "чжунь",
       "missing": false,
-      "sourceRow": 411,
+      "sourceRow": 412,
       "sourceKey": "zhun"
     },
     "zhuo": {
       "value": "чжо",
       "missing": false,
-      "sourceRow": 412,
+      "sourceRow": 413,
       "sourceKey": "zhuo"
     },
     "zi": {
       "value": "цзи",
       "missing": false,
-      "sourceRow": 413,
+      "sourceRow": 414,
       "sourceKey": "zi"
     },
     "zong": {
       "value": "цзун",
       "missing": false,
-      "sourceRow": 414,
+      "sourceRow": 415,
       "sourceKey": "zong"
     },
     "zou": {
       "value": "цзоу",
       "missing": false,
-      "sourceRow": 415,
+      "sourceRow": 416,
       "sourceKey": "zou"
     },
     "zu": {
       "value": "цзу",
       "missing": false,
-      "sourceRow": 416,
+      "sourceRow": 417,
       "sourceKey": "zu"
     },
     "zuan": {
       "value": "цзуань",
       "missing": false,
-      "sourceRow": 417,
+      "sourceRow": 418,
       "sourceKey": "zuan"
     },
     "zui": {
       "value": "цзуй",
       "missing": false,
-      "sourceRow": 418,
+      "sourceRow": 419,
       "sourceKey": "zui"
     },
     "zun": {
       "value": "цзунь",
       "missing": false,
-      "sourceRow": 419,
+      "sourceRow": 420,
       "sourceKey": "zun"
     },
     "zuo": {
       "value": "цзо",
       "missing": false,
-      "sourceRow": 420,
+      "sourceRow": 421,
       "sourceKey": "zuo"
     }
   }
