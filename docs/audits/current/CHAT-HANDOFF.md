@@ -51,5 +51,5 @@
 - PR #5 remains open and dirty/conflicting; do not merge it without reconciliation. Its markup omits the current `#result-ipa` element while main UI code expects it.
 - Ukrainian outputs derive directly from three separate Pinyin-keyed CSV columns, not from IPA.
 - `package-lock.json` was observed to contain an empty `packages` object. Repair lockfile in an npm-enabled environment before adopting `npm ci`.
-- Rights clearance for third-party data and citation author metadata remain open. No GitHub Release or DOI is authorized.
+- Dependency metadata checked: `pinyin-pro@3.29.4` is published as MIT, while `@pinyin-pro/data@1.3.1` is published as ISC; included dictionary data/source rights still need review. Rights clearance for third-party data and citation author metadata remain open. No GitHub Release or DOI is authorized.
 - Newly added files: `tests/fixtures/independent-pinyin-cases.csv`, `tests/independent-pinyin-corpus.test.mjs`, and `docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md`.
