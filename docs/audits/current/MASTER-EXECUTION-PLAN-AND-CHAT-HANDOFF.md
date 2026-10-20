@@ -1,8 +1,8 @@
 # Master execution plan — Chinese-to-Ukrainian transcription
-**Audit snapshot:** 2026-10-20  
+**Audit snapshot:** 2026-10-20 (updated after CI verification)  
 **Repository:** https://github.com/ClippyFirst/chinese-for-ukrainians  
 **Reference branch:** `main`  
-**Latest commit observed through commit search:** `069c6e639454b238c9973d8ab152e9b067e6b46f` (2026-10-19; “docs: clarify final literature-based IPA release criterion”)  
+**Application/code SHA with verified quality CI:** `0c173deeace88428fd2919fe47ce8e438adca3b6` (2026-10-20). Later commits in this audit are documentation-only; their own CI runs are checked separately.  
 **Purpose:** auditable continuation plan. Statuses reflect evidence observed during this pass, not assumptions.
 
 ## Status vocabulary
