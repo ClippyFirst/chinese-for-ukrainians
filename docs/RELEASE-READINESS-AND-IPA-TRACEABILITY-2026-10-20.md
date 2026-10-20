@@ -97,3 +97,12 @@ Sources: [银行](https://zdic.net/hans/%E9%93%B6%E8%A1%8C), [銀行](https://zd
 - CI proves the tested implementation is consistent with fixtures and build constraints, not that every linguistic output is correct.
 
 **Release decision:** public beta / research preview remains appropriate. No GitHub Release, DOI, “fully validated”, “official converter”, or universal phonetic accuracy claim is justified by the current evidence.
+
+## 7. Follow-up — generated mapping drift (2026-10-20)
+
+After the initial audit, the new CI gate `git diff --exit-code -- src/generated/transcription-map.js` failed because the committed generated artifact did not match `zh-in-ua.csv`. The diff showed the missing `ten` key and a Latin `e` in the generated `nüe` value where the source CSV contains Cyrillic `е`.
+
+The generated artifact was regenerated from the canonical CSV in commit [`5c6d913`](https://github.com/ClippyFirst/chinese-for-ukrainians/commit/5c6d9135c553eda793b77778f19ff2f3ceb93c02). The regenerated map now contains 421 keys in each of the three independent systems; `ten` remains explicitly missing for the two source columns that are blank. No Ukrainian values were inferred or borrowed between systems.
+
+**Verification status:** this regeneration was checked against the current CSV and generator logic, but a successful full GitHub Actions run for commit `5c6d913` has not been confirmed in the available run/status results. Do not mark the CI gate green until the workflow run for this commit completes successfully.
+
