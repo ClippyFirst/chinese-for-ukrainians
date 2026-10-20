@@ -1,5 +1,5 @@
 # Chat handoff — Chinese-to-Ukrainian transcription
-**Updated:** 2026-10-20 (after current-HEAD CI verification)  
+**Updated:** 2026-10-20 (release-readiness and IPA traceability audit)  
 **Repository:** https://github.com/ClippyFirst/chinese-for-ukrainians  
 **Plan:** [MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 
@@ -42,3 +42,14 @@
 3. Confirm credited author(s), title, version, repository URL, license scope and ORCID only if supplied/verified before creating `CITATION.cff`.
 4. Complete source/data license provenance and CSV blank-cell/edge-key audits. Preserve the independence of all three Ukrainian systems.
 5. Keep release status at public beta/research preview; no stable-release, universal narrow-IPA, archive or DOI claims without direct evidence.
+
+
+## Release-readiness follow-up (2026-10-20)
+
+- Read [release-readiness and IPA traceability audit](../../RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md) first.
+- Baseline main SHA was `69cb29ffcdf53fc67f3d08609613b08d92d3e6a4`; its Quality run [39484629325](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629325) and Pages deploy [39484629491](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629491) passed. New independent Pinyin tests and CI steps were added after that SHA; check latest main workflow runs before claiming they pass.
+- PR #5 remains open and dirty/conflicting; do not merge it without reconciliation. Its markup omits the current `#result-ipa` element while main UI code expects it.
+- Ukrainian outputs derive directly from three separate Pinyin-keyed CSV columns, not from IPA.
+- `package-lock.json` was observed to contain an empty `packages` object. Repair lockfile in an npm-enabled environment before adopting `npm ci`.
+- Rights clearance for third-party data and citation author metadata remain open. No GitHub Release or DOI is authorized.
+- Newly added files: `tests/fixtures/independent-pinyin-cases.csv`, `tests/independent-pinyin-corpus.test.mjs`, and `docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md`.
