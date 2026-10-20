@@ -73,7 +73,7 @@ Sources: [银行](https://zdic.net/hans/%E9%93%B6%E8%A1%8C), [銀行](https://zd
 ## 5. License and attribution
 
 - Root `LICENSE` declares MIT with copyright notice `Copyright (c) 2026 The Clippy First`. This does not establish that every CSV value, source table, article excerpt, or linked resource can be redistributed under MIT.
-- `package.json` pins `pinyin-pro@3.29.4` and `@pinyin-pro/data@1.3.1`. Keep their upstream notices and verify each package's published license metadata and distribution obligations before bundling a stable release.
+- `package.json` pins `pinyin-pro@3.29.4` (published as MIT) and `@pinyin-pro/data@1.3.1` (published as ISC). Keep the distinct upstream notices and review the included Traditional dictionary data's provenance/redistribution terms before a stable release. See [pinyin-pro package metadata](https://www.npmjs.com/package/pinyin-pro?activeTab=dependencies) and [@pinyin-pro/data version metadata](https://www.jsdelivr.com/package/npm/%40pinyin-pro/data?tab=files).
 - The citation ledger is provenance evidence, not a rights grant. The existing `docs/LICENSE-AND-DATA-PROVENANCE.md` correctly treats rights clearance as incomplete.
 - No `CITATION.cff` was found at the repository root. Do not invent author names or ORCID identifiers. The package is marked `private: true` in `package.json`; this is npm package-publication metadata, not GitHub repository privacy, and should be revisited only if npm publishing is intended.
 
