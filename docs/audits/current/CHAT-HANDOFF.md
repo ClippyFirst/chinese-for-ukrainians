@@ -53,3 +53,22 @@
 - `package-lock.json` was observed to contain an empty `packages` object. Repair lockfile in an npm-enabled environment before adopting `npm ci`.
 - Dependency metadata checked: `pinyin-pro@3.29.4` is published as MIT, while `@pinyin-pro/data@1.3.1` is published as ISC; included dictionary data/source rights still need review. Rights clearance for third-party data and citation author metadata remain open. No GitHub Release or DOI is authorized.
 - Newly added files: `tests/fixtures/independent-pinyin-cases.csv`, `tests/independent-pinyin-corpus.test.mjs`, and `docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md`.
+
+
+## Execution update — 2026-10-21
+
+- Reconciled the prior handoff with the current observed main head: `da995aa58936f5f9f72796fa32a0feaeb38b3847`.
+- Exact-head Quality checks [39495006696](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006696) passed all workflow steps, including unit/integration tests, acoustic input guards, build/data generation, generated-map drift, benchmark, release checks, browser installation and browser tests.
+- Attempted local clone; blocked before checkout by DNS/network error `Could not resolve host: github.com`. Therefore no local `npm ci`, test, build, or browser commands are claimed from this session.
+- Lockfile remains empty/incomplete (`packages: {}`). This is the highest-priority reproducibility blocker; repair only with npm/registry access and validate from a clean checkout. Do not use `npm ci` before the lock graph is real.
+- PR #5 remains open/unmerged. Do not merge blindly; current main's IPA output element `#result-ipa` is required. Any selective reuse requires a rebase/port plus complete browser regression tests.
+- Source/data rights remain not cleared by the root MIT license. Existing provenance note correctly scopes the uncertainty; file-level terms and data redistribution permissions need evidence.
+- No `CITATION.cff` added because authorship/version metadata must be confirmed, not invented.
+- Live deployed visual QA at 320/360/390/430px remains unverified. CI deployment/browser checks do not establish that a real deployed page and methodology page were visually inspected.
+- Preserve public beta/research preview. No release/tag/DOI or narrow-phonetic certification claims.
+
+## Next actions, in order
+1. In an npm-enabled environment with registry/network access, regenerate `package-lock.json`, run `npm ci`, then run `npm run validate:data`, `npm test`, `npm run build`, generated-file drift check, `npm run benchmark`, `npm run check:release`, and `npm run test:browser`; record exact output and commit SHA.
+2. Run production smoke/visual checks on homepage and methodology page at 320/360/390/430px; test keyboard/focus and core actions.
+3. Continue source-by-source rights review and obtain verified authorship/title/version metadata before adding citation metadata.
+4. Preserve independent Ukrainian columns and blank cells unless source-specific evidence authorizes a correction.
