@@ -2,7 +2,8 @@
 
 Before publishing a build:
 
-1. `npm run validate:data` passes against the current `zh-in-ua.csv`.
+1. `npm ci` succeeds from a clean checkout using the committed lockfile.
+2. `npm run validate:data` passes against the current `zh-in-ua.csv`.
 2. `npm run build` regenerates mappings from the CSV; `git diff --exit-code -- src/generated/transcription-map.js` confirms generated output is committed and reproducible.
 3. `npm test` passes.
 4. `npm run build` produces `dist/` without a backend.
@@ -16,4 +17,4 @@ The current GitHub Actions workflow runs the unit/integration suite, acoustic-pi
 
 The release check intentionally treats `fetch`, XHR, WebSocket, `sendBeacon`, `innerHTML`, `eval`, and `new Function` as forbidden in application source. This is a narrow defense-in-depth rule for the static MVP, not a claim that these APIs are universally unsafe.
 
-**Reproducibility caveat:** do not switch the workflow to `npm ci` until `package-lock.json` contains a complete lock graph. At the audit baseline it had an empty `packages` object despite runtime dependencies in `package.json`; repair and verify the lockfile before treating clean-install reproducibility as closed.
+**Reproducibility gate:** the lockfile now contains the dependency graph resolved by the pinned Node/npm CI environment. Both Quality checks and Pages use `npm ci`; treat this gate as closed only after the repair PR's exact final head passes the full Quality workflow and the resulting main commit is successfully deployed.
