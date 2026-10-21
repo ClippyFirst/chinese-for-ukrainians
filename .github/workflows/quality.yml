@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify:
@@ -24,6 +24,19 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm install
+      # TEMPORARY: commit only the npm-resolved lockfile from this dedicated repair PR.
+      - name: Commit resolved lockfile for repair
+        if: github.event_name == 'pull_request' && github.head_ref == 'fix/reproducible-npm-lockfile-2026-10-21'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- package-lock.json; then
+            git add package-lock.json
+            git commit -m "fix: commit npm-resolved dependency lockfile"
+            git push origin "HEAD:refs/heads/${GITHUB_HEAD_REF}"
+          fi
       - name: Run unit and integration tests
         run: npm test
       - name: Set up Python for acoustic-pipeline validation tests
