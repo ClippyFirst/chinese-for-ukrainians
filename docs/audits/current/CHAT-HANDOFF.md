@@ -5,15 +5,14 @@
 
 ## Current snapshot (verified 2026-10-21)
 
-- Current default branch `main` is `da995aa58936f5f9f72796fa32a0feaeb38b3847` (`docs: confirm CI after generated map repair`).
-- Exact-head Quality checks [39495006696](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006696) passed the CI unit/integration suite, acoustic input guards, data validation/generation, generated mapping drift, production build, conversion benchmark, release constraints and Playwright browser regression tests.
-- Exact-head GitHub Pages deployment [39495006330](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006330) passed on the same SHA. This proves build/deploy alignment, not manual production visual QA.
-- Local `git clone` failed with `Could not resolve host: github.com`; no local `npm ci`, tests, build or browser run is claimed. The root `package-lock.json` remains incomplete (`packages: {}`), so clean-install reproducibility is still blocked.
-- The stylesheet on current main already has `[hidden] { display: none !important; }`; current browser tests cover empty/results/issue visibility and clear-state behavior. No duplicate CSS fix is needed.
-- PR #5 remains open, unmerged and reported `mergeable=false`. Its diff omits `#result-ipa` and the main-page methodology navigation that current tests require. Do not merge as-is.
-- PR #25 is this documentation-only continuation, with the exact current head exposed by [PR #25](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/25). No workflow runs are reported for that head yet; PR checks are not claimed as passing.
-- Root MIT applies only to material the copyright holder can license; third-party source/data rights are not cleared. No `CITATION.cff` has been added because authorship metadata remains unconfirmed.
-- Keep public beta/research-preview status. No stable release, DOI, release tag or universal narrow-phonetic claim is supported by current evidence.
+- Current `main` is `630a04412d7cf8730285a7ea2ea06e24b435a0c5` (`docs: reconcile release gates and handoff`). Quality checks [39598097237](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097237) and GitHub Pages deployment [39598097190](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097190) both completed successfully on this exact SHA. This re-published the current site; it did not change converter behavior.
+- The reproducibility repair is proposed in [PR #27](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/27). It commits a CI-generated npm lock graph (lockfile v3, 46 package entries) and switches both Quality and Pages installs to `npm ci`. Do not call this gate closed until the exact final PR head passes the complete Quality workflow and the merged main SHA deploys successfully.
+- Local clone/install remain unavailable in this runtime because DNS cannot resolve GitHub/npm. CI is the execution environment for clean-install verification; local tests/build are not claimed.
+- Current main already has `[hidden] { display: none !important; }`; browser regression tests cover empty/results/issue-state visibility and clearing. Do not duplicate the fix.
+- PR #5 remains open and unmerged. Its UI diff omits `#result-ipa` and the main-page methodology navigation required by current browser tests. Do not merge it as-is.
+- CSV structure was independently checked: 421 data rows, 421 unique Pinyin keys, no duplicate/empty keys or malformed-width rows. Blank cells remain 1 in `Кірносова`, 1 in `Кірносова—Цісар`, and 10 in `НАНУ`. This is not a full phonetic correctness or rights audit.
+- Root MIT does not clear third-party data rights. Source-by-source rights clearance and verified citation metadata remain open.
+- Keep public beta/research-preview status; no stable release, DOI, release tag, or universal narrow-phonetic claim is justified.
 
 ## Read during this pass
 - `README.md`, `package.json`, `LICENSE`, `index.html`
@@ -39,8 +38,8 @@
 
 ## Next actions (ordered by dependency)
 
-1. Restore clean-install reproducibility: regenerate `package-lock.json` with Node >=22.12 and npm registry access, then verify `npm ci`, data validation, unit/integration tests, production build, generated-file drift, benchmark, release checks and browser tests from a clean checkout. Never fabricate lockfile entries.
-2. Reconcile PR #5 only if its author or maintainer chooses to continue it: rebase on current `main`, restore `#result-ipa` and methodology navigation, and run the full browser suite; otherwise leave it untouched.
-3. Perform manual production smoke/visual review on the homepage and methodology page at 320/360/390/430px; test keyboard/focus and core actions. CI deployment is not a substitute.
-4. Complete source-by-source rights review and verify citation author/title/version metadata before any `CITATION.cff` or stable release.
-5. Preserve the independent Ukrainian mapping columns and existing blank cells unless source-specific evidence supports a change.
+1. Complete [PR #27](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/27): require `npm ci` plus all unit/data/build/generated-drift/benchmark/release/browser checks to pass on the final head; merge only after that evidence is green.
+2. Verify the resulting `main` Quality and Pages runs pass on the same commit and the deployed homepage/methodology route remains reachable.
+3. Perform manual visual and interaction QA in a real browser at 320/360/390/430px, including keyboard/focus and core converter actions. CI does not replace production visual inspection.
+4. Complete source-by-source third-party data rights review and verify citation author/title/version metadata before stable release or `CITATION.cff`.
+5. Preserve independent Ukrainian mapping columns and existing blank cells unless source-specific evidence supports changes.
