@@ -96,7 +96,7 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 
 ### Final continuation checkpoint — 2026-10-21
 - Dedicated branch: `audit/complete-release-gates-2026-10-21`.
-- Final commit after handoff normalization: `88c50833dfbe37f84fe28f511e6fb5d750470553` (the subsequent metadata/reference cleanup commit is recorded in the handoff branch history; re-check branch head before merge).
+- Last pre-checkpoint commit before this note was `88c50833dfbe37f84fe28f511e6fb5d750470553`. The exact live branch head is exposed by [PR #25](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/25); later handoff/checkpoint commits follow that SHA.
 - Compare against current `main` SHA `da995aa58936f5f9f72796fa32a0feaeb38b3847`: documentation-only changes in the two canonical audit/handoff files; no app, generated data, dependency manifest, or lockfile edits.
 - No CI workflow runs or combined commit statuses are present for the continuation head at the time of this check. The successful Quality/Pages runs cited above apply to current `main`, not this documentation branch.
 - Stop condition remains evidence-limited: lockfile/clean-install, live visual QA, source-data rights and citation metadata are still open. Do not claim release-ready.
