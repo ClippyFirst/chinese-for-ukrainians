@@ -108,10 +108,16 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 - This is a structural recheck only, not a run of the repository's validator, a review of all phonetic values, source-image verification, or permission clearance. Existing CI run 39495006696 remains the authoritative current-main evidence for the repository's automated validation/build/browser gates.
 
 
-## Latest continuation status — 2026-10-21 (supersedes older snapshot claims above)
 
-- Current main SHA: `630a04412d7cf8730285a7ea2ea06e24b435a0c5`. Quality checks run [39598097237](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097237) and Pages deployment [39598097190](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097190) both succeeded on that exact SHA.
-- The empty lockfile issue has been addressed in candidate branch `fix/reproducible-npm-lockfile-final-2026-10-21`: `package-lock.json` is npm-generated from the pinned CI install, lockfile v3, 46 package entries. Quality and Pages workflows now use `npm ci`, and Quality permissions remain `contents: read`; all temporary artifact/push steps were excluded from the final candidate.
-- Candidate PR: [#27](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/27). **Acceptance is pending** until the final PR head passes `npm ci`, unit/integration tests, acoustic guards, data validation/generation, generated mapping drift, build, benchmark, release constraints, and browser tests; then the merged main SHA must pass Quality and Pages deployment.
-- The previously attempted PR #26 is a superseded repair attempt with temporary CI commits; do not merge it. Close it after PR #27 is confirmed to exist and its checks are running.
-- Remaining non-code gates: manual production visual QA; third-party source/data rights clearance; confirmed citation metadata. Maintain public beta/research-preview status until those gates are evidenced.
+
+## Final continuation status — 2026-10-21 (verified after merge)
+
+- **Starting main SHA:** `da995aa58936f5f9f72796fa32a0feaeb38b3847`.
+- **Final verified main SHA:** `6e4de5f290d14d3c19ca4c7849291f965964bfb9`.
+- PR #25 merged the canonical release-gate handoff. PR #27 merged the npm-generated lock graph and switched Quality and Pages to `npm ci`; PR #26 was closed as superseded. PR #5 remains open and was not merged because its UI diff removes required IPA output and methodology navigation.
+- **Exact final PR-head verification:** Quality run [39598891161](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598891161) succeeded with `npm ci`, unit/integration tests, acoustic input guards, production build/data validation and generation, generated mapping drift, benchmark, release constraints, browser installation and browser tests.
+- **Post-merge verification:** Quality run [39599148938](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148938) and GitHub Pages deployment [39599148935](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148935) both succeeded on the same main SHA `6e4de5f290d14d3c19ca4c7849291f965964bfb9`.
+- Lockfile gate: `DONE_VERIFIED`. The committed lockfile is npm-generated (lockfile v3, 46 package entries); both CI and Pages use `npm ci`. No dependency versions or integrity hashes were manually fabricated.
+- Remaining gates: manual production visual QA at 320/360/390/430px and keyboard/focus/core-action checks; source-by-source third-party rights clearance; verified citation metadata. These are not established by green CI.
+- CSV structural recheck: 421 data rows, 421 unique Pinyin keys, no duplicate/empty keys or malformed-width rows; blank cells remain 1/1/10 across the three Ukrainian mapping columns. This does not certify every phonetic value.
+- Keep the product at public beta/research preview until evidence supports stronger publication claims. No stable release, DOI, release tag or universal narrow-IPA claim was made.
