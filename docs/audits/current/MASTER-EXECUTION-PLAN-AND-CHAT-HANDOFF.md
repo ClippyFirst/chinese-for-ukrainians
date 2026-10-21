@@ -113,7 +113,7 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 ## Final continuation status — 2026-10-21 (verified after merge)
 
 - **Starting main SHA:** `da995aa58936f5f9f72796fa32a0feaeb38b3847`.
-- **Final verified main SHA:** `6e4de5f290d14d3c19ca4c7849291f965964bfb9`.
+- **Verified application/dependency release commit:** `6e4de5f290d14d3c19ca4c7849291f965964bfb9`. The subsequent documentation-only main snapshot `fe382a320ced01c361f8fee7b383bf2e1462fc8d` also passed Quality [39599788240](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599788240) and Pages [39599787730](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599787730).
 - PR #25 merged the canonical release-gate handoff. PR #27 merged the npm-generated lock graph and switched Quality and Pages to `npm ci`; PR #26 was closed as superseded. PR #5 remains open and was not merged because its UI diff removes required IPA output and methodology navigation.
 - **Exact final PR-head verification:** Quality run [39598891161](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598891161) succeeded with `npm ci`, unit/integration tests, acoustic input guards, production build/data validation and generation, generated mapping drift, benchmark, release constraints, browser installation and browser tests.
 - **Post-merge verification:** Quality run [39599148938](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148938) and GitHub Pages deployment [39599148935](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148935) both succeeded on the same main SHA `6e4de5f290d14d3c19ca4c7849291f965964bfb9`.
