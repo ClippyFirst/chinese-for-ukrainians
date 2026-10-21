@@ -11,7 +11,7 @@
 - Local `git clone` failed with `Could not resolve host: github.com`; no local `npm ci`, tests, build or browser run is claimed. The root `package-lock.json` remains incomplete (`packages: {}`), so clean-install reproducibility is still blocked.
 - The stylesheet on current main already has `[hidden] { display: none !important; }`; current browser tests cover empty/results/issue visibility and clear-state behavior. No duplicate CSS fix is needed.
 - PR #5 remains open, unmerged and reported `mergeable=false`. Its diff omits `#result-ipa` and the main-page methodology navigation that current tests require. Do not merge as-is.
-- PR #25 is this documentation-only continuation, currently headed at `88c50833dfbe37f84fe28f511e6fb5d750470553`. No workflow runs are reported for that head yet; PR checks are not claimed as passing.
+- PR #25 is this documentation-only continuation, with the exact current head exposed by [PR #25](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/25). No workflow runs are reported for that head yet; PR checks are not claimed as passing.
 - Root MIT applies only to material the copyright holder can license; third-party source/data rights are not cleared. No `CITATION.cff` has been added because authorship metadata remains unconfirmed.
 - Keep public beta/research-preview status. No stable release, DOI, release tag or universal narrow-phonetic claim is supported by current evidence.
 
