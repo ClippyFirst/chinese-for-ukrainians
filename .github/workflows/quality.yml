@@ -44,3 +44,14 @@ jobs:
         run: npx playwright install --with-deps chromium webkit
       - name: Run browser regression tests
         run: npm run test:browser
+
+      # Temporary reproducibility aid: capture the lock graph resolved by npm install
+      # on the pinned CI runtime. Remove this step once package-lock.json is committed.
+      - name: Export resolved npm lockfile for repair
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resolved-package-lock
+          path: package-lock.json
+          if-no-files-found: error
+          retention-days: 1
