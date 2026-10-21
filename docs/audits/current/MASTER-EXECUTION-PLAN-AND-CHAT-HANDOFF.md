@@ -106,3 +106,12 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 - Fetched current-main `zh-in-ua.csv` through the GitHub contents API (blob SHA `1d95758cd96b2d9ba6540902ce41d78dd647f1b3`) and parsed its semicolon-delimited quoted rows in a standalone read-only check.
 - Result: 421 data rows, 5 columns, 0 malformed-width rows, 0 empty Pinyin keys, 421 unique keys, 0 duplicate keys. Blank cells remain 1 in `Кірносова`, 1 in `Кірносова—Цісар`, and 10 in `НАНУ`.
 - This is a structural recheck only, not a run of the repository's validator, a review of all phonetic values, source-image verification, or permission clearance. Existing CI run 39495006696 remains the authoritative current-main evidence for the repository's automated validation/build/browser gates.
+
+
+## Latest continuation status — 2026-10-21 (supersedes older snapshot claims above)
+
+- Current main SHA: `630a04412d7cf8730285a7ea2ea06e24b435a0c5`. Quality checks run [39598097237](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097237) and Pages deployment [39598097190](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598097190) both succeeded on that exact SHA.
+- The empty lockfile issue has been addressed in candidate branch `fix/reproducible-npm-lockfile-final-2026-10-21`: `package-lock.json` is npm-generated from the pinned CI install, lockfile v3, 46 package entries. Quality and Pages workflows now use `npm ci`, and Quality permissions remain `contents: read`; all temporary artifact/push steps were excluded from the final candidate.
+- Candidate PR: [#27](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/27). **Acceptance is pending** until the final PR head passes `npm ci`, unit/integration tests, acoustic guards, data validation/generation, generated mapping drift, build, benchmark, release constraints, and browser tests; then the merged main SHA must pass Quality and Pages deployment.
+- The previously attempted PR #26 is a superseded repair attempt with temporary CI commits; do not merge it. Close it after PR #27 is confirmed to exist and its checks are running.
+- Remaining non-code gates: manual production visual QA; third-party source/data rights clearance; confirmed citation metadata. Maintain public beta/research-preview status until those gates are evidenced.
