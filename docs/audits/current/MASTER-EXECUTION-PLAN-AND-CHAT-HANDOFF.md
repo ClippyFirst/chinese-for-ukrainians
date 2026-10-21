@@ -58,3 +58,9 @@ Use only `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE_VERIFIED`, `DEFERRED`, `NOT_APP
 3. Confirm credited author(s), title, version, repository URL, license scope and ORCID only if supplied/verified; then create and validate `CITATION.cff`.
 4. Complete file-level license/source-data provenance review; do not imply third-party source material is relicensed under MIT.
 5. Continue CSV blank-cell/edge-key audit and release reproducibility; do not create a release or DOI without an actual tagged release/archive.
+
+
+### Lockfile repair status — 2026-10-21
+- The incomplete main-branch lockfile was replaced on PR #26 with a 27,197-byte npm-generated lock graph (lockfile v3, 46 package entries) from the pinned Node/npm CI environment; no dependency versions were invented manually.
+- Temporary artifact/commit workflow steps have been removed from the final candidate. The Quality workflow now uses `npm ci` and read-only contents permission; GitHub Pages build also uses `npm ci`.
+- Acceptance remains pending until the exact final PR head passes all Quality checks including `npm ci` and browser tests, then merges and Pages deployment succeeds on the resulting main SHA.
