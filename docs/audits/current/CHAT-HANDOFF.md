@@ -72,3 +72,9 @@
 2. Run production smoke/visual checks on homepage and methodology page at 320/360/390/430px; test keyboard/focus and core actions.
 3. Continue source-by-source rights review and obtain verified authorship/title/version metadata before adding citation metadata.
 4. Preserve independent Ukrainian columns and blank cells unless source-specific evidence authorizes a correction.
+
+
+### Deployment SHA reconciliation — 2026-10-21 follow-up
+- Pages deployment run [39495006330](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006330) passed on the exact same main SHA as Quality checks: `da995aa58936f5f9f72796fa32a0feaeb38b3847`.
+- The live homepage and methodology page could not be inspected through the available web surface; fresh local clone is blocked by DNS. This does not establish a production UI failure, but manual deployed visual/mobile QA remains blocked/unverified.
+- Continuation branch: `audit/complete-release-gates-2026-10-21`. This branch contains audit/handoff updates only, not application or data changes.
