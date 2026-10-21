@@ -1,18 +1,19 @@
 # Chat handoff — Chinese-to-Ukrainian transcription
-**Updated:** 2026-10-20 (release-readiness and IPA traceability audit)  
+**Updated:** 2026-10-21 (release-gate reconciliation and PR review follow-up)  
 **Repository:** https://github.com/ClippyFirst/chinese-for-ukrainians  
 **Plan:** [MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 
-## Snapshot
-- Latest main SHA at this handoff: `2b16122f31e2ecb183192f26366665554be05132` (docs-only). On that SHA, tests, acoustic input guards, production build and release checks passed, but Playwright browser installation was still running at the last check: [Quality run 39484386939](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484386939). Do not mark latest-head quality as fully green until browser regression tests complete. The prior application/code SHA `0c173deeace88428fd2919fe47ce8e438adca3b6` passed all quality gates in [run 39482425883](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39482425883).
-- Working branch in the remote snapshot: `main`. The branch listing includes a research branch `research/full-ipa-scientific-verification-2026-10-18` and several audit/fix branches; do not assume any are merged without comparing SHAs.
-- Package: `chinese-for-ukrainians@0.1.0`; Node requirement >=22.12.0.
-- GitHub Actions **Quality checks** passed on the exact latest SHA: [run 39482425883](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39482425883). Its `verify` job passed unit/integration tests, acoustic-pipeline input guards, build (including data validation and generation), release checks and browser regression tests.
-- GitHub Pages deployment passed on latest docs SHA `2b16122f31e2ecb183192f26366665554be05132`: [run 39484386852](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484386852). This is build/deploy evidence, not visual/mobile QA.
-- Local `git clone` could not resolve `github.com`; no independent local transcript exists. Optional `npm run benchmark` remains unexecuted and is not a CI step.
-- The combined-status endpoint was empty, but the direct Actions run results above are explicit successful evidence.
-- `CITATION.cff` was not found at root. `LICENSE` exists (MIT; copyright line “The Clippy First”).
-- Expected `docs/audits/current/` paths for earlier plan/readiness/IPA closeout did not exist. Actual relevant documents are in `docs/`. This plan and handoff now provide a canonical continuation point.
+## Current snapshot (verified 2026-10-21)
+
+- Current default branch `main` is `da995aa58936f5f9f72796fa32a0feaeb38b3847` (`docs: confirm CI after generated map repair`).
+- Exact-head Quality checks [39495006696](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006696) passed the CI unit/integration suite, acoustic input guards, data validation/generation, generated mapping drift, production build, conversion benchmark, release constraints and Playwright browser regression tests.
+- Exact-head GitHub Pages deployment [39495006330](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39495006330) passed on the same SHA. This proves build/deploy alignment, not manual production visual QA.
+- Local `git clone` failed with `Could not resolve host: github.com`; no local `npm ci`, tests, build or browser run is claimed. The root `package-lock.json` remains incomplete (`packages: {}`), so clean-install reproducibility is still blocked.
+- The stylesheet on current main already has `[hidden] { display: none !important; }`; current browser tests cover empty/results/issue visibility and clear-state behavior. No duplicate CSS fix is needed.
+- PR #5 remains open, unmerged and reported `mergeable=false`. Its diff omits `#result-ipa` and the main-page methodology navigation that current tests require. Do not merge as-is.
+- PR #25 is this documentation-only continuation, with the exact current head exposed by [PR #25](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/25). No workflow runs are reported for that head yet; PR checks are not claimed as passing.
+- Root MIT applies only to material the copyright holder can license; third-party source/data rights are not cleared. No `CITATION.cff` has been added because authorship metadata remains unconfirmed.
+- Keep public beta/research-preview status. No stable release, DOI, release tag or universal narrow-phonetic claim is supported by current evidence.
 
 ## Read during this pass
 - `README.md`, `package.json`, `LICENSE`, `index.html`
@@ -23,7 +24,7 @@
 - `docs/RELEASE-CHECKLIST.md`, `docs/QA-PLAN.md`, `docs/ARCHITECTURE.md`
 - `docs/PHONETIC-REPRODUCIBILITY.md`, `docs/USER-GUIDE.md`
 - `docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md`
-- `docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
+- `docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv`
 - `scripts/release-check.mjs`, `scripts/test.mjs`, `scripts/benchmark.mjs`, `scripts/validate-data.mjs`, `scripts/generate-mappings.mjs`, `.github/workflows/quality.yml`
 
 ## Confirmed package commands
@@ -36,20 +37,10 @@
 - Never cross-fill blank Ukrainian mapping cells from another system.
 - Do not invent citation authors/ORCIDs, license coverage, release tags, or DOI.
 
-## Exact next steps
-1. Re-check [Quality run 39484386939](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484386939) for completion of Playwright browser installation and browser regression tests, then record the final conclusion for SHA `2b16122f31e2ecb1831929fe47ce8e438adca3b6`.
-2. Complete live Pages smoke test and visual/mobile review (320/360/390/430px); deployment success is not visual QA.
-3. Confirm credited author(s), title, version, repository URL, license scope and ORCID only if supplied/verified before creating `CITATION.cff`.
-4. Complete source/data license provenance and CSV blank-cell/edge-key audits. Preserve the independence of all three Ukrainian systems.
-5. Keep release status at public beta/research preview; no stable-release, universal narrow-IPA, archive or DOI claims without direct evidence.
+## Next actions (ordered by dependency)
 
-
-## Release-readiness follow-up (2026-10-20)
-
-- Read [release-readiness and IPA traceability audit](../../RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md) first.
-- Baseline main SHA was `69cb29ffcdf53fc67f3d08609613b08d92d3e6a4`; its Quality run [39484629325](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629325) and Pages deploy [39484629491](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629491) passed. New independent Pinyin tests and CI steps were added after that SHA; check latest main workflow runs before claiming they pass.
-- PR #5 remains open and dirty/conflicting; do not merge it without reconciliation. Its markup omits the current `#result-ipa` element while main UI code expects it.
-- Ukrainian outputs derive directly from three separate Pinyin-keyed CSV columns, not from IPA.
-- `package-lock.json` was observed to contain an empty `packages` object. Repair lockfile in an npm-enabled environment before adopting `npm ci`.
-- Dependency metadata checked: `pinyin-pro@3.29.4` is published as MIT, while `@pinyin-pro/data@1.3.1` is published as ISC; included dictionary data/source rights still need review. Rights clearance for third-party data and citation author metadata remain open. No GitHub Release or DOI is authorized.
-- Newly added files: `tests/fixtures/independent-pinyin-cases.csv`, `tests/independent-pinyin-corpus.test.mjs`, and `docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md`.
+1. Restore clean-install reproducibility: regenerate `package-lock.json` with Node >=22.12 and npm registry access, then verify `npm ci`, data validation, unit/integration tests, production build, generated-file drift, benchmark, release checks and browser tests from a clean checkout. Never fabricate lockfile entries.
+2. Reconcile PR #5 only if its author or maintainer chooses to continue it: rebase on current `main`, restore `#result-ipa` and methodology navigation, and run the full browser suite; otherwise leave it untouched.
+3. Perform manual production smoke/visual review on the homepage and methodology page at 320/360/390/430px; test keyboard/focus and core actions. CI deployment is not a substitute.
+4. Complete source-by-source rights review and verify citation author/title/version metadata before any `CITATION.cff` or stable release.
+5. Preserve the independent Ukrainian mapping columns and existing blank cells unless source-specific evidence supports a change.
