@@ -121,3 +121,32 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 - Remaining gates: manual production visual QA at 320/360/390/430px and keyboard/focus/core-action checks; source-by-source third-party rights clearance; verified citation metadata. These are not established by green CI.
 - CSV structural recheck: 421 data rows, 421 unique Pinyin keys, no duplicate/empty keys or malformed-width rows; blank cells remain 1/1/10 across the three Ukrainian mapping columns. This does not certify every phonetic value.
 - Keep the product at public beta/research preview until evidence supports stronger publication claims. No stable release, DOI, release tag or universal narrow-IPA claim was made.
+
+
+## Design-system redesign continuation — 2026-10-22
+
+### Task ledger
+
+| ID | Task | Status | Evidence / acceptance |
+|---|---|---|---|
+| UI-REDESIGN-001 | Define a shared, repository-specific redesign contract before changing visuals. | DONE_VERIFIED | Added `docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md` covering product invariants, visual direction, responsiveness, accessibility, skill-role mapping and verification gates. |
+| UI-REDESIGN-002 | Reconcile design-system documentation with the actual shipped UI. | DONE_VERIFIED | Updated `docs/DESIGN-SYSTEM.md` to retain and document the IPA panel, speech control, methodology navigation, copy actions, uncertainty states and all three equal Ukrainian systems. README links the brief. |
+| UI-REDESIGN-003 | Refine visual implementation without changing conversion/data behavior. | PARTIAL | CSS-only refinement in `src/styles/main.css`: blue functional accent aligned to the design system, restrained surfaces, responsive heading wrapping, focus visibility, mobile spacing and reduced-motion behavior. No converter, CSV, generated map or runtime dependency changed. Visual browser QA is still required. |
+| UI-REDESIGN-004 | Run exact-head automated and visual release checks. | BLOCKED | GitHub workflow lookup returned no PR-triggered runs and combined status returned no checks for the inspected candidate SHA at lookup time. No local checkout/browser is available in this session. Acceptance: green CI for the final PR head plus real browser review at 320/360/390/430 px and desktop. Do not infer visual correctness from CSS inspection. |
+
+### Branch and review
+
+- Dedicated branch: `feat/design-system-redesign-2026-10-22`.
+- Draft PR: [#30 — design: refine the transcription workspace visual system](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/30).
+- PR #5 was inspected but not merged: its base is far behind current main and its diff removes the required IPA result and methodology navigation. Do not merge it as-is.
+- The five named design skills were applied as role-specific review lenses; the repository/tool environment did not confirm separate installation or execution of all five skill packages. This is not reported as five actual tool runs.
+- A lightweight read-only stylesheet syntax sanity check found balanced braces, no premature closing brace, no unclosed quote/comment, and the required `[hidden] { display: none !important; }` guard. This is not a CSS parser, browser test, accessibility audit, or visual screenshot verification.
+
+### Remaining acceptance criteria
+
+1. Confirm CI on the latest PR #30 head, including `npm ci`, data validation, `npm test`, `npm run build`, `npm run check:release`, `npm run test:browser`, benchmark and generated-artifact drift as defined by the repository workflow.
+2. Inspect the rendered homepage at desktop and 320/360/390/430 px. Exercise empty/results/issue states, script selection, independent tone switches, example, clear, copy, speech and methodology navigation.
+3. Check keyboard-only use, visible focus, contrast, reduced motion, long/mixed-script content, browser console and page overflow.
+4. Fix any concrete failures and rerun the affected checks before removing the BLOCKED/PARTIAL statuses.
+
+No release claim or production deployment claim is made by this branch.
