@@ -40,7 +40,7 @@
 - [x] Shared redesign layer separated from base CSS.
 - [x] Design-specific browser regression checks added.
 - [x] QA plan and master handoff updated.
-- [x] Latest code commit CI green, including the expanded Playwright checks (run #332: 38 passed, 0 failed). The current docs-only follow-up is being checked by run #333.
+- [x] Latest code commit CI green, including the expanded Playwright checks (run #332: 38 passed, 0 failed). The docs-only follow-up commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7` passed run #333.
 - [ ] Actual browser screenshots captured and reviewed.
 - [ ] Post-fix visual comparison completed.
 
