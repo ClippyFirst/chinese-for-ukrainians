@@ -47,37 +47,40 @@ test('redesign color tokens preserve WCAG AA contrast for core text and action p
   await expect(primaryButton).toHaveCSS('color', 'rgb(255, 255, 255)');
 });
 
-test('three Ukrainian result systems remain equally weighted on desktop and stack on mobile', async ({ page }) => {
+test('three Ukrainian result systems remain equally weighted at desktop and supported mobile widths', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/');
   await page.getByRole('button', { name: 'Приклад' }).click();
 
   const cards = page.locator('.ukrainian-grid > .result-card');
   await expect(cards).toHaveCount(3);
-  let boxes = await cards.evaluateAll((items) => items.map((item) => {
+  const desktopBoxes = await cards.evaluateAll((items) => items.map((item) => {
     const rect = item.getBoundingClientRect();
-    return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+    return { y: rect.y, width: rect.width };
   }));
-  const desktopWidths = boxes.map((box) => box.width);
+  const desktopWidths = desktopBoxes.map((box) => box.width);
   expect(Math.max(...desktopWidths) - Math.min(...desktopWidths)).toBeLessThanOrEqual(1);
-  expect(Math.max(...boxes.map((box) => box.y)) - Math.min(...boxes.map((box) => box.y))).toBeLessThanOrEqual(1);
+  expect(Math.max(...desktopBoxes.map((box) => box.y)) - Math.min(...desktopBoxes.map((box) => box.y))).toBeLessThanOrEqual(1);
 
-  await page.setViewportSize({ width: 390, height: 844 });
-  boxes = await cards.evaluateAll((items) => items.map((item) => {
-    const rect = item.getBoundingClientRect();
-    return { x: rect.x, y: rect.y, width: rect.width };
-  }));
-  expect(boxes[1].y).toBeGreaterThan(boxes[0].y);
-  expect(boxes[2].y).toBeGreaterThan(boxes[1].y);
-  expect(Math.max(...boxes.map((box) => box.width)) - Math.min(...boxes.map((box) => box.width))).toBeLessThanOrEqual(1);
+  for (const width of [320, 360, 390, 430]) {
+    await page.setViewportSize({ width, height: 844 });
+    const boxes = await cards.evaluateAll((items) => items.map((item) => {
+      const rect = item.getBoundingClientRect();
+      return { y: rect.y, width: rect.width };
+    }));
+    expect(boxes[1].y, `second result should stack at ${width}px`).toBeGreaterThan(boxes[0].y);
+    expect(boxes[2].y, `third result should stack at ${width}px`).toBeGreaterThan(boxes[1].y);
+    expect(Math.max(...boxes.map((box) => box.width)) - Math.min(...boxes.map((box) => box.width)))
+      .toBeLessThanOrEqual(1);
 
-  const dimensions = await page.evaluate(() => ({
-    viewport: document.documentElement.clientWidth,
-    document: document.documentElement.scrollWidth,
-    body: document.body.scrollWidth,
-  }));
-  expect(dimensions.document).toBeLessThanOrEqual(dimensions.viewport);
-  expect(dimensions.body).toBeLessThanOrEqual(dimensions.viewport);
+    const dimensions = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(dimensions.document, `document overflows at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
+    expect(dimensions.body, `body overflows at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
+  }
 });
 
 test('shared redesign tokens load on the methodology page without changing its content contract', async ({ page }) => {
