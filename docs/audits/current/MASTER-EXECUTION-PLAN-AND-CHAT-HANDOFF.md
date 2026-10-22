@@ -160,3 +160,10 @@ No release claim or production deployment claim is made by this branch.
 - Independent offline calculation of the specified token contrast pairs: ink/paper 16.04:1; muted/paper 5.27:1; accent/paper 8.87:1; white/accent 9.93:1; warning/warning-surface 5.83:1. This validates only those color pairs, not every rendered text element.
 - A static brace/quote/comment sanity scan of `src/styles/redesign.css` passed. This is not a standards-compliant CSS parse and does not replace browser execution.
 - Latest recorded candidate before the next commit: `97b25b573caeac6b533c19adbc6fbced0c7fdf81`. Re-read the PR head before using this SHA as current; later documentation/metadata commits may change it.
+
+
+### Visual QA gate — 2026-10-22
+
+- Added root `design-qa.md` with `final result: blocked`. The repository has a written design contract but no pixel-specific source mockup; this execution environment cannot capture/open a rendered browser screenshot. Code review and color-ratio calculations are not a substitute for visual QA.
+- CI run #330, candidate `65625f55feb2a1a8caea2f03fc7603f2f2fb3207`: npm install, unit/integration tests, Python acoustic input-guard test, production build, generated mapping drift check, benchmark and release checks were observed successful. Browser installation was still in progress at last observation; no Playwright result claimed.
+- After this documentation commit, re-read the PR head and verify the latest CI run rather than reusing results from the earlier SHA.
