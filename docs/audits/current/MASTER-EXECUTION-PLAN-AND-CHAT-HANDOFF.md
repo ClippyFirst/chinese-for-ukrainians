@@ -131,8 +131,8 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 |---|---|---|---|
 | UI-REDESIGN-001 | Define a shared, repository-specific redesign contract before changing visuals. | DONE_VERIFIED | Added `docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md` covering product invariants, visual direction, responsiveness, accessibility, skill-role mapping and verification gates. |
 | UI-REDESIGN-002 | Reconcile design-system documentation with the actual shipped UI. | DONE_VERIFIED | Updated `docs/DESIGN-SYSTEM.md` to retain and document the IPA panel, speech control, methodology navigation, copy actions, uncertainty states and all three equal Ukrainian systems. README links the brief. |
-| UI-REDESIGN-003 | Refine visual implementation without changing conversion/data behavior. | PARTIAL | CSS-only refinement in `src/styles/main.css`: blue functional accent aligned to the design system, restrained surfaces, responsive heading wrapping, focus visibility, mobile spacing and reduced-motion behavior. No converter, CSV, generated map or runtime dependency changed. Visual browser QA is still required. |
-| UI-REDESIGN-004 | Run exact-head automated and visual release checks. | BLOCKED | GitHub workflow lookup returned no PR-triggered runs and combined status returned no checks for the inspected candidate SHA at lookup time. No local checkout/browser is available in this session. Acceptance: green CI for the final PR head plus real browser review at 320/360/390/430 px and desktop. Do not infer visual correctness from CSS inspection. |
+| UI-REDESIGN-003 | Refine visual implementation without changing conversion/data behavior. | PARTIAL | Moved the new visual rules into `src/styles/redesign.css`, loaded after the base styles on both converter and methodology pages, leaving `src/styles/main.css` identical to `main`. Added `tests/browser/design-system.spec.js` for core token contrast, equal result-card weighting, mobile stacking and shared methodology styling. Converter logic, CSV, generated map and runtime dependencies remain unchanged. Tests and live browser QA are still unexecuted. |
+| UI-REDESIGN-004 | Run exact-head automated and visual release checks. | BLOCKED | GitHub Actions lookup returned no PR-triggered runs and no combined status checks for the candidate SHA at lookup time. A local `git clone` attempt failed because this execution environment cannot resolve `github.com`; therefore `npm ci`, Node tests, build, release checks and Playwright cannot be run locally here. Acceptance: green CI for the final PR head plus real browser review at 320/360/390/430 px and desktop. Do not infer visual correctness from CSS inspection. |
 
 ### Branch and review
 
@@ -150,3 +150,13 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 4. Fix any concrete failures and rerun the affected checks before removing the BLOCKED/PARTIAL statuses.
 
 No release claim or production deployment claim is made by this branch.
+
+### Follow-up update — stylesheet separation and design regression tests
+
+- Added `src/styles/redesign.css` as a separate design layer and linked it after existing styles on `index.html` and `methodology.html`. This avoids appending another 370-line override block to the existing minified base stylesheet.
+- Restored `src/styles/main.css` to the exact content currently on `main`; the converter's base styling and component rules remain untouched.
+- Added `tests/browser/design-system.spec.js`: checks WCAG AA contrast (4.5:1 threshold) for core token pairs, confirms the primary action's computed colors, checks equal widths for the three Ukrainian system cards on desktop and their one-column stacking on mobile, and checks that shared tokens load on the methodology page.
+- Extended `docs/QA-PLAN.md` to register these design-specific browser gates.
+- Independent offline calculation of the specified token contrast pairs: ink/paper 16.04:1; muted/paper 5.27:1; accent/paper 8.87:1; white/accent 9.93:1; warning/warning-surface 5.83:1. This validates only those color pairs, not every rendered text element.
+- A static brace/quote/comment sanity scan of `src/styles/redesign.css` passed. This is not a standards-compliant CSS parse and does not replace browser execution.
+- Latest recorded candidate before the next commit: `97b25b573caeac6b533c19adbc6fbced0c7fdf81`. Re-read the PR head before using this SHA as current; later documentation/metadata commits may change it.
