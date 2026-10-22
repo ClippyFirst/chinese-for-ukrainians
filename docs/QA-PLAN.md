@@ -19,7 +19,7 @@ The required npm test suite uses Node's built-in test runner and covers:
 - deterministic conversion and generated mapping data.
 
 ### Browser tests
-npm run test:browser covers empty/results/issue states and all five visible representations; keyboard-operable script controls and source non-mutation; copy exactness, live-region feedback, and reset state; keyboard focus and tooltip discoverability; horizontal overflow at 320, 360, 390 and 430 CSS pixels; and reduced-motion preference.
+npm run test:browser covers empty/results/issue states and all five visible representations; keyboard-operable script controls and source non-mutation; copy exactness, live-region feedback, and reset state; keyboard focus and tooltip discoverability; horizontal overflow at 320, 360, 390 and 430 CSS pixels; and reduced-motion preference; design-token contrast; equal weighting of the three Ukrainian systems; and shared styling on the methodology page.
 
 ## Mandatory fixtures
 Include Simplified Chinese, Traditional Chinese, shared-only Han text, mixed scripts, punctuation/line breaks, numbers/Latin, polyphonic characters, unresolved characters, unsupported IPA forms, and synthetic duplicate-key mutations.
