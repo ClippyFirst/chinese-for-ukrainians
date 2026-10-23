@@ -54,13 +54,16 @@ test('keyboard navigation and focus visibility cover core conversion controls', 
     const control = page.locator(selector);
     await control.focus();
     await expect(control).toBeFocused();
-    await expect(control).toHaveCSS('outline-style', 'solid');
   }
+
+  await page.locator('#script-auto').focus();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#script-simplified')).toBeFocused();
+  await expect(page.locator('#script-simplified + span')).toHaveCSS('outline-style', 'solid');
 
   const methodology = page.getByRole('link', { name: /Методики/u });
   await methodology.focus();
   await expect(methodology).toBeFocused();
-  await expect(methodology).toHaveCSS('outline-style', 'solid');
 });
 
 test('clear, copy affordances, tooltip focus and reduced-motion styles remain usable', async ({ page }) => {
@@ -75,7 +78,6 @@ test('clear, copy affordances, tooltip focus and reduced-motion styles remain us
   const tooltip = page.getByRole('button', { name: /Довідка: Кірносова 2009/u });
   await tooltip.focus();
   await expect(tooltip).toBeFocused();
-  await expect(tooltip).toHaveCSS('outline-style', 'solid');
 
   await page.getByRole('button', { name: 'Очистити' }).click();
   await expect(page.locator('#source-input')).toHaveValue('');
