@@ -218,3 +218,14 @@ The GitHub repository interface was used to inspect the current tree, package sc
 | C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
 
 The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence source. Runtime output lookup now uses the segmental IPA key and carries source-row/Pinyin provenance. Unsupported IPA keys remain unresolved. Do not describe this as full linguistic validation; the adapter boundary is an architectural property, while each mapping still needs evidence.
+
+
+## Consonant-only interjection evidence review — 2026-10-23
+
+| ID | Task | Status | Evidence / acceptance |
+|---|---|---|---|
+| C2U-IPA-012 | Reassess `hm`/`hng` with additional sources without guessing IPA | DONE_VERIFIED (bounded research pass) | Added [consonant-only interjection evidence review](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md). *Chinese Romanization: Pronunciation and Orthography* attests `ng`, `hm`, `hng` as consonant-only interjections treated as ordinary syllables; this is not IPA evidence. TDSF documentation records a practical converter's exclusion due to rarity/input ambiguity, not phonetic nonexistence. Runtime decision remains intentionally unsupported for `hm` and `hng`. |
+| C2U-IPA-013 | Find direct IPA/audio/corpus evidence adequate to assign a defensible target to `hm`/`hng` | BLOCKED (evidence-limited, not asserted impossible) | Current sources attest spelling/function but do not provide exact phonetic realization. Acceptance: cite direct phonetic description, reputable pronunciation audio with a documented transcription convention, or inspectable citable speech-corpus tokens with variety/context metadata; then record scope and uncertainty before modifying runtime. |
+| C2U-CI-014 | Finish the merged PR #39 documentation-only Quality workflow | IN_PROGRESS at last check | Run [40019784515](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019784515): unit/integration tests, acoustic guards, production build, generated-map determinism, benchmark and release constraints succeeded; browser installation was still running at last query. Do not claim final workflow success until checked again. |
+
+The evidence review changed no runtime, CSV, generated mapping or tests. The Firecrawl search service was unavailable due to exhausted account credits; ordinary web search did locate the romanization PDF. The lack of direct IPA evidence is the reason for retaining unsupported behavior, not a claim that no further literature or audio can exist. Global open gates remain source-image collation, third-party rights clearance, live visual QA, and manual accessibility/device QA. Keep public beta / research-preview status.
