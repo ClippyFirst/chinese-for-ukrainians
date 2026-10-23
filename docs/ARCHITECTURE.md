@@ -14,10 +14,11 @@ Chinese input
 → canonical Pinyin pronunciation tokens
    ├─→ Pinyin renderer (tone marks optional)
    ├─→ broad IPA renderer
-   └─→ independent Ukrainian lookup in each CSV-derived system map
-        ├─→ Kirnosova
-        ├─→ Kirnosova–Tsisar
-        └─→ NANU
+   └─→ segmental IPA key
+        └─→ three independent IPA-keyed Ukrainian adapters
+             ├─→ Kirnosova
+             ├─→ Kirnosova–Tsisar
+             └─→ NANU
 → ConversionResult
 → DOM UI / copy / speech controls
 ~~~
