@@ -282,3 +282,15 @@ Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrai
 - C2U-IPA-014: **BLOCKED / evidence-limited**. The run does not validate the candidate IPA for hm or hng; both keys remain unsupported and fail closed.
 - No runtime, source dataset, generated mapping, or test expectation changed in this evidence pass. The branch/PR remains a documentation-only research review; do not merge solely on green CI while the phonetic acceptance criterion is unmet.
 - Independent release blockers remain: third-party source-data rights review, legacy source-image collation, and manual visual/accessibility/device QA. Automated screenshots/artifact upload do not constitute manual QA.
+
+
+### Manual visual-QA artifact inspection — 2026-10-24
+
+Inspected the archived `redesign-visual-qa` screenshots from Quality workflow #40027146257 (15 PNGs covering converter empty/results and methodology at 320, 360, 390, 430, and 1280px). This is screenshot inspection only, not live-device or assistive-technology testing.
+
+- **Finding:** `methodology-320.png` and `methodology-360.png` show comparison tables whose right-hand columns are clipped outside the captured viewport; the second multi-column table is visibly cut off as well. The data is not fully readable at these widths in the screenshots.
+- **Acceptance criterion:** at narrow widths, every table cell must remain reachable/readable through an accessible horizontal-scroll region with a visible affordance and keyboard support, or a semantically equivalent responsive stacked layout. Add/verify an automated viewport regression test at 320px and 360px; then inspect screenshots again.
+- Converter result cards appear to stack vertically in the inspected 320px screenshot without an obvious comparable card overflow. Desktop methodology table appears fully visible in the inspected 1280px screenshot.
+- The screenshots do not establish behavior on physical devices, screen readers, zoom/reflow, keyboard-only navigation, or color contrast; those remain manual QA items.
+
+Disposition: manual visual/accessibility/device QA remains **BLOCKED / actionable finding identified**. This is outside the evidence-only scope of PR #40; track and fix in a dedicated UI change rather than mixing unrelated runtime/UI changes into the IPA evidence review.
