@@ -89,3 +89,15 @@ The executable audit identifies the unsupported aliases precisely: `ê` (CSV row
 - PR #33 repository hygiene, documentation consolidation and IPA inventory audit: merged; Pages deployment succeeded.
 - PR #34 IPA-keyed Ukrainian adapters: merged; the adapter now consumes segmental IPA and preserves source provenance. Four unsupported forms remain unresolved by design.
 - Current main Quality and Pages runs: Quality `40012724723`, Pages `40012724825`; verify both final conclusions before marking the release candidate complete.
+
+
+## Edge-form research reconciliation — 2026-10-23
+
+Use [EDGE-FORM-RESEARCH-RECONCILIATION-2026-10-23.md](./EDGE-FORM-RESEARCH-RECONCILIATION-2026-10-23.md) as the current compact record. Do not restart the full research on these forms or present all old disputed classes as current blockers.
+
+- **Actual unsupported runtime keys:** ê (CSV row 82), hm (125), hng (126), yo (378). Current audit: 421 aliases, 417 mapped, 4 unsupported, 0 collision groups. No mapping was changed.
+- **Existing Ukrainian values:** ê → е/е/blank; hm → хм/гм/blank; hng → х/гм/blank; yo → йо/йо/blank. The NANU blanks are source-inventory gaps, not an invitation to cross-fill.
+- **Prior work reused:** Kirnosova table OCR limitations and secondary corroboration for hm/hng are already in REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md and the source ledger. The earlier rua → жува OCR anomaly was not accepted as sufficient evidence to replace CSV жуа.
+- **Not current unsupported keys:** standalone o maps to ɔ (labial-conditioned bo/po/mo/fo → uɔ); rua maps under the finite function; ong, iong/yong, üan/yuan and standalone er have selected broad-IPA conventions in the 2026-10-19 closeout. The earlier targeted note's “unresolved” language is historical and superseded for the practical release decision.
+- **Next genuine work:** verify original source-table images for hm/hng where available; establish scope/attestation and exact IPA or explicit exclusion for all four runtime gaps; add source-backed IPA/adapter tests. Do not fabricate IPA merely to make coverage counts green.
+- docs/IPA-ADAPTER-READINESS.md, docs/PHONETIC-REPRODUCIBILITY.md and the dated targeted IPA note now state this reconciliation. See the canonical audit for per-form evidence and acceptance criteria.
