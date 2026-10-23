@@ -70,3 +70,22 @@ The page describes these as marginal/edge syllables of Modern Standard Chinese a
 Therefore this is recorded as a **direct-IPA candidate requiring provenance verification**, not as an accepted primary-source adjudication. Do not change runtime behavior on the basis of this page alone. The next concrete research action is to trace the table's IPA column to its cited/underlying Mainland phonetic dictionary or scholarly phonetic description, or locate a documented Mandarin recording/corpus token whose transcription convention is inspectable. If that provenance cannot be established, keep the two forms unresolved.
 
 This distinction avoids two opposite errors: ignoring a useful, specific IPA lead, and treating an uncited collaborative table as independently verified phonetic ground truth.
+
+
+## Independent corroboration pass — 2026-10-23
+
+A second targeted search found two additional sources that narrow the uncertainty but do **not** yet justify runtime acceptance:
+
+1. **Unicode WG2 document N4717, “Bopomofo”** ([PDF](https://www.unicode.org/L2/L2016/16106-n4717-bopomofo.pdf), page 2) tabulates syllabic-nasal spellings hm and hng alongside the corresponding Zhuyin forms used in *Xiàndài hànyǔ cídiǎn* (现代汉语词典) and *Guóyǔ cídiǎn* (國語辭典). This is a standards-working-group document useful for cross-checking dictionary notation and the distinction between Mainland and Taiwan dictionary conventions. It does not supply the target IPA strings, nor does the table alone establish a specific acoustic realization.
+
+2. A searchable digitization of *Xinhua Dictionary* ([PDF](https://math.wvu.edu/~hlai2/My_Dictionary_CHN.pdf), printed page 184) glosses hm as an interjection formed by h plus a pure bilabial nasal, and hng as an interjection formed by h plus a pure velar nasal. This gives a dictionary-level articulatory description, but the accessible text does not state the exact IPA sequence, voice quality, duration, tone, or contextual variation. Because this is a digitized copy hosted outside the publisher's own platform, it is a lead for verification, not a rights-cleared project dataset.
+
+The cross-check strengthens the conclusion that these are recognized exceptional syllabic-nasal/interjection readings rather than accidental romanization strings. It still does not independently establish that the Wikibooks values m̥m̩ and ŋ̊ŋ̍ are the right project-wide targets for the same variety, register and context. In particular, a descriptive “h + nasal” spelling is not sufficient to infer whether h represents a separate segment, a voiceless onset/transition, or another dictionary-specific convention.
+
+### Updated evidence classification
+
+- Orthographic/lexical existence: **corroborated** by romanization discussion and dictionary-related sources.
+- Direct candidate IPA: **located** in Wikibooks, with explicit Modern Standard Chinese scope.
+- Independent primary-source confirmation of those exact IPA values: **not yet established**.
+- Runtime decision: **unchanged; both keys fail closed**.
+- Next acceptance action: inspect the cited dictionary entry in an authoritative edition and its phonetic notation/legend, or locate a peer-reviewed phonetic analysis or documented Mandarin audio token. Record the exact edition/page/item and notation convention before changing the mapping. The Unicode WG2 table is a corroborating reference, not a substitute for phonetic verification.
