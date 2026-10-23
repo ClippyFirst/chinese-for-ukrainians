@@ -35,7 +35,7 @@ const token = (source, pinyin, type = 'han') => ({
 });
 
 test('renders one Ukrainian system independently', () => {
-  const result = transcribe([token('chong', 'chong2')], 'kirnosova', mappings);
+  const result = transcribe([token('chong', 'chong2')], 'kirnosova', ipaMappings);
   assert.equal(result.text, 'чу́н');
   assert.deepEqual(result.issues, []);
 });
@@ -58,6 +58,6 @@ test('preserves punctuation and Latin text around Chinese spans', () => {
     token('bei', 'bei3'),
     token('!', '!', 'text'),
     token('world', 'world', 'text'),
-  ], 'kirnosova', mappings, { showTones: false });
+  ], 'kirnosova', ipaMappings, { showTones: false });
   assert.equal(result.text, 'бей!world');
 });
