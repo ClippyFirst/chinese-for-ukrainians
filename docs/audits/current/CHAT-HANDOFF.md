@@ -162,3 +162,12 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - Lee Mikyoung (2023) studies Chinese dictionary interjections broadly but the accessible abstract does not supply exact IPA for 噷/`hm` or 哼/`hng`. The 2026 Tongji paper's 啊/嗯 repair data and Taiwanese [hãː] are outside the target source scope.
 - This source-scope distinction is recorded in the evidence review. No runtime/data/tests changed; both keys remain unsupported.
 - Workflow #40026265146 was still running browser regression tests on prior head `286111cf361ba179754f1dea0cec448ec9bd6783`; the latest documentation-only commits need a new exact-head run.
+
+
+## Final exact-head CI result — 2026-10-24
+
+- Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40026479394) is **completed / success** on exact branch head 7351044c8c051a248c6990c4b86d087b24266a35. All 16 principal verification steps passed, including unit/integration tests, acoustic input guards, production build, generated-map determinism, conversion benchmark, release constraints, browser installation/regression tests, and QA/dependency-audit artifact uploads.
+- This supersedes the earlier note that the run was still in progress. Automated CI status is now exact-head verified for this branch state.
+- It does **not** establish phonetic truth: hm → m̥m̩ and hng → ŋ̊ŋ̍ remain unverified candidate transcriptions, both keys remain unsupported, and the adapter must fail closed.
+- PR #40 remains an evidence-review PR, not a runtime change. Do not merge solely because CI is green while the primary phonetic evidence criterion remains blocked.
+- Remaining release gates: authoritative phonetic provenance for the two forms; source-data rights review; legacy source-image collation; manual visual/accessibility/device QA. Visual-QA screenshots uploaded by CI are evidence for inspection, not a substitute for manual review.
