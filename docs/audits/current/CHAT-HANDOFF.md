@@ -114,3 +114,11 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - This is a concrete direct-IPA lead, not yet independently verified primary evidence: the page does not cite the dictionary/study/audio/corpus behind those values. Exact-string web searches did not find a second primary Mandarin source for both forms; a similar Teochew result is not transferable to Mandarin.
 - Updated [the evidence review](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md) and [master execution register](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md). Runtime mappings and tests remain unchanged; `hm` and `hng` stay unresolved until provenance is established.
 - Branch `research/consonant-only-interjection-evidence-2026-10-23`, latest commit to be verified after CI; PR #40 remains the documentation-only research vehicle. Exact-head Quality run for prior PR head `d65750bb3349331aeed6a3024a93ffe082aeaacb` passed (run [40020859654](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40020859654)); this does not cover the subsequent documentation commits.
+
+
+### Independent source cross-check — 2026-10-23
+
+- Quality workflow [#40021606811](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40021606811) completed successfully on commit `fc4eb62417383387160e7c8a8af391f9ab143009`.
+- Further evidence search found [Unicode WG2 N4717 (Bopomofo)](https://www.unicode.org/L2/L2016/16106-n4717-bopomofo.pdf), p. 2: it cross-tabulates hm/hng with dictionary Zhuyin forms, but does not give IPA. A searchable [Xinhua Dictionary digitization](https://math.wvu.edu/~hlai2/My_Dictionary_CHN.pdf), printed p. 184, describes hm as h + a bilabial nasal and hng as h + a velar nasal, but the accessible text does not settle exact IPA, voice quality or contextual variation.
+- Updated the evidence review and master register to capture these sources. They corroborate the dictionary/lexical status, not the exact Wikibooks IPA candidates. Runtime and tests remain unchanged; do not mark hm/hng supported until an authoritative notation key, primary phonetic description, or inspectable Mandarin audio/corpus record resolves the realization.
+- The latest documentation commits need their own exact-head Quality result; the previous successful run does not automatically verify later commits.
