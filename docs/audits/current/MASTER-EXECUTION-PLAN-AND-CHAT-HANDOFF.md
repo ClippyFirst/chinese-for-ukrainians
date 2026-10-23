@@ -229,3 +229,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 | C2U-CI-014 | Finish the merged PR #39 documentation-only Quality workflow | IN_PROGRESS at last check | Run [40019784515](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019784515): unit/integration tests, acoustic guards, production build, generated-map determinism, benchmark and release constraints succeeded; browser installation was still running at last query. Do not claim final workflow success until checked again. |
 
 The evidence review changed no runtime, CSV, generated mapping or tests. The Firecrawl search service was unavailable due to exhausted account credits; ordinary web search did locate the romanization PDF. The lack of direct IPA evidence is the reason for retaining unsupported behavior, not a claim that no further literature or audio can exist. Global open gates remain source-image collation, third-party rights clearance, live visual QA, and manual accessibility/device QA. Keep public beta / research-preview status.
+
+
+## Direct-IPA lead follow-up — 2026-10-23
+
+| ID | Task | Status | Evidence / acceptance |
+|---|---|---|---|
+| C2U-IPA-014 | Trace newly found explicit IPA candidates for Mandarin `hm`/`hng` to a primary or independently inspectable phonetic source | IN_PROGRESS | [Wikibooks edge-phonology appendix](https://zh.wikibooks.org/wiki/现代标准汉语/附录/边缘音系) explicitly lists `hm → m̥m̩` and `hng → ŋ̊ŋ̍` as IPA values for marginal Modern Standard Chinese forms. It is a useful direct-IPA lead, but the page does not cite the underlying dictionary, phonetic study, audio or corpus. A targeted exact-string search did not independently locate a primary Mandarin source corroborating both forms; the superficially similar Teochew result is a different variety and is not admissible as Mandarin evidence. Acceptance: establish the IPA table's provenance or find a documented Mandarin audio/corpus record, then review scope/variation before runtime changes. Until then, preserve fail-closed behavior. |
+
+The evidence-review document and handoff now record this lead and explicitly distinguish a useful direct-IPA candidate from accepted primary-source evidence. No runtime, CSV, generated mapping, or test expectation was changed. Do not promote `hm` or `hng` from unsupported until the source-provenance acceptance criterion is met.
