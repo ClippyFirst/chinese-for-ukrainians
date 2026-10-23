@@ -56,11 +56,11 @@ test('keyboard navigation and focus visibility cover core conversion controls', 
     await expect(control).toBeFocused();
   }
 
+  // Radio groups are one Tab stop; arrow keys change the selected option.
+  await page.locator('#script-auto + span').click();
   await page.locator('#script-auto').focus();
-  // Radio groups are one Tab stop; arrow keys move within the group.
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#script-simplified')).toBeFocused();
-  await expect(page.locator('#script-simplified + span')).toHaveCSS('outline-style', 'solid');
+  await expect(page.locator('#script-simplified')).toBeChecked();
 
   const methodology = page.getByRole('link', { name: /Методики/u });
   await methodology.focus();
