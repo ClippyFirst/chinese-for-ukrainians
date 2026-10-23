@@ -37,7 +37,7 @@ For `ong`, `iong`, `üan`, and `er`, use [the literature-based adjudication clos
 
 ## Remaining tasks — precisely scoped
 
-1. **Edge IPA representation:** adjudicate `ê`, `hm`, `hng`, and `yo) only. For each form, record scope/attestation, source evidence, selected segmental IPA (or explicit exclusion), uncertainty, and regression test. Do not invent values to turn the audit green.
+1. **Edge IPA representation:** adjudicate `ê`, `hm`, `hng`, and `yo` only. For each form, record scope/attestation, source evidence, selected segmental IPA (or explicit exclusion), uncertainty, and regression test. Do not invent values to turn the audit green.
 2. **Primary image/source check:** where the old register says Kirnosova (2009) OCR is unreliable, inspect the original table image for `hm` and `hng`; do not treat secondary reproductions as primary confirmation.
 3. **Word-level corpus:** build source-grounded word-level regression cases for pronunciation selection, polyphony, tone and segmentation. This is separate from the four edge keys.
 4. **Rights review:** complete source-by-source reuse/licensing review; repository MIT does not automatically cover reproduced datasets.
