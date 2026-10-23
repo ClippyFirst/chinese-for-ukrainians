@@ -139,3 +139,15 @@ Quality workflow [#40023287308](https://github.com/ClippyFirst/chinese-for-ukrai
 - Exact IPA target and provenance: **BLOCKED / evidence-limited**; acceptance criterion remains an authoritative phonetic notation or primary phonetic study / inspectable recording with documented conventions.
 - Runtime/data/tests: unchanged; both keys remain unsupported.
 - Do not merge PR #40 solely because CI is green. Keep the public beta/research-preview status and other independent release gates (data rights, legacy source-image collation, manual visual/accessibility/device QA).
+
+### Scope control: conversational `hm` research is not evidence for lexical `hm` (2026-10-24)
+
+A targeted search surfaced Qi Liu, “Prosody and Function of hm in Mandarin Conversation: Minimal Affirmatives vs. Backchannels” (SSRN, posted 2025-08-30; [paper landing/PDF](https://papers.ssrn.com/sol3/Delivery.cfm/9177254b-1b8d-460b-b9b4-07324f648523-MECA.pdf?abstractid=5421590&mirid=1)). Its abstract describes a corpus of 150 telephone conversations and prosodic comparisons of conversational `hm` tokens (pitch, duration, intensity). The PDF endpoint returned HTTP 403 in this research session, so methods, transcription conventions, and individual token realizations could not be inspected.
+
+**Scope decision:** do not treat this study as direct evidence for the dictionary/romanization exceptional interjection `hm` associated with 噷. A discourse token conventionally written `hm` may be a hum-like nasal vocalization with context-dependent phonation/prosody; the shared Latin string alone does not establish that it is the same lexical item or phonetic target as consonant-only Pinyin `hm`. The study's accessible abstract does not give a directly inspectable IPA target for 噷, nor does it identify its tokens as that dictionary item. It is therefore a lead for a future source check, not accepted phonetic evidence for the converter.
+
+A 2023 peer-reviewed study, Lee Mikyoung, “A study of the characteristics and types of interjections in Chinese” (*Journal of Chinese Language and Literature* 94:287–315, [DOI](https://doi.org/10.15792/clsyn..94.202312.287)), studies the Modern Chinese Dictionary's interjection inventory and notes irregular phonetic combinations in interjections. The accessible abstract does not supply an IPA treatment of the specific entries 噷/`hm` and 哼/`hng`; it cannot validate either proposed mapping.
+
+A 2026 article hosted by Tongji University on conversational repair focuses on 啊 and 嗯 and discusses a Taiwanese [hãː] repair interjection. This is a different interactional phenomenon and is not evidence for Mandarin lexical `hm`/`hng` in the converter. [Source](https://wkxuebao.tongji.edu.cn/dqml/n2026/d37j_d1q/yyxyj.htm).
+
+These exclusions are deliberate evidence hygiene: near-matches, discourse spellings, cross-dialect forms, and studies about interjection function must not be promoted to a source-specific IPA mapping without token-level identity and transcription provenance.
