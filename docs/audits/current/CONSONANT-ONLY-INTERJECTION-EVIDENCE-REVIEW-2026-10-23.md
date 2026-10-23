@@ -151,3 +151,10 @@ A 2023 peer-reviewed study, Lee Mikyoung, “A study of the characteristics and 
 A 2026 article hosted by Tongji University on conversational repair focuses on 啊 and 嗯 and discusses a Taiwanese [hãː] repair interjection. This is a different interactional phenomenon and is not evidence for Mandarin lexical `hm`/`hng` in the converter. [Source](https://wkxuebao.tongji.edu.cn/dqml/n2026/d37j_d1q/yyxyj.htm).
 
 These exclusions are deliberate evidence hygiene: near-matches, discourse spellings, cross-dialect forms, and studies about interjection function must not be promoted to a source-specific IPA mapping without token-level identity and transcription provenance.
+
+
+## Exact-head automated verification closure — 2026-10-24
+
+Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40026479394) completed successfully on commit 7351044c8c051a248c6990c4b86d087b24266a35, the branch head for this evidence review. All 16 principal verification steps passed: dependency installation/audit disposition, unit and integration tests, acoustic-pipeline input guards, production build, generated-map determinism, conversion benchmark, release constraints, browser installation/regression tests, and QA/dependency-audit artifact uploads.
+
+This closes the **automated exact-head CI** question only. It does not validate the proposed IPA strings or complete manual visual/accessibility/device review. The source-provenance blocker is unchanged: hm → m̥m̩ and hng → ŋ̊ŋ̍ remain unverified candidates, and both runtime keys must remain unsupported. No runtime/data/test behavior was changed by this review.
