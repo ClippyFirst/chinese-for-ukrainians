@@ -23,7 +23,7 @@ Chinese input
 → DOM UI / copy / speech controls
 ~~~
 
-**Important architecture boundary:** IPA and Ukrainian outputs are currently parallel outputs from canonical pronunciation tokens. Each resolved token now carries a segmental IPA key, and the Ukrainian renderers use collision-checked IPA-keyed maps derived from the canonical CSV. Tone remains separate metadata. The four unsupported IPA forms remain unresolved; there is no Pinyin fallback.
+**IPA adapter boundary:** each resolved token carries a segmental IPA key, and Ukrainian renderers consume that key through collision-checked maps derived from the canonical CSV. Tone remains separate metadata. The four unsupported IPA forms remain unresolved; there is no Pinyin fallback.
 
 ## Main files
 
