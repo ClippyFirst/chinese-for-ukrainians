@@ -31,6 +31,12 @@
 - Added a GitHub Actions artifact step named `redesign-visual-qa` with a seven-day retention period. The artifact is emitted even if later workflow steps fail, when screenshots exist.
 - This change makes screenshot evidence collectable despite local DNS and screenshot-service limitations. It does **not** itself count as manual visual approval. The new workflow run must pass, the artifact must exist, and the images must be inspected before the visual gate can be closed.
 
+## Visual evidence test failure and correction — 2026-10-23
+
+- The first run of the new screenshot test failed before producing screenshots: Playwright's non-exact role locator `/Китайський текст/u` matched both the page-level H1 and the input-section H2. This was a **test-selector ambiguity**, not evidence of a converter rendering defect.
+- Corrected the assertion to target the exact accessible heading name `Китайський текст` with `exact: true`. This uniquely selects the input-section H2 and preserves the separate page H1.
+- Follow-up CI was triggered by the fix. The visual-evidence gate remains blocked until that run completes successfully, the artifact is present, and the captured images are inspected.
+
 ## Manual visual QA still required
 
 1. Capture the converter and methodology pages at 320, 360, 390, 430 and desktop widths.
