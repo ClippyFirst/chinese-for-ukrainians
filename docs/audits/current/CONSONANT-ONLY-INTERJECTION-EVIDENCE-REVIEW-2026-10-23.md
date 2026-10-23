@@ -170,3 +170,14 @@ A targeted follow-up checked sources that could help prevent a false cross-varie
 - The [Shaanxi Normal University overview](https://yywz.snnu.edu.cn/info/1116/2092.htm) and [Inner Mongolia Normal University overview](https://pc.imnu.edu.cn/info/1063/1097.htm) independently describe hm/hng as exceptional consonant-only syllables; neither supplies direct IPA for these exact readings.
 
 **Updated conclusion:** the additional sources sharpen lexical and dialect scope but do not move the IPA acceptance gate. The proposed m̥m̩ and ŋ̊ŋ̍ remain candidates reported by a community-maintained appendix, not independently validated targets. Keep both mappings unsupported until a primary phonetic source or a properly documented, inspectable recording resolves the actual segmental/phonation sequence and reading identity.
+
+
+### Adjacent release-gate observation: visual-QA screenshot inspection — 2026-10-24
+
+While checking the CI artifact, I inspected the generated converter and methodology screenshots. This is a limited static-image review, not a claim of live-device/accessibility certification.
+
+- `methodology-320.png` and `methodology-360.png`: both comparison tables extend beyond the visible viewport; right-hand columns are clipped in the captured images. This is an actionable responsive-layout issue.
+- Acceptance test: at 320px and 360px, all table content must remain reachable and readable using a keyboard-accessible horizontal-scroll container with a clear affordance, or a responsive semantically equivalent layout. Add a regression test and inspect regenerated screenshots.
+- `converter-results-320.png`: result cards stack vertically without an obvious similar clipping issue. `methodology-desktop-1280.png`: comparison table appears fully visible at desktop width.
+
+This finding is recorded as an independent release blocker, not included in the IPA-only PR's runtime scope. It does not change the phonetic evidence disposition for `hm` or `hng`.
