@@ -130,3 +130,11 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - A [2026 report quoting the Xinhua Dictionary revision team](https://cul.china.com.cn/2026-06/12/content_43447236.htm) confirms that pure-consonant interjections including hm/hng are recognized and points to phonetics textbooks, but does not provide the needed IPA or a specific textbook page.
 - This strengthens lexical/articulatory triangulation but does not independently verify Wikibooks' exact IPA strings. Runtime remains unchanged and fail-closed. Next step is authoritative Xinhua 13th-edition entry/notation legend or a traceable phonetics-textbook passage, with exact edition/page, before deciding mapping scope.
 - Quality runs for the preceding commits are still not proof for this newest commit. Check the exact-head workflow before closing PR #40.
+
+
+### IPA candidate provenance finding — 2026-10-23
+
+- Exact-string search located a 2017 personal experimental article, [以《切韵》风格划分普通话韵部的尝试](https://read01.com/zh-sg/O308A7z.html), listing the same `hm`/`hng` IPA strings as Wikibooks. The author explicitly says the work is a provisional transcription of their own accent and says the special distinctions were inferred from spelling and effectively made to fill categories. This is **not** independent phonetic validation and raises a concrete circular-provenance risk.
+- Wikibooks revision history shows the edge-phonology appendix was split from the general syllable page on 2026-07-23; the visible page does not cite a primary phonetic source. [IPA historical charts](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_H/IPA_charts_H.html) only provide general historical notation background, not Mandarin-specific confirmation.
+- Updated the evidence review and master register. Exact IPA remains unverified; runtime unchanged, both keys still fail closed. Next decisive step is to inspect authoritative *Xinhua Dictionary* phonetic notation/legend or a primary phonetic analysis / documented Mandarin recording, not to count repeated copies of the same IPA strings as corroboration.
+- CI on commit `fc4eb62417383387160e7c8a8af391f9ab143009` passed, but that run predates these documentation changes. Latest head still needs its own final Quality conclusion.
