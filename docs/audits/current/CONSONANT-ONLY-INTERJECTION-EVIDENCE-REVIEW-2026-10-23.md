@@ -54,3 +54,19 @@ For each proposed mapping, record the exact source passage or stable item identi
 No source code, mapping data, generated artifacts, or tests are changed by this evidence review. The existing inventory remains 421 Pinyin aliases, 419 IPA-supported keys, exactly two intentionally unsupported keys (`hm`, `hng`), and zero IPA-key collisions, as tested by the existing Quality workflow on the implementation PR.
 
 This finding does not close the separate legacy Ukrainian source-image collation, third-party data-rights review, live visual/device QA, or publication-readiness gates. The service remains a public beta / research preview; no stronger release claim follows from these sources.
+
+
+## Additional direct-IPA lead found during follow-up — 2026-10-23
+
+A targeted search located a Chinese Wikibooks appendix, [现代标准汉语/附录/边缘音系](https://zh.wikibooks.org/wiki/现代标准汉语/附录/边缘音系), whose table explicitly labels an IPA column and lists:
+
+- `hm` → `m̥m̩`, illustrated with 噷 and a high-level tone marker in the accompanying Chinese transcription;
+- `hng` → `ŋ̊ŋ̍`, illustrated with 哼 as an exceptional interjectional reading.
+
+The page describes these as marginal/edge syllables of Modern Standard Chinese and distinguishes Mainland dictionary coverage from Taiwan-standard coverage. This is materially stronger than spelling-only attestation because it supplies actual IPA strings and a stated scope.
+
+**Evidence quality limitation:** the page is collaboratively edited and does not cite the primary dictionary, phonetic study, recording, or corpus from which these exact IPA strings were taken. A web search for the exact IPA strings did not independently surface a primary Mandarin source corroborating both mappings. A superficially similar `hng` IPA entry in a Teochew resource concerns a different Sinitic variety and must not be treated as Mandarin evidence. Mandarin dictionaries found in this pass corroborate the existence and functional use of these interjections, but the accessible entries do not themselves establish these exact IPA strings.
+
+Therefore this is recorded as a **direct-IPA candidate requiring provenance verification**, not as an accepted primary-source adjudication. Do not change runtime behavior on the basis of this page alone. The next concrete research action is to trace the table's IPA column to its cited/underlying Mainland phonetic dictionary or scholarly phonetic description, or locate a documented Mandarin recording/corpus token whose transcription convention is inspectable. If that provenance cannot be established, keep the two forms unresolved.
+
+This distinction avoids two opposite errors: ignoring a useful, specific IPA lead, and treating an uncited collaborative table as independently verified phonetic ground truth.
