@@ -106,3 +106,11 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - The attempt to search more sources through the connected Firecrawl service failed because its account has insufficient credits. This is a tool limitation, not evidence that no sources exist. Public web search did find the PDF above.
 - Verification status: documentation-only branch; no local clone or npm/browser execution was available. Quality run `40019784515` for merged PR #39 was still in progress at the last check (unit/integration, acoustic input guards, build, generated-map determinism, benchmark and release constraints passed; browser installation was still running). Do not claim that workflow completed.
 - Global release gates remain open: primary-page source collation for legacy Ukrainian cells, source-by-source rights review, manual accessibility/device QA, and visual QA in a live browser. Product remains public beta / research preview.
+
+
+## Direct IPA source lead — 2026-10-23
+
+- Follow-up on PR #40 found the [Wikibooks edge-phonology appendix](https://zh.wikibooks.org/wiki/现代标准汉语/附录/边缘音系), which explicitly lists `hm → m̥m̩` and `hng → ŋ̊ŋ̍` in an IPA column for marginal Modern Standard Chinese forms.
+- This is a concrete direct-IPA lead, not yet independently verified primary evidence: the page does not cite the dictionary/study/audio/corpus behind those values. Exact-string web searches did not find a second primary Mandarin source for both forms; a similar Teochew result is not transferable to Mandarin.
+- Updated [the evidence review](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md) and [master execution register](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md). Runtime mappings and tests remain unchanged; `hm` and `hng` stay unresolved until provenance is established.
+- Branch `research/consonant-only-interjection-evidence-2026-10-23`, latest commit to be verified after CI; PR #40 remains the documentation-only research vehicle. Exact-head Quality run for prior PR head `d65750bb3349331aeed6a3024a93ffe082aeaacb` passed (run [40020859654](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40020859654)); this does not cover the subsequent documentation commits.
