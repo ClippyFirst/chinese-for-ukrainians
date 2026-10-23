@@ -205,3 +205,16 @@ No release claim or production deployment claim is made by this branch.
 The GitHub repository interface was used to inspect the current tree, package scripts, README, master/handoff, QA plan, roadmap, release checklist, duplicate user guide and design QA record. No local clone or shell runtime was available, so no local npm command is claimed as executed. Verify internal links and the final branch's Quality workflow before merge.
 
 **Disposition:** documentation/repository-hygiene change only, not a product release. Keep public beta / research preview status.
+
+
+## IPA-first adapter implementation — 2026-10-23
+
+| ID | Task | Status | Acceptance evidence |
+|---|---|---|---|
+| C2U-IPA-007 | Inventory audit of IPA key coverage and collisions | DONE_VERIFIED | Quality run #40010524093: 421 aliases, 417 supported keys, 4 unsupported, 0 collision groups; structural finding only, not a phonetic accuracy claim. |
+| C2U-IPA-008 | Route Ukrainian output through IPA-keyed adapters | IN_PROGRESS | PR #34 adds segmental IPA to resolved tokens, per-system IPA-keyed maps, source provenance, and a fail-fast collision guard. Requires exact-head Quality success before merge. |
+| C2U-IPA-009 | Adjudicate unsupported forms | TODO | Acceptance: identify the exact four keys from the executable audit and resolve each against primary phonetic/transcription sources, or keep explicitly unresolved. No Pinyin fallback. |
+| C2U-LIC-010 | Source-by-source rights review | BLOCKED | Reuse/redistribution evidence required for every reproduced source; citations alone are not a rights grant. |
+| C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
+
+The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence source. Runtime output lookup now uses the segmental IPA key and carries source-row/Pinyin provenance. Unsupported IPA keys remain unresolved. Do not describe this as full linguistic validation; the adapter boundary is an architectural property, while each mapping still needs evidence.
