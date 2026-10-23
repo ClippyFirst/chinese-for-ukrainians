@@ -17,7 +17,7 @@ The deterministic audit `scripts/audit-ipa-adapter-readiness.mjs` reports 421 al
 | 126 | `hng` | **Unsupported in runtime IPA mapping** | CSV values are Kirnosova `х`, Kirnosova–Tsisar `гм`, NANU blank. The earlier PDF extraction produced a Latin-looking glyph and was correctly not treated as reliable phonetic evidence; secondary comparison corroborated the Ukrainian strings, but primary page-image verification remained open. | Do not equate OCR output with IPA. Verify the source cell and choose a representation only with phonetic evidence for this marginal/interjectional form. Preserve the two distinct Ukrainian system values and NANU blank. |
 | 378 | `yo` | **Unsupported in runtime IPA mapping** | The key has an existing row in the Ukrainian inventory but is outside the ordinary final aliases implemented by the finite IPA function. It has been included in prior edge-form reviews; a generic `y + o` decomposition would be an unsupported assumption. | Inspect existing row/source evidence and decide whether the project’s declared Mandarin scope includes this form. If included, record the exact segmental analysis before adding support; otherwise keep it explicitly unresolved/out-of-scope. |
 
-The exact row numbers above are the CSV's one-based displayed row numbers (including the header convention used by the audit). Structural support counts do **not** prove phonetic correctness.
+The row numbers above are the identifiers in the CSV's first column (№), not physical file-line offsets. Structural support counts do **not** prove phonetic correctness.
 
 ## Previously reviewed forms — do not reopen without a reason
 
