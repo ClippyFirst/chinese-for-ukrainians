@@ -167,3 +167,41 @@ No release claim or production deployment claim is made by this branch.
 - Added root `design-qa.md` with `final result: blocked`. The repository has a written design contract but no pixel-specific source mockup. Local browser access is unavailable due GitHub DNS failure; the available Firecrawl screenshot request could not run because the connected account reported insufficient credits. Code review and color-ratio calculations are not a substitute for visual QA.
 - CI run #331, candidate `958d75488fcedb3a5298763a419e081ae16b188a`: all checks completed successfully, including Playwright (38 passed, 0 failed). This predates the expanded mobile-width layout assertions. CI run #332 on code commit `b47e1caa9342fddd1fafed5427328f8a0cb98cca` completed successfully, including the expanded Playwright checks (38 passed, 0 failed). CI run #333 passed on documentation-only commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7`; CI run #335 also passed all 38 browser tests on later branch head `fe71f0ce042e67af6d9d8d9b01d9a6e8b4602213`. Subsequent commits update only QA/handoff documents, not implementation or tests.
 - After this documentation commit, re-read the PR head and verify the latest CI run rather than reusing results from the earlier SHA.
+
+
+## Repository hygiene and documentation consolidation — 2026-10-23
+
+**Starting main SHA:** 36cb27b3fd4b46b37ed1735269f5ebb3a7b28cc4.  
+**Dedicated branch:** chore/repository-hygiene-docs-2026-10-23.
+
+### Task ledger
+
+| ID | Task | Status | Evidence / acceptance |
+|---|---|---|---|
+| DOC-HYGIENE-001 | Make README a concise entry point and document actual output architecture. | IN_PROGRESS until exact-head CI | README now links to docs/INDEX.md and states that IPA and Ukrainian outputs are parallel; Ukrainian values are looked up from independent CSV columns. |
+| DOC-HYGIENE-002 | Establish one documentation index and remove duplicate end-user guide. | IN_PROGRESS until link check | docs/INDEX.md maps canonical docs by purpose; docs/USAGE.md duplicated docs/USER-GUIDE.md and is removed after checking both contents. The IPA limitation remains documented in USER-GUIDE.md. |
+| DOC-HYGIENE-003 | Move design QA evidence into the canonical audit area and reconcile stale status text. | IN_PROGRESS until link check | Design QA is moved to docs/audits/current/DESIGN-QA-2026-10-22.md; dated workflow results remain historical and do not prove current branch CI. |
+| DOC-HYGIENE-004 | Reconcile QA plan, roadmap and release checklist with current scope. | IN_PROGRESS until exact-head CI | Documents now describe checks and acceptance criteria rather than implying old CI results certify the current SHA. |
+| DOC-HYGIENE-005 | Remove only artifacts proven duplicate or misplaced. | IN_PROGRESS until tree check | Remove duplicate docs/USAGE.md and relocate root design-qa.md; retain dated phonetic audits, source ledgers, differential CSV, acoustic scripts, test fixtures, generated map and historical plans because they provide evidence, test coverage, build inputs or decision provenance. |
+
+### Verified facts and invariants
+
+- Open PRs at inspection: PR #32 (header alignment) and stale PR #5 (removes required IPA output/navigation; do not merge as-is). PR #32 is left untouched to keep changes isolated.
+- src/generated/transcription-map.js is build output regenerated from zh-in-ua.csv, not an obsolete artifact.
+- The 403-key UW differential, phonetic source ledger, dated IPA adjudication notes, and research/ipa-acoustic directory are evidence assets; dates and non-runtime status do not make them unused.
+- No linguistic mappings, source CSV values, IPA conventions, runtime application code, dependency versions, generated mapping, or deployment configuration are intentionally changed by this documentation cleanup.
+
+### Remaining blockers
+
+1. **IPA architecture:** Ukrainian systems are looked up from three CSV columns using Pinyin keys; they do not consume IPA. A true IPA-first adapter boundary requires a separately designed and tested architecture change.
+2. **Source-data rights:** MIT code licensing does not establish rights for every third-party source/dataset.
+3. **Manual QA:** automated browser tests do not establish complete screen-reader, physical speech-output, or clipboard-permission behavior.
+4. **Uncertainty corpus:** add a stable rare/unresolved-form fixture only when a source-grounded example is available.
+5. **Citation metadata:** do not add author/ORCID fields without verified attribution.
+6. **Exact-head acceptance:** run the Quality workflow for this branch; historical run #353 is not a substitute.
+
+### Verification record
+
+The GitHub repository interface was used to inspect the current tree, package scripts, README, master/handoff, QA plan, roadmap, release checklist, duplicate user guide and design QA record. No local clone or shell runtime was available, so no local npm command is claimed as executed. Verify internal links and the final branch's Quality workflow before merge.
+
+**Disposition:** documentation/repository-hygiene change only, not a product release. Keep public beta / research preview status.

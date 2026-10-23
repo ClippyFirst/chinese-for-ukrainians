@@ -1,20 +1,40 @@
-# Static release checklist
+# Release checklist
 
-Before publishing a build:
+Поточний статус продукту: **public beta / research preview**. Цей список визначає умови наступного релізного рішення; минулі CI результати — історичні докази, а не гарантія стану нового commit.
 
-1. `npm ci` succeeds from a clean checkout using the committed lockfile.
-2. `npm run validate:data` passes against the current `zh-in-ua.csv`.
-3. `npm run build` regenerates mappings from the CSV; `git diff --exit-code -- src/generated/transcription-map.js` confirms generated output is committed and reproducible.
-4. `npm test` passes.
-5. `npm run build` produces `dist/` without a backend.
-6. `npm run check:release` reports no network/evaluation/unsafe-HTML primitives in the application source.
-7. `npm run benchmark` records conversion timings for 1, 10, 100 and 1000 characters.
-8. `npm run test:browser` passes on Chromium and the mobile viewport (the CI config runs Chromium and iPhone 13 emulation).
-9. Production output contains no analytics, telemetry, runtime API endpoint, or user-text upload path.
-10. The final UI is manually checked against `docs/superpowers/specs/2026-09-27-chinese-converter-design.md`, including mobile layout and keyboard/focus behavior.
+## Автоматизовані гейти
 
-The current GitHub Actions workflow runs the unit/integration suite, acoustic-pipeline input guards, build/data validation and generation, generated-file drift check, benchmark, release constraints, and Chromium/WebKit browser tests. A green workflow does not replace manual inspection of the deployed production site.
+- [ ] Чисте встановлення з committed lockfile: npm ci.
+- [ ] npm run validate:data успішний.
+- [ ] npm test успішний.
+- [ ] npm run build успішний і генерує карту лише з CSV.
+- [ ] git diff --exit-code -- src/generated/transcription-map.js успішний після build.
+- [ ] npm run check:release успішний.
+- [ ] npm run benchmark виконаний, результат прив'язаний до SHA.
+- [ ] npm run test:browser успішний на всіх налаштованих browser projects.
+- [ ] GitHub Actions Quality run зелений на точному кандидатові релізу.
+- [ ] GitHub Pages deployment, якщо публікується, відповідає тому самому SHA.
 
-The release check intentionally treats `fetch`, XHR, WebSocket, `sendBeacon`, `innerHTML`, `eval`, and `new Function` as forbidden in application source. This is a narrow defense-in-depth rule for the static MVP, not a claim that these APIs are universally unsafe.
+## Дані, дослідження й документація
 
-**Reproducibility gate — DONE_VERIFIED (2026-10-21):** the npm-generated lockfile (lockfile v3, 46 package entries) is committed. Both Quality and Pages use `npm ci`. Exact final PR-head Quality checks passed at [run 39598891161](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39598891161), and post-merge Quality [39599148938](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148938) plus Pages deployment [39599148935](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599148935) passed on main SHA `6e4de5f290d14d3c19ca4c7849291f965964bfb9`. The subsequent documentation-only main snapshot `fe382a320ced01c361f8fee7b383bf2e1462fc8d` also passed Quality [39599788240](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599788240) and Pages [39599787730](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39599787730). Manual visual QA, source-data rights clearance and citation metadata remain separate release gates.
+- [ ] CSV має валідну структуру; пропуски й edge keys переглянуті за джерелами, а не заповнені припущеннями.
+- [ ] Джерела, походження даних і права на повторне використання перевірені для кожного стороннього набору/файлу.
+- [ ] README, методологія, user guide, architecture, QA plan та checklist описують однакову фактичну поведінку.
+- [ ] IPA-конвенція має надійні джерела; широке IPA не називається вузькою акустичною транскрипцією.
+- [ ] Відсутні твердження, що green tests доводять лінгвістичну істинність.
+
+## Ручні перевірки
+
+- [ ] Homepage і methodology перевірені в реальному браузері: 320/360/390/430/1280 CSS px.
+- [ ] Keyboard-only/focus, screen-reader basics, clipboard, приклад/очищення, script selection, незалежні tone toggles та speech output перевірені.
+- [ ] Невизначеність/помилки, довгий mixed-script текст, console errors і горизонтальний overflow перевірені.
+- [ ] Screenshot evidence і відомі обмеження додані до QA record.
+
+## Release metadata та права
+
+- [ ] Авторство, версія й citation metadata підтверджені, а не вгадані.
+- [ ] Ліцензія коду чітко відділена від ліцензій сторонніх даних і цитованих матеріалів.
+- [ ] Release notes описують scope та обмеження; тег/DOI вказуються лише після фактичного створення.
+- [ ] Повторне збирання з чистого checkout відтворює generated map і production build.
+
+Застереження: release checker забороняє певні мережеві, evaluation та unsafe-HTML примітиви в application source як вузький захист для статичного MVP; це не універсальна оцінка безпеки всіх API.

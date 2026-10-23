@@ -1,61 +1,24 @@
-# Chinese for Ukrainians — Roadmap
+# Дорожня карта Chinese for Ukrainians
 
-## Phase 0 — Foundation — complete
+Це короткий перелік майбутніх робіт, а не альтернативний master register. Пріоритети та докази приймання ведуться в [актуальному реєстрі](./audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md).
 
-- product requirements;
-- architecture;
-- visual system;
-- current CSV validation;
-- pronunciation engine and licensing decision;
-- automated test scaffold.
+## Поточний продукт
 
-## Phase 1 — MVP — implemented on the converter branch
+Реалізовано статичний браузерний конвертер китайського тексту в Pinyin, IPA та три незалежні українські системи. Є автоматичне/ручне визначення письма, окремі перемикачі тонів, копіювання, озвучення через браузерний API, методологічна сторінка, перевірка CSV, generated mapping, unit/integration/browser tests, CI та GitHub Pages deployment.
 
-- static page;
-- Chinese input;
-- Auto/Simplified/Traditional selector;
-- Pinyin;
-- Кірносова;
-- Кірносова—Цісар;
-- НАНУ;
-- independent copy controls;
-- responsive/accessibility baseline;
-- explicit uncertainty state;
-- static security/release checks.
+Статус лишається **public beta / research preview**: автоматизовані тести й screenshot review не закривають усі питання фонетичної точності, прав на джерела та ручної доступності.
 
-## Phase 2 — Reliability — partially implemented
+## Пріоритети
 
-Already present:
+1. **Надійність даних:** створити corpus-grounded регресійний набір для невирішених/рідкісних форм; продовжити первинну перевірку значень і джерел без автоматичного заповнення пропусків.
+2. **Архітектурна прозорість:** зберігати документований факт, що IPA та українські результати нині є паралельними виходами; перехід до справжньої IPA-first адаптації — окрема архітектурна зміна з власними критеріями, не косметичний рефакторинг.
+3. **Релізна готовність:** закрити source-by-source права, авторські/цитатні метадані, ручний assistive-technology і real-device smoke test. Не створювати DOI чи релізний тег до реального архівування/релізу.
+4. **Підтримуваність:** тримати README та документацію синхронними з package scripts, тестами й актуальним master register; видаляти лише доведено дубльовані або неактивні артефакти.
 
-- phrase/context-aware pronunciation through the selected engine;
-- Traditional dictionary path;
-- generated CSV mappings;
-- duplicate-key validation;
-- deterministic conversion tests;
-- unresolved/missing mapping metadata.
+## Можливі розширення — не в поточному scope
 
-Still planned:
+- синхронне підсвічування складів та зіставлення трьох українських систем;
+- пояснення конкретного рядка джерела/правила для результату;
+- Cantonese/Jyutping, Zhuyin або інші системи.
 
-- larger curated polyphonic regression corpus;
-- broader golden fixtures sourced from reviewed reference material;
-- automated visual regression.
-
-## Phase 3 — Comparison tooling
-
-- synchronized highlighting by syllable;
-- click a syllable to inspect Pinyin and all three Ukrainian outputs;
-- side-by-side difference emphasis;
-- source row/rule explanation.
-
-## Phase 4 — Optional expansion
-
-Only if there is a clear need:
-
-- Cantonese/Jyutping;
-- additional Ukrainian transcription systems;
-- Belarusian system;
-- Russian Palladius;
-- Wade–Giles;
-- Zhuyin.
-
-These should remain separate modules built on the same canonical pronunciation architecture.
+Не починати розширення, доки пріоритетні acceptance criteria не закриті. Кожне розширення має залишатися окремим модулем і не послаблювати поточні інваріанти.

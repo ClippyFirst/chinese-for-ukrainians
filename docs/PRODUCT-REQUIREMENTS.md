@@ -2,149 +2,91 @@
 
 ## Product summary
 
-A lightweight static web application for converting Chinese text into:
-- Hanyu Pinyin;
-- Ukrainian transcription according to the three systems stored in zh-in-ua.csv:
-  1. Kirnosova;
-  2. Kirnosova–Tsisar;
-  3. NANU.
+A lightweight static browser application that turns Chinese text into five parallel representations:
+1. Hanyu Pinyin;
+2. broad IPA under the project's documented literature-based convention;
+3. Ukrainian transcription — Kirnosova;
+4. Ukrainian transcription — Kirnosova–Tsisar;
+5. Ukrainian transcription — NANU.
 
-The user enters Chinese characters and receives all selected outputs immediately in the browser.
+The Ukrainian systems are independent and correspond to separate columns in zh-in-ua.csv. They are not derived from the IPA output in the current implementation. The tool transcribes pronunciation; it does not translate meaning.
 
 ## Primary user outcome
 
-A Ukrainian-speaking learner, translator, researcher, editor, or reader can paste Chinese text and quickly compare Pinyin with three Ukrainian transcription systems without a server, account, or manual conversion.
+A Ukrainian-speaking learner, translator, researcher, editor or reader can paste Chinese text and compare Pinyin, IPA and three Ukrainian transcription systems in the browser without an account or server-side conversion.
 
 ## MVP scope
 
 ### Input
-- Multiline text area.
-- Paste and keyboard input.
-- Preserve whitespace and punctuation.
-- Chinese text may contain Simplified, Traditional, or mixed characters.
-- Script mode: Auto-detect, Simplified, Traditional.
-- Character counter.
-- Clear input action.
-- Example input action.
-- Pinyin tone display: enabled by default and can be switched off independently of script selection.
-- Ukrainian transcription tone display: enabled by default and can be switched off independently of Pinyin.
+- Multiline text area, paste and keyboard input.
+- Preserve whitespace, punctuation, line breaks, Latin text, numbers and emoji.
+- Simplified, Traditional or mixed Chinese.
+- Script mode: Auto, Simplified, Traditional.
+- Character counter, clear action and example input.
+- Independent Pinyin-tone and Ukrainian-tone display toggles.
 
 ### Output
-Four independently copyable result panels:
-1. Pinyin;
-2. Ukrainian — Kirnosova;
-3. Ukrainian — Kirnosova–Tsisar;
-4. Ukrainian — NANU.
+Five visible representations: Pinyin, IPA and three Ukrainian systems.
+- Pinyin and Ukrainian tone display are independently configurable.
+- Result panels expose copy actions and the interface provides copy feedback.
+- Speech synthesis is offered through the browser's speech API when supported.
+- Empty, unresolved and missing-mapping states must be visible and non-destructive.
+- IPA is a broad project convention, not a promise of universal narrow phonetic accuracy.
+- Ukrainian mapping columns remain independent; no cross-system fallback.
+- The product does not rank the Ukrainian systems as universally superior or translate the source meaning.
 
-- Keep punctuation and whitespace aligned with the source wherever technically possible.
-- Copy buttons for each result.
-- Copy-all action.
-- Empty-state before conversion.
-- Clear error state if pronunciation data cannot be resolved.
-- Clearly distinguish transcription from translation: the application does not translate meaning.
-- The Pinyin copy result must match the currently selected tone-display mode.
+## Script detection
 
-### Script detection
-Auto mode must be deterministic and transparent:
-- Detect characters that are unambiguously Simplified-only or Traditional-only.
-- If only shared characters occur, report Cannot determine rather than inventing certainty.
-- If both exclusive forms occur, report Mixed.
-- Script detection must not alter the input text.
-
-### Non-goals for MVP
-- Translation into Ukrainian.
-- Cantonese.
-- OCR from images.
-- Speech recognition.
-- User accounts.
-- Server-side API.
-- Database.
-- Analytics requiring personal data.
-- Automatic rewriting of the user's Chinese text.
+Auto mode is deterministic and transparent:
+- detect characters that are unambiguously Simplified-only or Traditional-only;
+- shared-only text is Undetermined rather than guessed;
+- evidence from both exclusive sets yields Mixed;
+- detection never alters the input.
 
 ## Functional requirements
 
-### FR-01 Input
-The application accepts arbitrary Unicode text through a textarea.
+- **FR-01 Input:** accept arbitrary Unicode text.
+- **FR-02 Script mode:** visible, keyboard-operable selection.
+- **FR-03 Auto detection:** expose Simplified, Traditional, Mixed or Undetermined.
+- **FR-04 Pronunciation:** use the pinned Mandarin pronunciation engine; ambiguous words and names may require manual review.
+- **FR-05 Representations:** render Pinyin, broad IPA and the three CSV-defined Ukrainian systems.
+- **FR-06 Preservation:** retain non-Chinese text, punctuation, whitespace and line breaks wherever technically possible.
+- **FR-07 Copy:** copied output must match the visible representation and tone-display mode.
+- **FR-08 Responsive UI:** support desktop, tablet and narrow mobile widths.
+- **FR-09 Static privacy:** normal conversion must not send user text to a server.
+- **FR-10 Accessibility:** semantic controls, visible focus, keyboard use, contrast, assistive labels and reduced-motion support.
+- **FR-11 Tone controls:** changing either tone toggle must not mutate the underlying pronunciation or the other representation's tone setting.
 
-### FR-02 Script mode
-The selected mode is visible and keyboard accessible.
+## Data correctness
 
-### FR-03 Auto detection
-Auto mode reports the detected script state and confidence category: Simplified, Traditional, Mixed, or Undetermined.
+zh-in-ua.csv is the canonical source for the three Ukrainian systems. Do not silently correct source values or cross-fill blank cells.
 
-### FR-04 Pinyin
-The app resolves Mandarin pronunciation and renders Pinyin consistently. Tone marks are displayed by default and can be disabled by the user without changing the underlying pronunciation or any Ukrainian transcription.
-
-### FR-05 Ukrainian systems
-Each Pinyin syllable is mapped through the corresponding column of zh-in-ua.csv.
-
-### FR-06 Preservation
-Latin text, numbers, punctuation, line breaks, emoji, and unsupported symbols remain unchanged unless they are part of a Chinese pronunciation token.
-
-### FR-07 Copy
-Every result can be copied independently. Copy feedback must be accessible and non-blocking.
-
-### FR-08 Responsive layout
-The interface must work on desktop, tablet, and narrow mobile screens.
-
-### FR-09 No backend
-Normal conversion must work entirely in the browser after the static assets have loaded.
-
-### FR-10 Accessibility
-Keyboard-only operation, visible focus, semantic controls, sufficient contrast, screen-reader labels, and reduced-motion support are required.
-
-### FR-11 Tone display
-A checked “Показувати тони Pinyin” control displays tone marks in Pinyin. When unchecked, the same syllables are rendered without tone marks. Changing this option must update the Pinyin result immediately and must not alter the three Ukrainian outputs.
-
-## Data correctness requirements
-
-zh-in-ua.csv is the source dataset for the three Ukrainian output systems. The app must not silently correct source values.
-
-Before production release:
-- parse the CSV as UTF-8;
-- preserve Ukrainian apostrophe characters exactly as specified;
-- detect duplicate Pinyin keys;
-- detect empty cells;
-- detect aliases such as er/r;
-- detect rows where the three systems differ;
-- generate a validation report.
-
-The current repository data should be validated from the live CSV. Previously discussed duplicate-key concerns must not be carried forward as current defects; validation should report the actual current state of the source file. Blank output cells and special/edge syllable forms remain explicit data-policy cases.
+Validation must check UTF-8 parsing, expected columns, row shape, normalized-key duplicates, aliases, empty keys and permitted missing mappings. Source coverage and phonetic correctness require evidence beyond structural validation.
 
 ## Error and uncertainty policy
 
-When pronunciation cannot be resolved:
-- do not fabricate Pinyin;
-- preserve the original character;
-- mark the unresolved segment in a non-destructive way;
-- provide a short explanation.
+- Do not fabricate Pinyin for unresolved pronunciation.
+- Preserve original source text when pronunciation cannot be resolved.
+- Make missing mappings and unsupported IPA forms visible.
+- Distinguish unsupported/non-Chinese text, unresolved pronunciation and missing Ukrainian mapping where the implementation supports those distinctions.
+- Treat automated fixtures as implementation evidence, not proof of linguistic truth.
 
-The app should distinguish unsupported/non-Chinese text, unknown pronunciation, ambiguous/multiple pronunciation, and malformed/unsupported Pinyin mapping.
+## Non-goals
 
-## Performance
+Translation, Cantonese/Jyutping, OCR, user accounts, server-side API, database, analytics, automatic rewriting of Chinese input and reverse conversion from Pinyin/Ukrainian transcription to characters.
 
-Target:
-- first meaningful UI in under 1 second on a normal desktop after static assets are cached;
-- conversion of ordinary paragraphs should feel instantaneous;
-- avoid network calls per character;
-- debounce only if necessary.
+## Privacy and performance
 
-## Privacy
-
-No user input should leave the browser in normal operation. Do not add third-party analytics or telemetry in MVP.
+No user input should leave the browser during normal conversion. Avoid per-character network calls; ordinary paragraphs should feel responsive after static assets load.
 
 ## Definition of done
 
-MVP is complete when:
-- Simplified and Traditional examples both convert;
-- Auto detection handles exclusive, shared, and mixed-script cases;
-- Pinyin output is correct for supported Mandarin pronunciation data;
-- all three Ukrainian columns map correctly from the repository CSV;
-- copy buttons work;
-- punctuation and line breaks are preserved;
-- keyboard and mobile use are practical;
-- validation tests pass;
-- the site can be deployed as static files without a backend;
-- Pinyin tone display can be toggled without changing the underlying conversion or Ukrainian outputs.
-- Ukrainian tone display can be toggled without changing the underlying conversion or source mappings; enabled output uses Unicode combining marks on Ukrainian vowels.
+- Simplified, Traditional, shared-only and mixed-script cases behave as documented.
+- Pinyin, broad IPA and all three independent Ukrainian outputs are present.
+- Tone toggles are independent.
+- Copy, clear, example and supported speech controls work.
+- Punctuation and line breaks are preserved.
+- Unknown pronunciation and blank mappings are not silently fabricated.
+- Data validation, unit/integration tests, generated-map drift, release checks and browser regression tests pass on the exact candidate SHA.
+- Static deployment works without a backend.
+- Documentation states the actual architecture and limitations accurately.
