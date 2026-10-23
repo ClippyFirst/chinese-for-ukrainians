@@ -90,3 +90,12 @@ Tests verify:
 - intentional blanks;
 - deterministic generated output;
 - system-specific lookup without cross-system fallback.
+
+
+## IPA-keyed adapter map
+
+The source CSV is still authored and reviewed using Pinyin keys. At runtime, `src/data/ipa-transcription.js` derives a separate adapter map by applying the project's segmental Pinyin-to-IPA function to each normalized source key. Each entry retains the original Pinyin key, CSV row, source key, system value and explicit missing marker.
+
+The adapter map is not allowed to overwrite collisions: if two supported source keys produce the same IPA key, construction throws and the tests fail. Unsupported forms with no IPA representation are omitted from the adapter map and stay unresolved in the UI; they are not looked up through the Pinyin map as a fallback.
+
+The current inventory audit found 421 aliases, 417 IPA-supported keys, four unsupported forms and zero IPA-key collision groups. These counts describe the current finite mapping function, not independent proof of phonetic correctness. The four unsupported forms remain evidence-limited and must not be filled without source-backed adjudication.
