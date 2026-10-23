@@ -1,47 +1,46 @@
 # Design QA — redesign branch
 
-**final result: blocked**
+**Automated gate: DONE_VERIFIED. Manual visual gate: BLOCKED.**
 
-## Comparison artifacts
+## Scope and acceptance
 
-- Source visual truth: `docs/DESIGN-SYSTEM.md` and `docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md`.
-- Source visual screenshot/mockup: unavailable in this session.
-- Implementation screenshot: unavailable; this session can edit GitHub repository contents and inspect CI, but has no working local browser or screenshot capture channel.
-- Route: converter (`index.html`) and methodology (`methodology.html`).
-- Intended viewports: 320, 360, 390, 430 CSS px and desktop.
-- State: empty and populated result states are defined in existing Playwright tests; visual captures of these states have not been reviewed.
-- Pixel dimensions, device scale factor and density normalization: not captured.
+- Pages: `index.html` (converter) and `methodology.html`.
+- Viewports covered by the design-specific browser test: desktop 1280px and mobile widths 320, 360, 390 and 430 CSS px.
+- Product invariants: preserve IPA output, three equally weighted Ukrainian systems, copy/example/clear/speech controls, uncertainty states, and methodology navigation.
+- No pixel-specific source mockup exists; evaluate against the repository design brief, not pixel-perfect matching.
 
-## Evidence available
+## Verified evidence
 
-- The existing browser suite in `tests/browser/converter.spec.js` already exercises initial/empty/results/issue states, all five representations, keyboard navigation, contextual tooltips, overflow at narrow widths, reduced motion, and methodology navigation.
-- New `tests/browser/design-system.spec.js` adds browser assertions for core token contrast, equal weighting of the three Ukrainian systems on desktop, one-column stacking and no horizontal overflow at 320/360/390/430 CSS px, and shared tokens on the methodology page.
-- Static CSS structure scan: balanced braces, no unclosed comments/quotes. This is only a lightweight syntax sanity check, not browser evidence.
-- Independent WCAG contrast calculations for the core design tokens: ink/paper 16.04:1; muted/paper 5.27:1; accent/paper 8.87:1; white/accent 9.93:1; warning/warning-surface 5.83:1.
-- GitHub Actions Quality checks run #330 for candidate SHA `65625f55feb2a1a8caea2f03fc7603f2f2fb3207` reported npm install, unit/integration tests, acoustic pipeline input guard, production build, generated mapping drift check, benchmark and release checks successful. Browser installation was still in progress at the last observation; no browser-test result is claimed here. Re-check the latest branch head and CI before handoff.
+- Quality workflow run [#332](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39855942886) passed on code commit `b47e1caa9342fddd1fafed5427328f8a0cb98cca`. All workflow steps succeeded, including install, unit/integration tests, acoustic-pipeline input guard, production build, generated-mapping determinism/drift check, conversion benchmark, release constraints, browser installation and browser tests.
+- The run #332 browser log explicitly reports **38 tests, 38 passed, 0 failed**. The suite includes the design-specific checks for core token contrast, action colors, equal result-card widths, mobile stacking/no horizontal overflow at 320/360/390/430px, and shared methodology-page tokens.
+- Quality workflow run [#333](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39856093650) passed on documentation-only follow-up commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7`, including browser tests.
+- Quality workflow run [#335](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39856361199) passed on branch head `fe71f0ce042e67af6d9d8d9b01d9a6e8b4602213`; every workflow step completed successfully, including browser regression tests. Its job log reports **38 passed (19.6s)**.
+- Core design token contrast ratios independently calculated: ink/paper 16.04:1; muted/paper 5.27:1; accent/paper 8.87:1; white/accent 9.93:1; warning/warning-surface 5.83:1. This validates those pairs only, not every rendered text element.
+- A lightweight CSS structure scan found balanced braces and no unclosed quote/comment. This is not a standards-compliant CSS parser.
+- `src/styles/main.css` was kept identical to the default branch; the redesign is isolated in `src/styles/redesign.css`. Converter algorithms, mapping data, generated mappings and runtime dependencies were not changed.
 
-## Findings
+## Outstanding findings
 
-- [P1] Rendered appearance remains unverified. Code and token checks cannot establish real typography, spacing, layout, tooltip placement, focus visibility or visual balance. Capture the actual pages at the intended viewport sizes and inspect both empty and populated states.
-- [P1] The expanded design-specific Playwright assertions for all four mobile widths have not yet been observed passing on a completed workflow run. The earlier 38-test pass does not include this latest test expansion.
-- [P2] No before/after screenshot comparison exists. The brief defines a design direction, not a pixel-specific source mockup; judge the implementation against the product contract rather than claiming exact visual fidelity.
+- [P1 — BLOCKED] No rendered screenshot was captured or reviewed in this execution session. Consequently, actual font fallback, spacing, visual hierarchy, tooltip placement, focus appearance and cross-browser rendering are not manually verified.
+- [P2 — BLOCKED] No before/after screenshot comparison exists. This is not a pixel-fidelity task because no reference mockup was supplied.
+- Local clone/browser execution was blocked by inability to resolve `github.com` in the local container. The connected screenshot-scraping service reported insufficient credits, so no screenshot result is claimed.
 
-## Required next iteration
+## Manual visual QA still required
 
-1. Confirm run #332 on the latest code commit completes, including the expanded browser assertions. If the browser tests fail, inspect the failing test output, fix the cause, and rerun.
-2. Capture screenshots of the converter and methodology pages at 320, 360, 390, 430 and desktop widths.
-3. Inspect typography/fallbacks for Chinese, Pinyin tone diacritics, IPA and Ukrainian; page and card spacing; token usage/contrast; text and control copy; tooltip/focus/empty/results/issue states.
-4. Check keyboard-only operation, reduced motion, long mixed-script content, copy/example/clear/speech, and console errors.
-5. Record each P0/P1/P2 issue, fix it, capture the revised state at the same viewport and repeat the comparison.
+1. Capture the converter and methodology pages at 320, 360, 390, 430 and desktop widths.
+2. Inspect empty, populated-result and uncertainty/issue states; Chinese characters, Pinyin tone diacritics, IPA and Ukrainian text; card/page spacing; tooltip and keyboard-focus visibility.
+3. Exercise keyboard-only navigation, reduced motion, long mixed-script content, copy/example/clear/speech controls and methodology navigation; inspect console errors.
+4. Record concrete P0/P1/P2 findings, fix actual defects, and re-run the affected browser checks.
+5. Reconcile this document and the master handoff with the observed screenshot evidence.
 
-## Implementation checklist
+## Checklist
 
-- [x] Repository-specific design contract written.
-- [x] Shared redesign layer separated from base CSS.
-- [x] Design-specific browser regression checks added.
-- [x] QA plan and master handoff updated.
-- [x] Latest code commit CI green, including the expanded Playwright checks (run #332: 38 passed, 0 failed). The docs-only follow-up commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7` passed run #333.
-- [ ] Actual browser screenshots captured and reviewed.
-- [ ] Post-fix visual comparison completed.
+- [x] Repository-specific design contract exists.
+- [x] Shared redesign layer is separate from base CSS and loaded on both pages.
+- [x] Design-specific browser tests cover contrast, card weighting, four mobile widths and methodology-page styling.
+- [x] CI on the latest checked branch head passed all defined workflow steps, including **38/38 browser tests**.
+- [x] Canonical handoff and QA record updated with actual CI evidence.
+- [ ] Rendered browser screenshots captured and manually reviewed.
+- [ ] Any screenshot-derived findings fixed and rechecked.
 
-This result remains **blocked** until rendered browser evidence and a completed exact-head browser test run are available. A screenshot attempt through the available browser-scraping integration was not run because its account reported insufficient credits; it was not retried. Local clone/browser execution is also blocked by this environment's GitHub DNS failure.
+**Overall outcome:** automated implementation/regression gates are green; visual design acceptance is still **BLOCKED** on real rendered screenshots and manual review. Do not describe the redesign as fully visually approved, merged, or deployed.
