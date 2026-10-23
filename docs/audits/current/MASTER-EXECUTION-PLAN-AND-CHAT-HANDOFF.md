@@ -121,3 +121,49 @@ The available connector can inspect and commit GitHub files, but this runtime ca
 - Remaining gates: manual production visual QA at 320/360/390/430px and keyboard/focus/core-action checks; source-by-source third-party rights clearance; verified citation metadata. These are not established by green CI.
 - CSV structural recheck: 421 data rows, 421 unique Pinyin keys, no duplicate/empty keys or malformed-width rows; blank cells remain 1/1/10 across the three Ukrainian mapping columns. This does not certify every phonetic value.
 - Keep the product at public beta/research preview until evidence supports stronger publication claims. No stable release, DOI, release tag or universal narrow-IPA claim was made.
+
+
+## Design-system redesign continuation — 2026-10-22
+
+### Task ledger
+
+| ID | Task | Status | Evidence / acceptance |
+|---|---|---|---|
+| UI-REDESIGN-001 | Define a shared, repository-specific redesign contract before changing visuals. | DONE_VERIFIED | Added `docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md` covering product invariants, visual direction, responsiveness, accessibility, skill-role mapping and verification gates. |
+| UI-REDESIGN-002 | Reconcile design-system documentation with the actual shipped UI. | DONE_VERIFIED | Updated `docs/DESIGN-SYSTEM.md` to retain and document the IPA panel, speech control, methodology navigation, copy actions, uncertainty states and all three equal Ukrainian systems. README links the brief. |
+| UI-REDESIGN-003 | Refine visual implementation without changing conversion/data behavior. | PARTIAL | Moved the new visual rules into `src/styles/redesign.css`, loaded after the base styles on both converter and methodology pages, leaving `src/styles/main.css` identical to `main`. Added `tests/browser/design-system.spec.js` for core token contrast, equal result-card weighting, one-column stacking/no overflow at 320/360/390/430 px, and shared methodology styling. Run #331 passed the earlier 38-test browser suite and run #332 passed 38/38 tests after the expanded 320/360/390/430 px layout assertions in commit `b47e1caa9342fddd1fafed5427328f8a0cb98cca`. Converter logic, CSV, generated map and runtime dependencies remain unchanged. Visual screenshot QA remains blocked. |
+| UI-REDESIGN-004 | Run exact-head automated and visual release checks. | PARTIAL | Run #332 passed all checks, including 38/38 browser tests, on code commit `b47e1caa9342fddd1fafed5427328f8a0cb98cca`; run #333 passed on documentation-only commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7`. Run #335 then passed all workflow steps, including 38 browser tests, on branch head `fe71f0ce042e67af6d9d8d9b01d9a6e8b4602213`. The latest QA document now consolidates that evidence. The new documentation-only follow-up commit will trigger another CI run; check it before final handoff. Local clone/browser execution failed because this environment cannot resolve `github.com`. Visual screenshot review remains blocked: the available Firecrawl account reported insufficient credits, so no screenshot was captured. Acceptance: exact-head CI green plus real browser review at 320/360/390/430 px and desktop. Do not infer visual correctness from CSS inspection. |
+
+### Branch and review
+
+- Dedicated branch: `feat/design-system-redesign-2026-10-22`.
+- Draft PR: [#30 — design: refine the transcription workspace visual system](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/30).
+- PR #5 was inspected but not merged: its base is far behind current main and its diff removes the required IPA result and methodology navigation. Do not merge it as-is.
+- The five named design skills were applied as role-specific review lenses; the repository/tool environment did not confirm separate installation or execution of all five skill packages. This is not reported as five actual tool runs.
+- A lightweight read-only stylesheet syntax sanity check found balanced braces, no premature closing brace, no unclosed quote/comment, and the required `[hidden] { display: none !important; }` guard. This is not a CSS parser, browser test, accessibility audit, or visual screenshot verification.
+
+### Remaining acceptance criteria
+
+1. Run #335 passed all defined workflow gates, including 38/38 browser tests, on branch head `fe71f0ce042e67af6d9d8d9b01d9a6e8b4602213`. A later documentation-only commit reconciles `design-qa.md`; verify its CI before final handoff. Remaining product acceptance is rendered visual review, blocked by unavailable screenshot tooling/credits.
+2. Inspect the rendered homepage at desktop and 320/360/390/430 px. Exercise empty/results/issue states, script selection, independent tone switches, example, clear, copy, speech and methodology navigation.
+3. Check keyboard-only use, visible focus, contrast, reduced motion, long/mixed-script content, browser console and page overflow.
+4. Fix any concrete failures and rerun the affected checks before removing the BLOCKED/PARTIAL statuses.
+
+No release claim or production deployment claim is made by this branch.
+
+### Follow-up update — stylesheet separation and design regression tests
+
+- Added `src/styles/redesign.css` as a separate design layer and linked it after existing styles on `index.html` and `methodology.html`. This avoids appending another 370-line override block to the existing minified base stylesheet.
+- Restored `src/styles/main.css` to the exact content currently on `main`; the converter's base styling and component rules remain untouched.
+- Added `tests/browser/design-system.spec.js`: checks WCAG AA contrast (4.5:1 threshold) for core token pairs, confirms the primary action's computed colors, checks equal widths for the three Ukrainian system cards on desktop and their one-column stacking/no overflow at 320/360/390/430 px, and checks that shared tokens load on the methodology page. Run #331 passed the earlier 38-test suite; run #332 then passed the expanded assertions (38 passed, 0 failed). The subsequent documentation-only commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7` passed run #333.
+- Extended `docs/QA-PLAN.md` to register these design-specific browser gates.
+- Independent offline calculation of the specified token contrast pairs: ink/paper 16.04:1; muted/paper 5.27:1; accent/paper 8.87:1; white/accent 9.93:1; warning/warning-surface 5.83:1. This validates only those color pairs, not every rendered text element.
+- A static brace/quote/comment sanity scan of `src/styles/redesign.css` passed. This is not a standards-compliant CSS parse and does not replace browser execution.
+- Latest recorded candidate before the next commit: `97b25b573caeac6b533c19adbc6fbced0c7fdf81`. Re-read the PR head before using this SHA as current; later documentation/metadata commits may change it.
+
+
+### Visual QA gate — 2026-10-22
+
+- Added root `design-qa.md` with `final result: blocked`. The repository has a written design contract but no pixel-specific source mockup. Local browser access is unavailable due GitHub DNS failure; the available Firecrawl screenshot request could not run because the connected account reported insufficient credits. Code review and color-ratio calculations are not a substitute for visual QA.
+- CI run #331, candidate `958d75488fcedb3a5298763a419e081ae16b188a`: all checks completed successfully, including Playwright (38 passed, 0 failed). This predates the expanded mobile-width layout assertions. CI run #332 on code commit `b47e1caa9342fddd1fafed5427328f8a0cb98cca` completed successfully, including the expanded Playwright checks (38 passed, 0 failed). CI run #333 passed on documentation-only commit `a4d28ffb88db1cf92641b525ff1122ba3562f4b7`; CI run #335 also passed all 38 browser tests on later branch head `fe71f0ce042e67af6d9d8d9b01d9a6e8b4602213`. Subsequent commits update only QA/handoff documents, not implementation or tests.
+- After this documentation commit, re-read the PR head and verify the latest CI run rather than reusing results from the earlier SHA.
