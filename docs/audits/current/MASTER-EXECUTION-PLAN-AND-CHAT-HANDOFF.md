@@ -193,7 +193,7 @@ No release claim or production deployment claim is made by this branch.
 
 ### Remaining blockers
 
-1. **IPA architecture:** Ukrainian systems are looked up from three CSV columns using Pinyin keys; they do not consume IPA. A true IPA-first adapter boundary requires a separately designed and tested architecture change.
+1. **IPA adapter boundary:** implemented in merged PR #34. Runtime Ukrainian lookup now uses segmental IPA keys with source provenance and a collision guard. Remaining phonetic evidence work is tracked separately in C2U-IPA-009; the adapter change does not prove every IPA or Ukrainian value correct.
 2. **Source-data rights:** MIT code licensing does not establish rights for every third-party source/dataset.
 3. **Manual QA:** automated browser tests do not establish complete screen-reader, physical speech-output, or clipboard-permission behavior.
 4. **Uncertainty corpus:** add a stable rare/unresolved-form fixture only when a source-grounded example is available.
@@ -212,7 +212,7 @@ The GitHub repository interface was used to inspect the current tree, package sc
 | ID | Task | Status | Acceptance evidence |
 |---|---|---|---|
 | C2U-IPA-007 | Inventory audit of IPA key coverage and collisions | DONE_VERIFIED | Quality run #40010524093: 421 aliases, 417 supported keys, 4 unsupported, 0 collision groups; structural finding only, not a phonetic accuracy claim. |
-| C2U-IPA-008 | Route Ukrainian output through IPA-keyed adapters | IN_PROGRESS | PR #34 adds segmental IPA to resolved tokens, per-system IPA-keyed maps, source provenance, and a fail-fast collision guard. Requires exact-head Quality success before merge. |
+| C2U-IPA-008 | Route Ukrainian output through IPA-keyed adapters | IN_PROGRESS | PR #34 merged as `21b3e440fa8631a82273802f1880e31c9e8f7135`. Quality run #40012228389 passed 72 tests and all configured gates on the code-identical PR head; exact-main-SHA Quality run #40012724723 is queued for final confirmation. |
 | C2U-IPA-009 | Adjudicate unsupported forms | TODO | Audit evidence: `ê` (CSV row 82), `hm` (row 125), `hng` (row 126), `yo` (row 378). Acceptance: review each against primary phonetic/transcription sources; resolve only with evidence, otherwise keep explicitly unresolved. No Pinyin fallback. |
 | C2U-LIC-010 | Source-by-source rights review | BLOCKED | Reuse/redistribution evidence required for every reproduced source; citations alone are not a rights grant. |
 | C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
