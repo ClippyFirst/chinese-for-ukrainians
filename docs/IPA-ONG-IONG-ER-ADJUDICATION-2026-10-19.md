@@ -2,6 +2,8 @@
 
 **Scope:** broad practical IPA for Standard Mandarin citation-form syllables. This note compares source analyses; it does not claim to provide speaker-specific narrow phonetics.
 
+> **Status reconciliation (2026-10-23):** this document preserves the evidence-gathering history and its earlier provisional “remain unresolved” wording. For the practical broad-IPA release decision, that wording is superseded by [the literature-based adjudication closeout dated 2026-10-19](./IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), which adopts `ong → ʊŋ`, `iong/yong → jʊŋ`, and standalone `er → əɹ` as documented project conventions with caveats. Do not count these three classes as current runtime-unsupported keys or restart their research without new contradictory evidence or a reproducible defect. This does not claim universal narrow-phonetic truth.
+
 ## Decision summary
 
 | Class | Current implementation | Competing published/reference analyses | Decision |
