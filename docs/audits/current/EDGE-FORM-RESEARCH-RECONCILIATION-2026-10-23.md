@@ -10,7 +10,9 @@ This is a state reconciliation, not a claim that the source dataset is fully lin
 
 The implementation in `src/app/ipa.js` uses a finite `FINALS` map plus explicit special forms. The adapter audit in `scripts/audit-ipa-adapter-readiness.mjs` reports 421 Pinyin aliases, 417 keys with IPA output, four unsupported keys and no IPA-key collision groups. The production adapter has no Pinyin fallback for a missing IPA key.
 
-The four unsupported keys are `ê` (CSV row 82), `hm` (125), `hng` (126), and `yo` (378). This is a code-coverage fact, not a statement that the forms are newly discovered or have never been researched.
+The four unsupported keys are `ê` (CSV № 82), `hm` (№ 125), `hng` (№ 126), and `yo` (№ 378). This is a code-coverage fact, not a statement that the forms are newly discovered or have never been researched.
+
+The numbers below refer to the CSV's first column (№), not physical line numbers in the file.
 
 ## Per-form reconciliation
 
