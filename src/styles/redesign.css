@@ -201,6 +201,16 @@ textarea::placeholder {
 .result-index {
   color: var(--accent);
 }
+.result-meta { grid-template-columns: 35px minmax(0, 1fr) auto; }
+.result-meta > div,
+.result-heading,
+.result-card,
+.ukrainian-grid,
+.pinyin-panel,
+.ipa-panel { min-width: 0; }
+.result-meta h3,
+.result-meta p,
+.result-heading p { overflow-wrap: anywhere; }
 .result-value {
   line-height: 1.75;
   font-kerning: normal;

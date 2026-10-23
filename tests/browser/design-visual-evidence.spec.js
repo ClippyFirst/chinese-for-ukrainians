@@ -116,13 +116,15 @@ test('Pinyin and Ukrainian tone controls change their own output independently',
   const pinyinWithTones = await pinyin.textContent();
   const ukrainianWithTones = await ukrainian.textContent();
 
-  await page.locator('#show-pinyin-tones').uncheck();
+  // The styled switch track overlays the visually hidden checkbox, so interact
+  // through the accessible label instead of asking Playwright to click the input.
+  await page.locator('label.switch-row:has(#show-pinyin-tones)').click();
   const pinyinWithoutTones = await pinyin.textContent();
   expect(pinyinWithoutTones).not.toBe(pinyinWithTones);
   await expect(ukrainian).toHaveText(ukrainianWithTones);
 
-  await page.locator('#show-pinyin-tones').check();
-  await page.locator('#show-ukrainian-tones').uncheck();
+  await page.locator('label.switch-row:has(#show-pinyin-tones)').click();
+  await page.locator('label.switch-row:has(#show-ukrainian-tones)').click();
   const ukrainianWithoutTones = await ukrainian.textContent();
   expect(ukrainianWithoutTones).not.toBe(ukrainianWithTones);
   await expect(pinyin).toHaveText(pinyinWithTones);

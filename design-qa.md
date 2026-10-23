@@ -76,3 +76,11 @@ The prior test set verified keyboard focus and the presence of copy/speech contr
 - long mixed-script input at 320/360/390/430/1280 CSS px, checking no document/body horizontal overflow and no uncaught page exceptions.
 
 These are regression tests, not a substitute for manual assistive-technology review or a real-device audio/clipboard permission check. The rare-character issue state still needs a stable, corpus-grounded fixture before it can be counted as covered. The latest full verification result must be read from the workflow attached to the final branch SHA; earlier successful runs are historical evidence only.
+
+
+## Consolidated gate findings and corrective batch — 2026-10-23
+
+- Workflow [#351](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39951570103) ran the expanded browser suite on `d40d29533fff40e4917d5ab6c2094f60098ff123`. All non-browser gates passed; browser tests reported **47 passed, 4 failed, 1 skipped** across Chromium and mobile projects.
+- The two failures repeated across projects had two concrete causes: the tone-control test attempted to click visually hidden checkbox inputs through an overlaid switch track; and long mixed-script content caused an 8px horizontal overflow at the 1280px viewport.
+- Corrective batch changes the test to click the visible accessible switch label and constrains result metadata grid tracks and long metadata strings to prevent intrinsic-width overflow. The next workflow on the corrected SHA is the acceptance gate; this failed run remains recorded as a failure, not a pass.
+- Speech API behavior is mocked in CI and does not establish actual audio output on a physical device. Manual screen-reader and uncertain-pronunciation fixture coverage remain outstanding.
