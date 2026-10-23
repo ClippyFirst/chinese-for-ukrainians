@@ -28,13 +28,13 @@ The interface is a **functional linguistic reference instrument**: editorial, pr
 | Muted | `#5f656b` | secondary text |
 | Line | `#d8d9d8` | separators |
 | Strong line | `#aeb3b7` | form borders |
-| Accent | `#173f8a` | actions, focus-adjacent accents |
-| Accent dark | `#102f69` | action hover |
-| Accent soft | `#eef3fb` | Pinyin surface and selected-state support |
+| Accent | `#b4232f` | Chinese-lucky red for actions and focus-adjacent accents |
+| Accent dark | `#8f1722` | action hover |
+| Accent soft | `#fff0f0` | subtle red-tinted Pinyin surface and selected-state support |
 | Warning | `#725d22` | unresolved-data status |
 | Warning surface | `#faf5e6` | non-destructive warning background |
 
-The accent communicates interaction, not a preference for any transcription system. Warning states use text and iconography as well as color.
+The restrained red accent draws on red's association with good fortune in Chinese cultural contexts. It communicates interaction, not a preference for any transcription system; warning states remain distinct and are communicated through text and iconography as well as color. Warning states use text and iconography as well as color.
 
 ## Typography
 

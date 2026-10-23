@@ -10,10 +10,10 @@
   --soft: #faf9f6;
   --line: #d8d9d8;
   --strong: #aeb3b7;
-  --accent: #173f8a;
-  --accent-dark: #102f69;
-  --accent-soft: #eef3fb;
-  --focus: #245ec2;
+  --accent: #b4232f;
+  --accent-dark: #8f1722;
+  --accent-soft: #fff0f0;
+  --focus: #b4232f;
   --warning: #725d22;
   --warning-soft: #faf5e6;
   font-synthesis: none;
@@ -191,7 +191,7 @@ textarea::placeholder {
   padding: 24px;
 }
 .pinyin-panel {
-  border-color: #c7d3e6;
+  border-color: #edc4c6;
   background: var(--accent-soft);
 }
 .ipa-panel {
@@ -220,7 +220,7 @@ textarea::placeholder {
   overflow-wrap: anywhere;
 }
 .tone-key {
-  color: #52647f;
+  color: #8f3038;
 }
 .ukrainian-grid {
   gap: 12px;

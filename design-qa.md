@@ -106,3 +106,13 @@ These are regression tests, not a substitute for manual assistive-technology rev
 - Remaining evidence-limited items: manual screen-reader/assistive-technology review; real-device audio and browser clipboard permission behavior; and a stable corpus-grounded rare/unresolved mapping fixture. No unsupported linguistic example has been invented. No merge or deployment is claimed.
 
 **Exact-head disposition:** automated release gates **DONE_VERIFIED**; screenshot artifact and representative contact-sheet review **DONE_VERIFIED**; broader accessibility/real-device review **PARTIAL**; corpus-grounded uncertainty fixture **TODO**. Overall: automated-test green, not fully release-approved.
+
+
+## Chinese-lucky red accent revision — 2026-10-23
+
+- **Requested visual change:** replace the previous blue interaction accent with restrained red, reflecting the user's preference for red as a Chinese cultural symbol of good fortune.
+- **Implementation:** updated shared CSS tokens to `--accent: #b4232f`, `--accent-dark: #8f1722`, `--accent-soft: #fff0f0`, and `--focus: #b4232f`; updated the Pinyin panel border and tone-key accent to coordinate without changing the three Ukrainian systems' equal visual weight.
+- **Regression coverage:** updated the browser color-token expectations and retained the WCAG AA contrast assertions for accent text and white text on the primary action. The tests must run against this exact branch head before merge.
+- **Scope:** no conversion logic, source data, output mapping, runtime dependencies, or script inference changed. This is a visual-token and documentation adjustment only.
+- **Cultural framing:** red is used as a restrained cultural design reference, not as an assertion that every Chinese user shares one preference, and not as a semantic status color.
+- **Status:** implementation prepared; CI and deployment remain unverified until the new branch's workflow completes and the change is merged.
