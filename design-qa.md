@@ -92,3 +92,17 @@ These are regression tests, not a substitute for manual assistive-technology rev
 - Both failures were the same real layout defect at 1280 CSS px: the document was 1288px wide. Inspection identified the absolutely positioned contextual-help tooltip: its desktop `left: 0` anchoring let the last result card's tooltip extend beyond the viewport even while hidden.
 - The next correction anchors the tooltip to the right edge of its trigger and caps its width against the viewport. This addresses the source of the overflow rather than suppressing the test with `overflow-x: hidden`.
 - The run's npm audit JSON artifact should be inspected with the next gate; do not infer its vulnerability count from earlier runs. Physical audio and assistive-technology testing remain outside automated CI evidence.
+
+
+## Final exact-head gate and screenshot review — 2026-10-23
+
+- The current acceptance run is [quality workflow #353](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39961683974), completed with **success** on exact branch head `6951e0f14cd74473b20e75d1f986a0fd498e380d`.
+- Browser suite: **52 tests total; 51 passed, 1 intentional skip, 0 failed**. The skipped test is the canonical screenshot capture that is intentionally not repeated in the non-Chromium project.
+- All workflow gates completed successfully: dependency installation and audit capture, unit/integration tests, Python acoustic-pipeline input guards, production build, generated mapping determinism, conversion benchmark, release constraints, browser regressions, and artifact uploads.
+- Downloaded and inspected the exact-head npm audit JSON: `total: 0` (0 info, low, moderate, high, critical; empty vulnerability list). This supersedes the earlier stale note about a high-severity advisory; that earlier observation belonged to an older dependency tree/run and must not be presented as the current result.
+- Downloaded the exact-head `redesign-visual-qa` artifact (15 PNGs) and assembled/inspected a contact sheet spanning empty converter, populated results, and methodology at 320, 360, 390, 430 and 1280 CSS px. No apparent clipped major controls or horizontal overflow were visible at the contact-sheet scale; this remains representative screenshot review, not a substitute for inspecting every page pixel or performing manual assistive-technology testing.
+- Existing browser automation verifies basic keyboard traversal to the methodology link and input, focus-triggered contextual help, reduced-motion preference exposure, copy side effects, clear/example controls, speech UI integration with a mock, uncertainty-state behavior where exercised, and viewport overflow. This is automated evidence only.
+- The final tooltip fix is validated by the exact-head overflow regression: the contextual-help popover is right-anchored and width-capped; no global `overflow-x: hidden` suppression was added.
+- Remaining evidence-limited items: manual screen-reader/assistive-technology review; real-device audio and browser clipboard permission behavior; and a stable corpus-grounded rare/unresolved mapping fixture. No unsupported linguistic example has been invented. No merge or deployment is claimed.
+
+**Exact-head disposition:** automated release gates **DONE_VERIFIED**; screenshot artifact and representative contact-sheet review **DONE_VERIFIED**; broader accessibility/real-device review **PARTIAL**; corpus-grounded uncertainty fixture **TODO**. Overall: automated-test green, not fully release-approved.
