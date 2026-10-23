@@ -272,3 +272,13 @@ C2U-IPA-014 provenance breakthrough (2026-10-23): exact-string search located a 
 - Lee Mikyoung (2023), a peer-reviewed study of the *Modern Chinese Dictionary* interjection inventory, gives broad inventory-level observations but no accessible exact IPA for 噷/`hm` or 哼/`hng`. The 2026 Tongji conversational-repair paper covers 啊/嗯 and Taiwanese [hãː], not the target exceptional readings.
 - These are logged as scope exclusions / research leads, not positive phonetic evidence. C2U-IPA-014 remains **BLOCKED / evidence-limited**; runtime keys remain unsupported.
 - Quality run #40026265146 is running against prior head `286111cf361ba179754f1dea0cec448ec9bd6783`. The additional source-scope note is documentation-only and will require a new run for exact-head CI.
+
+
+### C2U-CI-015 exact-head closure — 2026-10-24
+
+Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40026479394) completed with conclusion **success** on exact branch head 7351044c8c051a248c6990c4b86d087b24266a35. All 16 principal verify steps passed: dependency installation and audit disposition, unit/integration tests, Python acoustic-pipeline input guards, production build, generated mapping determinism, conversion benchmark, release constraints, browser installation/regression tests, and visual-QA/dependency-audit artifact uploads. Artifacts are attached to the run (visual QA archive and npm audit report).
+
+- C2U-CI-015: **DONE_VERIFIED** for this exact head and automated workflow scope.
+- C2U-IPA-014: **BLOCKED / evidence-limited**. The run does not validate the candidate IPA for hm or hng; both keys remain unsupported and fail closed.
+- No runtime, source dataset, generated mapping, or test expectation changed in this evidence pass. The branch/PR remains a documentation-only research review; do not merge solely on green CI while the phonetic acceptance criterion is unmet.
+- Independent release blockers remain: third-party source-data rights review, legacy source-image collation, and manual visual/accessibility/device QA. Automated screenshots/artifact upload do not constitute manual QA.
