@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { transcribe, transcribeAll } from '../src/app/transcribe.js';
+import { createIpaTranscriptionMap } from '../src/data/ipa-transcription.js';
+import { pinyinToIPA } from '../src/app/ipa.js';
 
 const mappings = {
   kirnosova: {
@@ -20,30 +22,33 @@ const mappings = {
   },
 };
 
+const ipaMappings = createIpaTranscriptionMap(mappings, pinyinToIPA);
+
 const token = (source, pinyin, type = 'han') => ({
   source,
   type,
   pinyin,
   normalizedPinyin: pinyin.replace(/[1-5]$/u, ''),
+  ipaBase: pinyinToIPA(pinyin.replace(/[1-5]$/u, '')),
   tone: Number(pinyin.match(/[1-5]$/u)?.[0] ?? 0),
   status: 'resolved',
 });
 
 test('renders one Ukrainian system independently', () => {
-  const result = transcribe([token('chong', 'chong2')], 'kirnosova', mappings);
+  const result = transcribe([token('chong', 'chong2')], 'kirnosova', ipaMappings);
   assert.equal(result.text, 'чу́н');
   assert.deepEqual(result.issues, []);
 });
 
 test('keeps system differences instead of selecting a fallback winner', () => {
-  const all = transcribeAll([token('chong', 'chong2')], mappings);
+  const all = transcribeAll([token('chong', 'chong2')], ipaMappings);
   assert.equal(all.kirnosova.text, 'чу́н');
   assert.equal(all.kirnosova_tsisar.text, 'чо́н');
   assert.equal(all.nanu.text, 'чу́н');
 });
 
 test('marks a blank CSV cell as missing without borrowing another system', () => {
-  const result = transcribe([token('pou', 'pou2')], 'nanu', mappings);
+  const result = transcribe([token('pou', 'pou2')], 'nanu', ipaMappings);
   assert.equal(result.text, 'pou');
   assert.equal(result.issues[0].status, 'missing');
 });
@@ -53,6 +58,6 @@ test('preserves punctuation and Latin text around Chinese spans', () => {
     token('bei', 'bei3'),
     token('!', '!', 'text'),
     token('world', 'world', 'text'),
-  ], 'kirnosova', mappings, { showTones: false });
+  ], 'kirnosova', ipaMappings, { showTones: false });
   assert.equal(result.text, 'бей!world');
 });

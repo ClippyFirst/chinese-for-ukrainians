@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { configureConverter, convert } from '../src/app/convert.js';
+import { createIpaTranscriptionMap } from '../src/data/ipa-transcription.js';
+import { pinyinToIPA } from '../src/app/ipa.js';
 
 const mappings = {
   kirnosova: {
@@ -22,7 +24,7 @@ const engine = (text) => [...text].map((origin) => ({
   isZh: true,
   polyphonic: ['mā'],
 }));
-configureConverter({ pronunciationEngine: engine, mappings, traditionalToSimplified: { 國: '国' } });
+configureConverter({ pronunciationEngine: engine, mappings: createIpaTranscriptionMap(mappings, pinyinToIPA), traditionalToSimplified: { 國: '国' } });
 
 test('converts Chinese plus punctuation and Latin text without changing source', () => {
   const source = '中国! AI';

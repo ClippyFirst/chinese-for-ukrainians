@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { transcriptionMap } from '../src/generated/transcription-map.js';
+import { ipaTranscriptionMap } from '../src/data/ipa-transcription.js';
+import { pinyinToIPA } from '../src/app/ipa.js';
 import { transcribeAll } from '../src/app/transcribe.js';
 
 const tokens = [
@@ -11,10 +12,10 @@ const tokens = [
   { type: 'han', source: '布', pinyin: 'bu4', tone: 4, normalizedPinyin: 'bu', status: 'resolved' },
   { type: 'han', source: '尼', pinyin: 'ni2', tone: 2, normalizedPinyin: 'ni', status: 'resolved' },
   { type: 'han', source: '夫', pinyin: 'fu1', tone: 1, normalizedPinyin: 'fu', status: 'resolved' },
-];
+].map((token) => ({ ...token, ipaBase: pinyinToIPA(token.normalizedPinyin) }));
 
 test('Ukrainian transcription is separated by syllables and contains no slash alternatives', () => {
-  const result = transcribeAll(tokens, transcriptionMap);
+  const result = transcribeAll(tokens, ipaTranscriptionMap);
 
   assert.equal(result.kirnosova.text, 'цзӣ дӯо е̌р бу̀ ні́ фӯ');
   assert.equal(result.kirnosova_tsisar.text, 'дзӣ дво̄ е̌р бу̀ ні́ фӯ');

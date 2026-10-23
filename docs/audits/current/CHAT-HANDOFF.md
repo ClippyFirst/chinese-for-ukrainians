@@ -16,7 +16,7 @@
 ## Архітектурні факти
 
 - CSV zh-in-ua.csv — канонічне джерело трьох українських систем; src/generated/transcription-map.js — генерований файл, його не видаляти й не редагувати вручну.
-- Pinyin та IPA мають окремі представлення; українські системи зараз читаються з трьох окремих CSV-стовпців за нормалізованим Pinyin-ключем. Вони не адаптуються з IPA. Справжній IPA-first pipeline лишається окремою архітектурною задачею.
+- IPA-first адаптер реалізовано в гілці PR #34: кожен resolved token несе сегментний IPA-ключ; три українські карти індексуються за IPA та зберігають provenance CSV. Колізії кидають помилку, а чотири непідтримані форми не отримують Pinyin-fallback. Чекаємо CI на точному HEAD перед злиттям.
 - Три українські системи незалежні. Не заповнювати пропуски між ними.
 - Датовані IPA audits, UW differential, source ledger і research/ipa-acoustic — дослідницькі докази/інструменти, а не зайві артефакти лише через те, що вони не є runtime-модулями.
 - docs/USER-GUIDE.md — єдиний канонічний посібник користувача; дубльований docs/USAGE.md вилучено. Design QA перенесено в docs/audits/current/DESIGN-QA-2026-10-22.md.
@@ -72,3 +72,11 @@ The current `main:package-lock.json` is populated (27,197 characters, lockfileVe
 ## IPA inventory audit result — 2026-10-23
 
 Quality run [#40010328912](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40010328912) passed on commit `108f059a3903079557a4c8182164e49d4bd3208e`: 68 tests passed, zero failed. The new inventory audit found 421 CSV aliases, 417 mapped by the current broad-IPA function, 4 unsupported, and zero IPA-key collision groups under that function. This result establishes a deterministic inventory property only; it does not prove that every IPA value or Ukrainian transcription is linguistically correct. The next CI log will include the exact four unsupported keys for evidence-led review.
+
+
+## IPA-first adapter implementation — 2026-10-23
+
+PR #34: https://github.com/ClippyFirst/chinese-for-ukrainians/pull/34. Runtime changes are isolated in `src/data/ipa-transcription.js`, `src/app/pronunciation.js`, `src/app/transcribe.js` and `src/main.js`. The canonical CSV remains Pinyin-keyed source data; the runtime adapters use segmental IPA keys and preserve source row/key provenance. Missing system cells remain missing. Unsupported IPA keys are unresolved instead of falling back to Pinyin. CI must pass unit/integration tests, build, generated-map determinism, release checks and browser regression tests before this is merged.
+
+
+The executable audit identifies the unsupported aliases precisely: `ê` (CSV row 82), `hm` (row 125), `hng` (row 126) and `yo` (row 378). Keep these unresolved until a primary-source decision is recorded; do not add a fallback mapping just to increase coverage.

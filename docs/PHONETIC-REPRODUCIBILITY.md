@@ -2,7 +2,7 @@
 
 ## Scope
 
-The site presents four distinct layers: original Han text, the pronunciation engine's selected Hanyu Pinyin reading, broad practical IPA derived from that Pinyin, and three independent Ukrainian transcription systems. These layers must not be conflated. The separate methodology page explains the scope and limits of the three Ukrainian systems and compares output differences using examples taken from the canonical CSV.
+The site presents original Han text, selected Hanyu Pinyin, broad practical IPA derived from that Pinyin, and three independent Ukrainian systems. Each Ukrainian system now consumes a segmental IPA key through its own adapter. The adapters retain source-row and Pinyin provenance from the canonical CSV. These layers must not be conflated.
 
 The IPA column is broad practical IPA, not narrow phonetic measurement or a guarantee of a speaker-specific surface realization. It displays lexical/citation-form tone contours and does not apply connected-speech tone sandhi. For example, third-tone sandhi is not inferred from surrounding words. A future surface-tone mode must be a separate, independently tested layer.
 

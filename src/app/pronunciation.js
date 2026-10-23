@@ -1,4 +1,5 @@
 import { normalizePinyinSyllable } from './pinyin.js';
+import { pinyinToIPA } from './ipa.js';
 let engine = null;
 export function configurePronunciationEngine(nextEngine) { engine = nextEngine; }
 function requireEngine() {
@@ -20,6 +21,7 @@ export function resolvePronunciation(tokens, source, options = {}) {
       result.push({
         source: sourceChar, start: cursor, end: cursor + sourceChar.length, type: 'han',
         pinyin: unresolved ? '' : `${normalized.base}${normalized.tone || ''}`,
+        ipaBase: unresolved ? '' : pinyinToIPA(normalized.base),
         tone: normalized.tone, normalizedPinyin: normalized.base, status: unresolved ? 'unresolved' : 'resolved',
         // The alternatives list is not independent proof that a reading was contextually validated.
         resolution: alternatives.length > 1 ? 'engine-selected' : 'engine',
