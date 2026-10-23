@@ -54,3 +54,8 @@ npm run test:browser
 2. Дочекатися зеленого Quality workflow на точному HEAD.
 3. Злити лише цей ізольований cleanup PR після успішної перевірки; не зливати PR #5 автоматично.
 4. Окремо вирішувати архітектурний IPA-first refactor і source rights, не маскувати їх документацією.
+
+
+## IPA adapter continuation — 2026-10-23
+
+The new [IPA adapter readiness gate](../../IPA-ADAPTER-READINESS.md) records the required sequence before a runtime migration. The current implementation still emits IPA and Ukrainian systems as parallel outputs; do not call it IPA-first. First inspect collisions between current broad-IPA keys and source CSV rows, then adjudicate them from primary sources before changing output generation. No phonetic mapping was changed in this branch.
