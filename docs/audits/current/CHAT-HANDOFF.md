@@ -94,3 +94,89 @@ Edge-form scope decision (branch `fix/mandarin-edge-form-scope-2026-10-23`): `ê
 ## IPA marginal interjection closeout — 2026-10-23
 
 PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) passed on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a`. The regression suite now requires 421 aliases, exactly two unsupported keys (`hm`, `hng`), and zero IPA-key collisions. `ê → ɛ` is based on a source explicitly giving [ɛ] for certain interjections; `yo → jɔ` is an explicitly declared broad-IPA project convention for an attested exceptional interjection. `hm` and `hng` remain deliberately unresolved rather than guessed. This is a bounded implementation closeout, not proof of narrow phonetics or completion of source-image verification, licensing, or device QA.
+
+
+## Consonant-only interjection evidence review — 2026-10-23
+
+- Follow-up branch: `research/consonant-only-interjection-evidence-2026-10-23`, based on current `main`; evidence-review commit `99baf80cf0ded596fd04f7c2fe410802e528cd52`.
+- Added [CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md) and linked it from [docs index](../../INDEX.md).
+- New source: *Chinese Romanization: Pronunciation and Orthography*, interjections section (https://pinyin.info/readings/yin_binyong/o09_interjections.pdf), says `ng`, `hm`, and `hng` are consonant-only Mandarin interjections treated as ordinary syllables in that romanization description. This establishes orthographic/functional status, not IPA realization.
+- TDSF converter documentation (https://www.tdsf.kiev.ua/convertor.php) excludes rare `hm`/`hng` forms due to input ambiguity. This is a converter scope/tokenization choice, not a phonetic analysis.
+- Decision unchanged: `hm` and `hng` remain unsupported; do not guess IPA or permit Pinyin fallback. Reopen only on direct, context-relevant phonetic evidence (explicit IPA, audio with a documented convention, or citable corpus material).
+- The attempt to search more sources through the connected Firecrawl service failed because its account has insufficient credits. This is a tool limitation, not evidence that no sources exist. Public web search did find the PDF above.
+- Verification status: documentation-only branch; no local clone or npm/browser execution was available. Quality run `40019784515` for merged PR #39 was still in progress at the last check (unit/integration, acoustic input guards, build, generated-map determinism, benchmark and release constraints passed; browser installation was still running). Do not claim that workflow completed.
+- Global release gates remain open: primary-page source collation for legacy Ukrainian cells, source-by-source rights review, manual accessibility/device QA, and visual QA in a live browser. Product remains public beta / research preview.
+
+
+## Direct IPA source lead — 2026-10-23
+
+- Follow-up on PR #40 found the [Wikibooks edge-phonology appendix](https://zh.wikibooks.org/wiki/现代标准汉语/附录/边缘音系), which explicitly lists `hm → m̥m̩` and `hng → ŋ̊ŋ̍` in an IPA column for marginal Modern Standard Chinese forms.
+- This is a concrete direct-IPA lead, not yet independently verified primary evidence: the page does not cite the dictionary/study/audio/corpus behind those values. Exact-string web searches did not find a second primary Mandarin source for both forms; a similar Teochew result is not transferable to Mandarin.
+- Updated [the evidence review](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md) and [master execution register](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md). Runtime mappings and tests remain unchanged; `hm` and `hng` stay unresolved until provenance is established.
+- Branch `research/consonant-only-interjection-evidence-2026-10-23`, latest commit to be verified after CI; PR #40 remains the documentation-only research vehicle. Exact-head Quality run for prior PR head `d65750bb3349331aeed6a3024a93ffe082aeaacb` passed (run [40020859654](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40020859654)); this does not cover the subsequent documentation commits.
+
+
+### Independent source cross-check — 2026-10-23
+
+- Quality workflow [#40021606811](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40021606811) completed successfully on commit `fc4eb62417383387160e7c8a8af391f9ab143009`.
+- Further evidence search found [Unicode WG2 N4717 (Bopomofo)](https://www.unicode.org/L2/L2016/16106-n4717-bopomofo.pdf), p. 2: it cross-tabulates hm/hng with dictionary Zhuyin forms, but does not give IPA. A searchable [Xinhua Dictionary digitization](https://math.wvu.edu/~hlai2/My_Dictionary_CHN.pdf), printed p. 184, describes hm as h + a bilabial nasal and hng as h + a velar nasal, but the accessible text does not settle exact IPA, voice quality or contextual variation.
+- Updated the evidence review and master register to capture these sources. They corroborate the dictionary/lexical status, not the exact Wikibooks IPA candidates. Runtime and tests remain unchanged; do not mark hm/hng supported until an authoritative notation key, primary phonetic description, or inspectable Mandarin audio/corpus record resolves the realization.
+- The latest documentation commits need their own exact-head Quality result; the previous successful run does not automatically verify later commits.
+
+
+### Dictionary / expert-source follow-up — 2026-10-23
+
+- Added to the evidence review: [漢典 噷](https://zdic.net/hant/%E5%99%B7) and [漢典 哼](https://zdic.net/hant/%E5%93%BC) describe the exceptional hm/hng interjections as h plus a pure bilabial/velar nasal. Their visible IPA entries are for other readings of the characters, not hm/hng.
+- A [2026 report quoting the Xinhua Dictionary revision team](https://cul.china.com.cn/2026-06/12/content_43447236.htm) confirms that pure-consonant interjections including hm/hng are recognized and points to phonetics textbooks, but does not provide the needed IPA or a specific textbook page.
+- This strengthens lexical/articulatory triangulation but does not independently verify Wikibooks' exact IPA strings. Runtime remains unchanged and fail-closed. Next step is authoritative Xinhua 13th-edition entry/notation legend or a traceable phonetics-textbook passage, with exact edition/page, before deciding mapping scope.
+- Quality runs for the preceding commits are still not proof for this newest commit. Check the exact-head workflow before closing PR #40.
+
+
+### IPA candidate provenance finding — 2026-10-23
+
+- Exact-string search located a 2017 personal experimental article, [以《切韵》风格划分普通话韵部的尝试](https://read01.com/zh-sg/O308A7z.html), listing the same `hm`/`hng` IPA strings as Wikibooks. The author explicitly says the work is a provisional transcription of their own accent and says the special distinctions were inferred from spelling and effectively made to fill categories. This is **not** independent phonetic validation and raises a concrete circular-provenance risk.
+- Wikibooks revision history shows the edge-phonology appendix was split from the general syllable page on 2026-07-23; the visible page does not cite a primary phonetic source. [IPA historical charts](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_H/IPA_charts_H.html) only provide general historical notation background, not Mandarin-specific confirmation.
+- Updated the evidence review and master register. Exact IPA remains unverified; runtime unchanged, both keys still fail closed. Next decisive step is to inspect authoritative *Xinhua Dictionary* phonetic notation/legend or a primary phonetic analysis / documented Mandarin recording, not to count repeated copies of the same IPA strings as corroboration.
+- CI on commit `fc4eb62417383387160e7c8a8af391f9ab143009` passed, but that run predates these documentation changes. Latest head still needs its own final Quality conclusion.
+
+## Latest exact-head CI result — 2026-10-23
+
+- Quality workflow [#40023287308](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40023287308) completed successfully on branch-head commit `a768c69f0c3ccdafb871f210767d71daba03a4c0`; every `verify` step passed, including unit/integration tests, acoustic input guards, production build, generated-map determinism, benchmark, release constraints, browser installation/regression tests and QA artifact uploads.
+- This confirms that tested head. The additional evidence-register and master-register commits made after it are documentation-only; the current branch head must not be called exact-head green until a new run associated with that later head completes.
+- This CI result validates the tested repository state only. It does not validate the IPA candidates `hm → m̥m̩` and `hng → ŋ̊ŋ̍`; their provenance remains unverified and potentially circular. Both runtime keys stay unsupported.
+- Keep PR #40 as a research/evidence review, not a runtime-mapping change. Do not merge on CI status alone while C2U-IPA-014's phonetic acceptance criterion is unresolved.
+- Next genuine blocker: obtain an authoritative dictionary notation key/page, primary phonetic analysis, or inspectable Mandarin recording/corpus item with documented transcription conventions and context. If none is available, record the evidence limit and preserve fail-closed behavior. Global release gates remain source-data rights, legacy source-image collation, and manual visual/accessibility/device QA.
+
+## Evidence sweep update — 2026-10-24
+
+- Checked [Shaanxi Normal University Language and Writing site](https://yywz.snnu.edu.cn/info/1116/2092.htm): it explicitly recognises Mandarin interjections `hm` and `hng` as exceptional consonant-only syllables. It does not provide their IPA.
+- Checked [Inner Mongolia Normal University Putonghua training/testing site](https://pc.imnu.edu.cn/info/1063/1097.htm): it lists both among rare syllables omitted from a common inventory, with no IPA.
+- Checked [漢典 噷](https://zdic.net/hant/%E5%99%B7) and [漢典 哼](https://zdic.net/hans/%E5%93%BC): they corroborate lexical function and broad descriptions, but not the IPA strings `m̥m̩` or `ŋ̊ŋ̍`.
+- Updated the consonant-only interjection evidence review and master register. Exact IPA remains **BLOCKED / evidence-limited**; both runtime keys remain unsupported.
+- The last confirmed green Quality run is #40023287308 on `a768c69f0c3ccdafb871f210767d71daba03a4c0`. It passed all automated checks, including browser tests. Since the latest register updates are later commits, a new run is needed for exact-head CI.
+- Next genuine acceptance criterion: an authoritative IPA/phonetic notation or a primary phonetic study / inspectable recording with documented transcription conventions. Do not infer a final target from orthography or repeat a potentially circular candidate.
+
+## Scope-control update — 2026-10-24
+
+- Logged adjacent academic sources that superficially match the spelling `hm` but do not establish the same lexical item or a target IPA: Qi Liu's 2025 SSRN study concerns conversational backchannel/minimal-affirmative tokens in 150 telephone conversations; the PDF endpoint returned HTTP 403, preventing inspection of token-level transcription. Do not equate these tokens with dictionary 噷/`hm` without direct evidence.
+- Lee Mikyoung (2023) studies Chinese dictionary interjections broadly but the accessible abstract does not supply exact IPA for 噷/`hm` or 哼/`hng`. The 2026 Tongji paper's 啊/嗯 repair data and Taiwanese [hãː] are outside the target source scope.
+- This source-scope distinction is recorded in the evidence review. No runtime/data/tests changed; both keys remain unsupported.
+- Workflow #40026265146 was still running browser regression tests on prior head `286111cf361ba179754f1dea0cec448ec9bd6783`; the latest documentation-only commits need a new exact-head run.
+
+
+## Final exact-head CI result — 2026-10-24
+
+- Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40026479394) is **completed / success** on exact branch head 7351044c8c051a248c6990c4b86d087b24266a35. All 16 principal verification steps passed, including unit/integration tests, acoustic input guards, production build, generated-map determinism, conversion benchmark, release constraints, browser installation/regression tests, and QA/dependency-audit artifact uploads.
+- This supersedes the earlier note that the run was still in progress. Automated CI status is now exact-head verified for this branch state.
+- It does **not** establish phonetic truth: hm → m̥m̩ and hng → ŋ̊ŋ̍ remain unverified candidate transcriptions, both keys remain unsupported, and the adapter must fail closed.
+- PR #40 remains an evidence-review PR, not a runtime change. Do not merge solely because CI is green while the primary phonetic evidence criterion remains blocked.
+- Remaining release gates: authoritative phonetic provenance for the two forms; source-data rights review; legacy source-image collation; manual visual/accessibility/device QA. Visual-QA screenshots uploaded by CI are evidence for inspection, not a substitute for manual review.
+
+
+## New visual QA finding from archived screenshots — 2026-10-24
+
+Manual inspection of the `redesign-visual-qa` artifact from [Quality workflow #40027146257](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40027146257) found a concrete responsive issue: the comparison tables on the methodology page are horizontally clipped at 320px and 360px (`methodology-320.png`, `methodology-360.png`), hiding right-hand columns in the captured viewport. Do not mark visual QA complete based on artifact upload alone.
+
+**Next implementation task:** make the comparison tables usable at 320px/360px via an accessible horizontal-scroll wrapper (keyboard reachable, clear scroll affordance) or a semantically equivalent responsive layout. Add a viewport regression assertion, regenerate the screenshots, and verify the complete table is reachable. The converter results screenshot at 320px showed vertically stacked cards with no obvious similar clipping; the 1280px methodology screenshot showed the table fully visible. This limited screenshot review is not physical-device, keyboard, zoom/reflow, screen-reader, or contrast testing.
+
+This is an independent UI/release-readiness finding, not a reason to alter the evidence-only scope of PR #40. Keep the `hm`/`hng` IPA gate blocked until primary phonetic evidence is available.
