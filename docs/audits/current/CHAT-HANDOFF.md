@@ -141,8 +141,17 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 
 ## Latest exact-head CI result — 2026-10-23
 
-- Quality workflow [#40022895691](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40022895691) completed successfully; all steps in the `verify` job passed, including unit/integration tests, acoustic input guards, production build, generated mapping determinism, benchmark, release constraints, browser regression tests and QA artifact uploads.
-- That successful run predates the subsequent documentation-only commits `43d44c2f586724821da45d7c9cfb39069fe9db84` and `e3451a962fa0677620411b1052bf6a95459b0a51`. It must not be described as exact-head CI for the current branch. The latest head still needs its own associated Quality run/result.
+- Quality workflow [#40023287308](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40023287308) completed successfully on branch-head commit `a768c69f0c3ccdafb871f210767d71daba03a4c0`; every `verify` step passed, including unit/integration tests, acoustic input guards, production build, generated-map determinism, benchmark, release constraints, browser installation/regression tests and QA artifact uploads.
+- This confirms that tested head. The additional evidence-register and master-register commits made after it are documentation-only; the current branch head must not be called exact-head green until a new run associated with that later head completes.
 - This CI result validates the tested repository state only. It does not validate the IPA candidates `hm → m̥m̩` and `hng → ŋ̊ŋ̍`; their provenance remains unverified and potentially circular. Both runtime keys stay unsupported.
 - Keep PR #40 as a research/evidence review, not a runtime-mapping change. Do not merge on CI status alone while C2U-IPA-014's phonetic acceptance criterion is unresolved.
 - Next genuine blocker: obtain an authoritative dictionary notation key/page, primary phonetic analysis, or inspectable Mandarin recording/corpus item with documented transcription conventions and context. If none is available, record the evidence limit and preserve fail-closed behavior. Global release gates remain source-data rights, legacy source-image collation, and manual visual/accessibility/device QA.
+
+## Evidence sweep update — 2026-10-24
+
+- Checked [Shaanxi Normal University Language and Writing site](https://yywz.snnu.edu.cn/info/1116/2092.htm): it explicitly recognises Mandarin interjections `hm` and `hng` as exceptional consonant-only syllables. It does not provide their IPA.
+- Checked [Inner Mongolia Normal University Putonghua training/testing site](https://pc.imnu.edu.cn/info/1063/1097.htm): it lists both among rare syllables omitted from a common inventory, with no IPA.
+- Checked [漢典 噷](https://zdic.net/hant/%E5%99%B7) and [漢典 哼](https://zdic.net/hans/%E5%93%BC): they corroborate lexical function and broad descriptions, but not the IPA strings `m̥m̩` or `ŋ̊ŋ̍`.
+- Updated the consonant-only interjection evidence review and master register. Exact IPA remains **BLOCKED / evidence-limited**; both runtime keys remain unsupported.
+- The last confirmed green Quality run is #40023287308 on `a768c69f0c3ccdafb871f210767d71daba03a4c0`. It passed all automated checks, including browser tests. Since the latest register updates are later commits, a new run is needed for exact-head CI.
+- Next genuine acceptance criterion: an authoritative IPA/phonetic notation or a primary phonetic study / inspectable recording with documented transcription conventions. Do not infer a final target from orthography or repeat a potentially circular candidate.
