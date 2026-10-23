@@ -55,3 +55,13 @@
 - [ ] Dependency advisory investigated and disposition recorded.
 
 **Overall outcome:** redesign is **automated-test green and screenshot-reviewed at representative mobile/desktop widths**. The visual screenshot gate is no longer blocked. Broader interactive/accessibility review and the pre-existing dependency advisory remain open; do not describe the work as merged, deployed, or fully release-approved.
+
+
+## Latest dependency and interaction gate — 2026-10-23
+
+- Quality workflow [#347](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39927362230) verified the patched dependency install and build, but its first expanded browser run exposed an invalid keyboard-focus assertion; this run is **not** counted as a pass.
+- Updated `vite` from `8.3.1` to `8.3.5` in `package.json` and `package-lock.json`. The audit report in workflow [#347](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39927362230) records **0 vulnerabilities** for the installed dependency tree.
+- Corrected the browser test to assert the actual radio-group interaction: arrow-key navigation changes the selected option. The prior test incorrectly expected the hidden radio input to become the focused element.
+- Quality workflow [#349](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492), on commit `26919731d9ea753870e338b16a1babf8360936bd`, completed with **success**. Unit/integration tests, Python acoustic-pipeline guards, production build, generated-mapping determinism, benchmark, release constraints, browser tests and both artifacts all passed.
+- New evidence artifact links: [visual QA screenshots](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492/artifacts) and [dependency audit report](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492/artifacts).
+- The automated interaction gate now passes, but the PR's broader manual review remains **PARTIAL**: no full assistive-technology audit or human end-to-end check of speech synthesis, actual clipboard write permission, every uncertainty/error state, long mixed-script content and browser console cleanliness has been recorded. Do not mark the PR fully release-approved on CI alone.
