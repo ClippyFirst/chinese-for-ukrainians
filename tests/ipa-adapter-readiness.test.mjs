@@ -15,4 +15,8 @@ test('IPA adapter readiness inventory audit is deterministic', () => {
   assert.equal(report.supported + report.unsupported, report.aliases);
   assert.ok(Array.isArray(report.collisions));
   assert.ok(Array.isArray(report.unsupportedKeys));
+  assert.equal(report.aliases, 421);
+  assert.equal(report.unsupported, 2, 'only explicitly unresolved hm/hng should remain unsupported');
+  assert.deepEqual(report.unsupportedKeys.map((item) => item.pinyin).sort(), ['hm', 'hng']);
+  assert.equal(report.collisionGroups, 0, 'edge-form mappings must not introduce IPA-key collisions');
 });

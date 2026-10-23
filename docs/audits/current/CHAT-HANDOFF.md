@@ -79,7 +79,7 @@ Quality run [#40010328912](https://github.com/ClippyFirst/chinese-for-ukrainians
 PR #34: https://github.com/ClippyFirst/chinese-for-ukrainians/pull/34. Runtime changes are isolated in `src/data/ipa-transcription.js`, `src/app/pronunciation.js`, `src/app/transcribe.js` and `src/main.js`. The canonical CSV remains Pinyin-keyed source data; the runtime adapters use segmental IPA keys and preserve source row/key provenance. Missing system cells remain missing. Unsupported IPA keys are unresolved instead of falling back to Pinyin. PR #34 merged as `21b3e440fa8631a82273802f1880e31c9e8f7135`. Quality run #40012228389 passed 72 tests and all configured gates on the code-identical PR head; main's exact-SHA Quality run #40012724723 is completed successfully on the exact main SHA in Quality run #40012724723, including browser regression tests.
 
 
-The executable audit identifies the unsupported aliases precisely: `ê` (CSV row 82), `hm` (row 125), `hng` (row 126) and `yo` (row 378). Keep these unresolved until a primary-source decision is recorded; do not add a fallback mapping just to increase coverage.
+Edge-form scope decision (branch `fix/mandarin-edge-form-scope-2026-10-23`): `ê` maps to `ɛ`, supported by the open-content Mandarin reference's interjectional entry; `yo` maps to `jɔ` under an explicit broad-IPA project convention for an attested exceptional interjection. `hm` and `hng` stay deliberately unsupported: spelling/interjection attestation is not enough to determine exact IPA. New regression tests assert all four decisions, including unresolved behavior for `hm`/`hng`. This is not complete until CI and the inventory audit pass on the branch.
 
 
 ## Current main after IPA adapter merge
@@ -87,5 +87,5 @@ The executable audit identifies the unsupported aliases precisely: `ê` (CSV row
 - Main SHA: `21b3e440fa8631a82273802f1880e31c9e8f7135`.
 - PR #32 shared header: merged and Pages deployment succeeded.
 - PR #33 repository hygiene, documentation consolidation and IPA inventory audit: merged; Pages deployment succeeded.
-- PR #34 IPA-keyed Ukrainian adapters: merged; the adapter now consumes segmental IPA and preserves source provenance. Four unsupported forms remain unresolved by design.
+- PR #34 IPA-keyed Ukrainian adapters: merged; the adapter now consumes segmental IPA and preserves source provenance. Two consonant-only interjection spellings (`hm`, `hng`) remain intentionally unresolved by design; `ê` and `yo` now have explicit broad-IPA rules, subject to CI verification.
 - Current main Quality and Pages runs: Quality `40012724723`, Pages `40012724825`; verify both final conclusions before marking the release candidate complete.

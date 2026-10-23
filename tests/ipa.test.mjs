@@ -15,9 +15,16 @@ test('supports tone-marked Pinyin and ü normalization', () => {
   assert.equal(pinyinToIPA('nǚ'), 'ny˨˩˦');
   assert.equal(pinyinToIPA('lü4'), 'ly˥˩');
 });
-test('marks unsupported edge forms instead of copying Han into the IPA field', () => {
-  assert.equal(pinyinToIPA('ê'), '');
-  assert.equal(formatIPA([{ type: 'han', source: '欸', pinyin: 'ê' }]), '⟦IPA:ê⟧');
+test('maps evidence-backed marginal interjections and leaves underspecified consonant-only forms explicit', () => {
+  // ê is documented as [ɛ] in certain Mandarin interjections.
+  assert.equal(pinyinToIPA('ê'), 'ɛ');
+  // yo is attested as an exceptional interjection; [jɔ] is the documented broad-IPA project convention.
+  assert.equal(pinyinToIPA('yo'), 'jɔ');
+  assert.equal(pinyinToIPA('yo1'), 'jɔ˥');
+  // Available sources attest hm/hng spellings but do not settle the exact phonetic target.
+  assert.equal(pinyinToIPA('hm'), '');
+  assert.equal(pinyinToIPA('hng'), '');
+  assert.equal(formatIPA([{ type: 'han', source: '欸', pinyin: 'hm' }]), '⟦IPA:hm⟧');
 });
 test('preserves punctuation and Latin text while spacing IPA syllables', () => {
   assert.equal(formatIPA([{ type: 'han', source: '你', pinyin: 'ni3' }, { type: 'han', source: '好', pinyin: 'hao3' }, { type: 'text', source: '，hello!' }]), 'ni˨˩˦ xɑʊ˨˩˦，hello!');

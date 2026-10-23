@@ -17,6 +17,7 @@
 - [Ліцензія та походження даних](./LICENSE-AND-DATA-PROVENANCE.md)
 - [Фонетична відтворюваність](./PHONETIC-REPRODUCIBILITY.md)
 - [IPA adapter readiness](./IPA-ADAPTER-READINESS.md)
+- [Marginal interjection IPA decisions (ê, yo, hm, hng)](./IPA-MARGINAL-INTERJECTION-DECISIONS-2026-10-23.md)
 
 ## Актуальні робочі реєстри
 - [Master execution plan](./audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
