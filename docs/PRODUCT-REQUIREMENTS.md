@@ -9,7 +9,7 @@ A lightweight static browser application that turns Chinese text into five paral
 4. Ukrainian transcription — Kirnosova–Tsisar;
 5. Ukrainian transcription — NANU.
 
-The Ukrainian systems are independent and correspond to separate columns in zh-in-ua.csv. They are not derived from the IPA output in the current implementation. The tool transcribes pronunciation; it does not translate meaning.
+The Ukrainian systems are independent and correspond to separate columns in zh-in-ua.csv. Runtime adapters are keyed by segmental IPA derived from the pronunciation token; the CSV remains the canonical source of each system's values and provenance. The tool transcribes pronunciation; it does not translate meaning.
 
 ## Primary user outcome
 
@@ -26,13 +26,15 @@ A Ukrainian-speaking learner, translator, researcher, editor or reader can paste
 - Independent Pinyin-tone and Ukrainian-tone display toggles.
 
 ### Output
-Five visible representations: Pinyin, IPA and three Ukrainian systems.
+Five visible representations: Pinyin, IPA and three Ukrainian systems. The Ukrainian renderers consume the token's segmental IPA key, not its Pinyin key.
 - Pinyin and Ukrainian tone display are independently configurable.
 - Result panels expose copy actions and the interface provides copy feedback.
 - Speech synthesis is offered through the browser's speech API when supported.
 - Empty, unresolved and missing-mapping states must be visible and non-destructive.
 - IPA is a broad project convention, not a promise of universal narrow phonetic accuracy.
 - Ukrainian mapping columns remain independent; no cross-system fallback.
+- IPA-key collisions must fail validation rather than silently overwrite a source row.
+- IPA forms unsupported by the current convention remain unresolved; no Pinyin fallback is permitted.
 - The product does not rank the Ukrainian systems as universally superior or translate the source meaning.
 
 ## Script detection
