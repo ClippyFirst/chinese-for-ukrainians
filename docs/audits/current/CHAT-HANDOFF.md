@@ -122,3 +122,11 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - Further evidence search found [Unicode WG2 N4717 (Bopomofo)](https://www.unicode.org/L2/L2016/16106-n4717-bopomofo.pdf), p. 2: it cross-tabulates hm/hng with dictionary Zhuyin forms, but does not give IPA. A searchable [Xinhua Dictionary digitization](https://math.wvu.edu/~hlai2/My_Dictionary_CHN.pdf), printed p. 184, describes hm as h + a bilabial nasal and hng as h + a velar nasal, but the accessible text does not settle exact IPA, voice quality or contextual variation.
 - Updated the evidence review and master register to capture these sources. They corroborate the dictionary/lexical status, not the exact Wikibooks IPA candidates. Runtime and tests remain unchanged; do not mark hm/hng supported until an authoritative notation key, primary phonetic description, or inspectable Mandarin audio/corpus record resolves the realization.
 - The latest documentation commits need their own exact-head Quality result; the previous successful run does not automatically verify later commits.
+
+
+### Dictionary / expert-source follow-up — 2026-10-23
+
+- Added to the evidence review: [漢典 噷](https://zdic.net/hant/%E5%99%B7) and [漢典 哼](https://zdic.net/hant/%E5%93%BC) describe the exceptional hm/hng interjections as h plus a pure bilabial/velar nasal. Their visible IPA entries are for other readings of the characters, not hm/hng.
+- A [2026 report quoting the Xinhua Dictionary revision team](https://cul.china.com.cn/2026-06/12/content_43447236.htm) confirms that pure-consonant interjections including hm/hng are recognized and points to phonetics textbooks, but does not provide the needed IPA or a specific textbook page.
+- This strengthens lexical/articulatory triangulation but does not independently verify Wikibooks' exact IPA strings. Runtime remains unchanged and fail-closed. Next step is authoritative Xinhua 13th-edition entry/notation legend or a traceable phonetics-textbook passage, with exact edition/page, before deciding mapping scope.
+- Quality runs for the preceding commits are still not proof for this newest commit. Check the exact-head workflow before closing PR #40.
