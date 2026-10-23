@@ -69,6 +69,12 @@ test('keyboard users can reach the input and open contextual system help', async
   await page.goto('/');
   const input = page.getByRole('textbox', { name: 'Введіть китайський текст' });
   const methodologyLink = page.getByRole('link', { name: /Методики/u });
+  const brandLink = page.getByRole('link', { name: 'На головну сторінку' });
+  const converterLink = page.getByRole('link', { name: 'Конвертер' });
+  await page.keyboard.press('Tab');
+  await expect(brandLink).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(converterLink).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(methodologyLink).toBeFocused();
   await page.keyboard.press('Tab');
