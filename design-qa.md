@@ -25,6 +25,12 @@
 - [P2 — BLOCKED] No before/after screenshot comparison exists. This is not a pixel-fidelity task because no reference mockup was supplied.
 - Local clone/browser execution was blocked by inability to resolve `github.com` in the local container. The connected screenshot-scraping service reported insufficient credits, so no screenshot result is claimed.
 
+## Screenshot evidence pipeline added — 2026-10-23
+
+- Added `tests/browser/design-visual-evidence.spec.js`. It captures full-page screenshots of the converter empty state, populated example/results state, and methodology page at 320, 360, 390, 430 and 1280 CSS px.
+- Added a GitHub Actions artifact step named `redesign-visual-qa` with a seven-day retention period. The artifact is emitted even if later workflow steps fail, when screenshots exist.
+- This change makes screenshot evidence collectable despite local DNS and screenshot-service limitations. It does **not** itself count as manual visual approval. The new workflow run must pass, the artifact must exist, and the images must be inspected before the visual gate can be closed.
+
 ## Manual visual QA still required
 
 1. Capture the converter and methodology pages at 320, 360, 390, 430 and desktop widths.
