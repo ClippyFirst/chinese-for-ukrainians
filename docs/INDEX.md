@@ -23,6 +23,7 @@
 - [Chat handoff](./audits/current/CHAT-HANDOFF.md)
 - [Design QA evidence](./audits/current/DESIGN-QA-2026-10-22.md)
 - [IPA adapter execution addendum](./audits/current/IPA-ADAPTER-EXECUTION-ADDENDUM-2026-10-23.md)
+- [Edge-form research reconciliation (2026-10-23)](./audits/current/EDGE-FORM-RESEARCH-RECONCILIATION-2026-10-23.md)
 
 ## Дослідницькі докази
 - [Publication readiness](./PUBLICATION-READINESS-2026-10-18.md)
