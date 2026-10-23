@@ -138,3 +138,11 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - Wikibooks revision history shows the edge-phonology appendix was split from the general syllable page on 2026-07-23; the visible page does not cite a primary phonetic source. [IPA historical charts](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_H/IPA_charts_H.html) only provide general historical notation background, not Mandarin-specific confirmation.
 - Updated the evidence review and master register. Exact IPA remains unverified; runtime unchanged, both keys still fail closed. Next decisive step is to inspect authoritative *Xinhua Dictionary* phonetic notation/legend or a primary phonetic analysis / documented Mandarin recording, not to count repeated copies of the same IPA strings as corroboration.
 - CI on commit `fc4eb62417383387160e7c8a8af391f9ab143009` passed, but that run predates these documentation changes. Latest head still needs its own final Quality conclusion.
+
+## Latest exact-head CI result — 2026-10-23
+
+- Quality workflow [#40022895691](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40022895691) completed successfully; all steps in the `verify` job passed, including unit/integration tests, acoustic input guards, production build, generated mapping determinism, benchmark, release constraints, browser regression tests and QA artifact uploads.
+- Earlier notes above that say the latest run is still in progress are superseded by this result.
+- This CI result validates the tested repository state only. It does not validate the IPA candidates `hm → m̥m̩` and `hng → ŋ̊ŋ̍`; their provenance remains unverified and potentially circular. Both runtime keys stay unsupported.
+- Keep PR #40 as a research/evidence review, not a runtime-mapping change. Do not merge on CI status alone while C2U-IPA-014's phonetic acceptance criterion is unresolved.
+- Next genuine blocker: obtain an authoritative dictionary notation key/page, primary phonetic analysis, or inspectable Mandarin recording/corpus item with documented transcription conventions and context. If none is available, record the evidence limit and preserve fail-closed behavior. Global release gates remain source-data rights, legacy source-image collation, and manual visual/accessibility/device QA.
