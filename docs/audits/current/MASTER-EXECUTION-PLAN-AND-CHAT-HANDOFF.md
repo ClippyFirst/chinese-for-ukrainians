@@ -186,7 +186,7 @@ No release claim or production deployment claim is made by this branch.
 
 ### Verified facts and invariants
 
-- Open PRs at inspection: PR #32 (header alignment) and stale PR #5 (removes required IPA output/navigation; do not merge as-is). PR #32 is left untouched to keep changes isolated.
+- Current PR disposition (2026-10-23): PR #32 header alignment, PR #33 repository hygiene, PR #34 IPA-keyed adapters, and PR #35 documentation closeout are merged. PR #5 is closed as superseded without merging; its branch is preserved because its proposed index removes the required IPA result and methodology navigation. Earlier mentions of PR #5 as open are historical audit notes.
 - src/generated/transcription-map.js is build output regenerated from zh-in-ua.csv, not an obsolete artifact.
 - The 403-key UW differential, phonetic source ledger, dated IPA adjudication notes, and research/ipa-acoustic directory are evidence assets; dates and non-runtime status do not make them unused.
 - No linguistic mappings, source CSV values, IPA conventions, runtime application code, dependency versions, generated mapping, or deployment configuration are intentionally changed by this documentation cleanup.
