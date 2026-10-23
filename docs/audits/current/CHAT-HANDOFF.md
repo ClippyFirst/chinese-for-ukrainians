@@ -155,3 +155,10 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - Updated the consonant-only interjection evidence review and master register. Exact IPA remains **BLOCKED / evidence-limited**; both runtime keys remain unsupported.
 - The last confirmed green Quality run is #40023287308 on `a768c69f0c3ccdafb871f210767d71daba03a4c0`. It passed all automated checks, including browser tests. Since the latest register updates are later commits, a new run is needed for exact-head CI.
 - Next genuine acceptance criterion: an authoritative IPA/phonetic notation or a primary phonetic study / inspectable recording with documented transcription conventions. Do not infer a final target from orthography or repeat a potentially circular candidate.
+
+## Scope-control update — 2026-10-24
+
+- Logged adjacent academic sources that superficially match the spelling `hm` but do not establish the same lexical item or a target IPA: Qi Liu's 2025 SSRN study concerns conversational backchannel/minimal-affirmative tokens in 150 telephone conversations; the PDF endpoint returned HTTP 403, preventing inspection of token-level transcription. Do not equate these tokens with dictionary 噷/`hm` without direct evidence.
+- Lee Mikyoung (2023) studies Chinese dictionary interjections broadly but the accessible abstract does not supply exact IPA for 噷/`hm` or 哼/`hng`. The 2026 Tongji paper's 啊/嗯 repair data and Taiwanese [hãː] are outside the target source scope.
+- This source-scope distinction is recorded in the evidence review. No runtime/data/tests changed; both keys remain unsupported.
+- Workflow #40026265146 was still running browser regression tests on prior head `286111cf361ba179754f1dea0cec448ec9bd6783`; the latest documentation-only commits need a new exact-head run.
