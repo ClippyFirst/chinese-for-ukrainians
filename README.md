@@ -1,108 +1,67 @@
-# chinese-for-ukrainians
+# Chinese for Ukrainians
 
-A lightweight static browser tool for Chinese → Ukrainian transcription.
+**Китайська вимова → Pinyin, IPA та українська транскрипція.**
 
-**Release status: public beta / research preview.** The literature-based broad-IPA review is closed for publication purposes; this is not a claim of universal narrow-phonetic accuracy. See the [literature-based IPA adjudication closeout](./docs/IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), [publication-readiness assessment](./docs/PUBLICATION-READINESS-2026-10-18.md), and [methodology notes](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md).
+[Відкрити конвертер](https://clippyfirst.github.io/chinese-for-ukrainians/) · [Методологія](https://clippyfirst.github.io/chinese-for-ukrainians/methodology.html) · [Документація](./docs/INDEX.md)
 
-## Що це
+**Статус: public beta / research preview.** Інструмент призначений для порівняння систем, але не є сертифікованою вузькою фонетичною транскрипцією та не гарантує правильності кожної неоднозначної вимови.
 
-**Chinese → українська** — локальний браузерний інструмент для передачі китайської вимови українськими засобами.
+## Що робить проєкт
 
-Введіть китайський текст і отримайте паралельно:
+Вставте китайський текст і отримайте паралельно:
+- **Hanyu Pinyin** — з незалежним перемикачем тонів;
+- **IPA** — широку, літературно обґрунтовану фонетичну конвенцію проєкту;
+- **Кірносова**;
+- **Кірносова—Цісар**;
+- **НАНУ**.
 
-- Hanyu Pinyin з тонами або без них;
-- Кірносова;
-- Кірносова—Цісар;
-- НАНУ.
+Три українські системи показуються як рівноправні та обробляються незалежно. Порожнє значення однієї системи ніколи не заповнюється значенням іншої. Це транскриптор, а не перекладач.
 
-Інструмент **не перекладає значення** китайського тексту і не ранжує українські системи.
+Звичайне перетворення відбувається локально в браузері; проєкт не потребує акаунта, серверного API або передавання введеного тексту на сервер.
 
-## Користування
+## Як користуватися
 
-Повна покрокова інструкція: [docs/USER-GUIDE.md](./docs/USER-GUIDE.md).
+1. Вставте китайський текст у поле введення.
+2. Залиште режим письма **Авто** або явно виберіть спрощене чи традиційне письмо.
+3. Налаштуйте показ тонів Pinyin та української транскрипції незалежно.
+4. Порівняйте результати й скопіюйте потрібний варіант.
 
-Коротко: вставте китайський текст → виберіть або залиште Авто → окремо налаштуйте два режими тонів → прочитайте результати → скопіюйте потрібну систему.
+Повний посібник: [docs/USER-GUIDE.md](./docs/USER-GUIDE.md).
 
-## Дизайн
+## Метод і межі точності
 
-Інтерфейс побудований як функціональний типографічний інструмент, а не як маркетинговий або AI-лендинг: одна головна робоча область, чітка ієрархія через типографіку, лінії та відступи, китайський текст як головний об'єкт введення, Pinyin як спільний шар вимови та три українські системи як рівноправні результати.
+Поточний ланцюг реалізації — китайський текст → визначення письма та сегментація → рушій вимови Pinyin → окремий IPA-вихід і незалежні пошуки українських відповідників у CSV. Українські результати **не генеруються з IPA**: вони читаються з окремих стовпців zh-in-ua.csv. Це обмеження поточної архітектури, а не повністю IPA-центричний адаптер.
 
-Детальна специфікація: [docs/DESIGN-SYSTEM.md](./docs/DESIGN-SYSTEM.md). Критерії редизайну, доступності, адаптивності та приймання: [docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md](./docs/DESIGN-REDESIGN-BRIEF-2026-10-22.md).
+IPA реалізує задокументовану широку конвенцію, узгоджену з літературним аналізом. Це не акустично перевірена вузька транскрипція кожного слова чи мовця. Контекст, рідкісні імена, багатозначні ієрогліфи, нейтральний тон і тонові зміни в зв'язному мовленні можуть вимагати незалежної перевірки.
+
+Див. [методологію](https://clippyfirst.github.io/chinese-for-ukrainians/methodology.html), [оцінку готовності до публікації](./docs/PUBLICATION-READINESS-2026-10-18.md) та [відтворюваність фонетичних даних](./docs/PHONETIC-REPRODUCIBILITY.md).
 
 ## Розробка
 
-Requirements: Node.js >= 22.12.0.
+Потрібен Node.js **>= 22.12.0**.
 
 ~~~bash
 npm ci
 npm run validate:data
 npm test
-npm run dev
-~~~
-
-Production build:
-
-~~~bash
 npm run build
 npm run check:release
 ~~~
 
-Browser QA:
+Для браузерних тестів: `npx playwright install` та `npm run test:browser`.
 
-~~~bash
-npx playwright install
-npm run test:browser
-~~~
+Додатково: `npm run benchmark`, `npm run audit:ipa:uw`, `npm run audit:ipa:uw:check`.
 
-Optional pronunciation benchmark:
+Команда build перевіряє дані, генерує src/generated/transcription-map.js з CSV та будує статичний сайт. Не редагуйте generated-файл вручну. Після зміни CSV запускайте тести й перевіряйте відсутність незакоміченого generated diff.
 
-~~~bash
-npm run benchmark
-~~~
+## Дані та документація
 
-## Дані
+zh-in-ua.csv — канонічне джерело трьох українських систем; src/generated/transcription-map.js — похідний артефакт, який відтворюється генератором. Порожні клітинки навмисно зберігаються. Кількість рядків не є доказом правильності всіх фонетичних значень.
 
-zh-in-ua.csv — джерело українських відповідників.
+- [Індекс документації та призначення основних документів](./docs/INDEX.md)
+- [Архітектура](./docs/ARCHITECTURE.md) · [Вимоги](./docs/PRODUCT-REQUIREMENTS.md) · [Специфікація даних](./docs/DATA-SPEC.md)
+- [План QA](./docs/QA-PLAN.md) · [Release checklist](./docs/RELEASE-CHECKLIST.md) · [Дизайн-система](./docs/DESIGN-SYSTEM.md)
+- [Походження даних і ліцензійні межі](./docs/LICENSE-AND-DATA-PROVENANCE.md)
+- [Master execution plan / audit register](./docs/audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md) · [Актуальна передача контексту](./docs/audits/current/CHAT-HANDOFF.md) · [Design QA evidence](./docs/audits/current/DESIGN-QA-2026-10-22.md)
 
-Поточний `zh-in-ua.csv` містить 421 рядок даних і 421 нормалізований Pinyin-ключ без дублікатів. У колонці Кірносової та Кірносової—Цісар є по одному порожньому значенню для `ten`; у колонці НАНУ залишаються 10 порожніх значень, які не можна автоматично заповнювати з інших систем. Ці числа слід перевіряти після зміни CSV через `npm run validate:data`; після зміни таблиці запускайте також `npm run generate:data`.
-
-## Робочий план і передача контексту
-
-- [Release-readiness and IPA traceability audit (2026-10-20)](./docs/RELEASE-READINESS-AND-IPA-TRACEABILITY-2026-10-20.md) — current release gates, PR #5 assessment, conversion-chain provenance, and residual limitations.
-- [Master execution plan and audit register](./docs/audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
-- [Chat handoff](./docs/audits/current/CHAT-HANDOFF.md)
-
-Ці документи містять актуальний реєстр завдань, статуси, критерії приймання та точний наступний крок. Статуси `DONE_VERIFIED` використовуються лише за наявності перевірюваного доказу.
-
-## Документація
-
-- [User guide](./docs/USER-GUIDE.md)
-- [Product requirements](./docs/PRODUCT-REQUIREMENTS.md)
-- [Architecture](./docs/ARCHITECTURE.md)
-- [Design system](./docs/DESIGN-SYSTEM.md)
-- [Data specification](./docs/DATA-SPEC.md)
-- [QA plan](./docs/QA-PLAN.md)
-- [Phonetic reproducibility and evidence](./docs/PHONETIC-REPRODUCIBILITY.md)
-- [License and data provenance scope](./docs/LICENSE-AND-DATA-PROVENANCE.md) — clarifies that the root MIT notice does not by itself establish rights to every third-party source or dataset.
-- [IPA convention decision](./docs/IPA-CONVENTION-DECISION-2026-10-18.md)
-- [Scientific IPA verification matrix](./docs/IPA-SCIENTIFIC-VERIFICATION-MATRIX-2026-10-18.md)
-- [IPA scientific verification closeout (2026-10-19)](./docs/IPA-SCIENTIFIC-VERIFICATION-CLOSEOUT-2026-10-19.md) — historical audit record; its stricter certification status is superseded for release decisions by the [literature-based adjudication closeout](./docs/IPA-LITERATURE-BASED-ADJUDICATION-CLOSEOUT-2026-10-19.md), which defines the project's agreed release criterion.
-- [Class-by-class IPA final adjudication register](./docs/IPA-FINAL-CLASS-ADJUDICATION-2026-10-18.md)
-- [Targeted `ong` / `iong` / `er` adjudication](./docs/IPA-ONG-IONG-ER-ADJUDICATION-2026-10-19.md) — includes the 2024 multi-speaker acoustic/articulatory study of syllabic rhotics
-- [Targeted `üan` low-vowel adjudication](./docs/IPA-UAN-LOW-VOWEL-ADJUDICATION-2026-10-19.md)
-- [Raw UW IPA source comparison](./docs/IPA-UW-RAW-SOURCE-COMPARISON-2026-10-18.md)
-- [403-key machine-generated UW IPA differential](./docs/IPA-UW-403-SYLLABLE-DIFFERENTIAL-2026-10-18.csv)
-- [403-key differential methodology and limitations](./docs/IPA-UW-403-DIFFERENTIAL-METHODOLOGY-2026-10-18.md)
-
-Regenerate the differential after changing the IPA converter with `npm run audit:ipa:uw`; `npm test` checks that the committed CSV matches the current converter, all 403 source keys are covered, and the source ledger retains its nine-column schema and key evidence entries.
-- [Contracted finals and vowel-quality audit](./docs/IPA-AUDIT-CONTRACTED-FINALS-2026-10-18.md)
-- [Independent vowel-quality cross-check](./docs/IPA-AUDIT-VOWEL-QUALITY-2026-10-18.md)
-- [Apical segments, rhotics, and tone adjudication](./docs/IPA-ADJUDICATION-APICALS-RHOTICS-TONES-2026-10-18.md)
-- [Independent apical-segment and tone audit](./docs/IPA-AUDIT-APICALS-TONES-SECOND-SOURCE-2026-10-18.md)
-- [Phonetic audit report](./docs/PHONETIC-AUDIT-2026-10-18.md)
-- [Phonetic source ledger](./docs/PHONETIC-SOURCE-LEDGER-2026-10-18.csv)
-- [Reference-inventory exceptions](./docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md)
-- [Accessibility](./docs/ACCESSIBILITY.md)
-- [Release checklist](./docs/RELEASE-CHECKLIST.md)
-- [Usage](./docs/USAGE.md)
-- [Roadmap](./docs/ROADMAP.md)
+Датовані аудити збережено як історичні докази дослідницьких рішень, а не як паралельні актуальні плани. Для поточного стану використовуйте індекс, master register і handoff.

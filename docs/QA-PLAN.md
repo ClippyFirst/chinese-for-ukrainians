@@ -1,40 +1,49 @@
-# Chinese for Ukrainians — QA Plan
+# План перевірок і критерії якості
 
-## Test layers
+Цей документ описує перевірки, які потрібно запускати, а не стверджує, що кожна з них виконувалася в кожному середовищі. Поточний результат має бути прив'язаний до конкретного SHA та GitHub Actions run; див. [актуальний handoff](./audits/current/CHAT-HANDOFF.md).
 
-### Data tests
-Validate zh-in-ua.csv and generated mapping data with npm run validate:data and npm run generate:data.
+## Обов'язкові автоматизовані перевірки
 
-### Unit/integration tests
-The required npm test suite uses Node's built-in test runner and covers:
-- Unicode Han scanning;
-- Simplified/Traditional/mixed/undetermined detection;
-- Pinyin normalization and tone rendering;
-- IPA mappings, apical vowels, tones, and visible unsupported-form markers;
-- phrase/context pronunciation through the injected engine contract;
-- integration fixtures against the actual pinned pinyin-pro engine;
-- Ukrainian lookup, including tone-marked input normalization;
-- system-specific differences and missing mappings;
-- punctuation and Latin preservation;
-- deterministic conversion and generated mapping data.
+~~~bash
+npm ci
+npm run validate:data
+npm test
+npm run build
+git diff --exit-code -- src/generated/transcription-map.js
+npm run check:release
+npm run benchmark
+npx playwright install
+npm run test:browser
+~~~
 
-### Browser tests
-npm run test:browser covers empty/results/issue states and all five visible representations; keyboard-operable script controls and source non-mutation; copy exactness, live-region feedback, and reset state; keyboard focus and tooltip discoverability; horizontal overflow at 320, 360, 390 and 430 CSS pixels; and reduced-motion preference; design-token contrast; equal weighting of the three Ukrainian systems; and shared styling on the methodology page.
+## Покриття
 
-## Mandatory fixtures
-Include Simplified Chinese, Traditional Chinese, shared-only Han text, mixed scripts, punctuation/line breaks, numbers/Latin, polyphonic characters, unresolved characters, unsupported IPA forms, and synthetic duplicate-key mutations.
+### Дані та конвертація
+- CSV-схема, ширина рядків, нормалізовані ключі, дублікати та допустимі пропуски;
+- Unicode Han-сканування та збереження сторонніх символів, пунктуації й пробілів;
+- визначення спрощеного, традиційного, змішаного та невизначеного письма;
+- нормалізація Pinyin, тонові знаки та незалежні перемикачі тонів;
+- IPA-мапінг, апікальні голосні, класи фіналей і маркери непідтримуваних форм;
+- інтеграція з зафіксованою версією pinyin-pro;
+- незалежні українські стовпці, відсутні відповідники та відсутність fallback між системами;
+- детермінованість генератора й диференційна перевірка UW IPA-джерела.
 
-## Invariants
-- Non-Chinese text is preserved.
-- Copying a result returns exactly the displayed text.
-- Script selection does not mutate input.
-- Repeated conversion and generated mappings are deterministic.
-- One Ukrainian system never borrows a blank value from another.
-- Unsupported IPA is visibly marked; it must not silently become a Han character.
-- Tone-marked and tone-number Pinyin resolve to the same Ukrainian table key.
+### Браузер
+Playwright покриває стани порожнього/заповненого результату, п'ять подань (Pinyin, IPA і три українські системи), вибір письма, копіювання та live-region, приклад/очищення, незалежні перемикачі тонів, клавіатурну взаємодію, UI інтеграцію мовлення через mock, reduced motion, дизайн-токени, рівну вагу українських карток і горизонтальне переповнення на 320/360/390/430/1280 CSS px. Скриншоти можуть зберігатися як CI artifact; це не повний assistive-technology аудит.
 
-## Performance and release
-npm run benchmark measures conversion latency for 1, 10, 100 and 1000 Chinese characters. npm run check:release checks application-source constraints and static bundle size.
+### Додаткові перевірки
+- research/ipa-acoustic містить окремий дослідницький інструментарій для акустичних вимірювань. Наявність скрипта або тесту не означає, що вимірювання виконано чи що IPA акустично валідовано.
+- npm run benchmark вимірює час конвертації для 1, 10, 100 і 1000 символів; це performance check, а не тест мовної точності.
+- npm run check:release перевіряє обмеження статичного застосунку.
 
-## Regression policy
-Every correction to zh-in-ua.csv that affects output should add or update a regression fixture. See PHONETIC-REPRODUCIBILITY.md for the distinction between passing software tests and verified linguistic evidence.
+## Інваріанти
+- Не-китайські символи, пробіли та пунктуація зберігаються.
+- Копіювання повертає точний вміст відповідної картки.
+- Перемикання письма не переписує оригінал.
+- Повторна конвертація та generated map детерміновані.
+- Одна українська система ніколи не заповнює порожню клітинку іншої.
+- Невідома вимова або непідтримувана форма не перетворюється мовчки на вигаданий результат.
+- Тестова узгодженість не прирівнюється до фонетичної істини.
+
+## Межі приймання
+Зелений CI підтверджує лише визначені автоматизовані гейти на відповідному commit SHA. Він не доводить правильності всіх CSV-значень, очищення прав на сторонні джерела, роботу фізичного аудіовиходу, поведінку системного clipboard у кожному браузері або повну доступність для assistive technology. Ці критерії мають окремі записи в release checklist і master register.
