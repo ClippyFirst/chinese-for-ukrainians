@@ -77,3 +77,6 @@ Quality run [#40010328912](https://github.com/ClippyFirst/chinese-for-ukrainians
 ## IPA-first adapter implementation — 2026-10-23
 
 PR #34: https://github.com/ClippyFirst/chinese-for-ukrainians/pull/34. Runtime changes are isolated in `src/data/ipa-transcription.js`, `src/app/pronunciation.js`, `src/app/transcribe.js` and `src/main.js`. The canonical CSV remains Pinyin-keyed source data; the runtime adapters use segmental IPA keys and preserve source row/key provenance. Missing system cells remain missing. Unsupported IPA keys are unresolved instead of falling back to Pinyin. CI must pass unit/integration tests, build, generated-map determinism, release checks and browser regression tests before this is merged.
+
+
+The executable audit identifies the unsupported aliases precisely: `ê` (CSV row 82), `hm` (row 125), `hng` (row 126) and `yo` (row 378). Keep these unresolved until a primary-source decision is recorded; do not add a fallback mapping just to increase coverage.
