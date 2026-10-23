@@ -8,7 +8,7 @@ The runtime resolves Chinese text to Pinyin pronunciation tokens. Each resolved 
 
 ## Inventory evidence
 
-Quality run #40012228389 passed 72 tests and all configured gates on the code-identical PR head. The current deterministic inventory audit must be rerun on this branch. The code now explicitly maps the evidence-backed marginal forms `ê → ɛ` and `yo → jɔ` (broad-IPA project convention); `hm` and `hng` remain intentionally unsupported because reviewed sources attest their spellings but do not establish a defensible segmental IPA target. Preserve these as explicit scope limitations rather than guessing.
+Quality run #40012228389 passed 72 tests and all configured gates on the code-identical PR head. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a` passed the deterministic inventory test: 421 aliases, 419 IPA-supported keys, exactly two intentionally unsupported keys (`hm`, `hng`), and zero IPA-key collisions. This is structural coverage evidence, not independent proof of every phonetic or Ukrainian value. The code maps `ê → ɛ` from a source explicitly describing [ɛ] in certain interjections and `yo → jɔ` as a declared broad-IPA project convention for an attested exceptional interjection.
 
 These counts demonstrate structural coverage and key uniqueness under the current finite IPA function. They do not independently prove the correctness of every IPA segment or Ukrainian transcription.
 
