@@ -265,3 +265,10 @@ C2U-IPA-014 provenance breakthrough (2026-10-23): exact-string search located a 
 - Added dictionary corroboration from 漢典: `噷 hm` is described broadly as `h` plus a pure bilabial nasal and an admonishing/prohibitive interjection; `哼 hng` is described by function (doubt/disbelief/contempt) but no IPA for that reading is supplied. These sources strengthen existence/function/articulation context but do not validate `m̥m̩` or `ŋ̊ŋ̍`.
 - C2U-IPA-014 remains **BLOCKED / evidence-limited**. Do not enable either runtime mapping without an authoritative phonetic notation, primary phonetic study, or inspectable recording/corpus sample with documented transcription conventions.
 - C2U-CI-015 is **DONE_VERIFIED** for commit `a768c69f0c3ccdafb871f210767d71daba03a4c0` by Quality workflow #40023287308. Any further documentation-only update requires its own CI run before exact-head verification is claimed.
+
+### C2U-IPA-014 scope-control update — 2026-10-24
+
+- Reviewed newly surfaced adjacent literature: Qi Liu (SSRN, 2025) studies conversational `hm` in telephone-dialogue backchannels/minimal affirmatives; its PDF endpoint returned HTTP 403, so token-level methods and transcription could not be inspected. It is **not accepted** as evidence for the dictionary exceptional interjection 噷/`hm`: the shared spelling does not prove token identity, and the accessible abstract gives no directly inspectable IPA for that entry.
+- Lee Mikyoung (2023), a peer-reviewed study of the *Modern Chinese Dictionary* interjection inventory, gives broad inventory-level observations but no accessible exact IPA for 噷/`hm` or 哼/`hng`. The 2026 Tongji conversational-repair paper covers 啊/嗯 and Taiwanese [hãː], not the target exceptional readings.
+- These are logged as scope exclusions / research leads, not positive phonetic evidence. C2U-IPA-014 remains **BLOCKED / evidence-limited**; runtime keys remain unsupported.
+- Quality run #40026265146 is running against prior head `286111cf361ba179754f1dea0cec448ec9bd6783`. The additional source-scope note is documentation-only and will require a new run for exact-head CI.
