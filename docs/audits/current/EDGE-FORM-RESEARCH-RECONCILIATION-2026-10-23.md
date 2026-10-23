@@ -55,3 +55,30 @@ For each of `ê`, `hm`, `hng`, and `yo`, the ledger must record:
 ## Current conclusion
 
 No new IPA value is added in this reconciliation because the available evidence summarized in the existing repository does not establish all four mappings to the project's acceptance standard. The meaningful correction is to stop describing prior work as if it had never happened: the source history is preserved, already-adopted IPA conventions remain adopted, and the remaining work is limited to the four actual runtime gaps and their specific evidence requirements.
+
+
+## Follow-up source screen: what can now be stated about ê and yo
+
+This source screen adds evidence to the existing research; it does not claim that a safe runtime mapping has been established.
+
+### ê
+
+- The Chinese Ministry of Education's public answer on the Mandarin sound system explicitly includes **ê** in the Mandarin vowel inventory: https://www.moe.gov.cn/moe_879/moe_1252/s8447/201412/t20141204_179468.html. This supports that ê is not simply a malformed CSV key.
+- The open-content *Chinese (Mandarin)* reference gives ê as [ɛ] and describes it as occurring in certain interjections: https://upload.wikimedia.org/wikipedia/commons/2/20/Chinese_%28Mandarin%29.pdf. This is useful direct notation evidence for a limited interjectional use, but it does not specify every tone or guarantee that the project's untoned CSV key represents the same target instance.
+- Current decision: retain unresolved status until the exact scope and tone behavior of this CSV row are documented. Do not extrapolate the regular Pinyin final e [ɤ] to ê; they are distinct entries.
+
+### hm and hng
+
+- The Pinyin News research note on Mandarin interjections states that some interjections consist wholly of consonants and lists **ng, hm, hng** as syllabic interjection spellings: https://pinyin.info/news/2009/mandarin-interjections-in-pinyin/. This is useful evidence of orthographic/functional status, not a segment-level IPA transcription.
+- The repository's earlier source ledger already records the Kirnosova (2009) OCR problem, secondary corroboration of the Ukrainian cells, and NANU source-key absence. That history is reused here; no new claim about the exact original table glyph is made.
+- Current decision: keep both IPA keys unsupported until a source supports a defensible phonetic representation and the original Ukrainian table cells are visually verified where possible. The spelling alone does not establish whether a particular utterance should be represented with [m̩], [ŋ̍], [x], [h], or a different phonetic detail.
+
+### yo
+
+- The Pinyin News note explicitly records the Mandarin interjection “Yo!” and distinguishes it from English “yo”: https://pinyin.info/news/2009/mandarin-interjections-in-pinyin/.
+- A Mandarin Pinyin pronunciation guide describes the special spelling **yo** as the i-series glide plus o and says it occurs as an interjection: https://www.friendlyskies.net/lang/chinese/files/B-hanyu_pinyin_pronunciation_guide_20101119.pdf. This supports treating yo as an attested exceptional form rather than a nonexistent key, but it is not a direct IPA transcription.
+- Current decision: the form's existence/scope is better supported than the earlier wording implied, but exact IPA is still not directly established by these sources. Do not silently derive [jɔ] from ordinary y/o rules without recording that as an explicit project convention and verifying the expected pronunciation.
+
+### Source-screen conclusion
+
+The search narrows the uncertainty: ê is an acknowledged vowel used in limited interjections; hm/hng are attested consonant-only interjection spellings; yo is an attested exceptional interjection. It does **not** yet provide a sufficient direct IPA target for all three classes, especially the phonetic detail of hm/hng and the target instance/tone for ê/yo. Preserve current unresolved runtime behavior until the exact convention is deliberately documented and tested.
