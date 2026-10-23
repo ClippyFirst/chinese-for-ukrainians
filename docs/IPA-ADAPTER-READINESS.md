@@ -1,6 +1,6 @@
 # IPA adapter readiness
 
-**Status: TODO — architecture change required.** This document defines acceptance criteria; it does not claim the IPA-first pipeline exists.
+**Status: PARTIAL — inventory audit implemented; adapter migration remains TODO.** The executable diagnostic is `scripts/audit-ipa-adapter-readiness.mjs`; its regression test is `tests/ipa-adapter-readiness.test.mjs`. CI must establish its results on the exact commit. This document does not claim the IPA-first pipeline exists.
 
 ## Current behavior
 
@@ -12,7 +12,7 @@ A broad IPA representation can merge distinctions encoded by different Pinyin ke
 
 ## Required work
 
-1. Build a reproducible inventory audit for unsupported IPA keys and IPA-key collisions across every CSV alias.
+1. **Implemented, pending exact-head CI evidence:** `node scripts/audit-ipa-adapter-readiness.mjs --json` reports unsupported IPA keys and IPA-key collisions across every CSV alias. Review its actual output before making architecture decisions.
 2. Review collisions against primary phonetic and Ukrainian transcription sources.
 3. Define a typed phonetic token containing segments, tone, syllable boundaries, source span, provenance, resolution status and uncertainty.
 4. Specify an adapter for each Ukrainian system and document which features it preserves or merges.
