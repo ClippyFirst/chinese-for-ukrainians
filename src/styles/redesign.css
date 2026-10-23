@@ -379,3 +379,11 @@ textarea::placeholder {
   }
 }
 
+
+
+/* Keep contextual-help popovers inside the viewport on desktop as well as mobile. */
+.info-popover {
+  left: auto;
+  right: 0;
+  max-width: calc(100vw - 32px);
+}

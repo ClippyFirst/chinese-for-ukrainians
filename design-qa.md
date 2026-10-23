@@ -84,3 +84,11 @@ These are regression tests, not a substitute for manual assistive-technology rev
 - The two failures repeated across projects had two concrete causes: the tone-control test attempted to click visually hidden checkbox inputs through an overlaid switch track; and long mixed-script content caused an 8px horizontal overflow at the 1280px viewport.
 - Corrective batch changes the test to click the visible accessible switch label and constrains result metadata grid tracks and long metadata strings to prevent intrinsic-width overflow. The next workflow on the corrected SHA is the acceptance gate; this failed run remains recorded as a failure, not a pass.
 - Speech API behavior is mocked in CI and does not establish actual audio output on a physical device. Manual screen-reader and uncertain-pronunciation fixture coverage remain outstanding.
+
+
+## Follow-up result and viewport overflow fix — 2026-10-23
+
+- Workflow [#352](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39952763417) ran on `c020cd61d1952da63376c982d7b928d1d1aba2b8`. **49 browser tests passed, 2 failed, 1 intentionally skipped**; all preceding workflow gates passed and both visual/dependency artifacts uploaded.
+- Both failures were the same real layout defect at 1280 CSS px: the document was 1288px wide. Inspection identified the absolutely positioned contextual-help tooltip: its desktop `left: 0` anchoring let the last result card's tooltip extend beyond the viewport even while hidden.
+- The next correction anchors the tooltip to the right edge of its trigger and caps its width against the viewport. This addresses the source of the overflow rather than suppressing the test with `overflow-x: hidden`.
+- The run's npm audit JSON artifact should be inspected with the next gate; do not infer its vulnerability count from earlier runs. Physical audio and assistive-technology testing remain outside automated CI evidence.
