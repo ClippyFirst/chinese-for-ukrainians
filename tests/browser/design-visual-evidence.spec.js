@@ -41,3 +41,44 @@ test('capture reviewable screenshots for the redesign acceptance gate', async ({
     });
   }
 });
+
+
+test('keyboard navigation and focus visibility cover core conversion controls', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#source-input').focus();
+  await expect(page.locator('#source-input')).toBeFocused();
+  await page.keyboard.type('你好');
+  await expect(page.locator('#results')).toBeVisible();
+
+  for (const selector of ['#script-auto', '#script-simplified', '#script-traditional', '#show-pinyin-tones', '#show-ukrainian-tones', '#speak-button', '#example-button', '#clear-button']) {
+    const control = page.locator(selector);
+    await control.focus();
+    await expect(control).toBeFocused();
+    await expect(control).toHaveCSS('outline-style', 'solid');
+  }
+
+  const methodology = page.getByRole('link', { name: /Методики/u });
+  await methodology.focus();
+  await expect(methodology).toBeFocused();
+  await expect(methodology).toHaveCSS('outline-style', 'solid');
+});
+
+test('clear, copy affordances, tooltip focus and reduced-motion styles remain usable', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  await expect(page.locator('#results')).toBeVisible();
+  await expect(page.locator('#result-pinyin')).not.toBeEmpty();
+  await expect(page.getByRole('button', { name: 'Копіювати' }).first()).toBeVisible();
+
+  const tooltip = page.getByRole('button', { name: /Довідка: Кірносова 2009/u });
+  await tooltip.focus();
+  await expect(tooltip).toBeFocused();
+  await expect(tooltip).toHaveCSS('outline-style', 'solid');
+
+  await page.getByRole('button', { name: 'Очистити' }).click();
+  await expect(page.locator('#source-input')).toHaveValue('');
+  await expect(page.locator('#empty-state')).toBeVisible();
+  await expect(page.locator('#results')).toBeHidden();
+});
