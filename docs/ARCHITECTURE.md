@@ -22,7 +22,7 @@ Chinese input
 → DOM UI / copy / speech controls
 ~~~
 
-**Important architecture boundary:** IPA and Ukrainian outputs are currently parallel outputs from canonical pronunciation tokens. The Ukrainian renderers do **not** consume IPA. Each Ukrainian result removes the tone from its Pinyin key and looks up only its own CSV-derived map. The product is therefore not yet a true IPA-first adapter pipeline; do not describe it as one until that architecture is implemented and tested.
+**Important architecture boundary:** IPA and Ukrainian outputs are currently parallel outputs from canonical pronunciation tokens. Each resolved token now carries a segmental IPA key, and the Ukrainian renderers use collision-checked IPA-keyed maps derived from the canonical CSV. Tone remains separate metadata. The four unsupported IPA forms remain unresolved; there is no Pinyin fallback.
 
 ## Main files
 
@@ -35,7 +35,8 @@ Chinese input
 - src/app/pronunciation.js — phrase/context pronunciation resolution and token metadata.
 - src/app/pinyin.js — Pinyin normalization/display.
 - src/app/ipa.js — broad IPA representation.
-- src/app/transcribe.js — per-system Ukrainian rendering and optional tone marks.
+- src/app/transcribe.js — per-system IPA-keyed Ukrainian rendering and optional tone marks.
+- src/data/ipa-transcription.js — IPA-keyed maps with source-row and Pinyin provenance.
 - src/data/transcription.js — CSV parsing/validation and mapping access.
 - src/generated/transcription-map.js — generated mapping artifact; never hand-edit.
 - src/app/convert.js — orchestration and ConversionResult.
