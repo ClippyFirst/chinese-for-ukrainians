@@ -14,8 +14,12 @@ test('production adapter map is keyed by segmental IPA and retains source proven
 
 test('blank mappings remain missing in their own system', () => {
   const ipa = pinyinToIPA('pou');
-  assert.equal(lookupIpaTranscription(ipaTranscriptionMap, 'nanu', ipa).status, 'missing');
-  assert.equal(lookupIpaTranscription(ipaTranscriptionMap, 'kirnosova', ipa).value, 'поу');
+  const fixture = createIpaTranscriptionMap({
+    kirnosova: { pou: { value: 'поу', missing: false, sourceRow: 1, sourceKey: 'pou' } },
+    nanu: { pou: { value: '', missing: true, sourceRow: 1, sourceKey: 'pou' } },
+  });
+  assert.equal(lookupIpaTranscription(fixture, 'nanu', ipa).status, 'missing');
+  assert.equal(lookupIpaTranscription(fixture, 'kirnosova', ipa).value, 'поу');
 });
 
 test('unsupported phonetic tokens stay unresolved instead of falling back to Pinyin', () => {
