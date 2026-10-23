@@ -94,3 +94,15 @@ Edge-form scope decision (branch `fix/mandarin-edge-form-scope-2026-10-23`): `ê
 ## IPA marginal interjection closeout — 2026-10-23
 
 PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) passed on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a`. The regression suite now requires 421 aliases, exactly two unsupported keys (`hm`, `hng`), and zero IPA-key collisions. `ê → ɛ` is based on a source explicitly giving [ɛ] for certain interjections; `yo → jɔ` is an explicitly declared broad-IPA project convention for an attested exceptional interjection. `hm` and `hng` remain deliberately unresolved rather than guessed. This is a bounded implementation closeout, not proof of narrow phonetics or completion of source-image verification, licensing, or device QA.
+
+
+## Consonant-only interjection evidence review — 2026-10-23
+
+- Follow-up branch: `research/consonant-only-interjection-evidence-2026-10-23`, based on current `main`; evidence-review commit `99baf80cf0ded596fd04f7c2fe410802e528cd52`.
+- Added [CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md](./CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md) and linked it from [docs index](../../INDEX.md).
+- New source: *Chinese Romanization: Pronunciation and Orthography*, interjections section (https://pinyin.info/readings/yin_binyong/o09_interjections.pdf), says `ng`, `hm`, and `hng` are consonant-only Mandarin interjections treated as ordinary syllables in that romanization description. This establishes orthographic/functional status, not IPA realization.
+- TDSF converter documentation (https://www.tdsf.kiev.ua/convertor.php) excludes rare `hm`/`hng` forms due to input ambiguity. This is a converter scope/tokenization choice, not a phonetic analysis.
+- Decision unchanged: `hm` and `hng` remain unsupported; do not guess IPA or permit Pinyin fallback. Reopen only on direct, context-relevant phonetic evidence (explicit IPA, audio with a documented convention, or citable corpus material).
+- The attempt to search more sources through the connected Firecrawl service failed because its account has insufficient credits. This is a tool limitation, not evidence that no sources exist. Public web search did find the PDF above.
+- Verification status: documentation-only branch; no local clone or npm/browser execution was available. Quality run `40019784515` for merged PR #39 was still in progress at the last check (unit/integration, acoustic input guards, build, generated-map determinism, benchmark and release constraints passed; browser installation was still running). Do not claim that workflow completed.
+- Global release gates remain open: primary-page source collation for legacy Ukrainian cells, source-by-source rights review, manual accessibility/device QA, and visual QA in a live browser. Product remains public beta / research preview.
