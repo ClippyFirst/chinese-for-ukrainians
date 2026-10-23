@@ -19,6 +19,7 @@
 - [IPA adapter readiness](./IPA-ADAPTER-READINESS.md)
 - [Current edge-form research reconciliation](./audits/current/EDGE-FORM-RESEARCH-RECONCILIATION-2026-10-23.md)
 - [Marginal interjection IPA decisions (ê, yo, hm, hng)](./IPA-MARGINAL-INTERJECTION-DECISIONS-2026-10-23.md)
+- [Consonant-only interjection evidence review (hm, hng)](./audits/current/CONSONANT-ONLY-INTERJECTION-EVIDENCE-REVIEW-2026-10-23.md)
 
 ## Актуальні робочі реєстри
 - [Master execution plan](./audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
