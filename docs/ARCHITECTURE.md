@@ -1,110 +1,81 @@
 # Chinese for Ukrainians — Architecture
 
-## Runtime architecture
+## Runtime
 
-The application is a static Vite site using plain HTML, CSS and JavaScript.
+The product is a static Vite site using HTML, CSS and browser JavaScript. It has no application server, runtime database, authentication, analytics, or conversion API. Normal conversion runs in the browser.
 
-There is no application server, runtime database, authentication layer, analytics layer, or runtime API.
+## Actual conversion pipeline
 
-## Pipeline
-
-```text
+~~~text
 Chinese input
-→ Unicode-safe source-span scan
-→ script detection
-→ Mandarin pronunciation resolver
-→ canonical Pinyin tokens
-→ Pinyin renderer
-→ three Ukrainian renderers
+→ Unicode-safe source-span scanner
+→ script detector (Auto / Simplified / Traditional)
+→ pronunciation resolver and pinned pinyin-pro adapter
+→ canonical Pinyin pronunciation tokens
+   ├─→ Pinyin renderer (tone marks optional)
+   ├─→ broad IPA renderer
+   └─→ independent Ukrainian lookup in each CSV-derived system map
+        ├─→ Kirnosova
+        ├─→ Kirnosova–Tsisar
+        └─→ NANU
 → ConversionResult
-→ DOM UI
-```
+→ DOM UI / copy / speech controls
+~~~
 
-The canonical intermediate representation is the PronunciationToken array. The three Ukrainian systems consume those tokens independently.
+**Important architecture boundary:** IPA and Ukrainian outputs are currently parallel outputs from canonical pronunciation tokens. The Ukrainian renderers do **not** consume IPA. Each Ukrainian result removes the tone from its Pinyin key and looks up only its own CSV-derived map. The product is therefore not yet a true IPA-first adapter pipeline; do not describe it as one until that architecture is implemented and tested.
 
-## Repository structure
+## Main files
 
-```text
-/
-├── index.html
-├── src/
-│   ├── main.js
-│   ├── styles/main.css
-│   ├── app/
-│   │   ├── scanner.js
-│   │   ├── detector.js
-│   │   ├── pinyin.js
-│   │   ├── pronunciation.js
-│   │   ├── pinyin-pro-adapter.js
-│   │   ├── transcribe.js
-│   │   ├── convert.js
-│   │   ├── ui.js
-│   │   └── clipboard.js
-│   ├── data/transcription.js
-│   └── generated/transcription-map.js
-├── scripts/
-│   ├── validate-data.mjs
-│   ├── generate-mappings.mjs
-│   ├── benchmark.mjs
-│   └── release-check.mjs
-├── tests/
-│   ├── *.test.mjs
-│   └── browser/converter.spec.js
-└── zh-in-ua.csv
-```
+- index.html — converter entry point.
+- methodology.html — methods and limitations page.
+- src/main.js — browser application entry.
+- src/app/scanner.js — source spans and preservation of non-Han text.
+- src/app/detector.js — script evidence and Auto detection.
+- src/app/pinyin-pro-adapter.js — pinned external pronunciation engine adapter and Traditional dictionary access.
+- src/app/pronunciation.js — phrase/context pronunciation resolution and token metadata.
+- src/app/pinyin.js — Pinyin normalization/display.
+- src/app/ipa.js — broad IPA representation.
+- src/app/transcribe.js — per-system Ukrainian rendering and optional tone marks.
+- src/data/transcription.js — CSV parsing/validation and mapping access.
+- src/generated/transcription-map.js — generated mapping artifact; never hand-edit.
+- src/app/convert.js — orchestration and ConversionResult.
+- src/app/ui.js — DOM rendering and user interactions.
+- src/app/clipboard.js — clipboard behavior.
+- src/app/speech.js — browser speech-synthesis integration.
+- src/styles/main.css, src/styles/methodology.css, src/styles/redesign.css — base, methodology-specific, and shared visual refinement layers.
+- zh-in-ua.csv — canonical editable source for the three Ukrainian systems.
 
 ## Data layers
 
-### Ukrainian source
+### Source CSV
+zh-in-ua.csv is the editable source. The validator checks the required header, row shape, normalized key uniqueness, aliases and allowed blank mappings. Blank values are meaningful coverage gaps, not permission to borrow from another system.
 
-`zh-in-ua.csv` is the canonical editable source.
+### Generated map
+scripts/generate-mappings.mjs creates src/generated/transcription-map.js, including source-row metadata and an explicit missing marker. The build regenerates this file. Review generated drift after build and never edit the generated file manually.
 
-The validator checks the exact five-column header, row shape, normalized-key uniqueness, aliases, and blank mappings.
-
-### Generated mapping
-
-`scripts/generate-mappings.mjs` produces `src/generated/transcription-map.js`. It contains per-system entries with source-row metadata and an explicit `missing` flag. It is generated data and must not be hand-edited.
-
-### Pronunciation
-
-`pinyin-pro-adapter.js` isolates the external pronunciation engine. It initializes the official Traditional dictionary and exposes the Traditional→Simplified map to script detection.
+### Pronunciation engine
+pinyin-pro-adapter.js isolates pinyin-pro and its pinned data package. Phrase/context pronunciation and polyphonic metadata are carried into canonical tokens, but names and ambiguous cases may still need review.
 
 ## Script detection
 
 Auto detection uses exclusive characters derived from the Traditional dictionary:
+- a Traditional dictionary key is evidence for Traditional;
+- a mapped value that is not itself a Traditional key is evidence for Simplified-only;
+- both signals produce Mixed;
+- neither signal produces Undetermined.
 
-- a Traditional dictionary key is Traditional evidence;
-- a value that is not itself a Traditional key is Simplified-only evidence;
-- both signals produce `mixed`;
-- neither produces `undetermined`.
+Shared-only text is not guessed. Manual script selection affects pronunciation options and never rewrites source text.
 
-Shared-only text is therefore not guessed.
+## Result and uncertainty policy
 
-Manual mode affects pronunciation options only. It never rewrites source text.
+- A resolved Ukrainian key uses the selected system's own mapping.
+- A blank source cell remains missing.
+- An absent key remains unresolved.
+- Pronunciation failure preserves the original Chinese source and surfaces an issue.
+- No Ukrainian system borrows values from another.
 
-## Pronunciation resolution
+The UI renders user-controlled result strings as text, not HTML. The application source is checked for disallowed dynamic evaluation, unsafe HTML and runtime network primitives. The production Content Security Policy restricts connections and assets to the static-site requirements.
 
-The resolver passes contiguous Han spans to the pronunciation engine with its maximum-probability segmentation option.
+## Research versus runtime
 
-The engine's contextual/polyphonic metadata is retained in each token. The canonical internal Pinyin representation is lowercase syllable + numeric tone, for example `bei3`.
-
-Display Pinyin is generated separately with tone marks.
-
-## Ukrainian rendering
-
-Each token's tone is removed before CSV lookup. Each selected system queries only its own generated map.
-
-- resolved mapping → mapped Ukrainian output;
-- blank source cell → `missing` issue;
-- missing key → `unresolved` issue;
-- pronunciation failure → original Chinese source is preserved and an issue is surfaced.
-
-No system borrows another system's value.
-
-## UI/security boundary
-
-The UI consumes `ConversionResult`. It does not run pronunciation or CSV lookup itself.
-
-User-controlled result strings are assigned through `textContent`. No `innerHTML`, `eval`, dynamic function construction, runtime network calls, or analytics are used in the application source.
-
-A production CSP sets `connect-src 'none'` and restricts scripts/styles to same-origin assets.
+The docs/audits files, source ledger, UW differential and research/ipa-acoustic scripts are not runtime dependencies, but they are active research provenance, validation or reproducibility assets. Do not delete them merely because the application does not import them.
