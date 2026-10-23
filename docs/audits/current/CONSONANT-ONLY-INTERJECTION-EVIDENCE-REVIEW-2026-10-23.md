@@ -89,3 +89,16 @@ The cross-check strengthens the conclusion that these are recognized exceptional
 - Independent primary-source confirmation of those exact IPA values: **not yet established**.
 - Runtime decision: **unchanged; both keys fail closed**.
 - Next acceptance action: inspect the cited dictionary entry in an authoritative edition and its phonetic notation/legend, or locate a peer-reviewed phonetic analysis or documented Mandarin audio token. Record the exact edition/page/item and notation convention before changing the mapping. The Unicode WG2 table is a corroborating reference, not a substitute for phonetic verification.
+
+
+## Dictionary-entry and expert-explanation cross-check — 2026-10-23
+
+A further search found directly accessible dictionary-style entries and a report quoting the *Xinhua Dictionary* revision team:
+
+- [漢典 entry for 噷](https://zdic.net/hant/%E5%99%B7) lists the interjectional reading hm and describes it as h combined with a pure bilabial nasal; it gives the use as an interjection expressing reprimand or prohibition. Its IPA section lists the other readings of the character, not an IPA transcription of this hm reading.
+- [漢典 entry for 哼](https://zdic.net/hant/%E5%93%BC) lists hng as a separate interjectional reading and describes it as h combined with a pure velar nasal. Its IPA section's visible values are for other readings, not a direct IPA transcription of the exceptional hng reading.
+- A 2026 report published by China.com.cn, [“科学回应公众关切”](https://cul.china.com.cn/2026-06/12/content_43447236.htm), quotes the revision team’s response that pure-consonant syllables including hm and hng occur in spoken interjections, that phonetics textbooks such as 《语音学教程》 discuss them, and that *Xinhua Dictionary* records these forms and briefly explains their pronunciation. This is useful attribution toward a primary dictionary and a phonetics textbook, but the report itself does not reproduce an IPA transcription or identify a specific page/edition of the textbook.
+
+These results improve the source trail: the Wikibooks IPA candidates are consistent with dictionary descriptions of h plus a bilabial/velar nasal, and the dictionary entries establish the interjectional readings. They still do not establish the precise narrow/broad transcription, the representation of the voiceless interval, syllabic diacritic, or contextual realization independently of Wikibooks. In particular, 汉典 is a secondary dictionary portal, and its generic IPA section must not be misread as transcribing the exceptional hm/hng readings.
+
+**Decision remains unchanged.** The candidates m̥m̩ and ŋ̊ŋ̍ are now supported by converging *descriptive* evidence but remain unverified as exact IPA targets. Next decisive action: inspect the actual *Xinhua Dictionary* 13th edition entry/legend and cited phonetics-textbook discussion, or obtain a documented Mandarin recording and phonetic analysis. Capture bibliographic details and the precise passage; then decide whether one broad IPA mapping is justified or whether context/variation needs explicit representation. Do not infer an IPA mapping merely by converting the dictionary's romanized explanation “h + nasal” into IPA.
