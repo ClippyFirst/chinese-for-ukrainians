@@ -1,4 +1,5 @@
-import { lookupTranscription, SYSTEMS } from '../data/transcription.js';
+import { SYSTEMS } from '../data/transcription.js';
+import { lookupIpaTranscription } from '../data/ipa-transcription.js';
 import { applyToneMark } from './diacritics.js';
 
 export function transcribe(tokens, system, mappings, { showTones = true } = {}) {
@@ -20,7 +21,7 @@ export function transcribe(tokens, system, mappings, { showTones = true } = {}) 
       issues.push({ status: token.status, source: token.source, pinyin: token.pinyin || '' });
       continue;
     }
-    const lookup = lookupTranscription(mappings, system, token.normalizedPinyin);
+    const lookup = lookupIpaTranscription(mappings, system, token.ipaBase);
     if (lookup.status !== 'resolved') {
       output += token.source;
       previousWasHan = true;
