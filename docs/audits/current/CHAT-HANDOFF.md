@@ -171,3 +171,12 @@ PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality r
 - It does **not** establish phonetic truth: hm → m̥m̩ and hng → ŋ̊ŋ̍ remain unverified candidate transcriptions, both keys remain unsupported, and the adapter must fail closed.
 - PR #40 remains an evidence-review PR, not a runtime change. Do not merge solely because CI is green while the primary phonetic evidence criterion remains blocked.
 - Remaining release gates: authoritative phonetic provenance for the two forms; source-data rights review; legacy source-image collation; manual visual/accessibility/device QA. Visual-QA screenshots uploaded by CI are evidence for inspection, not a substitute for manual review.
+
+
+## New visual QA finding from archived screenshots — 2026-10-24
+
+Manual inspection of the `redesign-visual-qa` artifact from [Quality workflow #40027146257](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40027146257) found a concrete responsive issue: the comparison tables on the methodology page are horizontally clipped at 320px and 360px (`methodology-320.png`, `methodology-360.png`), hiding right-hand columns in the captured viewport. Do not mark visual QA complete based on artifact upload alone.
+
+**Next implementation task:** make the comparison tables usable at 320px/360px via an accessible horizontal-scroll wrapper (keyboard reachable, clear scroll affordance) or a semantically equivalent responsive layout. Add a viewport regression assertion, regenerate the screenshots, and verify the complete table is reachable. The converter results screenshot at 320px showed vertically stacked cards with no obvious similar clipping; the 1280px methodology screenshot showed the table fully visible. This limited screenshot review is not physical-device, keyboard, zoom/reflow, screen-reader, or contrast testing.
+
+This is an independent UI/release-readiness finding, not a reason to alter the evidence-only scope of PR #40. Keep the `hm`/`hng` IPA gate blocked until primary phonetic evidence is available.
