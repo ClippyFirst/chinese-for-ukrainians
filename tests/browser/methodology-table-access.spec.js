@@ -44,7 +44,7 @@ test.describe('methodology comparison-table access', () => {
     const region = page.getByRole('region', { name: 'Порівняльна таблиця систем транскрипції' });
     await region.focus();
     const before = await region.evaluate((element) => element.scrollLeft);
-    for (let index = 0; index < 24; index += 1) {
+    for (let index = 0; index < 120; index += 1) {
       await page.keyboard.press('ArrowRight');
     }
     const after = await region.evaluate((element) => element.scrollLeft);
