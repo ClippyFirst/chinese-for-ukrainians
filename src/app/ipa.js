@@ -12,7 +12,13 @@ const FINALS = {
   ya: 'ja', ye: 'jɛ', yao: 'jɑʊ', you: 'joʊ', yan: 'jɛn', yin: 'in', yang: 'jɑŋ', ying: 'iŋ', yong: 'jʊŋ',
   wa: 'wa', wo: 'uɔ', wai: 'waɪ', wei: 'weɪ', wan: 'wan', wen: 'wən', wang: 'wɑŋ', weng: 'wəŋ',
 };
-const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍' });
+// Marginal interjectional spellings are explicit scope decisions, not productive finals.
+// ê [ɛ]: open-content Mandarin reference, “Chinese (Mandarin)”, vowel/finals table.
+// yo [jɔ]: attested interjectional Pinyin form; broad IPA is a project convention
+// based on the glide + open-o analysis, not a claim of narrow speaker-specific detail.
+// hm/hng intentionally remain unsupported: orthographic attestation alone does not
+// decide their phonetic realization, and this service does not guess at them.
+const SPECIAL_IPA = Object.freeze({ m: 'm̩', n: 'n̩', ng: 'ŋ̍', 'ê': 'ɛ', yo: 'jɔ' });
 const TONES = { 1: '˥', 2: '˧˥', 3: '˨˩˦', 4: '˥˩' };
 
 export function formatIPA(tokens) {
