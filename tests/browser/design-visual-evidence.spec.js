@@ -85,3 +85,97 @@ test('clear, copy affordances, tooltip focus and reduced-motion styles remain us
   await expect(page.locator('#empty-state')).toBeVisible();
   await expect(page.locator('#results')).toBeHidden();
 });
+
+
+test('each copy action writes its own result and announces success', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: async (value) => { window.__clipboardWrites ??= []; window.__clipboardWrites.push(value); } },
+    });
+  });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+
+  const targets = ['result-pinyin', 'result-ipa', 'result-kirnosova', 'result-kirnosova-tsisar', 'result-nanu'];
+  for (let index = 0; index < targets.length; index += 1) {
+    const target = page.locator(`#${targets[index]}`);
+    const expected = await target.textContent();
+    await page.locator(`[data-copy-target="${targets[index]}"]`).click();
+    await expect(page.locator('#live-region')).toHaveText('Скопійовано.');
+    await expect.poll(() => page.evaluate(() => window.__clipboardWrites?.at(-1))).toBe(expected);
+  }
+  expect(await page.evaluate(() => window.__clipboardWrites)).toHaveLength(5);
+});
+
+test('Pinyin and Ukrainian tone controls change their own output independently', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#source-input').fill('你好，中国！');
+  const pinyin = page.locator('#result-pinyin');
+  const ukrainian = page.locator('#result-kirnosova');
+  const pinyinWithTones = await pinyin.textContent();
+  const ukrainianWithTones = await ukrainian.textContent();
+
+  await page.locator('#show-pinyin-tones').uncheck();
+  const pinyinWithoutTones = await pinyin.textContent();
+  expect(pinyinWithoutTones).not.toBe(pinyinWithTones);
+  await expect(ukrainian).toHaveText(ukrainianWithTones);
+
+  await page.locator('#show-pinyin-tones').check();
+  await page.locator('#show-ukrainian-tones').uncheck();
+  const ukrainianWithoutTones = await ukrainian.textContent();
+  expect(ukrainianWithoutTones).not.toBe(ukrainianWithTones);
+  await expect(pinyin).toHaveText(pinyinWithTones);
+});
+
+test('speech control invokes the browser speech API and exposes its active state', async ({ page }) => {
+  await page.addInitScript(() => {
+    class MockUtterance {
+      constructor(text) { this.text = text; }
+    }
+    Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: MockUtterance });
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: {
+        getVoices: () => [{ lang: 'zh-CN' }],
+        cancel: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        speak: (utterance) => {
+          window.__spokenText = utterance.text;
+          queueMicrotask(() => utterance.onstart?.());
+        },
+      },
+    });
+  });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  await page.locator('#speak-button').click();
+  await expect(page.locator('#speak-button')).toHaveText('Зупинити');
+  await expect(page.locator('#speak-button')).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => page.evaluate(() => window.__spokenText)).toBe('你好，世界！');
+  await page.locator('#speak-button').click();
+  await expect(page.locator('#speak-button')).toHaveText('Прослухати');
+  await expect(page.locator('#speak-button')).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('long mixed-script input remains visible without horizontal overflow or uncaught page errors', async ({ page }) => {
+  const pageErrors = [];
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+  for (const width of [320, 360, 390, 430, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await page.locator('#source-input').fill(('你好，世界！ Zhōngguó — Україна / IPA: tɕʰ / 𠮷 🙂\n').repeat(8));
+    await expect(page.locator('#results')).toBeVisible();
+    const dimensions = await page.evaluate(() => ({
+      viewport: document.documentElement.clientWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(dimensions.document, `document overflow at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
+    expect(dimensions.body, `body overflow at ${width}px`).toBeLessThanOrEqual(dimensions.viewport);
+    await expect(page.locator('#result-pinyin')).toBeVisible();
+    await expect(page.locator('#result-ipa')).toBeVisible();
+  }
+  expect(pageErrors).toEqual([]);
+});

@@ -65,3 +65,14 @@
 - Quality workflow [#349](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492), on commit `26919731d9ea753870e338b16a1babf8360936bd`, completed with **success**. Unit/integration tests, Python acoustic-pipeline guards, production build, generated-mapping determinism, benchmark, release constraints, browser tests and both artifacts all passed.
 - New evidence artifact links: [visual QA screenshots](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492/artifacts) and [dependency audit report](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39934516492/artifacts).
 - The automated interaction gate now passes, but the PR's broader manual review remains **PARTIAL**: no full assistive-technology audit or human end-to-end check of speech synthesis, actual clipboard write permission, every uncertainty/error state, long mixed-script content and browser console cleanliness has been recorded. Do not mark the PR fully release-approved on CI alone.
+
+
+## Consolidated interaction gate — 2026-10-23
+
+The prior test set verified keyboard focus and the presence of copy/speech controls, but did not prove the resulting side effects. Added one consolidated browser regression batch to exercise:
+- each of the five copy actions against the exact target text and the live-region success message;
+- independent Pinyin-tone and Ukrainian-tone changes, asserting each control leaves the other representation unchanged;
+- speech API invocation and the button's accessible active/stop state using a deterministic browser API mock (this validates integration behavior, not the user's installed Chinese voice or physical audio output);
+- long mixed-script input at 320/360/390/430/1280 CSS px, checking no document/body horizontal overflow and no uncaught page exceptions.
+
+These are regression tests, not a substitute for manual assistive-technology review or a real-device audio/clipboard permission check. The rare-character issue state still needs a stable, corpus-grounded fixture before it can be counted as covered. The latest full verification result must be read from the workflow attached to the final branch SHA; earlier successful runs are historical evidence only.
