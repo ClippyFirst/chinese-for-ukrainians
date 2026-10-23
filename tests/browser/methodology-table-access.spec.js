@@ -6,16 +6,14 @@ test.describe('methodology comparison-table access', () => {
 
     for (const width of [320, 360, 390, 430]) {
       await page.setViewportSize({ width, height: 900 });
-      const regions = page.locator('.table-scroll');
-      await expect(regions.first()).toBeVisible();
+      const first = page.locator('.table-scroll').first();
+      await expect(first).toBeVisible();
 
-      const first = regions.first();
       const measurements = await first.evaluate((element) => {
         const table = element.querySelector('table');
         const style = getComputedStyle(element);
         const cue = getComputedStyle(element, '::after');
         return {
-          viewportWidth: document.documentElement.clientWidth,
           regionWidth: element.getBoundingClientRect().width,
           tableWidth: table.getBoundingClientRect().width,
           overflowX: style.overflowX,
@@ -46,7 +44,9 @@ test.describe('methodology comparison-table access', () => {
     const region = page.getByRole('region', { name: 'Порівняльна таблиця систем транскрипції' });
     await region.focus();
     const before = await region.evaluate((element) => element.scrollLeft);
-    await page.keyboard.press('End');
+    for (let index = 0; index < 24; index += 1) {
+      await page.keyboard.press('ArrowRight');
+    }
     const after = await region.evaluate((element) => element.scrollLeft);
     const farRightColumn = await region.locator('thead th').last().evaluate((element) => {
       const rect = element.getBoundingClientRect();
