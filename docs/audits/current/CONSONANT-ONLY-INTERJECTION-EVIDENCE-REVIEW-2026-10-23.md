@@ -117,3 +117,25 @@ A targeted exact-string search found an important source-trail limitation that c
 The Wikibooks table is still a direct-IPA *listing*, but the exact-string cross-match with the personal 2017 article reveals a plausible non-primary provenance, and that article explicitly describes its own analysis as spelling-driven and provisional. Unless an edit-history/source trail establishes a separate, authoritative basis for the table, the values `m̥m̩` and `ŋ̊ŋ̍` must be treated as **unverified candidate transcriptions with a concrete risk of circular derivation**, not as corroborated targets. Two websites repeating the same strings would not count as independent sources if one may derive from the other.
 
 This is a meaningful narrowing of the blocker: we now have a plausible explanation for where the IPA candidates came from, and why their presence in a table is insufficient. The decisive next step is to inspect the Wikibooks revision history/source references and authoritative *Xinhua Dictionary* entry/phonetic notation, or obtain a peer-reviewed Mandarin phonetic description or documented recording. Until that establishes the exact realization, keep both runtime keys unsupported.
+
+### Additional institutional corroboration and CI closure — 2026-10-24
+
+New sources were checked after the prior assessment:
+
+- Shaanxi Normal University's Language and Writing site, [普通话音系介绍](https://yywz.snnu.edu.cn/info/1116/2092.htm), explicitly describes Mandarin interjections such as `hm` (喑欠) and `hng` (哼) as exceptional syllables consisting only of consonants. This is useful institutional corroboration for their existence/classification, but it supplies no IPA for either item.
+- Inner Mongolia Normal University's Putonghua training/testing site, [普通话语音分析](https://pc.imnu.edu.cn/info/1063/1097.htm), lists `hm` and `hng` among rare syllables omitted from a common syllable inventory, again without an IPA target or detailed articulation for the two forms.
+- The dictionary entry [漢典: 噷](https://zdic.net/hant/%E5%99%B7) glosses the `hm` reading as `h` combined with a pure bilabial nasal and identifies its interjection use as admonishing/prohibiting. The entry does not supply a corresponding IPA transcription for this reading.
+- The dictionary entry [漢典: 哼](https://zdic.net/hans/%E5%93%BC) describes the `hng` interjection as expressing doubt, contempt, disagreement, or disbelief. It does not give IPA for that reading. These dictionary pages corroborate lexical function and broad articulatory descriptions, not the candidate segment sequence.
+
+Evidence distinction: institutional/educational and dictionary sources independently support that these are recognised exceptional interjections and that their written forms are not ordinary vowel-bearing Pinyin syllables. They do **not** independently establish `hm → m̥m̩` or `hng → ŋ̊ŋ̍`. In particular, descriptions such as “h + pure bilabial nasal” do not by themselves decide whether the realization should be represented as a single voiceless nasal, a sequence of a voiceless segment plus a syllabic voiced nasal, or another temporally/phonatorily structured realization. No audio sample with reliable provenance and a documented transcription convention was found in this pass.
+
+### Exact-head CI result
+
+Quality workflow [#40023287308](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40023287308) completed successfully on commit `a768c69f0c3ccdafb871f210767d71daba03a4c0`. All steps in the `verify` job passed: dependency installation/audit, unit and integration tests, acoustic-pipeline input guards, production build, generated-map determinism, conversion benchmark, release constraints, browser installation and browser regression tests, and QA/dependency-audit artifact uploads. This verifies that exact documentation-only branch head. It does not certify phonetic truth or substitute for manual device/accessibility review.
+
+### Updated disposition
+
+- Evidence that the two spellings/interjections exist: **DONE_VERIFIED**.
+- Exact IPA target and provenance: **BLOCKED / evidence-limited**; acceptance criterion remains an authoritative phonetic notation or primary phonetic study / inspectable recording with documented conventions.
+- Runtime/data/tests: unchanged; both keys remain unsupported.
+- Do not merge PR #40 solely because CI is green. Keep the public beta/research-preview status and other independent release gates (data rights, legacy source-image collation, manual visual/accessibility/device QA).
