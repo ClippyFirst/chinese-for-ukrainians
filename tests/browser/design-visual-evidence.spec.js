@@ -17,7 +17,7 @@ test('capture reviewable screenshots for the redesign acceptance gate', async ({
   for (const viewport of viewports) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: /Китайський текст/u })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Китайський текст', exact: true })).toBeVisible();
     await page.screenshot({
       path: `${outputDirectory}/converter-empty-${viewport.label}.png`,
       fullPage: true,
