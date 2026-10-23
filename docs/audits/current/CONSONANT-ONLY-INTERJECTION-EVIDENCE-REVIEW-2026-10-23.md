@@ -158,3 +158,15 @@ These exclusions are deliberate evidence hygiene: near-matches, discourse spelli
 Quality workflow [#40026479394](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40026479394) completed successfully on commit 7351044c8c051a248c6990c4b86d087b24266a35, the branch head for this evidence review. All 16 principal verification steps passed: dependency installation/audit disposition, unit and integration tests, acoustic-pipeline input guards, production build, generated-map determinism, conversion benchmark, release constraints, browser installation/regression tests, and QA/dependency-audit artifact uploads.
 
 This closes the **automated exact-head CI** question only. It does not validate the proposed IPA strings or complete manual visual/accessibility/device review. The source-provenance blocker is unchanged: hm → m̥m̩ and hng → ŋ̊ŋ̍ remain unverified candidates, and both runtime keys must remain unsupported. No runtime/data/test behavior was changed by this review.
+
+
+### Additional dictionary and dialect-scope cross-check — 2026-10-24
+
+A targeted follow-up checked sources that could help prevent a false cross-variety match:
+
+- Taiwan Ministry of Education, *Dictionary of Chinese Variant Forms*, entry [噷](https://dict.variants.moe.edu.tw/dictView.jsp?ID=81049&la=0), lists the readings xīn and hēn (Zhuyin ㄒㄧㄣ / ㄏㄣ), with historical/lexical explanations, but does not list the exceptional Mandarin hm reading in this entry. This is direct evidence about the scope of that particular Taiwan dictionary, not proof that Mainland Mandarin lacks the interjection; it supports the already noted variety boundary.
+- The [Chinese Text Project dictionary entry for 噷](https://ctext.org/dictionary.pl?char=%E5%99%B7&if=gb&remap=gb) lists Mandarin readings xīn/hēn and Cantonese am1/hm1, alongside a CC-CEDICT gloss for hm. Its Cantonese hm1 is a **different variety-specific reading** and must not be used as phonetic evidence for Mainland Mandarin hm.
+- A further character-reference site [Shidianguji](https://www.shidianguji.com/character/%E5%99%B7) lists hm as an interjection reading and gives a functional gloss, but no inspectable IPA or acoustic method. It corroborates the romanized reading/function, not the proposed IPA sequence.
+- The [Shaanxi Normal University overview](https://yywz.snnu.edu.cn/info/1116/2092.htm) and [Inner Mongolia Normal University overview](https://pc.imnu.edu.cn/info/1063/1097.htm) independently describe hm/hng as exceptional consonant-only syllables; neither supplies direct IPA for these exact readings.
+
+**Updated conclusion:** the additional sources sharpen lexical and dialect scope but do not move the IPA acceptance gate. The proposed m̥m̩ and ŋ̊ŋ̍ remain candidates reported by a community-maintained appendix, not independently validated targets. Keep both mappings unsupported until a primary phonetic source or a properly documented, inspectable recording resolves the actual segmental/phonation sequence and reading identity.
