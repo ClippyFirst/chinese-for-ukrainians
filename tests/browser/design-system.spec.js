@@ -43,7 +43,7 @@ test('redesign color tokens preserve WCAG AA contrast for core text and action p
   }
 
   const primaryButton = page.getByRole('button', { name: 'Приклад' });
-  await expect(primaryButton).toHaveCSS('background-color', 'rgb(23, 63, 138)');
+  await expect(primaryButton).toHaveCSS('background-color', 'rgb(180, 35, 47)');
   await expect(primaryButton).toHaveCSS('color', 'rgb(255, 255, 255)');
 });
 
@@ -94,7 +94,7 @@ test('shared redesign tokens load on the methodology page without changing its c
     viewport: document.documentElement.clientWidth,
     document: document.documentElement.scrollWidth,
   }));
-  expect(styles.accent).toBe('#173f8a');
+  expect(styles.accent).toBe('#b4232f');
   expect(styles.paper).toBe('#f3f2ee');
   expect(styles.document).toBeLessThanOrEqual(styles.viewport);
 });

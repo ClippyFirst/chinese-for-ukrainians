@@ -19,8 +19,8 @@ Target: the existing Chinese → Ukrainian transcription web tool. This is not a
 
 The product should feel like a carefully typeset linguistic reference instrument: editorial, precise, calm, compact, and recognizably designed. Typography, alignment, hierarchy, whitespace and fine rules do the work. No generic AI/SaaS hero, gradients, glassmorphism, ornamental illustrations, oversized empty hero, unnecessary animations, or decorative metrics.
 
-- Use a restrained cool blue accent for actions/focus, neutral paper and surface colors, dark readable ink, and muted warm warning states.
-- Accent communicates interaction/focus, not superiority of a transcription system.
+- Use a restrained Chinese-lucky red accent for actions and focus, neutral paper and surface colors, dark readable ink, and muted warm warning states. Red is a cultural visual reference, not a status signal or a ranking of transcription systems.
+- Accent communicates interaction/focus, not superiority of a transcription system. Use red sparingly for interactive emphasis; keep warning states visually distinct and continue to pair them with text and iconography.
 - Keep the Chinese input as the dominant workspace; make Pinyin/IPA easy to scan; present the three Ukrainian systems with equal visual weight.
 - Avoid a card for every minor label. Use borders and surfaces only where they clarify grouping.
 - Keep the heading expressive but responsive; no forced single-line text or horizontal overflow.
