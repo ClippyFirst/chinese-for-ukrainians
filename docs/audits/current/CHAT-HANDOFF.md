@@ -89,3 +89,8 @@ Edge-form scope decision (branch `fix/mandarin-edge-form-scope-2026-10-23`): `ê
 - PR #33 repository hygiene, documentation consolidation and IPA inventory audit: merged; Pages deployment succeeded.
 - PR #34 IPA-keyed Ukrainian adapters: merged; the adapter now consumes segmental IPA and preserves source provenance. Two consonant-only interjection spellings (`hm`, `hng`) remain intentionally unresolved by design; `ê` and `yo` now have explicit broad-IPA rules, subject to CI verification.
 - Current main Quality and Pages runs: Quality `40012724723`, Pages `40012724825`; verify both final conclusions before marking the release candidate complete.
+
+
+## IPA marginal interjection closeout — 2026-10-23
+
+PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) passed on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a`. The regression suite now requires 421 aliases, exactly two unsupported keys (`hm`, `hng`), and zero IPA-key collisions. `ê → ɛ` is based on a source explicitly giving [ɛ] for certain interjections; `yo → jɔ` is an explicitly declared broad-IPA project convention for an attested exceptional interjection. `hm` and `hng` remain deliberately unresolved rather than guessed. This is a bounded implementation closeout, not proof of narrow phonetics or completion of source-image verification, licensing, or device QA.
