@@ -76,18 +76,28 @@ if (!fs.existsSync(path)) {
     const status = get("review_status");
     const partition = get("partition");
     const layer = get("layer");
-    const expectedFieldByLayer = {
-      g2p: "expected_pinyin",
-      ipa: "expected_ipa",
-      ukrainian: "expected_uk_nanu",
-      end_to_end: "expected_uk_nanu"
+    const expectedFieldsByLayer = {
+      g2p: ["expected_pinyin"],
+      ipa: ["expected_ipa", "ipa_convention"],
+      ukrainian: ["expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"],
+      end_to_end: ["expected_pinyin", "expected_ipa", "ipa_convention", "expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"]
     };
     if (status === "VERIFIED") {
       for (const key of ["source_text", "target_span", "source_url", "source_quote_or_locator", "evidence_scope", "reviewer"]) {
         if (!get(key)) fail(`line ${line}: VERIFIED row requires ${key}`);
       }
       if (get("license_status") === "UNREVIEWED") fail(`line ${line}: VERIFIED row cannot have UNREVIEWED license status`);
-      if (!get(expectedFieldByLayer[layer])) fail(`line ${line}: VERIFIED ${layer} row requires ${expectedFieldByLayer[layer]}`);
+      const requiredExpectedFields = expectedFieldsByLayer[layer] ?? [];
+      for (const key of requiredExpectedFields) {
+        if (key === "ipa_convention" && layer === "ipa" && get(key) === "not_applicable") {
+          fail(`line ${line}: VERIFIED IPA row requires a declared IPA convention, not not_applicable`);
+        } else if (key !== "ipa_convention" && !get(key)) {
+          fail(`line ${line}: VERIFIED ${layer} row requires ${key}`);
+        }
+      }
+      if (layer === "ukrainian" && !["expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"].some(get)) {
+        fail(`line ${line}: VERIFIED ukrainian row requires at least one expected Ukrainian output`);
+      }
       if (partition === "held_out" && /\\b(tun(e|ing)|train(ing)?|develop(ment)?)\\b/i.test(get("notes"))) {
         fail(`line ${line}: held_out row notes indicate possible tuning leakage`);
       }
