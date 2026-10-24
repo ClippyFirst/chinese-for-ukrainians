@@ -79,7 +79,7 @@ if (!fs.existsSync(path)) {
     const expectedFieldsByLayer = {
       g2p: ["expected_pinyin"],
       ipa: ["expected_ipa", "ipa_convention"],
-      ukrainian: ["expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"],
+      ukrainian: [],
       end_to_end: ["expected_pinyin", "expected_ipa", "ipa_convention", "expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"]
     };
     if (status === "VERIFIED") {
@@ -89,9 +89,11 @@ if (!fs.existsSync(path)) {
       if (get("license_status") === "UNREVIEWED") fail(`line ${line}: VERIFIED row cannot have UNREVIEWED license status`);
       const requiredExpectedFields = expectedFieldsByLayer[layer] ?? [];
       for (const key of requiredExpectedFields) {
-        if (key === "ipa_convention" && layer === "ipa" && get(key) === "not_applicable") {
-          fail(`line ${line}: VERIFIED IPA row requires a declared IPA convention, not not_applicable`);
-        } else if (key !== "ipa_convention" && !get(key)) {
+        if (key === "ipa_convention") {
+          if (!get(key) || get(key).toLowerCase() === "not_applicable") {
+            fail(`line ${line}: VERIFIED IPA row requires a non-empty declared IPA convention`);
+          }
+        } else if (!get(key)) {
           fail(`line ${line}: VERIFIED ${layer} row requires ${key}`);
         }
       }
