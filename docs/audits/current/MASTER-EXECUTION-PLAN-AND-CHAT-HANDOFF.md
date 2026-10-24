@@ -245,3 +245,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Node job verified `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, `npm run benchmark`, manifest generation, and artifact upload.
 - Corpus validator was hardened to reject malformed CSV quoting, require VERIFIED held-out rows, and guard against training/development leakage annotations. The validator is exposed as `npm run validate:benchmark-corpus`.
 - Empirical comparison remains unperformed: no shared held-out gold set, no g2pW/g2pM predictions, no Pinyin→IPA scored comparison, and no independently sourced Ukrainian accuracy corpus. Keep the research preview status.
+
+
+### Follow-up CI and validator hardening — 2026-10-24
+
+- Follow-up workflow run [#40078336942](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078336942) completed with **success** on `2b596942e6fce55e1c5928b9a41054616432076f`. All three jobs passed: Node baseline, candidate metadata probe, and g2pC blocker capture. Artifacts were present: `node-baseline-and-manifest` (713 bytes), `python-candidate-install-contracts` (10,320 bytes), and `g2pc-documented-example-smoke` (350 bytes).
+- The Node job ran `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, and `npm run benchmark`. This is a verified hosted infrastructure check; it is not an accuracy benchmark.
+- A subsequent validator review found two edge cases in the stricter layer checks: an empty IPA convention could pass, and Ukrainian rows were at risk of requiring all three systems instead of at least one. Fixed in commit `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`. The workflow's path filter includes the validator, so a new exact-head CI run should execute; its result must be inspected before marking that fix DONE_VERIFIED.
+- PR #43 remains stacked on PR #42 and open. The current PR #43 head is `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it independently of its base or retarget it blindly.
+- Research status unchanged: no scored g2pW/g2pM outputs, g2pC remains blocked at upstream dependency installation, no held-out gold corpus, and no comparative linguistic accuracy claim.
