@@ -94,3 +94,15 @@ Edge-form scope decision (branch `fix/mandarin-edge-form-scope-2026-10-23`): `ê
 ## IPA marginal interjection closeout — 2026-10-23
 
 PR #38 merged to `main` as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) passed on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a`. The regression suite now requires 421 aliases, exactly two unsupported keys (`hm`, `hng`), and zero IPA-key collisions. `ê → ɛ` is based on a source explicitly giving [ɛ] for certain interjections; `yo → jɔ` is an explicitly declared broad-IPA project convention for an attested exceptional interjection. `hm` and `hng` remain deliberately unresolved rather than guessed. This is a bounded implementation closeout, not proof of narrow phonetics or completion of source-image verification, licensing, or device QA.
+
+
+## Cross-engine benchmark handoff — 2026-10-24
+
+Working branch: `research/cross-engine-benchmark-2026-10-24`.
+
+- Benchmark protocol and candidate inventory: `docs/audits/current/CROSS-ENGINE-BENCHMARK-2026-10-24.md`.
+- Corpus schema: `docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv`. The included example is schema illustration only, marked `NOT_GOLD`; exclude it from all scoring.
+- Key architecture fact: Pinyin G2P, broad IPA, and Ukrainian transcription are separate evaluation targets. The Ukrainian columns are source-specific and currently keyed by segmental IPA in the runtime adapter; do not merge their scores.
+- Candidates: pinned current `pinyin-pro`; g2pW; g2pM; g2pC; pinyin-to-ipa. `pinyin2ipa` needs contract verification before treating it as a true IPA-output competitor. MFA is an auxiliary dictionary/alignment resource, not a direct converter replacement.
+- Status: source discovery and protocol are documented; actual head-to-head model runs are NOT completed. The available session could inspect/update GitHub files but did not have a local shell/runtime to install external models, run them, and collect reproducible timing/memory/output artifacts. Do not report comparative accuracy or a winner.
+- Next real acceptance gates: create an independently source-backed held-out corpus; run each pinned model on identical inputs; store raw predictions and environment manifest; separately evaluate IPA convention differences; independently collate Ukrainian source rows and rights; run the project CI on the exact resulting PR head.

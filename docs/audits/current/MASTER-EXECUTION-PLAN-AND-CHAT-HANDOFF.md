@@ -218,3 +218,70 @@ The GitHub repository interface was used to inspect the current tree, package sc
 | C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
 
 The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence source. Runtime output lookup now uses the segmental IPA key and carries source-row/Pinyin provenance. Unsupported IPA keys remain unresolved. Do not describe this as full linguistic validation; the adapter boundary is an architectural property, while each mapping still needs evidence.
+
+
+## Cross-engine benchmark work — 2026-10-24
+
+| ID | Task | Status | Acceptance evidence / blocker |
+|---|---|---|---|
+| C2U-BENCH-001 | Identify public Mandarin G2P and Pinyin→IPA candidates | DONE_VERIFIED (discovery only) | Candidate roles, links and source limitations recorded in `docs/audits/current/CROSS-ENGINE-BENCHMARK-2026-10-24.md`. |
+| C2U-BENCH-002 | Separate Pinyin, IPA, and three Ukrainian-system evaluation targets | DONE_VERIFIED (protocol) | Distinct metrics and independent gold-data requirements documented; no combined misleading score. |
+| C2U-BENCH-003 | Define source-backed benchmark corpus schema | DONE_VERIFIED (schema only) | `docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv`; example row is explicitly marked NOT_GOLD and must not be scored. |
+| C2U-BENCH-004 | Create hosted, isolated execution path | DONE_VERIFIED (CI infrastructure) | Exact-head run [#40078028959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078028959) passed all three jobs; Node regression tests, `npm run validate:benchmark-corpus`, latency smoke benchmark, runtime manifest and all three artifacts were confirmed. This verifies orchestration, not linguistic accuracy. |
+| C2U-BENCH-005 | Execute g2pC on documented examples | BLOCKED (upstream dependency build) | On run [#40078028959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078028959), legacy `pkuseg` native extension compilation failed under Python 3.10 despite `numpy<2`. Workflow emits a `BLOCKED` JSONL artifact; no prediction or score is claimed. Acceptance: a compatible upstream build/runtime or documented source-backed alternative, then successful raw-output capture. |
+| C2U-BENCH-006 | Execute g2pW/g2pM on the same held-out corpus | TODO / dependency-gated | Candidate repositories need pinned revisions, verified installation and model-weight setup; then run identical corpus and persist raw outputs/environment manifest. |
+| C2U-BENCH-007 | Compare IPA adapters empirically | TODO | Install/pin pinyin-to-ipa, record all candidate outputs, adjudicate target convention, then compute exact match, segmental distance, tone errors and coverage. |
+| C2U-BENCH-008 | Independent gold set for the three Ukrainian systems | BLOCKED / evidence-limited | Requires row-level collation against source publications/official tables and data-rights review; current canonical CSV alone is not an independent gold standard. |
+| C2U-BENCH-009 | Produce verified comparative leaderboard | TODO | Only after held-out data and all feasible candidates run successfully on the same inputs and the result artifact is checked into the repository. |
+
+**Interpretation guardrail:** no comparative accuracy claim is authorized by source discovery, documented-example smoke tests, or published figures from different test sets. Existing `scripts/benchmark.mjs` remains a latency smoke test, not a cross-engine linguistic benchmark. The hosted workflow reduces the local-runtime blocker but has not yet been validated through a confirmed run of its own workflow; keep public beta / research preview status.
+
+
+### Exact-head CI verification — 2026-10-24
+
+- Workflow run [#40078028959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078028959) completed with conclusion **success** on commit `6c9ba05993be3ff96467fbbfe3a6c21e907f4cb3`.
+- All three jobs succeeded: Node baseline, Python candidate metadata probe, and g2pC blocker-recording job. The g2pC job's success means the failure was captured honestly; it does **not** mean g2pC installed or ran.
+- Artifacts confirmed: `node-baseline-and-manifest` (714 bytes), `python-candidate-install-contracts` (10,315 bytes), and `g2pc-documented-example-smoke` (350 bytes). The g2pC artifact records the blocked installation rather than fabricated output.
+- Node job verified `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, `npm run benchmark`, manifest generation, and artifact upload.
+- Corpus validator was hardened to reject malformed CSV quoting, require VERIFIED held-out rows, and guard against training/development leakage annotations. The validator is exposed as `npm run validate:benchmark-corpus`.
+- Empirical comparison remains unperformed: no shared held-out gold set, no g2pW/g2pM predictions, no Pinyin→IPA scored comparison, and no independently sourced Ukrainian accuracy corpus. Keep the research preview status.
+
+
+### Follow-up CI and validator hardening — 2026-10-24
+
+- Follow-up workflow run [#40078336942](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078336942) completed with **success** on `2b596942e6fce55e1c5928b9a41054616432076f`. All three jobs passed: Node baseline, candidate metadata probe, and g2pC blocker capture. Artifacts were present: `node-baseline-and-manifest` (713 bytes), `python-candidate-install-contracts` (10,320 bytes), and `g2pc-documented-example-smoke` (350 bytes).
+- The Node job ran `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, and `npm run benchmark`. This is a verified hosted infrastructure check; it is not an accuracy benchmark.
+- A subsequent validator review found two edge cases in the stricter layer checks: an empty IPA convention could pass, and Ukrainian rows were at risk of requiring all three systems instead of at least one. Fixed in commit `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`. The workflow's path filter includes the validator, so a new exact-head CI run should execute; its result must be inspected before marking that fix DONE_VERIFIED.
+- PR #43 remains stacked on PR #42 and open. The current PR #43 head is `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it independently of its base or retarget it blindly.
+- Research status unchanged: no scored g2pW/g2pM outputs, g2pC remains blocked at upstream dependency installation, no held-out gold corpus, and no comparative linguistic accuracy claim.
+
+
+### Exact-head validation of the layer-specific guardrail fix — 2026-10-24
+
+- Workflow run [#40079129604](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40079129604) completed with **success** on exact head `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`.
+- All three jobs passed: Node regression/corpus/latency baseline; public candidate metadata probe; g2pC blocker capture. Artifacts confirmed: `node-baseline-and-manifest` (713 bytes), `python-candidate-install-contracts` (10,319 bytes), `g2pc-documented-example-smoke` (350 bytes).
+- Node job explicitly passed `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, `npm run benchmark`, runtime manifest generation, and artifact upload.
+- Validator fix is now **DONE_VERIFIED (structural guardrail only)**: VERIFIED IPA rows must have a non-empty convention other than `not_applicable`; Ukrainian-layer rows may provide one or more system outputs without being forced to populate all three. Existing corpus has no VERIFIED rows, so this verifies the validator's execution path against current data, not every negative/positive edge case in a dedicated unit test.
+- g2pC's documented-example step was skipped because installation remains blocked; the job passed by recording the blocker artifact. This is not a model run.
+- PR #43 is still open and stacked on PR #42. Latest check reports `mergeable: true`, head `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it separately from its base. No PR was merged.
+- Scientific acceptance remains incomplete: no held-out gold corpus, no g2pW/g2pM predictions, no scored IPA-adapter comparison, and no independent three-system Ukrainian gold set. Public beta/research preview remains the appropriate status.
+
+
+### Validator regression tests — exact-head CI — 2026-10-24
+
+- Added an optional CSV path argument to `scripts/validate-benchmark-corpus.mjs`. Default behavior is unchanged; tests can validate temporary fixtures without mutating the canonical research corpus.
+- Added `tests/research-benchmark-validator.test.mjs` with five subprocess-based cases: valid VERIFIED G2P record; reject VERIFIED IPA record without a declared convention; accept a Ukrainian row with one populated system; reject unverified held-out data; reject duplicate case IDs.
+- Exact-head workflow run [#40079587766](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40079587766) completed with **success** on commit `d407175f6c46c9c83106f5fa72ae582a86abb337`. All three jobs passed: Node baseline and environment manifest, Python candidate metadata probe, and g2pC blocker capture.
+- Artifacts confirmed: `node-baseline-and-manifest` (712 bytes), `python-candidate-install-contracts` (10,318 bytes), and `g2pc-documented-example-smoke` (350 bytes). The g2pC artifact remains a blocker record, not model predictions.
+- Node job includes `npm ci`, `npm test` (which auto-discovers `*.test.mjs` under `tests/`), `npm run validate:benchmark-corpus`, `npm run benchmark`, runtime manifest creation, and artifact upload. Exact-head CI success therefore verifies the new tests ran under the repository test runner; no local shell execution is claimed.
+- Status: validator edge-case tests are **DONE_VERIFIED** at the hosted workflow level. The test fixtures are structural guardrail checks, not linguistic validation or gold corpus rows.
+- PR #42 remains open. PR #43 remains open and stacked on #42; the connector's latest PR metadata currently reports `mergeable: false` for #43, so do not merge it independently or assume conflict-free status. Inspect the exact current diff/base relationship and resolve only through a safe branch update after the base is reconciled.
+- Research readiness remains **PARTIAL / research preview**: no independent held-out gold set, no g2pW/g2pM scored runs, g2pC remains blocked by upstream `pkuseg` native build, no empirical Pinyin→IPA comparison, and no independently collated Ukrainian-system gold data. No accuracy ranking is authorized.
+
+
+### Strict CSV parsing and expanded validator regression suite — 2026-10-24
+
+- Hardened `scripts/validate-benchmark-corpus.mjs` to reject quotes embedded in unquoted fields and non-delimiter characters after a closing quote; CRLF, CR, LF, and quoted multiline fields are handled explicitly.
+- Expanded `tests/research-benchmark-validator.test.mjs` from five to eight cases. New cases cover malformed quote syntax, missing one of the required Ukrainian outputs in an end-to-end gold row, and a held-out row whose license still requires permission.
+- Hosted CI run [#40084662959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40084662959) completed with **success** against exact head `d627345671f04a0de4ec7221e2a60995fb0a8f13`. The Node job confirmed the regression test step, corpus validator, existing latency smoke benchmark, runtime manifest, and artifact upload all passed. The other two jobs also completed successfully; the g2pC documented-example step was **skipped** because installation remains blocked, and its artifact records the blocker rather than predictions.
+- Structural tests still do not establish linguistic truth. The fixture examples are synthetic test inputs and are not corpus rows or evidence for any transcription system.

@@ -1,0 +1,2 @@
+case_id,partition,layer,source_text,target_span,intended_sense,expected_pinyin,expected_ipa,ipa_convention,expected_uk_kirnosova,expected_uk_kirnosova_tsisar,expected_uk_nanu,source_url,source_quote_or_locator,evidence_scope,review_status,reviewer,license_status,notes
+EXAMPLE-ONLY,development,g2p,银行,行,bank (noun),háng,,not_applicable,,,,https://zdic.net/hans/%E9%93%B6%E8%A1%8C,replace_with_verified_entry_locator,illustrative_schema_only,NOT_GOLD,unassigned,UNREVIEWED,This row is schema illustration only and MUST NOT be included in any score
