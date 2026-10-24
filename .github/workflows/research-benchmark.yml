@@ -33,7 +33,7 @@ jobs:
       - name: Run project regression tests
         run: npm test
       - name: Validate benchmark corpus structure and scoring guardrails
-        run: node scripts/validate-benchmark-corpus.mjs
+        run: npm run validate:benchmark-corpus
       - name: Run existing latency smoke benchmark
         run: npm run benchmark | tee baseline-latency.txt
       - name: Record runtime manifest
