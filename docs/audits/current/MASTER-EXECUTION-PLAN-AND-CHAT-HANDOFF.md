@@ -277,3 +277,11 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Status: validator edge-case tests are **DONE_VERIFIED** at the hosted workflow level. The test fixtures are structural guardrail checks, not linguistic validation or gold corpus rows.
 - PR #42 remains open. PR #43 remains open and stacked on #42; the connector's latest PR metadata currently reports `mergeable: false` for #43, so do not merge it independently or assume conflict-free status. Inspect the exact current diff/base relationship and resolve only through a safe branch update after the base is reconciled.
 - Research readiness remains **PARTIAL / research preview**: no independent held-out gold set, no g2pW/g2pM scored runs, g2pC remains blocked by upstream `pkuseg` native build, no empirical Pinyin→IPA comparison, and no independently collated Ukrainian-system gold data. No accuracy ranking is authorized.
+
+
+### Strict CSV parsing and expanded validator regression suite — 2026-10-24
+
+- Hardened `scripts/validate-benchmark-corpus.mjs` to reject quotes embedded in unquoted fields and non-delimiter characters after a closing quote; CRLF, CR, LF, and quoted multiline fields are handled explicitly.
+- Expanded `tests/research-benchmark-validator.test.mjs` from five to eight cases. New cases cover malformed quote syntax, missing one of the required Ukrainian outputs in an end-to-end gold row, and a held-out row whose license still requires permission.
+- Hosted CI run [#40084662959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40084662959) is running against exact head `d627345671f04a0de4ec7221e2a60995fb0a8f13`; status was **in progress** at the time this handoff was updated. Do not mark this batch DONE_VERIFIED until the run completes successfully and its Node test step is confirmed.
+- Structural tests still do not establish linguistic truth. The fixture examples are synthetic test inputs and are not corpus rows or evidence for any transcription system.
