@@ -6,6 +6,11 @@ on:
       - research/ci-benchmark-execution-2026-10-24
     paths:
       - ".github/workflows/research-benchmark.yml"
+      - "scripts/validate-benchmark-corpus.mjs"
+      - "docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv"
+      - "package.json"
+      - "package-lock.json"
+      - "tests/**"
   workflow_dispatch:
     inputs:
       run_python_candidate_setup:
