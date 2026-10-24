@@ -136,3 +136,14 @@ Do not average the three Ukrainian systems into one accuracy score. They are sep
 ## Current decision
 
 Do not claim that this repository is more accurate than the listed engines yet. The defensible current claim is narrower: it has a transparent deterministic broad-IPA adapter, three separate source-specific Ukrainian mappings, and explicit handling for unresolved/missing values. Comparative superiority must be established by the same-corpus experiments described above.
+
+
+## Hosted CI execution record — 2026-10-24
+
+Exact workflow run [#40078028959](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40078028959) completed successfully on commit `6c9ba05993be3ff96467fbbfe3a6c21e907f4cb3`. All three jobs passed and artifacts were confirmed: `node-baseline-and-manifest`, `python-candidate-install-contracts`, and `g2pc-documented-example-smoke`.
+
+The Node job passed dependency installation, the project regression suite, `npm run validate:benchmark-corpus`, the existing latency smoke benchmark, environment-manifest generation, and artifact upload. The validator now rejects malformed CSV quote syntax and prevents unverified rows from being placed in the held-out partition. This remains structural validation, not linguistic gold verification.
+
+**g2pC is still BLOCKED.** Its job succeeded by recording a blocker artifact after the upstream `pkuseg` native extension failed to compile on Python 3.10, even with `numpy<2`. The artifact contains no predictions. No g2pC accuracy or runtime result is available.
+
+No shared held-out linguistic corpus has yet been evaluated; g2pW/g2pM remain unexecuted, IPA adapters remain unscored, and Ukrainian system accuracy remains evidence-limited. Therefore no comparative winner or accuracy claim is authorized.
