@@ -32,6 +32,8 @@ jobs:
         run: npm ci
       - name: Run project regression tests
         run: npm test
+      - name: Validate benchmark corpus structure and scoring guardrails
+        run: node scripts/validate-benchmark-corpus.mjs
       - name: Run existing latency smoke benchmark
         run: npm run benchmark | tee baseline-latency.txt
       - name: Record runtime manifest
