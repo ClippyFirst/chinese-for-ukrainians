@@ -1,6 +1,11 @@
 name: Research benchmark runner
 
 on:
+  push:
+    branches:
+      - research/ci-benchmark-execution-2026-10-24
+    paths:
+      - ".github/workflows/research-benchmark.yml"
   workflow_dispatch:
     inputs:
       run_python_candidate_setup:
@@ -68,7 +73,11 @@ jobs:
         shell: bash
         run: |
           set +e
-          for repo in             https://github.com/GitYCC/g2pW.git             https://github.com/kakaobrain/g2pm.git             https://github.com/Kyubyong/g2pC.git             https://github.com/stefantaubert/pinyin-to-ipa.git
+          for repo in \
+            https://github.com/GitYCC/g2pW.git \
+            https://github.com/kakaobrain/g2pm.git \
+            https://github.com/Kyubyong/g2pC.git \
+            https://github.com/stefantaubert/pinyin-to-ipa.git
           do
             name="${repo##*/}"
             name="${name%.git}"
