@@ -218,3 +218,18 @@ The GitHub repository interface was used to inspect the current tree, package sc
 | C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
 
 The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence source. Runtime output lookup now uses the segmental IPA key and carries source-row/Pinyin provenance. Unsupported IPA keys remain unresolved. Do not describe this as full linguistic validation; the adapter boundary is an architectural property, while each mapping still needs evidence.
+
+
+## Cross-engine benchmark work — 2026-10-24
+
+| ID | Task | Status | Acceptance evidence / blocker |
+|---|---|---|---|
+| C2U-BENCH-001 | Identify public Mandarin G2P and Pinyin→IPA candidates | DONE_VERIFIED (discovery only) | Candidate roles, links and source limitations recorded in `docs/audits/current/CROSS-ENGINE-BENCHMARK-2026-10-24.md`. |
+| C2U-BENCH-002 | Separate Pinyin, IPA, and three Ukrainian-system evaluation targets | DONE_VERIFIED (protocol) | Distinct metrics and independent gold-data requirements documented; no combined misleading score. |
+| C2U-BENCH-003 | Define source-backed benchmark corpus schema | DONE_VERIFIED (schema only) | `docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv`; example row is explicitly marked NOT_GOLD and must not be scored. |
+| C2U-BENCH-004 | Execute g2pW/g2pM/g2pC on the same held-out corpus | BLOCKED | This pass had GitHub repository access but no local shell/runtime to install and run Python models or preserve raw predictions. Acceptance requires pinned dependencies/checkpoints, identical corpus, raw outputs, environment manifest and reproducible metrics. |
+| C2U-BENCH-005 | Compare IPA adapters empirically | TODO | Install/pin pinyin-to-ipa, record all candidate outputs, adjudicate target convention, then compute exact match, segmental distance, tone errors and coverage. |
+| C2U-BENCH-006 | Independent gold set for the three Ukrainian systems | BLOCKED / evidence-limited | Requires row-level collation against source publications/official tables and data-rights review; current canonical CSV alone is not an independent gold standard. |
+| C2U-BENCH-007 | Produce verified comparative leaderboard | TODO | Only after held-out data and all feasible candidates run successfully on the same inputs and the result artifact is checked into the repository. |
+
+**Interpretation guardrail:** no comparative accuracy claim is authorized by source discovery or by published figures from different test sets. Existing `scripts/benchmark.mjs` is a small latency smoke test, not a cross-engine linguistic benchmark. Keep public beta / research preview status. The branch has documentation/schema changes only; no model execution or linguistic score is claimed.
