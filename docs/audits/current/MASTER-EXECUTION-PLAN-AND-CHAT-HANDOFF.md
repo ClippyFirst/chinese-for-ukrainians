@@ -265,3 +265,15 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - g2pC's documented-example step was skipped because installation remains blocked; the job passed by recording the blocker artifact. This is not a model run.
 - PR #43 is still open and stacked on PR #42. Latest check reports `mergeable: true`, head `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it separately from its base. No PR was merged.
 - Scientific acceptance remains incomplete: no held-out gold corpus, no g2pW/g2pM predictions, no scored IPA-adapter comparison, and no independent three-system Ukrainian gold set. Public beta/research preview remains the appropriate status.
+
+
+### Validator regression tests — exact-head CI — 2026-10-24
+
+- Added an optional CSV path argument to `scripts/validate-benchmark-corpus.mjs`. Default behavior is unchanged; tests can validate temporary fixtures without mutating the canonical research corpus.
+- Added `tests/research-benchmark-validator.test.mjs` with five subprocess-based cases: valid VERIFIED G2P record; reject VERIFIED IPA record without a declared convention; accept a Ukrainian row with one populated system; reject unverified held-out data; reject duplicate case IDs.
+- Exact-head workflow run [#40079587766](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40079587766) completed with **success** on commit `d407175f6c46c9c83106f5fa72ae582a86abb337`. All three jobs passed: Node baseline and environment manifest, Python candidate metadata probe, and g2pC blocker capture.
+- Artifacts confirmed: `node-baseline-and-manifest` (712 bytes), `python-candidate-install-contracts` (10,318 bytes), and `g2pc-documented-example-smoke` (350 bytes). The g2pC artifact remains a blocker record, not model predictions.
+- Node job includes `npm ci`, `npm test` (which auto-discovers `*.test.mjs` under `tests/`), `npm run validate:benchmark-corpus`, `npm run benchmark`, runtime manifest creation, and artifact upload. Exact-head CI success therefore verifies the new tests ran under the repository test runner; no local shell execution is claimed.
+- Status: validator edge-case tests are **DONE_VERIFIED** at the hosted workflow level. The test fixtures are structural guardrail checks, not linguistic validation or gold corpus rows.
+- PR #42 remains open. PR #43 remains open and stacked on #42; the connector's latest PR metadata currently reports `mergeable: false` for #43, so do not merge it independently or assume conflict-free status. Inspect the exact current diff/base relationship and resolve only through a safe branch update after the base is reconciled.
+- Research readiness remains **PARTIAL / research preview**: no independent held-out gold set, no g2pW/g2pM scored runs, g2pC remains blocked by upstream `pkuseg` native build, no empirical Pinyin→IPA comparison, and no independently collated Ukrainian-system gold data. No accuracy ranking is authorized.
