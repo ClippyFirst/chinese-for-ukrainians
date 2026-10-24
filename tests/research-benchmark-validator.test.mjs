@@ -73,3 +73,29 @@ test("rejects duplicate case identifiers", () => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /duplicate case_id TEST-001/u);
 });
+
+
+test("rejects a quote embedded in an unquoted CSV field", () => {
+  const file = path.join(tempDir, "malformed-quote.csv");
+  fs.writeFileSync(file, [headers.join(","), csvRow(valid).replace("银行", '银"行')].join("\n") + "\n");
+  const result = spawnSync(process.execPath, [validator, file], { encoding: "utf8" });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Unexpected quote in unquoted field/u);
+});
+
+test("rejects an end-to-end gold row missing one required Ukrainian target", () => {
+  const record = {
+    ...valid, layer: "end_to_end", expected_ipa: "paŋ˧˥", ipa_convention: "broad IPA",
+    expected_uk_kirnosova: "пан", expected_uk_kirnosova_tsisar: "пан", expected_uk_nanu: ""
+  };
+  const result = run([record]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /VERIFIED end_to_end row requires expected_uk_nanu/u);
+});
+
+test("rejects held-out gold rows with unresolved permission requirements", () => {
+  const record = { ...valid, partition: "held_out", license_status: "PERMISSION_REQUIRED" };
+  const result = run([record]);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /held_out row cannot be used until required permission is documented/u);
+});
