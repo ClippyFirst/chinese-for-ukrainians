@@ -254,3 +254,14 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - A subsequent validator review found two edge cases in the stricter layer checks: an empty IPA convention could pass, and Ukrainian rows were at risk of requiring all three systems instead of at least one. Fixed in commit `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`. The workflow's path filter includes the validator, so a new exact-head CI run should execute; its result must be inspected before marking that fix DONE_VERIFIED.
 - PR #43 remains stacked on PR #42 and open. The current PR #43 head is `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it independently of its base or retarget it blindly.
 - Research status unchanged: no scored g2pW/g2pM outputs, g2pC remains blocked at upstream dependency installation, no held-out gold corpus, and no comparative linguistic accuracy claim.
+
+
+### Exact-head validation of the layer-specific guardrail fix — 2026-10-24
+
+- Workflow run [#40079129604](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40079129604) completed with **success** on exact head `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`.
+- All three jobs passed: Node regression/corpus/latency baseline; public candidate metadata probe; g2pC blocker capture. Artifacts confirmed: `node-baseline-and-manifest` (713 bytes), `python-candidate-install-contracts` (10,319 bytes), `g2pc-documented-example-smoke` (350 bytes).
+- Node job explicitly passed `npm ci`, `npm test`, `npm run validate:benchmark-corpus`, `npm run benchmark`, runtime manifest generation, and artifact upload.
+- Validator fix is now **DONE_VERIFIED (structural guardrail only)**: VERIFIED IPA rows must have a non-empty convention other than `not_applicable`; Ukrainian-layer rows may provide one or more system outputs without being forced to populate all three. Existing corpus has no VERIFIED rows, so this verifies the validator's execution path against current data, not every negative/positive edge case in a dedicated unit test.
+- g2pC's documented-example step was skipped because installation remains blocked; the job passed by recording the blocker artifact. This is not a model run.
+- PR #43 is still open and stacked on PR #42. Latest check reports `mergeable: true`, head `57bb9c775344cde0c5bdd1cb8d7ac61617a60376`; do not merge it separately from its base. No PR was merged.
+- Scientific acceptance remains incomplete: no held-out gold corpus, no g2pW/g2pM predictions, no scored IPA-adapter comparison, and no independent three-system Ukrainian gold set. Public beta/research preview remains the appropriate status.
