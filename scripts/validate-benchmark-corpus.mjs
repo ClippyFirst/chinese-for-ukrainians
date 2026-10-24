@@ -21,23 +21,38 @@ const allowedLicenseStatuses = new Set(["UNREVIEWED", "OPEN", "RESTRICTED", "PER
 
 function parseCsv(text) {
   const rows = [];
-  let row = [], field = "", quoted = false;
+  let row = [], field = "", quoted = false, closedQuote = false;
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (quoted) {
       if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
-      else if (ch === '"') quoted = false;
+      else if (ch === '"') { quoted = false; closedQuote = true; }
       else field += ch;
-    } else if (ch === '"' && field.length === 0) quoted = true;
-    else if (ch === ",") { row.push(field); field = ""; }
-    else if (ch === "\n") {
-      row.push(field.replace(/\r$/, ""));
+      continue;
+    }
+    if (closedQuote && ch !== "," && ch !== "\n" && ch !== "\r") {
+      throw new Error(`Unexpected character after closing quote at offset ${i}.`);
+    }
+    if (ch === '"') {
+      if (field.length !== 0 || closedQuote) throw new Error(`Unexpected quote in unquoted field at offset ${i}.`);
+      quoted = true;
+    } else if (ch === ",") {
+      row.push(field); field = ""; closedQuote = false;
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && text[i + 1] === "\n") i++;
+      row.push(field);
       if (row.some((cell) => cell.length > 0)) rows.push(row);
-      row = []; field = "";
-    } else field += ch;
+      row = []; field = ""; closedQuote = false;
+    } else {
+      if (closedQuote) throw new Error(`Unexpected character after closing quote at offset ${i}.`);
+      field += ch;
+    }
   }
   if (quoted) throw new Error("CSV ends inside a quoted field.");
-  if (field.length || row.length) { row.push(field.replace(/\r$/, "")); rows.push(row); }
+  if (field.length || row.length || closedQuote) {
+    row.push(field);
+    if (row.some((cell) => cell.length > 0)) rows.push(row);
+  }
   return rows;
 }
 
@@ -98,7 +113,7 @@ if (!fs.existsSync(path)) {
       for (const key of requiredExpectedFields) {
         if (key === "ipa_convention") {
           if (!get(key) || get(key).toLowerCase() === "not_applicable") {
-            fail(`line ${line}: VERIFIED IPA row requires a non-empty declared IPA convention`);
+            fail(`line ${line}: VERIFIED ${layer} row requires a non-empty declared IPA convention`);
           }
         } else if (!get(key)) {
           fail(`line ${line}: VERIFIED ${layer} row requires ${key}`);
@@ -117,7 +132,7 @@ if (!fs.existsSync(path)) {
     if (partition === "held_out" && status === "VERIFIED" && get("license_status") === "PERMISSION_REQUIRED") {
       fail(`line ${line}: held_out row cannot be used until required permission is documented`);
     }
-    if (get("review_status") === "NOT_GOLD" && get("partition") === "held_out") {
+    if (status === "NOT_GOLD" && partition === "held_out") {
       fail(`line ${line}: NOT_GOLD example cannot be in held_out partition`);
     }
   }
