@@ -2,10 +2,11 @@
 /**
  * Validate the research benchmark corpus schema without treating examples as gold.
  * This checks structural integrity only; it does not certify linguistic correctness.
+ * Optional first CLI argument allows isolated fixture validation in automated tests.
  */
 import fs from "node:fs";
 
-const path = "docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv";
+const path = process.argv[2] ?? "docs/audits/current/CROSS-ENGINE-BENCHMARK-CORPUS-SCHEMA-2026-10-24.csv";
 const requiredHeaders = [
   "case_id", "partition", "layer", "source_text", "target_span",
   "intended_sense", "expected_pinyin", "expected_ipa", "ipa_convention",
@@ -48,7 +49,13 @@ function fail(message) {
 if (!fs.existsSync(path)) {
   fail(`missing corpus schema file: ${path}`);
 } else {
-  const rows = parseCsv(fs.readFileSync(path, "utf8"));
+  let rows;
+  try {
+    rows = parseCsv(fs.readFileSync(path, "utf8"));
+  } catch (error) {
+    fail(error.message);
+    process.exit(1);
+  }
   const headers = rows.shift() ?? [];
   const missing = requiredHeaders.filter((header) => !headers.includes(header));
   const duplicates = headers.filter((header, index) => headers.indexOf(header) !== index);
@@ -100,7 +107,7 @@ if (!fs.existsSync(path)) {
       if (layer === "ukrainian" && !["expected_uk_kirnosova", "expected_uk_kirnosova_tsisar", "expected_uk_nanu"].some(get)) {
         fail(`line ${line}: VERIFIED ukrainian row requires at least one expected Ukrainian output`);
       }
-      if (partition === "held_out" && /\\b(tun(e|ing)|train(ing)?|develop(ment)?)\\b/i.test(get("notes"))) {
+      if (partition === "held_out" && /\b(tun(e|ing)|train(ing)?|develop(ment)?)\b/i.test(get("notes"))) {
         fail(`line ${line}: held_out row notes indicate possible tuning leakage`);
       }
     }
