@@ -121,7 +121,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           # pkuseg's legacy setup.py imports NumPy while pip is resolving build requirements.
-          python -m pip install numpy
+          python -m pip install 'numpy<2'
           python -m pip install --no-build-isolation g2pC
       - name: Run documented context-sensitive pronunciation examples
         run: |
