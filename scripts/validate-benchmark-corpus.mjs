@@ -73,20 +73,39 @@ if (!fs.existsSync(path)) {
     if (!allowedReviewStatuses.has(get("review_status"))) fail(`line ${line}: invalid review_status ${get("review_status")}`);
     if (!allowedLicenseStatuses.has(get("license_status"))) fail(`line ${line}: invalid license_status ${get("license_status")}`);
 
-    const isScorable = get("review_status") === "VERIFIED";
-    if (isScorable) {
+    const status = get("review_status");
+    const partition = get("partition");
+    const layer = get("layer");
+    const expectedFieldByLayer = {
+      g2p: "expected_pinyin",
+      ipa: "expected_ipa",
+      ukrainian: "expected_uk_nanu",
+      end_to_end: "expected_uk_nanu"
+    };
+    if (status === "VERIFIED") {
       for (const key of ["source_text", "target_span", "source_url", "source_quote_or_locator", "evidence_scope", "reviewer"]) {
         if (!get(key)) fail(`line ${line}: VERIFIED row requires ${key}`);
       }
       if (get("license_status") === "UNREVIEWED") fail(`line ${line}: VERIFIED row cannot have UNREVIEWED license status`);
-      if (get("partition") === "held_out" && get("notes").toUpperCase().includes("TUNING")) {
-        fail(`line ${line}: held_out row notes indicate tuning leakage`);
+      if (!get(expectedFieldByLayer[layer])) fail(`line ${line}: VERIFIED ${layer} row requires ${expectedFieldByLayer[layer]}`);
+      if (partition === "held_out" && /\\b(tun(e|ing)|train(ing)?|develop(ment)?)\\b/i.test(get("notes"))) {
+        fail(`line ${line}: held_out row notes indicate possible tuning leakage`);
       }
+    }
+    if (partition === "held_out" && status !== "VERIFIED") {
+      fail(`line ${line}: held_out rows must be VERIFIED before they can be used for scoring`);
+    }
+    if (partition === "held_out" && status === "VERIFIED" && get("license_status") === "PERMISSION_REQUIRED") {
+      fail(`line ${line}: held_out row cannot be used until required permission is documented`);
     }
     if (get("review_status") === "NOT_GOLD" && get("partition") === "held_out") {
       fail(`line ${line}: NOT_GOLD example cannot be in held_out partition`);
     }
   }
   if (!rows.length) fail("corpus contains no data rows; retain an explicit NOT_GOLD schema example until verified rows exist");
-  if (!process.exitCode) console.log(`Benchmark corpus schema PASS: ${rows.length} row(s) structurally valid; NOT_GOLD rows are not accuracy evidence.`);
+  if (!process.exitCode) {
+    const verified = rows.filter((cells) => cells[index.review_status] === "VERIFIED").length;
+    const heldOut = rows.filter((cells) => cells[index.partition] === "held_out").length;
+    console.log(`Benchmark corpus schema PASS: ${rows.length} row(s) structurally valid; ${verified} VERIFIED row(s), ${heldOut} held-out row(s). Structural validation is not linguistic adjudication.`);
+  }
 }
