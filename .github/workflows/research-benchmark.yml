@@ -1,0 +1,98 @@
+name: Research benchmark runner
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_python_candidate_setup:
+        description: "Attempt isolated setup checks for public Python G2P/IPA candidates"
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  node-baseline:
+    name: Node baseline and environment manifest
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+          cache: npm
+      - name: Install pinned project dependencies
+        run: npm ci
+      - name: Run project regression tests
+        run: npm test
+      - name: Run existing latency smoke benchmark
+        run: npm run benchmark | tee baseline-latency.txt
+      - name: Record runtime manifest
+        run: |
+          node --version > environment-manifest.txt
+          npm --version >> environment-manifest.txt
+          python3 --version >> environment-manifest.txt
+          uname -a >> environment-manifest.txt
+          sha256sum package-lock.json >> environment-manifest.txt
+          git rev-parse HEAD >> environment-manifest.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: node-baseline-and-manifest
+          path: |
+            baseline-latency.txt
+            environment-manifest.txt
+          if-no-files-found: error
+          retention-days: 30
+
+  python-candidate-probe:
+    name: Isolated Python candidate setup probe
+    if: inputs.run_python_candidate_setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      - name: Record Python runtime and runner resources
+        run: |
+          python --version | tee python-candidate-probe.txt
+          python -m pip --version >> python-candidate-probe.txt
+          uname -a >> python-candidate-probe.txt
+          free -h >> python-candidate-probe.txt
+          df -h . >> python-candidate-probe.txt
+      - name: Probe public candidate repository availability and declared install contracts
+        shell: bash
+        run: |
+          set +e
+          for repo in             https://github.com/GitYCC/g2pW.git             https://github.com/kakaobrain/g2pm.git             https://github.com/Kyubyong/g2pC.git             https://github.com/stefantaubert/pinyin-to-ipa.git
+          do
+            name="${repo##*/}"
+            name="${name%.git}"
+            echo "=== ${name} ===" | tee -a python-candidate-probe.txt
+            tmp="$(mktemp -d)"
+            if git clone --depth 1 "$repo" "$tmp/$name" >> python-candidate-probe.txt 2>&1; then
+              echo "clone_status=PASS" | tee -a python-candidate-probe.txt
+              find "$tmp/$name" -maxdepth 2 -type f \( -iname 'readme*' -o -name 'pyproject.toml' -o -name 'setup.py' -o -name 'requirements*.txt' -o -name 'environment*.yml' \) -print | sort | tee -a python-candidate-probe.txt
+              for f in "$tmp/$name"/pyproject.toml "$tmp/$name"/setup.py "$tmp/$name"/requirements.txt "$tmp/$name"/README.md "$tmp/$name"/readme.md; do
+                if [ -f "$f" ]; then
+                  echo "--- $f (first 100 lines) ---" >> python-candidate-probe.txt
+                  sed -n '1,100p' "$f" >> python-candidate-probe.txt
+                fi
+              done
+            else
+              echo "clone_status=BLOCKED" | tee -a python-candidate-probe.txt
+            fi
+            rm -rf "$tmp"
+          done
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: python-candidate-install-contracts
+          path: python-candidate-probe.txt
+          if-no-files-found: error
+          retention-days: 30
