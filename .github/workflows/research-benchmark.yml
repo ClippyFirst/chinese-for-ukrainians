@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       run_python_candidate_setup:
-        description: "Attempt isolated setup checks for public Python G2P/IPA candidates"
+        description: "Run isolated candidate setup probes"
         required: true
         type: boolean
         default: true
@@ -52,7 +52,7 @@ jobs:
           retention-days: 30
 
   python-candidate-probe:
-    name: Isolated Python candidate setup probe
+    name: Python candidate metadata probe
     if: inputs.run_python_candidate_setup
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -69,7 +69,7 @@ jobs:
           uname -a >> python-candidate-probe.txt
           free -h >> python-candidate-probe.txt
           df -h . >> python-candidate-probe.txt
-      - name: Probe public candidate repository availability and declared install contracts
+      - name: Probe public candidate repositories
         shell: bash
         run: |
           set +e
@@ -85,8 +85,8 @@ jobs:
             tmp="$(mktemp -d)"
             if git clone --depth 1 "$repo" "$tmp/$name" >> python-candidate-probe.txt 2>&1; then
               echo "clone_status=PASS" | tee -a python-candidate-probe.txt
-              find "$tmp/$name" -maxdepth 2 -type f \( -iname 'readme*' -o -name 'pyproject.toml' -o -name 'setup.py' -o -name 'requirements*.txt' -o -name 'environment*.yml' \) -print | sort | tee -a python-candidate-probe.txt
-              for f in "$tmp/$name"/pyproject.toml "$tmp/$name"/setup.py "$tmp/$name"/requirements.txt "$tmp/$name"/README.md "$tmp/$name"/readme.md; do
+              find "$tmp/$name" -maxdepth 2 -type f \( -iname 'readme*' -o -iname 'license*' -o -name 'pyproject.toml' -o -name 'setup.py' -o -name 'requirements*.txt' -o -name 'environment*.yml' \) -print | sort | tee -a python-candidate-probe.txt
+              for f in "$tmp/$name"/LICENSE "$tmp/$name"/LICENSE.txt "$tmp/$name"/pyproject.toml "$tmp/$name"/setup.py "$tmp/$name"/requirements.txt "$tmp/$name"/README.md "$tmp/$name"/readme.md; do
                 if [ -f "$f" ]; then
                   echo "--- $f (first 100 lines) ---" >> python-candidate-probe.txt
                   sed -n '1,100p' "$f" >> python-candidate-probe.txt
@@ -104,4 +104,70 @@ jobs:
           name: python-candidate-install-contracts
           path: python-candidate-probe.txt
           if-no-files-found: error
+          retention-days: 30
+
+  g2pc-executable-smoke:
+    name: Execute lightweight g2pC smoke cases
+    if: inputs.run_python_candidate_setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install public g2pC package in isolated runner
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install g2pC
+      - name: Run documented context-sensitive pronunciation examples
+        run: |
+          python - <<'PY' | tee g2pc-smoke-results.jsonl
+          import json
+          import platform
+          import importlib.metadata
+          from g2pc import G2pC
+
+          engine = G2pC()
+          cases = [
+              {"case_id": "G2PC-DOC-001", "text": "我写了几行代码。", "target": "行", "documented_reading": "hang2"},
+              {"case_id": "G2PC-DOC-002", "text": "来不了", "target": "了", "documented_reading": "liao3"},
+              {"case_id": "G2PC-DOC-003", "text": "一心一意", "target": None, "documented_reading": "yi4 xin1 yi2 yi4"}
+          ]
+          print(json.dumps({
+              "record_type": "environment",
+              "python": platform.python_version(),
+              "g2pC_distribution_version": importlib.metadata.version("g2pC"),
+              "note": "Documented-example smoke test only; not a held-out accuracy benchmark."
+          }, ensure_ascii=False))
+          for case in cases:
+              try:
+                  output = engine(case["text"])
+                  record = {
+                      "record_type": "prediction",
+                      **case,
+                      "raw_output": output,
+                      "status": "EXECUTED",
+                      "scoring_status": "NOT_SCORED",
+                      "reason": "Examples originate from candidate documentation and are not independent held-out gold."
+                  }
+              except Exception as exc:
+                  record = {
+                      "record_type": "prediction",
+                      **case,
+                      "status": "ERROR",
+                      "error_type": type(exc).__name__,
+                      "error": str(exc),
+                      "scoring_status": "NOT_SCORED"
+                  }
+                  print(json.dumps(record, ensure_ascii=False))
+                  raise
+              print(json.dumps(record, ensure_ascii=False))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: g2pc-documented-example-smoke
+          path: g2pc-smoke-results.jsonl
+          if-no-files-found: warn
           retention-days: 30
