@@ -3,7 +3,8 @@ name: Research benchmark runner
 on:
   push:
     branches:
-      - research/ci-benchmark-execution-2026-10-24
+      - main
+      - research/ci-benchmark-execution-mainline-20261025
     paths:
       - ".github/workflows/research-benchmark.yml"
       - "scripts/validate-benchmark-corpus.mjs"
@@ -37,6 +38,8 @@ jobs:
         run: npm ci
       - name: Run project regression tests
         run: npm test
+      - name: Run research benchmark corpus validator regression tests
+        run: node tests/research-benchmark-validator.test.mjs
       - name: Validate benchmark corpus structure and scoring guardrails
         run: npm run validate:benchmark-corpus
       - name: Run existing latency smoke benchmark
