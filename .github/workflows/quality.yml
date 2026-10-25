@@ -30,6 +30,10 @@ jobs:
           node --input-type=module -e "import fs from 'node:fs'; const a=JSON.parse(fs.readFileSync('npm-audit-report.json','utf8')); console.log(JSON.stringify({metadata:a.metadata?.vulnerabilities, advisories:Object.entries(a.vulnerabilities ?? {}).map(([name,v])=>({name,severity:v.severity,range:v.range,via:v.via.map(x=>typeof x==='string'?x:{title:x.title,url:x.url,range:x.range}),fixAvailable:v.fixAvailable}))},null,2))"
       - name: Run unit and integration tests
         run: npm test
+      - name: Run research benchmark corpus validator regression tests
+        run: node tests/research-benchmark-validator.test.mjs
+      - name: Validate benchmark corpus structure and scoring guardrails
+        run: npm run validate:benchmark-corpus
       - name: Set up Python for acoustic-pipeline validation tests
         uses: actions/setup-python@v5
         with:
