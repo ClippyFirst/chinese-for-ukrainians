@@ -43,7 +43,7 @@ const V = Object.freeze({
   "ໂ":["oː","o","long"],"ໍ":["ɔː","o","long"],"ອ":["ɔː","o","long"],
   "ູ":["uː","ou","long"],"ື":["ɯː","u","long"],"ເີ":["ɤː","eu","long"],
   "ເຍ":["iːə","ia","long"],"ຽ":["iːə","ia","long"],"ົວ":["uːə","oua","long"],
-  "ົວະ":["uə","oua","short"],"ວ":["uːə","oua","long"],"ເຶອ":["ɯə","ua","short"],
+  "ົວະ":["uə","oua","short"],"ວາ":["uːə","oua","long"],"ວ":["uːə","oua","long"],"ເຶອ":["ɯə","ua","short"],
   "ເືອ":["ɯːə","ua","long"],"ໃ":["aj","ai","short"],"ໄ":["aj","ai","short"],
   "ເົາ":["aw","ao","short"],"ເັຽ":["iːə","ia","short"],"ເັຍ":["iːə","ia","short"],"ຳ":["am","am","short"]
 });
