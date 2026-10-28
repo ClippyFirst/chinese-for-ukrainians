@@ -193,3 +193,8 @@ The regional results heading now explicitly reads **Romanization → IPA → Ukr
 ### IPA adaptation safeguard — 2026-10-28
 
 Latest code commit `0566407bd90b67f412a5d98a54ad55e284c0dd96` avoids treating breathy/voiceless phonation or a glottal stop as aspiration. The apostrophe is used only for explicit aspirated IPA sequences; other unreviewed features remain bracketed. Quality run `40743692803` is still running at browser installation; earlier unit/integration, build, deterministic mapping, benchmark, and release checks have passed. Await browser-test completion.
+
+
+### Final verification result — 2026-10-28
+
+Quality run `40743692803` passed on code head `0566407bd90b67f412a5d98a54ad55e284c0dd96`: 73 browser tests passed, 1 skipped; unit/integration, corpus validators, acoustic guards, production build, deterministic generated mappings, benchmark, and release checks also passed. Later branch commits are documentation-only. The ordered output code is CI-verified; full Khmer/Lao/Sinhala/Burmese end-to-end linguistic support remains partial and must not be described as release-ready.
