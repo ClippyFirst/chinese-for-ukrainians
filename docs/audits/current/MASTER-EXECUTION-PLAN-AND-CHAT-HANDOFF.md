@@ -375,3 +375,9 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 
 - Regional results heading now explicitly displays the ordered contract: romanization → IPA → Ukrainian transcription.
 - Latest UI commit: `3343ac2b52f871be75b4a37c35e620456f8e2cf0`. Latest branch verification remains inherited from successful run `40743007634` on earlier code commit `6ec1927616595592041451609240c183837d18f8`; later small adapter/UI/test changes remain not verified on the exact latest head.
+
+
+### IPA adaptation safeguard — 2026-10-28
+
+- Latest code commit `0566407bd90b67f412a5d98a54ad55e284c0dd96` removes speculative mappings that conflated breathy/voiceless phonation or glottal stop with the project's aspiration apostrophe. Only explicit aspirated IPA sequences currently map to apostrophe; breathy voice, glottal stop, tones, and unknown diacritics remain visibly unresolved.
+- Quality run `40743692803` is in progress on that code head. Unit/integration tests, production build, deterministic generated mappings, benchmark, and release constraints are already green in the run; browser installation is still in progress. Do not claim full pass until the browser step completes.
