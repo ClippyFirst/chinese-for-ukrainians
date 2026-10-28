@@ -33,7 +33,7 @@ test('language switch changes the example and preserves unknown script signs vis
   await expect(page.locator('#regional-roman')).toHaveText('aayubowan');
   await expect(page.locator('#regional-status')).toHaveText('Sinhala Text Converters 1.0.5 + VoiceLK G2P rule port');
   await expect(page.locator('#regional-ipa')).toHaveText('aːjuboːʋan');
-  await expect(page.locator('#regional-ukrainian')).toHaveText('айубован');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('а⟦ː⟧йубо⟦ː⟧ван');
 });
 
 test('clear returns regional page to its empty state', async ({ page }) => {
@@ -100,7 +100,7 @@ test('Lao rule port derives a Ukrainian candidate from IPA and keeps tone marks 
   await page.locator('#regional-input').fill('ກາ');
   await expect(page.locator('#regional-roman')).toHaveText('ka');
   await expect(page.locator('#regional-ipa')).toHaveText('kaː˩˧');
-  await expect(page.locator('#regional-ukrainian')).toHaveText('ка⟦˩⟧⟦˧⟧');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('ка⟦ː⟧⟦˩⟧⟦˧⟧');
 });
 
 
@@ -188,5 +188,18 @@ test('Ukrainian adapter marks aspiration with apostrophe and preserves tone cont
   await page.locator('#regional-input').fill('ຂາ');
   await expect(page.locator('#regional-roman')).toHaveText('kha');
   await expect(page.locator('#regional-ipa')).toHaveText('kʰaː˩˧');
-  await expect(page.locator('#regional-ukrainian')).toHaveText("к'а⟦˩⟧⟦˧⟧");
+  await expect(page.locator('#regional-ukrainian')).toHaveText("к'а⟦ː⟧⟦˩⟧⟦˧⟧");
+});
+
+
+test('Ukrainian research candidate keeps long-vowel and syllable-boundary markers explicit', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('lo');
+  await page.locator('#regional-input').fill('ສະບາຍດີ');
+  const ipa = await page.locator('#regional-ipa').textContent();
+  const ukrainian = await page.locator('#regional-ukrainian').textContent();
+  expect(ipa).toContain('ː');
+  expect(ipa).toContain('.');
+  expect(ukrainian).toContain('⟦ː⟧');
+  expect(ukrainian).toContain('.');
 });
