@@ -439,3 +439,23 @@ Overall disposition remains **partial prototype / research preview**, not releas
 
 
 - Added unknown-input regression: an unrecognized Lao-block code point remains bracketed in romanization, IPA and Ukrainian output; a consonant without a resolved vowel no longer receives an invented tone contour. This safeguard passed in the same exact-head run.
+
+
+## Regional-language continuation ledger — 2026-10-28
+
+This entry reconciles the current four-language work against the available GitHub evidence. Repository metadata reports default branch `main`; branch `feat/khmer-lao-burmese-sinhala-romanizers-2026-10-28` exists and PR [#48](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/48) remains open. The latest exact executable-code verification found in the PR record is SHA `33c61761280cbbe8e20c8a896354cb3b28f10062`, Quality workflow [40751705599](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40751705599). The `verify` job succeeded; recorded browser results are 83 passed, 1 skipped, with dependency install, unit/integration, benchmark corpus validation, acoustic input guards, production build, generated-map determinism, conversion benchmark and release checks completed. This is not evidence that the current branch tip has been tested: direct branch-ref/PR-head metadata was not available through the connector, and no local checkout/tests were run.
+
+| Task | Status | Acceptance gate |
+|---|---|---|
+| Regional page/result order | DONE_VERIFIED (technical contract) | Romanization → IPA → Ukrainian candidate is visible; per-language engine completeness is separate. |
+| Khmer romanization | DONE_VERIFIED (mechanical) | MIT `@gmana/km-translit@0.1.2`; BGN/PCGN-derived ASCII, not phonological IPA. |
+| Khmer G2P/IPA | BLOCKED | MIT Python/FST `maohieng/khmerphonemizer` needs browser-compatible runtime/packaging and reviewed phone-to-canonical-IPA mapping; its FST/lexicon payload and dependencies matter. Add source-backed words and unknown-word tests before integration. |
+| Lao | PARTIAL | Apache-2.0 partial `lao2ipa` browser port and 28 upstream-derived vectors. Full rule/order parity and independent Lao review remain outstanding. |
+| Burmese | PARTIAL | Mya2Rom 0.4.4 CC-BY-SA-4.0 modes integrated; independent IPA validation and broader tone/length/phonation fixtures outstanding. MLCTS2 is an orthographic romanization mode, not proof of IPA-derived romanization. |
+| Sinhala | PARTIAL | MIT Singlish romanizer plus partial MIT VoiceLK rule-port and six upstream frontend vectors. Tokenizer/domain lexicon omitted; schwa/context behavior and broader IPA fixtures need review. |
+| IPA → Ukrainian | PARTIAL | IPA-keyed boundary exists and unknown marks remain visible. Segment mapping and explicit preservation of tone, length, syllable boundaries and aspiration need language-specific tests/review. |
+| PR #48 / release | BLOCKED | Keep PR open; no production deployment. Green CI is technical evidence, not linguistic adjudication. |
+
+**Verification record:** no local `npm` commands were run in this session. The only affirmative test evidence above is the linked GitHub Actions run on the exact executable-code SHA. A separate status endpoint returned an empty status list; the workflow endpoint independently confirmed the successful run. The current PR head SHA and newest exact-head CI remain unverified and must not be guessed.
+
+**Next acceptance gate:** retrieve the current PR head and latest workflow run; then prototype a browser-compatible Khmer G2P route with a reviewed phoneme-to-IPA mapping, extend source-backed contextual/exception fixtures for Lao, Burmese and Sinhala, and add IPA-adapter property/regression tests for tones, length, syllable boundaries, aspiration, unknown symbols and empty/invalid IPA. Overall status remains **partial prototype / research preview**, not release-ready four-language phonological support.
