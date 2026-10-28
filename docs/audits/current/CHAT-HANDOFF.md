@@ -166,3 +166,10 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 
 - New research surfaced `@gmana/km-translit` (MIT, JavaScript/TypeScript, syllable-aware Khmer BGN/PCGN-derived profile with acknowledged limitations), `SuhasDissa/Singlish` (JavaScript, GPL-3.0; not vendored pending license review), Apache-2.0 LaoNLP (Python IPA/MoH 2020), and Laonetics (JS, CC-BY-NC-4.0; not integrated). These options and caveats are now on the regional page and in the research register.
 - Latest UI/research commit: `cf5d4f56599040bd6db91d2b83af9a520b535235` (followed by documentation commits). No exact-head Quality run is available for this head. Do not call the current state verified or merge without fresh CI.
+
+
+### Sinhala engine integration continuation — 2026-10-28
+
+- Added browser-local `sinhala-soft/sinhala-text-converters` 1.0.5 for Sinhala Unicode → Singlish. MIT license and upstream UCSC/Sinhala Soft attribution are preserved under `vendor/sinhala-text-converters/` and `public/vendor/sinhala-text-converters/`.
+- Added Playwright expected-output assertion for `ආයුබෝවන්` → `aayubowan`; it has not yet run on the latest head. Sinhala remains PARTIAL until CI and independent linguistic checks pass.
+- Burmese Mya2Rom + Sinhala Text Converters are integrated locally; Khmer and Lao still need reviewed browser-compatible engines. IPA remains withheld for Khmer/Lao/Sinhala. Current exact-head Quality CI remains NOT VERIFIED because workflow dispatch is not exposed through the available connector.
