@@ -257,3 +257,22 @@ Unknown-input safeguard: an unrecognized Lao-block character is retained visibly
 
 ### Next acceptance gate
 First obtain the actual current PR head SHA and its newest workflow run. Then prioritize a browser-compatible Khmer G2P feasibility prototype without shipping an unreviewed phoneme-to-IPA mapping; independently expand the Lao, Burmese and Sinhala source-backed fixture sets; add IPA adapter property tests for tones, length, syllable boundaries, aspiration, unknown symbols and invalid/empty input. Full four-language phonological support remains a **partial prototype / research preview**, not release-ready.
+
+
+## Continuation — IPA fidelity hardening and current-head CI — 2026-10-28
+
+### Executed changes
+- Corrected stale page guidance: the regional UI now distinguishes Khmer (romanizer only; no IPA) from Lao (partial IPA rule-port), Burmese (Mya2Rom IPA mode), and Sinhala (partial VoiceLK-derived rule-port).
+- Hardened the IPA → Ukrainian research adapter so long-vowel length is not silently erased. Long vowels now render as the mapped Ukrainian vowel plus explicit `⟦ː⟧`; tone contour symbols remain visibly bracketed; syllable periods are retained; aspiration uses the project's apostrophe convention (for example, `kʰ` → `к'`). This is an explicit research notation, not a claim of normative Ukrainian orthography.
+- Added browser regressions for Lao aspiration + tone, explicit vowel length and syllable boundaries. Existing language regressions were updated to assert the explicit length marker.
+- Current code/test head: `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a` (adapter implementation commit `cbfe33b2176a6827c1968767834e60a7318cde8f`; test commit `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a`). The regional page text update is commit `138a63639ea4df53770e2f1300feb70d0b112755`.
+
+### Verification and limits
+- Exact-head GitHub Quality run [40770236876](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770236876) was still **in progress** at last inspection. On that exact SHA, dependency installation, unit/integration tests, research corpus checks, acoustic input guards, production build, deterministic generated mappings, conversion benchmark and release constraints had completed successfully; browser installation was still running and browser regression tests had not started. Do not record the browser suite as passed until this run completes.
+- Earlier exact-head run [40766919330](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40766919330) passed on SHA `fd1da4e8a4d5c079857c4b257c1d7f9e30d6836a` (before the new IPA-fidelity changes).
+- Attempted a shallow local clone of the work branch to run checks locally; blocked because this execution environment could not resolve `github.com` (DNS failure). No local npm or browser commands are claimed.
+
+### Updated status
+- IPA → Ukrainian: **PARTIAL**; explicit length/tones/aspiration/boundaries are better preserved mechanically, but language-specific mappings still need linguistic review and the candidate remains non-normative.
+- Regional UI copy and regression coverage: **DONE_VERIFIED only after current-head CI completes**; implementation is committed, but exact-head browser evidence is pending.
+- Khmer IPA/G2P remains **BLOCKED** pending a browser-compatible engine and reviewed phone-to-canonical-IPA mapping. Lao, Burmese and Sinhala remain **PARTIAL** pending broader source-backed fixtures and independent linguistic review. PR #48 remains open; no release or deployment.
