@@ -324,3 +324,11 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Mya2Rom 0.4.4 is integrated for Burmese MLCTS2 and IPA, with its CC-BY-SA-4.0 license and attribution/change notice kept under `vendor/mya2rom/` and copied into the static `public/` output.
 - Status remains **PARTIAL / research preview**. Khmer and Lao upstream candidates are Python-only in the researched repositories; Sinhala candidate source/data requires provenance review. The current grapheme adapters for those three languages are not full phonological engines. Do not merge or deploy this PR as complete four-language support.
 - Next acceptance gate: inspect the exact-head Quality run after browser tests finish; fix and rerun any remaining failures. Then port/package reviewed Khmer, Lao and Sinhala engines with source-backed fixtures before considering full completion.
+
+
+### Continuation update — regional romanization, 2026-10-28
+
+- Exact-head CI run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) passed all listed Quality steps on `c7028d4a291edd61800e1534b7cbbf746cb2960f`; that run predates the latest correctness follow-up and does not certify the new head.
+- Correctness improvement: IPA output is now withheld for Khmer, Lao and Sinhala because the current per-grapheme maps are not reviewed phonological engines. UI says IPA was not generated; the Latin candidates remain explicitly provisional. This preserves the IPA evidence boundary rather than fabricating phonetic results.
+- Current status remains PARTIAL. Burmese Mya2Rom is integrated but needs current-head CI and independent validation. Khmer and Lao require browser-compatible ports of reviewed upstream engines; Sinhala requires provenance review. Independent, source-backed language fixtures remain TODO/BLOCKED.
+- Current follow-up implementation head at the time of this entry is expected to advance as the handoff files are committed; inspect PR #48 for the exact latest SHA and rerun Quality checks before claiming DONE_VERIFIED for the current state.
