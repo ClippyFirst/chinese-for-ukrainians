@@ -332,3 +332,10 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Correctness improvement: IPA output is now withheld for Khmer, Lao and Sinhala because the current per-grapheme maps are not reviewed phonological engines. UI says IPA was not generated; the Latin candidates remain explicitly provisional. This preserves the IPA evidence boundary rather than fabricating phonetic results.
 - Current status remains PARTIAL. Burmese Mya2Rom is integrated but needs current-head CI and independent validation. Khmer and Lao require browser-compatible ports of reviewed upstream engines; Sinhala requires provenance review. Independent, source-backed language fixtures remain TODO/BLOCKED.
 - Current follow-up implementation head at the time of this entry is expected to advance as the handoff files are committed; inspect PR #48 for the exact latest SHA and rerun Quality checks before claiming DONE_VERIFIED for the current state.
+
+
+### Final status for this continuation — 2026-10-28
+
+- Latest code-fix commit: `fcae7190c7cb506799989de169f4699d74b3119e`. It also makes the Mya2Rom failure path withhold IPA and report the engine failure instead of implying upstream success.
+- The only verified Quality result available is run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) on earlier commit `c7028d4a291edd61800e1534b7cbbf746cb2960f`; current-head CI is **BLOCKED / NOT VERIFIED**. The connected GitHub action set exposes workflow-run inspection and reruns, but no workflow-dispatch operation; current API-created commits have no run listed for the latest SHA.
+- PR #48 remains open, unmerged, and mergeable. Do not merge until exact-head CI is green and the three remaining language-engine acceptance gates are addressed.
