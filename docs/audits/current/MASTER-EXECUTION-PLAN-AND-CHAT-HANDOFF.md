@@ -396,3 +396,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Added browser regression fixture `ភ្នំពេញ` → `Phnom Penh`; test asserts no IPA or Ukrainian candidate is generated without IPA.
 - Status: Khmer romanization = PARTIAL / implementation integrated, awaiting exact-head clean-install CI and broader source-backed fixtures. Khmer IPA and IPA-derived Ukrainian output = TODO. Lao IPA/romanizer = TODO. Sinhala IPA = TODO. Burmese independent phonetic validation = TODO.
 - Required verification: `npm ci`, unit/integration suite, browser suite, production build, generated-artifact determinism and release checks on the updated branch head. No local runtime is available in this session; do not mark the change verified until GitHub Quality CI passes.
+
+
+## Sinhala IPA rule-port follow-up — 2026-10-28
+
+- Added `src/app/sinhala-ipa.js`, a browser-side rule port based on MIT-licensed VoiceLK ML `model_engine/g2p.py` (https://github.com/RootCode-AI/voicelk_ml). `vendor/voicelk-g2p/LICENSE` and `NOTICE.md` preserve attribution and scope.
+- The regional pipeline now uses Sinhala Text Converters for Singlish romanization, then the Sinhala IPA rule-port, then the provisional IPA-to-Ukrainian adapter. The port omits the upstream Python tokenizer and domain lexicon; its output is explicitly provisional, not validated VoiceLK parity or normative IPA.
+- Browser fixture added for `ආයුබෝවන්` → `aːjuboːʋan` → `айубован`. This checks deterministic behavior only; independent linguistic review and broader source-backed fixtures remain TODO.
+- Khmer romanization is now integrated through `@gmana/km-translit@0.1.2`; Khmer IPA remains TODO. Lao still lacks a reviewed browser-compatible romanizer/IPA engine. Burmese Mya2Rom is integrated but needs independent validation.
+- Exact-head Quality CI after these changes is pending. A prior run for Khmer-only code [40746219843](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40746219843) passed. Do not mark the Sinhala change verified until a workflow on the final code head passes all unit, build and browser tests.
