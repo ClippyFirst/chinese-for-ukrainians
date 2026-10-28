@@ -15,7 +15,7 @@ test('regional example produces Latin and IPA candidate with explicit research w
   await expect(page.locator('#regional-roman')).not.toHaveText('');
   await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
   await expect(page.locator('#regional-warning')).toContainText('не IPA-рушій');
-  await expect(page.locator('#regional-status')).toHaveText('Дослідницький кандидат');
+  await expect(page.locator('#regional-status')).toHaveText('Upstream engine: @gmana/km-translit 0.1.2');
 });
 
 test('language switch changes the example and preserves unknown script signs visibly', async ({ page }) => {
