@@ -339,3 +339,10 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Latest code-fix commit: `fcae7190c7cb506799989de169f4699d74b3119e`. It also makes the Mya2Rom failure path withhold IPA and report the engine failure instead of implying upstream success.
 - The only verified Quality result available is run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) on earlier commit `c7028d4a291edd61800e1534b7cbbf746cb2960f`; current-head CI is **BLOCKED / NOT VERIFIED**. The connected GitHub action set exposes workflow-run inspection and reruns, but no workflow-dispatch operation; current API-created commits have no run listed for the latest SHA.
 - PR #48 remains open, unmerged, and mergeable. Do not merge until exact-head CI is green and the three remaining language-engine acceptance gates are addressed.
+
+
+### Candidate discovery extension — 2026-10-28
+
+- Further research surfaced a browser-native Khmer option, `@gmana/km-translit` (MIT, syllable-aware BGN/PCGN-derived romanization but explicitly not fully conformant), and Sinhala `SuhasDissa/Singlish` (JavaScript, 150 tests reported upstream, GPL-3.0). These are candidates, not integrated engines; the GPL package is not vendored pending licensing review.
+- Lao alternatives include Apache-2.0 LaoNLP (Python; recent IPA/MoH 2020 support) and Laonetics (JavaScript but CC-BY-NC-4.0, so not integrated due to non-commercial restrictions and age). `lao2ipa` remains the leading IPA-first candidate for a port.
+- Updated the research page to expose these options and their caveats. Current code change `cf5d4f56599040bd6db91d2b83af9a520b535235` is docs/UI only; no new exact-head CI run is available, so current-head verification remains BLOCKED / NOT VERIFIED.
