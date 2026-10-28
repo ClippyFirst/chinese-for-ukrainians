@@ -35,11 +35,11 @@ The new page separates these scripts from the Chinese converter's IPA-keyed Ukra
 
 Quality run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) passed on commit `c7028d4a291edd61800e1534b7cbbf746cb2960f`, including unit/integration tests, production build, deterministic generated mappings, benchmark, release checks and browser regression tests. This evidence predates the follow-up commits; the latest head must be rerun.
 
-A correctness fix now withholds IPA for Khmer, Lao and Sinhala because the current grapheme tables are not reviewed phonological engines. The UI still offers explicitly provisional Latin candidates, but IPA displays “IPA not generated” rather than presenting guessed per-character values as phonetic transcription. Burmese continues to use the separate upstream Mya2Rom MLCTS2 and IPA modes; MLCTS2 is not claimed to derive from IPA.
+At this earlier point in the development sequence—before the later Lao and Sinhala rule-port integrations—a correctness fix withheld IPA for Khmer, Lao and Sinhala because the then-current grapheme tables were not reviewed phonological engines. The later sections below record subsequent partial rule-port integrations for Lao and Sinhala. Those later ports generate explicitly provisional IPA candidates; they do not establish full phonological coverage or independent linguistic validation. Khmer still has no integrated IPA engine. Burmese continues to use the separate upstream Mya2Rom MLCTS2 and IPA modes; MLCTS2 is not claimed to derive from IPA.
 
 Research sources rechecked: `seanghay/khmerphonemizer` is an MIT Python G2P engine; `byu-matrix-lab/lao2ipa` is a Python syllable-based Lao-to-IPA and romanization engine; `byu-matrix-lab/sea-transliteration-mnmt` publishes Khmer/Lao/Thai parallel character mappings but this review did not establish a license grant for that mapping repository, so it is not vendored; SinEn advertises Sinhala-to-Latin conversion but its implementation and data provenance require audit. Sources: https://github.com/seanghay/khmerphonemizer ; https://github.com/byu-matrix-lab/lao2ipa ; https://github.com/byu-matrix-lab/sea-transliteration-mnmt ; https://github.com/skyprolk/SinEn-Natural-Language-Tool_Kit .
 
-Task status: regional page/navigation = DONE_VERIFIED on `c7028d4` only; Burmese integration = PARTIAL pending current-head CI and independent review; Khmer and Lao phonological engines = TODO pending browser-compatible port and source-backed fixtures; Sinhala engine = BLOCKED pending provenance review; Khmer/Lao/Sinhala IPA = DEFERRED until reviewed engines exist; exact-head CI after the follow-up = TODO; independent gold corpus = BLOCKED pending source-backed linguistic review.
+Historical task status at that point in the sequence: regional page/navigation = DONE_VERIFIED on `c7028d4` only; Burmese integration = PARTIAL pending then-current CI and independent review; Khmer and Lao phonological engines = TODO pending browser-compatible ports and source-backed fixtures; Sinhala engine = BLOCKED pending provenance review; Khmer/Lao/Sinhala IPA = DEFERRED until reviewed engines existed; exact-head CI after that follow-up = TODO; independent gold corpus = BLOCKED pending source-backed linguistic review. This snapshot is superseded by the later integration and verification notes below; use the final status section at the end of this document for the current ledger.
 
 
 ## Further browser-compatible candidate discovery — 2026-10-28
@@ -103,3 +103,17 @@ Added `src/app/lao-ipa.js`, a conservative browser-side port of selected consona
 ## Unknown-input safeguard — 2026-10-28
 
 Added a browser regression test using an unrecognized code point inside the Lao Unicode block. The port preserves it visibly as `⟦…⟧` in the romanization and IPA fields, and the IPA→Ukrainian adapter preserves the unresolved marker. The fixture also caught a false tone assignment on a consonant with no resolved vowel; the Lao port now emits a tone only when a vowel or coda is resolved, avoiding a fabricated contour in this case.
+
+
+## Current reconciled status — 2026-10-28
+
+This section supersedes earlier point-in-time status snapshots above.
+
+- Regional UI/result order (romanization → IPA → Ukrainian candidate): **DONE_VERIFIED** by current-head Quality CI. The current PR head before this status-only update is tracked in PR #48.
+- Khmer: **PARTIAL** — upstream `@gmana/km-translit@0.1.2` provides browser-compatible BGN/PCGN-derived ASCII romanization, but no IPA/G2P engine is integrated. Acceptance requires a browser-compatible or deployable licensed G2P engine, a reviewed mapping to canonical IPA, and source-backed regression fixtures.
+- Lao: **PARTIAL** — selected `lao2ipa` rules are ported and 28 upstream-derived vectors run in browser CI; full upstream parity and independent linguistic review are outstanding.
+- Burmese: **PARTIAL** — vendored Mya2Rom provides MLCTS2 and IPA modes; their parallel availability does not establish that romanization is derived from IPA. Independent review and broader gold fixtures are outstanding.
+- Sinhala: **PARTIAL** — upstream Singlish romanization and a partial VoiceLK-derived IPA rule-port are integrated. The Python tokenizer and domain lexicon are omitted; independent phonological review and broader fixtures are outstanding.
+- IPA → Ukrainian: **PARTIAL** — long-vowel length is retained as `⟦ː⟧`; tone marks, aspiration, combining marks, and unknown segments remain explicit. Mapping choices are not a normative standard and require language-specific review.
+- Latest verified runtime/test commit before the additional inventory regression: `65ce6e8fe3552acc33b582108a4804bf7be7c9e2`, Quality CI [40770751349](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770751349), with **87 browser tests passed, 1 skipped**. A new Sinhala long-vowel inventory regression has since been added and requires a new exact-head CI result before it can be marked verified.
+- Release disposition: **PARTIAL PROTOTYPE / RESEARCH PREVIEW**, not release-ready. No merge or deployment has been performed.
