@@ -173,3 +173,8 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 - Added browser-local `sinhala-soft/sinhala-text-converters` 1.0.5 for Sinhala Unicode → Singlish. MIT license and upstream UCSC/Sinhala Soft attribution are preserved under `vendor/sinhala-text-converters/` and `public/vendor/sinhala-text-converters/`.
 - Added Playwright expected-output assertion for `ආයුබෝවන්` → `aayubowan`; it has not yet run on the latest head. Sinhala remains PARTIAL until CI and independent linguistic checks pass.
 - Burmese Mya2Rom + Sinhala Text Converters are integrated locally; Khmer and Lao still need reviewed browser-compatible engines. IPA remains withheld for Khmer/Lao/Sinhala. Current exact-head Quality CI remains NOT VERIFIED because workflow dispatch is not exposed through the available connector.
+
+
+### Output-order update — 2026-10-28
+
+The required order is romanization → IPA → Ukrainian transcription. The regional page now displays three cards in that order. The Ukrainian candidate consumes IPA only; unknown symbols and diacritics remain visible as bracketed markers. This adapter is provisional and needs linguistic review. Burmese has Mya2Rom romanization and IPA modes; Sinhala currently has romanization only; Khmer and Lao still lack integrated upstream engines. Added browser checks cover output order, absence of Ukrainian output when IPA is unavailable, and the IPA-derived Burmese candidate. Keep PR #48 open pending full engine integration and exact-head CI.
