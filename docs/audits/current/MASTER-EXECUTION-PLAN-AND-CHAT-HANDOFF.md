@@ -381,3 +381,9 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 
 - Latest code commit `0566407bd90b67f412a5d98a54ad55e284c0dd96` removes speculative mappings that conflated breathy/voiceless phonation or glottal stop with the project's aspiration apostrophe. Only explicit aspirated IPA sequences currently map to apostrophe; breathy voice, glottal stop, tones, and unknown diacritics remain visibly unresolved.
 - Quality run `40743692803` is in progress on that code head. Unit/integration tests, production build, deterministic generated mappings, benchmark, and release constraints are already green in the run; browser installation is still in progress. Do not claim full pass until the browser step completes.
+
+
+### Final Quality verification — 2026-10-28
+
+- Quality run `40743692803` completed **successfully** on executable-code head `0566407bd90b67f412a5d98a54ad55e284c0dd96`. Browser regression suite: **73 passed, 1 skipped**. Unit/integration tests, research benchmark validator, benchmark corpus guardrails, acoustic input guards, production build, generated-map determinism, conversion benchmark, and release constraints passed in the same run.
+- This run includes the ordered output UI, the main-page order regression test, IPA-to-Ukrainian candidate handling, the unknown-feature preservation correction, and the final regional heading. Later branch commits are documentation/PR metadata only. Exact executable-code head is verified; the overall regional language engine coverage remains PARTIAL, not release-ready.
