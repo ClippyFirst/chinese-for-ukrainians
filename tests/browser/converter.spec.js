@@ -223,3 +223,11 @@ test('methodology external references open safely in a new tab', async ({ page }
     await expect(link).toHaveAttribute('href', /^https:\/\//u);
   }
 });
+
+test('main converter presents romanization, IPA, then Ukrainian systems', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  const cards = page.locator('#results > .result-card, #results > .ukrainian-grid');
+  const classes = await cards.evaluateAll(nodes => nodes.map(node => node.classList.contains('pinyin-panel') ? 'romanization' : node.classList.contains('ipa-panel') ? 'ipa' : node.classList.contains('ukrainian-grid') ? 'ukrainian' : 'other'));
+  expect(classes.slice(0, 3)).toEqual(['romanization', 'ipa', 'ukrainian']);
+});
