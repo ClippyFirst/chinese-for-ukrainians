@@ -180,3 +180,13 @@ test('unknown Lao-block code points stay visibly marked instead of being dropped
   await expect(page.locator('#regional-roman')).toHaveText('k⟦໿⟧');
   await expect(page.locator('#regional-ukrainian')).toHaveText('к⟦໿⟧');
 });
+
+
+test('Ukrainian adapter marks aspiration with apostrophe and preserves tone contours', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('lo');
+  await page.locator('#regional-input').fill('ຂາ');
+  await expect(page.locator('#regional-roman')).toHaveText('kha');
+  await expect(page.locator('#regional-ipa')).toHaveText('kʰaː˩˧');
+  await expect(page.locator('#regional-ukrainian')).toHaveText("к'а⟦˩⟧⟦˧⟧");
+});
