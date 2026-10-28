@@ -107,6 +107,17 @@ test('Lao rule port derives a Ukrainian candidate from IPA and keeps tone marks 
 test('Lao IPA port is regression-checked against upstream Wiktionary-derived vectors', async ({ page }) => {
   const vectors = [
     ['ສະບາຍດີ', 'sa˧˥baːj˩˧diː˩˧'],
+    ['ກວາງ', 'kuːəŋ˩˧'],
+    ['ກວາດ', 'kuːət˧˩'],
+    ['ກວຽນ', 'kʷiːən˩˧'],
+    ['ກວ່າ', 'kuːə˧'],
+    ['ກວ້າງ', 'kuːəŋ˥˨'],
+    ['ກອງ', 'kɔːŋ˩˧'],
+    ['ກອດ', 'kɔːt˧˩'],
+    ['ກະດານ', 'ka˧˥daːn˩˧'],
+    ['ກະດິງ', 'ka˧˥diŋ˩˧'],
+    ['ກະດູກ', 'ka˧˥duːk˧˩'],
+    ['ກະແຈ', 'ka˧˥tɕɛː˩˧'],
     ['ໄມ້', 'maj˥˨'],
     ['ເມືອງ', 'mɯːəŋ˧˥'],
     ['ສີ', 'siː˩˧'],
@@ -131,6 +142,7 @@ test('Lao IPA port is regression-checked against upstream Wiktionary-derived vec
     .replaceAll('ʔ', '')
     .replaceAll('͡', '')
     .replaceAll('̯', '')
+    .replaceAll('̚', '')
     .replaceAll(' ', '');
   await page.goto('/regional-languages.html');
   await page.getByLabel('Мова').selectOption('lo');
