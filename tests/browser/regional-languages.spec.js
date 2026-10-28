@@ -59,3 +59,23 @@ test('Burmese uses the locally bundled Mya2Rom engine for MLCTS2 and IPA', async
   await expect(page.locator('#regional-status')).toContainText('Mya2Rom');
   await expect(page.locator('#regional-warning')).toContainText('не гарантує, що романізація виведена з IPA');
 });
+
+test('regional output order is romanization, IPA, then Ukrainian candidate', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  const indexes = await page.locator('#regional-results .result-card .result-index').allTextContents();
+  expect(indexes).toEqual(['01', '02', '03']);
+  await expect(page.locator('#regional-results .result-card').nth(0)).toContainText('Романізація');
+  await expect(page.locator('#regional-results .result-card').nth(1)).toContainText('IPA');
+  await expect(page.locator('#regional-results .result-card').nth(2)).toContainText('Українська транскрипція');
+  await page.getByLabel('Мова').selectOption('km');
+  await page.getByRole('button', { name: 'Приклад' }).click();
+  await expect(page.locator('#regional-ukrainian')).toContainText('Український кандидат недоступний');
+});
+
+test('Ukrainian candidate is derived from Burmese IPA and keeps unreviewed IPA marks visible', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('my');
+  await page.locator('#regional-input').fill('မြို့');
+  await expect(page.locator('#regional-ipa')).toHaveText('mjo̰');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('мйо⟦̰⟧');
+});
