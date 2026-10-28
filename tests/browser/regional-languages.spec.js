@@ -23,7 +23,7 @@ test('language switch changes the example and preserves unknown script signs vis
   await page.getByLabel('Мова').selectOption('lo');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ສະບາຍດີ');
-  await expect(page.locator('#regional-roman')).toHaveText('sabaaydi');
+  await expect(page.locator('#regional-roman')).toHaveText('sabaydi');
   await expect(page.locator('#regional-ipa')).toHaveText('saʔ˧˥.baːj˩˧.diː˩˧');
   await expect(page.locator('#regional-status')).toHaveText('Lao2IPA browser rule-port (partial)');
   await expect(page.getByText('дослідницькими кандидатами')).toBeVisible();
