@@ -28,8 +28,9 @@ test('language switch changes the example and preserves unknown script signs vis
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ආයුබෝවන්');
   await expect(page.locator('#regional-roman')).toHaveText('aayubowan');
-  await expect(page.locator('#regional-status')).toHaveText('Upstream engine: Sinhala Text Converters 1.0.5');
-  await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
+  await expect(page.locator('#regional-status')).toHaveText('Sinhala Text Converters 1.0.5 + VoiceLK G2P rule port');
+  await expect(page.locator('#regional-ipa')).toHaveText('aːjuboːʋan');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('айубован');
 });
 
 test('clear returns regional page to its empty state', async ({ page }) => {
