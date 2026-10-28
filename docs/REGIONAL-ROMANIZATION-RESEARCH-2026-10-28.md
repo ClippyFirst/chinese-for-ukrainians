@@ -29,3 +29,14 @@ The new page separates these scripts from the Chinese converter's IPA-keyed Ukra
 4. Test Unicode combining sequences, punctuation, unknown input, tone/length, script detection and copy controls.
 5. Run unit/browser/accessibility/build/release checks on exact PR head.
 6. Update the master execution plan only after acceptance checks are run. Current status: PARTIAL / research preview.
+
+
+## Verification follow-up — 2026-10-28
+
+Quality run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) passed on commit `c7028d4a291edd61800e1534b7cbbf746cb2960f`, including unit/integration tests, production build, deterministic generated mappings, benchmark, release checks and browser regression tests. This evidence predates the follow-up commits; the latest head must be rerun.
+
+A correctness fix now withholds IPA for Khmer, Lao and Sinhala because the current grapheme tables are not reviewed phonological engines. The UI still offers explicitly provisional Latin candidates, but IPA displays “IPA not generated” rather than presenting guessed per-character values as phonetic transcription. Burmese continues to use the separate upstream Mya2Rom MLCTS2 and IPA modes; MLCTS2 is not claimed to derive from IPA.
+
+Research sources rechecked: `seanghay/khmerphonemizer` is an MIT Python G2P engine; `byu-matrix-lab/lao2ipa` is a Python syllable-based Lao-to-IPA and romanization engine; `byu-matrix-lab/sea-transliteration-mnmt` publishes Khmer/Lao/Thai parallel character mappings but this review did not establish a license grant for that mapping repository, so it is not vendored; SinEn advertises Sinhala-to-Latin conversion but its implementation and data provenance require audit. Sources: https://github.com/seanghay/khmerphonemizer ; https://github.com/byu-matrix-lab/lao2ipa ; https://github.com/byu-matrix-lab/sea-transliteration-mnmt ; https://github.com/skyprolk/SinEn-Natural-Language-Tool_Kit .
+
+Task status: regional page/navigation = DONE_VERIFIED on `c7028d4` only; Burmese integration = PARTIAL pending current-head CI and independent review; Khmer and Lao phonological engines = TODO pending browser-compatible port and source-backed fixtures; Sinhala engine = BLOCKED pending provenance review; Khmer/Lao/Sinhala IPA = DEFERRED until reviewed engines exist; exact-head CI after the follow-up = TODO; independent gold corpus = BLOCKED pending source-backed linguistic review.
