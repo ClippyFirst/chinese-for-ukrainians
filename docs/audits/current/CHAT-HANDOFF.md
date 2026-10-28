@@ -198,3 +198,10 @@ Latest code commit `0566407bd90b67f412a5d98a54ad55e284c0dd96` avoids treating br
 ### Final verification result — 2026-10-28
 
 Quality run `40743692803` passed on code head `0566407bd90b67f412a5d98a54ad55e284c0dd96`: 73 browser tests passed, 1 skipped; unit/integration, corpus validators, acoustic guards, production build, deterministic generated mappings, benchmark, and release checks also passed. Later branch commits are documentation-only. The ordered output code is CI-verified; full Khmer/Lao/Sinhala/Burmese end-to-end linguistic support remains partial and must not be described as release-ready.
+
+
+## Regional-language continuation — 2026-10-28
+
+Latest PR #48 follow-up adds pinned `@gmana/km-translit@0.1.2` (MIT) to `package.json` and `package-lock.json`, uses `khmerToLatin` for Khmer output, and adds a browser test for the upstream-documented `ភ្នំពេញ` → `Phnom Penh`. The UI labels this as BGN/PCGN-derived ASCII romanization (not fully conformant), and explicitly withholds IPA and Ukrainian output because this romanizer is not an IPA engine. The exact-head Quality workflow is running on `626ef63aba4029aac9fcc171b56fcfbd9690acd4`: https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40745940883. Do not call this verified until the run completes and browser tests pass.
+
+Current state: Burmese has Mya2Rom MLCTS2/IPA; Sinhala has Sinhala Text Converters romanization only; Khmer now has an upstream syllable-aware romanizer but no IPA; Lao remains provisional Latin candidate only. Still required: a browser-compatible reviewed Khmer IPA engine, Lao MoH/IPA engine port (upstream `lao2ipa` is Python-only), Sinhala IPA engine, source-backed fixtures and independent linguistic validation. PR remains open; production site is not updated.
