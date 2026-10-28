@@ -5,7 +5,7 @@ import {
   CONSONANT_MAPPINGS,
   SPECIAL_CHAR_MAPPINGS,
   RAKARANSHA,
-} from './constants';
+} from './constants.js';
 
 /**
  * Converts Unicode Sinhala to Singlish (Sinhala written in English)
