@@ -221,7 +221,7 @@ Added partial browser port `src/app/lao-ipa.js` based on Apache-2.0 `byu-matrix-
 
 Current executable-code head `1f694869ebcf14ed4dfed9971f9e50bfff9911a5` passed Quality CI [40750217130](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40750217130): **81 browser tests passed, 1 skipped**; unit/integration, clean dependency installation, production build, deterministic generated mappings, benchmark and release checks passed. The latest follow-up commits only update research/ledger/handoff documents.
 
-Added 17 Lao IPA regression vectors from the upstream `byu-matrix-lab/lao2ipa/tests/test_transliterate.py` and six Sinhala IPA vectors from VoiceLK ML's MIT-licensed `tests/test_frontend.py`. The vector corpus caught and fixed contextual parsing of `ວາ` in `ຄວາມ`.
+Added 28 Lao IPA regression vectors from the upstream `byu-matrix-lab/lao2ipa/tests/test_transliterate.py` and six Sinhala IPA vectors from VoiceLK ML's MIT-licensed `tests/test_frontend.py`. The vector corpus caught and fixed contextual parsing of `ວາ` in `ຄວາມ` and tone-marked forms such as `ກວ່າ`.
 
 Khmer G2P blocker is now better scoped: MIT Python project `maohieng/khmerphonemizer` depends on `khmercut` and `sosap`, and ships a 35.2 MB FST plus 2.16 MB lexicon. It is not a drop-in browser dependency. A compatible JS/WASM/backend approach and reviewed conversion from the model's phoneme inventory to canonical IPA are still required. No fabricated IPA was added.
 
