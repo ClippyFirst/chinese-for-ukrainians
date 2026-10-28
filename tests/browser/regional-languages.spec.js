@@ -203,3 +203,23 @@ test('Ukrainian research candidate keeps long-vowel and syllable-boundary marker
   expect(ukrainian).toContain('⟦ː⟧');
   expect(ukrainian).toContain('.');
 });
+
+
+test('IPA adapter preserves long-vowel markers across the Sinhala vowel inventory', async ({ page }) => {
+  const vectors = [
+    ['ආ', 'aː', 'а⟦ː⟧'],
+    ['ඈ', 'æː', 'е⟦ː⟧'],
+    ['ඊ', 'iː', 'і⟦ː⟧'],
+    ['ඌ', 'uː', 'у⟦ː⟧'],
+    ['ඒ', 'eː', 'е⟦ː⟧'],
+    ['ඕ', 'oː', 'о⟦ː⟧'],
+    ['ඎ', 'ruː', 'ру⟦ː⟧']
+  ];
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('si');
+  for (const [input, expectedIpa, expectedUkrainian] of vectors) {
+    await page.locator('#regional-input').fill(input);
+    await expect(page.locator('#regional-ipa'), input).toHaveText(expectedIpa);
+    await expect(page.locator('#regional-ukrainian'), input).toHaveText(expectedUkrainian);
+  }
+});
