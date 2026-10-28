@@ -178,3 +178,8 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 ### Output-order update — 2026-10-28
 
 The required order is romanization → IPA → Ukrainian transcription. The regional page now displays three cards in that order. The Ukrainian candidate consumes IPA only; unknown symbols and diacritics remain visible as bracketed markers. This adapter is provisional and needs linguistic review. Burmese has Mya2Rom romanization and IPA modes; Sinhala currently has romanization only; Khmer and Lao still lack integrated upstream engines. Added browser checks cover output order, absence of Ukrainian output when IPA is unavailable, and the IPA-derived Burmese candidate. Keep PR #48 open pending full engine integration and exact-head CI.
+
+
+### CI status reconciliation — 2026-10-28
+
+Quality run `40743007634` passed on commit `6ec1927616595592041451609240c183837d18f8` with 71 browser tests passed and 1 skipped. It validates the regional three-card order and IPA-derived candidate tests. The latest branch head is `b9734aeff3692bfbb22c82e31bf407cabda6a751`; the main-converter order assertion and small IPA-affricate map extension came after the successful run, so exact latest-head CI remains unverified. The preceding run `40742716417` failed due a malformed regex in the adapter; that defect was fixed before run 40743007634. Keep PR #48 open.
