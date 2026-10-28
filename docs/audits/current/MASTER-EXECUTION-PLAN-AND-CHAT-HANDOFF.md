@@ -413,4 +413,26 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - The Lao UI now shows a MoH-style Latin candidate and IPA with explicit tone contours, then passes that IPA through the Ukrainian candidate adapter. It is explicitly marked partial; it does not reproduce all upstream orthographic rewrites, clusters or tone-mark placements.
 - Browser fixtures cover `ກາ` → `ka` / `kaː˩˧` and `ສະບາຍດີ` → `sabaaydi` / `saʔ˧˥.baːj˩˧.diː˩˧`; these are implementation regression fixtures, not independent language validation.
 - Status: Khmer romanization integrated (IPA TODO); Lao romanization + partial IPA port integrated (PARTIAL); Sinhala romanization + partial IPA rule port integrated (PARTIAL); Burmese Mya2Rom MLCTS2/IPA integrated (needs independent validation). All Ukrainian outputs remain candidates, not normative results.
-- Exact executable-code head `5840f4ccf5da05efd211506b8b9c1031d5226e48` passed Quality CI [40747486736](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40747486736): browser suite 77 passed, 1 skipped; clean install, unit/integration, production build, generated-map determinism, benchmarks and release constraints passed. The full four-language task remains PARTIAL because Khmer IPA is absent, Lao/Sinhala are partial rule ports, and independent linguistic review plus broader upstream vectors remain incomplete.
+- Exact executable-code head `1f694869ebcf14ed4dfed9971f9e50bfff9911a5` passed Quality CI [40750217130](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40750217130): browser suite 81 passed, 1 skipped; clean install, unit/integration, production build, generated-map determinism, benchmarks and release constraints passed. The full four-language task remains PARTIAL because Khmer IPA is absent, Lao/Sinhala are partial rule ports, and independent linguistic review remains incomplete.
+
+
+## Source-backed regression expansion and current exact-head status — 2026-10-28
+
+- Expanded browser regression coverage with 17 Lao IPA vectors based on `byu-matrix-lab/lao2ipa/tests/test_transliterate.py` (its test comments identify the expected forms as Vientiane IPA values sourced from Wiktionary) and six Sinhala IPA vectors from VoiceLK ML's MIT-licensed `tests/test_frontend.py`.
+- Fixed a Lao parsing error found by the new corpus: `ຄວາມ` must parse `ວາ` as a vowel sequence in context instead of always treating `ຄວ` as the onset cluster.
+- Current executable-code head `1f694869ebcf14ed4dfed9971f9e50bfff9911a5` passed Quality CI [40750217130](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40750217130): **81 browser tests passed, 1 skipped**. Unit/integration, clean dependency installation, production build, generated-map determinism, benchmark and release constraints also passed. Subsequent changes in this documentation update do not alter executable code.
+- Khmer G2P feasibility check: `maohieng/khmerphonemizer` is MIT-licensed Python software with `khmercut` and `sosap` dependencies, a 35,245,639-byte FST and a 2,162,286-byte lexicon. No browser-compatible JS/WASM runtime was found in this pass. Its emitted phoneme symbols also require an explicit reviewed mapping to canonical IPA before they can feed the IPA→Ukrainian stage. Do not claim Khmer IPA support until both runtime integration and phoneme-inventory validation are done.
+
+### Task ledger
+
+| Task | Status | Evidence / remaining acceptance criterion |
+|---|---|---|
+| Regional page and result order | DONE_VERIFIED | Exact-head Quality CI passed; 81 browser tests passed, 1 skipped. |
+| Khmer romanization | DONE_VERIFIED (mechanical) | Pinned MIT `@gmana/km-translit@0.1.2`, source-backed `ភ្នំពេញ` → `Phnom Penh` test. |
+| Khmer IPA/G2P | BLOCKED | Python FST/lexicon upstream exists but no browser-compatible integration. Acceptance: select/license runtime, convert upstream phoneme inventory to canonical IPA with reviewed rules, add source-backed vectors and pass CI. |
+| Lao IPA/MoH romanization | PARTIAL | Partial rule port, 17 upstream-derived vectors; acceptance: remaining vectors, upstream parity and independent Lao review. |
+| Burmese IPA/MLCTS2 | PARTIAL | Mya2Rom integrated; acceptance: wider source-backed IPA fixtures and independent review. |
+| Sinhala Singlish/IPA | PARTIAL | Upstream Singlish plus partial VoiceLK rule port; six upstream source-backed IPA fixtures; acceptance: lexicon/tokenizer coverage, wider vectors and independent review. |
+| IPA→Ukrainian adapter | PARTIAL | Unsupported tones/diacritics remain visible; acceptance: language-specific review of consonant, vowel, length, tone and syllable-boundary mappings. |
+
+Overall disposition remains **partial prototype / research preview**, not release-ready four-language phonological support. PR #48 stays open and the production site has not been changed.
