@@ -305,3 +305,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Status: **PARTIAL / research preview**, not DONE_VERIFIED. The current adapters are grapheme-level demonstrations, not complete phonological engines; they do not reliably model syllabification, contextual vowels, tone, or lexical exceptions. The UI discloses this. They must not be described as normative romanizations or independently validated IPA.
 - CI: Quality run [40735775526](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40735775526) was observed in progress on the earlier PR head `af9354088fd481b0fc4f3d262bf5630c4e5c577d`; it does not verify the latest head. Exact latest-head Quality run and its results remain pending inspection. No local npm/build/browser tests are claimed because this session has GitHub connector access but no checked-out local runtime.
 - Next acceptance gates: obtain a Quality run on the latest exact PR HEAD; inspect/fix any build and browser failures; port or package one verified upstream engine per language for browser use while preserving licenses; validate source-backed expected outputs independently; test IPA and romanization against the same phonetic representation where appropriate; then update this status based on evidence.
+
+
+### Follow-up — Mya2Rom integration, 2026-10-28
+
+- Current branch head for this handoff snapshot: `71d35cbf8c498bbbaf0c1d6698d6fcbe8d235525`; PR #48 remains open and unmerged.
+- Follow-up to the initial scaffold: vendored upstream Mya2Rom 0.4.4 JavaScript under `vendor/mya2rom/`, with its CC-BY-SA-4.0 license, upstream attribution and change notice. The regional page uses the upstream engine's `mlcts2` and `ipa` modes for Burmese; a regression fixture expects the upstream README's `မြို့` outputs.
+- The earlier note that no upstream code had been copied described the initial scaffold only and is superseded by this integration update.
+- Exact-head Quality run [40736212901](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40736212901) was still in progress at the time of this update; browser regression status and the final conclusion are not yet verified.
+- Status remains **PARTIAL / research preview**: Khmer, Lao and Sinhala are still provisional grapheme-level adapters. Their upstream candidates are Python-based or require source/data provenance review. Do not merge or publish this as complete four-language phonological support until those engines are ported/integrated with license compliance and source-backed tests.
