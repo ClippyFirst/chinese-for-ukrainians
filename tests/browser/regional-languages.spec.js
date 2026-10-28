@@ -47,3 +47,13 @@ test('regional page avoids horizontal overflow at mobile widths', async ({ page 
     expect(dimensions.document, JSON.stringify(dimensions)).toBeLessThanOrEqual(dimensions.viewport);
   }
 });
+
+test('Burmese uses the locally bundled Mya2Rom engine for MLCTS2 and IPA', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('my');
+  await page.locator('#regional-input').fill('မြို့');
+  await expect(page.locator('#regional-roman')).toHaveText('mjou.');
+  await expect(page.locator('#regional-ipa')).toHaveText('mjo̰');
+  await expect(page.locator('#regional-status')).toContainText('Mya2Rom');
+  await expect(page.locator('#regional-warning')).toContainText('не гарантує, що романізація виведена з IPA');
+});
