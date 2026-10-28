@@ -164,7 +164,7 @@ function transliterateWord(word) {
       }
     }
     const vowelIpa = vowelEntry[0], vowelMoh = vowelEntry[1], vowelLength = vowelEntry[2];
-    const tone = toneFor(onset,vowelKey,vowelLength,coda,toneMarker);
+    const tone = vowelIpa || codaIpa ? toneFor(onset,vowelKey,vowelLength,coda,toneMarker) : "";
     const openShort = !coda && vowelLength === "short" && !SPECIAL_LIVE.has(vowelKey);
     const syllableIpa = onset.ipa + vowelIpa + codaIpa + (openShort ? "ʔ" : "") + tone;
     const syllableMoh = onset.moh + vowelMoh + codaMoh;
