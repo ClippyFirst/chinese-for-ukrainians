@@ -145,3 +145,11 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 - Mya2Rom 0.4.4 is integrated for Burmese MLCTS2 and IPA, with its CC-BY-SA-4.0 license and attribution/change notice kept under `vendor/mya2rom/` and copied into the static `public/` output.
 - Status remains **PARTIAL / research preview**. Khmer and Lao upstream candidates are Python-only in the researched repositories; Sinhala candidate source/data requires provenance review. The current grapheme adapters for those three languages are not full phonological engines. Do not merge or deploy this PR as complete four-language support.
 - Next acceptance gate: inspect the exact-head Quality run after browser tests finish; fix and rerun any remaining failures. Then port/package reviewed Khmer, Lao and Sinhala engines with source-backed fixtures before considering full completion.
+
+
+## Handoff update — regional romanization, 2026-10-28
+
+- Quality run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) passed on `c7028d4a291edd61800e1534b7cbbf746cb2960f`, including browser regression tests. Later changes need a new exact-head run.
+- Follow-up correction prevents unreviewed Khmer/Lao/Sinhala character mappings from being displayed as IPA. The UI reports that IPA is not generated for those languages until reviewed phonological engines are integrated. This intentionally avoids unsupported phonetic claims.
+- Research remains partial: Khmer MIT Python G2P and Lao Apache-2.0 syllable-based IPA/romanization are candidates requiring browser ports; Sinhala converter and data provenance need audit; Burmese Mya2Rom is locally integrated but not independently validated. See `docs/REGIONAL-ROMANIZATION-RESEARCH-2026-10-28.md`.
+- Do not merge or call this complete four-language phonological support yet. Acceptance: latest-head Quality CI green; source-backed fixtures and license review; full Khmer/Lao/Sinhala engines; independent linguistic review of the Burmese outputs and all expected results.
