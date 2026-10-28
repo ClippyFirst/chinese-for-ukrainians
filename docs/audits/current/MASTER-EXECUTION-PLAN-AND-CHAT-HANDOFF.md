@@ -362,3 +362,10 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Burmese can populate all three visible stages using Mya2Rom's MLCTS2/IPA outputs and the provisional IPA adapter; the Ukrainian result remains uncertain where IPA contains unsupported phonation marks. Khmer/Lao lack integrated upstream romanizers and IPA engines; Sinhala has romanization but no IPA. These language integrations remain PARTIAL/BLOCKED on phonological evidence.
 - Added browser tests for exact display order, no Ukrainian output when IPA is unavailable, and IPA-derived Burmese candidate behavior.
 - Quality run `40740257204` passed on earlier commit `ef528de773764d821baae6e49faf571ba9797039`. Latest code changes were initially checked under run `40742716417`; follow-up documentation changes trigger new CI, so verify the latest branch head before claiming acceptance.
+
+
+### Latest verification reconciliation — 2026-10-28
+
+- Quality run `40743007634` completed successfully on `6ec1927616595592041451609240c183837d18f8`: browser suite reported **71 passed, 1 skipped**. This run verifies the three regional result cards and IPA-derived Ukrainian candidate tests on that head.
+- Latest branch head is `b9734aeff3692bfbb22c82e31bf407cabda6a751`. After the successful run, the branch added the main Chinese-page output-order regression test (`9f687d1bcce270150ab7d28621c6f6833b0e2ca5`) and a small IPA-affricate mapping extension (`b9734aeff3692bfbb22c82e31bf407cabda6a751`). These two latest changes have not been exercised by CI. Do not mark exact-head verification DONE_VERIFIED.
+- Previous browser run `40742716417` failed because a malformed regex in the IPA adapter prevented the regional module from executing; the regex was replaced by explicit code-point/string checks in `6ec1927616595592041451609240c183837d18f8`, and the following Quality run passed.
