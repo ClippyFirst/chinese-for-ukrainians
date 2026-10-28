@@ -369,3 +369,9 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Quality run `40743007634` completed successfully on `6ec1927616595592041451609240c183837d18f8`: browser suite reported **71 passed, 1 skipped**. This run verifies the three regional result cards and IPA-derived Ukrainian candidate tests on that head.
 - Latest branch head is `b9734aeff3692bfbb22c82e31bf407cabda6a751`. After the successful run, the branch added the main Chinese-page output-order regression test (`9f687d1bcce270150ab7d28621c6f6833b0e2ca5`) and a small IPA-affricate mapping extension (`b9734aeff3692bfbb22c82e31bf407cabda6a751`). These two latest changes have not been exercised by CI. Do not mark exact-head verification DONE_VERIFIED.
 - Previous browser run `40742716417` failed because a malformed regex in the IPA adapter prevented the regional module from executing; the regex was replaced by explicit code-point/string checks in `6ec1927616595592041451609240c183837d18f8`, and the following Quality run passed.
+
+
+### Final regional UI state — 2026-10-28
+
+- Regional results heading now explicitly displays the ordered contract: romanization → IPA → Ukrainian transcription.
+- Latest UI commit: `3343ac2b52f871be75b4a37c35e620456f8e2cf0`. Latest branch verification remains inherited from successful run `40743007634` on earlier code commit `6ec1927616595592041451609240c183837d18f8`; later small adapter/UI/test changes remain not verified on the exact latest head.
