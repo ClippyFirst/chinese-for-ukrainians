@@ -229,3 +229,31 @@ Status: regional UI/order DONE_VERIFIED; Khmer romanization mechanically verifie
 
 
 Unknown-input safeguard: an unrecognized Lao-block character is retained visibly through all three output stages, and no tone is fabricated when no vowel/coda is resolved. This regression test passed in exact-head CI.
+
+
+## Continuation audit — 2026-10-28 (repository connector review)
+
+### Evidence boundary
+- Default branch reported by GitHub repository metadata: `main`. The requested work branch exists: `feat/khmer-lao-burmese-sinhala-romanizers-2026-10-28`. PR #48 remains open; its description explicitly says this is not release-ready four-language phonological support.
+- Latest exact executable-code verification identified in the PR and run lookup: code head `33c61761280cbbe8e20c8a896354cb3b28f10062`, Quality workflow [40751705599](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40751705599), job `verify` success. Recorded coverage: 83 browser tests passed, 1 skipped; dependency installation, unit/integration, benchmark-corpus validator, acoustic-pipeline guards, production build, generated-map determinism, conversion benchmark and release constraints all completed successfully. This verifies that code SHA only; it does not prove phonetic correctness or verify later documentation-only commits.
+- The connector did not expose a direct branch-ref/PR-head metadata endpoint in this session. Therefore the branch's latest commit SHA and whether its current tip has a newer exact-head CI run remain **unverified**, not inferred from a file blob SHA or a search result. No local clone, npm commands, or local tests were run.
+
+### Reconciled task ledger
+| Task | Status | Evidence / acceptance still required |
+|---|---|---|
+| Regional page and visible order Romanization → IPA → Ukrainian candidate | DONE_VERIFIED (technical/UI contract) | Exact-code-head CI above; does not imply all stages exist for every language. |
+| Khmer romanization | DONE_VERIFIED (mechanical) | Pinned `@gmana/km-translit@0.1.2`, MIT; upstream example `ភ្នំពេញ → Phnom Penh`. It is BGN/PCGN-derived ASCII, not a full phonological engine. |
+| Khmer IPA/G2P | BLOCKED | `maohieng/khmerphonemizer` is MIT Python/FST with `khmercut`/`sosap`, ~35.2 MB FST and ~2.16 MB lexicon. Need a viable browser runtime/packaging decision, reviewed phoneme-inventory-to-IPA mapping, licensed source-backed fixtures, unknown-word behavior and exact-head CI. Do not fabricate IPA. |
+| Lao romanization/IPA | PARTIAL | Apache-2.0 `byu-matrix-lab/lao2ipa` partial port; 28 upstream-derived regression vectors recorded. Need full rule/order parity review, broader contextual and exception coverage, independent linguistic review. |
+| Burmese MLCTS2/IPA | PARTIAL | Mya2Rom 0.4.4, CC-BY-SA-4.0 attribution retained. Distinguish orthographic MLCTS2 from phonetic IPA; add broader independent source-backed vectors and review tone/phonation/length behavior. |
+| Sinhala Singlish/IPA | PARTIAL | Sinhala Text Converters 1.0.5 MIT plus partial VoiceLK G2P port; six upstream frontend vectors. Python tokenizer and domain lexicon are absent; consonant inventory simplifications and schwa/context behavior need review and broader fixtures. |
+| IPA → Ukrainian | PARTIAL | Pipeline boundary is IPA-keyed; unknown symbols/diacritics are visibly marked. Language-specific segment choices and preservation of tone, length, syllable boundaries and aspiration require review. Do not treat candidate as normative. |
+| PR #48 release readiness | BLOCKED | Keep open until the above linguistic and engine acceptance criteria are met; do not merge or deploy based only on green CI. |
+
+### Commands and exact evidence
+- GitHub workflow: [Quality checks run 40751705599](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40751705599) — `verify` job success; all listed steps completed, including dependency install, unit/integration, corpus validator, acoustic guards, build, generated mapping determinism, benchmark, release checks and browser tests. The workflow summary reports 83 browser tests passed and 1 skipped.
+- Local commands: **not run** (no local repository checkout/runtime established in this session).
+- Combined status endpoint returned no status entries; the workflow-run endpoint independently returned the successful run above. Do not interpret an empty status list as a failure or as proof of current branch tip status.
+
+### Next acceptance gate
+First obtain the actual current PR head SHA and its newest workflow run. Then prioritize a browser-compatible Khmer G2P feasibility prototype without shipping an unreviewed phoneme-to-IPA mapping; independently expand the Lao, Burmese and Sinhala source-backed fixture sets; add IPA adapter property tests for tones, length, syllable boundaries, aspiration, unknown symbols and invalid/empty input. Full four-language phonological support remains a **partial prototype / research preview**, not release-ready.
