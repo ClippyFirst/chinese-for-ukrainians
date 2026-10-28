@@ -25,6 +25,21 @@ Chinese input
 
 **IPA adapter boundary:** each resolved token carries a segmental IPA key, and Ukrainian renderers consume that key through collision-checked maps derived from the canonical CSV. Tone remains separate metadata. The four unsupported IPA forms remain unresolved; there is no Pinyin fallback.
 
+## Regional-language pipeline contract
+
+The additional-language interface has a strict, shared display and processing order:
+
+~~~text
+Source-script input
+→ language-specific romanization engine (named profile)
+→ language-specific phonological engine / IPA
+→ Ukrainian practical-transcription adapter consuming IPA
+~~~
+
+The three visible result stages must appear in exactly this order: **Romanization → IPA → Ukrainian**. Romanization is the script's Latin rendering under a named system; it must not be relabeled as IPA. IPA is a phonological representation and must preserve supported contrasts such as tone, vowel length, aspiration, phonation, and syllable boundaries. The Ukrainian stage must consume IPA rather than reprocess source graphemes or romanization independently. If an upstream stage is unavailable or uncertain, show an explicit unavailable/uncertain state instead of fabricating a result.
+
+The regional module currently only partially meets the engine requirement: Burmese has upstream Mya2Rom modes for MLCTS2 and IPA; Sinhala has an upstream Singlish romanizer but no integrated IPA engine; Khmer and Lao still use provisional Latin candidates and lack an integrated, reviewed IPA engine. The Ukrainian regional adapter is deliberately a **candidate**: it maps recognized IPA segments and visibly brackets unreviewed symbols/diacritics. It is not a validated language-specific transcription standard and must not be treated as normative. Consequently, the page now presents all three stages in the correct order, but does not yet provide complete verified end-to-end output for all four languages.
+
 ## Main files
 
 - index.html — converter entry point.
