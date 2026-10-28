@@ -68,6 +68,9 @@ function initialAt(chars, index) {
   const rest = chars.slice(index).join("");
   for (const key of CLUSTER_KEYS) {
     if (rest.startsWith(key)) {
+      // Upstream lao2ipa treats ວາ as a vowel sequence in forms such as ຄວາມ,
+      // rather than consuming ຄວ as an onset cluster.
+      if (key.endsWith("ວ") && chars[index + Array.from(key).length] === "າ") continue;
       const entry = CLUSTERS[key];
       return { length:Array.from(key).length, ipa:entry[0], moh:entry[1], toneClass:entry[2], key };
     }
