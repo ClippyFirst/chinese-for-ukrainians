@@ -219,10 +219,13 @@ Added partial browser port `src/app/lao-ipa.js` based on Apache-2.0 `byu-matrix-
 
 ## Latest continuation — source-backed IPA vectors — 2026-10-28
 
-Current executable-code head `1f694869ebcf14ed4dfed9971f9e50bfff9911a5` passed Quality CI [40750217130](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40750217130): **81 browser tests passed, 1 skipped**; unit/integration, clean dependency installation, production build, deterministic generated mappings, benchmark and release checks passed. The latest follow-up commits only update research/ledger/handoff documents.
+Current executable-code head `33c61761280cbbe8e20c8a896354cb3b28f10062` passed Quality CI [40751705599](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40751705599): **83 browser tests passed, 1 skipped**; unit/integration, clean dependency installation, production build, deterministic generated mappings, benchmark and release checks passed. The latest follow-up commits only update research/ledger/handoff documents.
 
 Added 28 Lao IPA regression vectors from the upstream `byu-matrix-lab/lao2ipa/tests/test_transliterate.py` and six Sinhala IPA vectors from VoiceLK ML's MIT-licensed `tests/test_frontend.py`. The vector corpus caught and fixed contextual parsing of `ວາ` in `ຄວາມ` and tone-marked forms such as `ກວ່າ`.
 
 Khmer G2P blocker is now better scoped: MIT Python project `maohieng/khmerphonemizer` depends on `khmercut` and `sosap`, and ships a 35.2 MB FST plus 2.16 MB lexicon. It is not a drop-in browser dependency. A compatible JS/WASM/backend approach and reviewed conversion from the model's phoneme inventory to canonical IPA are still required. No fabricated IPA was added.
 
 Status: regional UI/order DONE_VERIFIED; Khmer romanization mechanically verified, Khmer IPA BLOCKED; Lao PARTIAL; Burmese PARTIAL; Sinhala PARTIAL; IPA→Ukrainian mapping PARTIAL. Keep PR #48 open. No production deployment. Overall project is still a research preview, not release-ready phonological support for all four languages.
+
+
+Unknown-input safeguard: an unrecognized Lao-block character is retained visibly through all three output stages, and no tone is fabricated when no vowel/coda is resolved. This regression test passed in exact-head CI.
