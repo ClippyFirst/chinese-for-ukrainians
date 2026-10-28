@@ -470,7 +470,7 @@ This entry reconciles the current four-language work against the available GitHu
 - Current code/test head: `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a` (adapter implementation commit `cbfe33b2176a6827c1968767834e60a7318cde8f`; test commit `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a`). The regional page text update is commit `138a63639ea4df53770e2f1300feb70d0b112755`.
 
 ### Verification and limits
-- Exact-head GitHub Quality run [40770236876](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770236876) was still **in progress** at last inspection. On that exact SHA, dependency installation, unit/integration tests, research corpus checks, acoustic input guards, production build, deterministic generated mappings, conversion benchmark and release constraints had completed successfully; browser installation was still running and browser regression tests had not started. Do not record the browser suite as passed until this run completes.
+- Exact-head GitHub Quality run [40770236876](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770236876) **passed** on code/test SHA `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a`; the full workflow, including browser regression tests and visual QA artifact uploads, succeeded.
 - Earlier exact-head run [40766919330](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40766919330) passed on SHA `fd1da4e8a4d5c079857c4b257c1d7f9e30d6836a` (before the new IPA-fidelity changes).
 - Attempted a shallow local clone of the work branch to run checks locally; blocked because this execution environment could not resolve `github.com` (DNS failure). No local npm or browser commands are claimed.
 
@@ -478,3 +478,12 @@ This entry reconciles the current four-language work against the available GitHu
 - IPA → Ukrainian: **PARTIAL**; explicit length/tones/aspiration/boundaries are better preserved mechanically, but language-specific mappings still need linguistic review and the candidate remains non-normative.
 - Regional UI copy and regression coverage: **DONE_VERIFIED only after current-head CI completes**; implementation is committed, but exact-head browser evidence is pending.
 - Khmer IPA/G2P remains **BLOCKED** pending a browser-compatible engine and reviewed phone-to-canonical-IPA mapping. Lao, Burmese and Sinhala remain **PARTIAL** pending broader source-backed fixtures and independent linguistic review. PR #48 remains open; no release or deployment.
+
+
+## Verification closure — 2026-10-28
+
+- Exact executable/test head `49f4c7f0e16da5bae547f4b2a80a316d324f4c4a` passed Quality CI [40770236876](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770236876). All workflow steps succeeded, including dependency install, unit/integration, corpus validation, acoustic guards, production build, deterministic generated mappings, benchmark, release constraints, browser regression suite, visual QA screenshot upload and dependency audit report. The browser regression step itself completed successfully; do not infer independent linguistic correctness from CI.
+- The subsequent documentation-bearing PR head `2744ccf5ece73dcf8836f9238e3d7847b0d988c0` also passed the full Quality workflow [40770428751](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40770428751).
+- Local clone attempt: `git clone --depth 1 --branch feat/khmer-lao-burmese-sinhala-romanizers-2026-10-28 https://github.com/ClippyFirst/chinese-for-ukrainians.git /tmp/clippyfirst-repo` failed with `Could not resolve host: github.com`. This is an environment DNS/network blocker; no local npm/browser test run is claimed.
+- PR #48 remains open and targets `main`; current verified branch tip before this ledger refresh was `2744ccf5ece73dcf8836f9238e3d7847b0d988c0`. The only runtime behavior change in this continuation is explicit preservation of IPA vowel length as `⟦ː⟧`; aspiration continues to use apostrophe, and tone contours/unknown marks/syllable periods remain visible. This remains a research candidate, not normative Ukrainian transcription.
+- Disposition unchanged: Khmer IPA/G2P BLOCKED; Lao, Burmese, Sinhala and IPA→Ukrainian PARTIAL; no merge or production deployment. Green CI verifies build/test mechanics, not full phonological coverage or independent expert review.
