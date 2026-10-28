@@ -102,3 +102,57 @@ test('Lao rule port derives a Ukrainian candidate from IPA and keeps tone marks 
   await expect(page.locator('#regional-ipa')).toHaveText('kaː˩˧');
   await expect(page.locator('#regional-ukrainian')).toHaveText('ка⟦˩⟧⟦˧⟧');
 });
+
+
+test('Lao IPA port is regression-checked against upstream Wiktionary-derived vectors', async ({ page }) => {
+  const vectors = [
+    ['ສະບາຍດີ', 'sa˧˥baːj˩˧diː˩˧'],
+    ['ໄມ້', 'maj˥˨'],
+    ['ເມືອງ', 'mɯːəŋ˧˥'],
+    ['ສີ', 'siː˩˧'],
+    ['ຍິງ', 'ɲiŋ˧˥'],
+    ['ບໍ່', 'bɔː˧'],
+    ['ເປັນ', 'pen˩˧'],
+    ['ແມ່', 'mɛː˧'],
+    ['ເຮັດ', 'het˧'],
+    ['ຊາ', 'saː˧˥'],
+    ['ພຣະ', 'pʰra˧'],
+    ['ຄວາມ', 'kʰuːəm˧˥'],
+    ['ກາ', 'kaː˩˧'],
+    ['ຮູບ', 'huːp˥˨'],
+    ['ຫວັງ', 'ʋaŋ˩˧'],
+    ['ຫຍັງ', 'ɲaŋ˩˧'],
+    ['ດີ', 'diː˩˧']
+  ];
+  const normalize = value => value
+    .replace(/[\\/().,;:?!\"'\\-]/gu, '')
+    .replaceAll('ʔ', '')
+    .replaceAll('͡', '')
+    .replaceAll('̯', '')
+    .replaceAll(' ', '');
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('lo');
+  for (const [input, expected] of vectors) {
+    await page.locator('#regional-input').fill(input);
+    const actual = await page.locator('#regional-ipa').textContent();
+    expect(normalize(actual ?? ''), input).toBe(expected);
+  }
+});
+
+test('Sinhala IPA rule port matches upstream VoiceLK regression examples', async ({ page }) => {
+  const vectors = [
+    ['කරනවා', 'karənəʋaː'],
+    ['පුළුවන්', 'puɭuʋan'],
+    ['කරන්න', 'karannə'],
+    ['ධර්මය', 'd̪arməjə'],
+    ['සිංහල', 'siŋhələ'],
+    ['කෘතිම', 'krut̪imə']
+  ];
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('si');
+  for (const [input, expected] of vectors) {
+    await page.locator('#regional-input').fill(input);
+    await expect(page.locator('#regional-ipa'), input).toHaveText(expected);
+    await expect(page.locator('#regional-ukrainian'), input).not.toHaveText('');
+  }
+});
