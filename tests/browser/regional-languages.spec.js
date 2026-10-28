@@ -27,6 +27,8 @@ test('language switch changes the example and preserves unknown script signs vis
   await page.getByLabel('Мова').selectOption('si');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ආයුබෝවන්');
+  await expect(page.locator('#regional-roman')).toHaveText('aayubowan');
+  await expect(page.locator('#regional-status')).toHaveText('Upstream engine: Sinhala Text Converters 1.0.5');
   await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
 });
 
