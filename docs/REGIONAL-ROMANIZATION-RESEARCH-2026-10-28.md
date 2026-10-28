@@ -8,7 +8,7 @@ Languages requested: Khmer (km), Lao (lo), Burmese/Myanmar (my), Sinhala (si). T
 
 | Language | Candidate | Observed capability | License / integration note |
 |---|---|---|---|
-| Khmer | https://github.com/seanghay/khmerphonemizer | Python grapheme-to-phoneme pipeline, lexicon and beam search | MIT; Python-only and G2P rather than an official Latin romanization scheme |
+| Khmer | https://www.npmjs.com/package/@gmana/km-translit (0.1.2) | Browser-compatible JavaScript syllable-aware Khmer-to-Latin and reverse conversion; examples include `ភ្នំពេញ` → `Phnom Penh` | MIT; integrated as a pinned npm dependency. Its ASCII output is explicitly BGN/PCGN-derived, not a conformant BGN/PCGN implementation. `seanghay/khmerphonemizer` could not be fetched at the audited URL, so its current availability is unverified |
 | Lao | https://github.com/byu-matrix-lab/lao2ipa | Python rule-based syllabification, IPA and Ministry of Health (MoH 2020) romanization | Apache-2.0; port all rule tables and tests before claiming parity |
 | Burmese | https://github.com/myanmaropenwordnet/mya2rom | JavaScript: IPA, MLCTS, modified MLCTS, Simple and Simple2 | CC-BY-SA-4.0; vendored source, full license and attribution/change notice included |
 | Burmese alternative | https://github.com/trhura/python-myanmar | Python romanizer, BGN/PCGN, MLCTS and IPA | MIT; Python-only |
@@ -17,7 +17,7 @@ Languages requested: Khmer (km), Lao (lo), Burmese/Myanmar (my), Sinhala (si). T
 
 ## Current implementation status
 
-The new page separates these scripts from the Chinese converter's IPA-keyed Ukrainian mapping pipeline. `src/app/regional-languages.js` contains conservative grapheme-level demonstration adapters for Khmer, Lao and Sinhala, with paired Latin/IPA candidates and explicit markers for unknown script characters. For Burmese, the page loads upstream Mya2Rom 0.4.4 locally and uses its `mlcts2` and `ipa` modes. The upstream source, full CC-BY-SA-4.0 license and attribution/change notice are kept separately under `vendor/mya2rom/`.
+The new page separates these scripts from the Chinese converter's IPA-keyed Ukrainian mapping pipeline. Khmer now uses the upstream `@gmana/km-translit` 0.1.2 JavaScript package for syllable-aware Latin romanization; its IPA field is deliberately unavailable because this package is a romanizer, not a phonological engine. Sinhala uses upstream Sinhala Text Converters for Unicode Sinhala → Singlish. Burmese loads upstream Mya2Rom 0.4.4 locally and uses its `mlcts2` and `ipa` modes. The Mya2Rom source, full CC-BY-SA-4.0 license and attribution/change notice are kept under `vendor/mya2rom/`. Lao remains a provisional Latin candidate without IPA.
 
 **This is not a complete four-language implementation.** Khmer, Lao and Sinhala remain grapheme-level candidates and do not adequately model syllabification, inherent/dependent vowels, consonant classes, tone, context-sensitive sound changes, or lexical exceptions. Burmese uses the actual upstream Mya2Rom engine, but its upstream README describes it as a simple script and its simplified systems as work in progress; outputs still need independent source-backed validation. Current results must not be represented as independently verified or universally normative.
 
@@ -65,3 +65,8 @@ A Playwright assertion now expects the upstream README example `ආයුබෝ�
 The site-wide regional-language contract is **romanization → IPA → Ukrainian transcription**. The page now renders three result cards in that exact order. The Ukrainian candidate is derived only from IPA; it does not independently map source-script characters or reuse romanization. The adapter maps recognized IPA segments and preserves unsupported symbols, tones, and diacritics as visible bracketed markers. This is a conservative candidate, not a validated language-specific standard.
 
 Acceptance remains PARTIAL: Burmese Mya2Rom supplies separate MLCTS2 and IPA modes, but these parallel outputs do not prove that MLCTS2 was derived from IPA. Sinhala Text Converters supplies romanization only. Khmer and Lao still use provisional Latin candidates. IPA and an IPA-derived Ukrainian candidate remain unavailable for Khmer, Lao, and Sinhala until suitable phonological engines are integrated. The user-visible order is implemented, but complete four-language end-to-end output is not.
+
+
+## Khmer romanizer integration — 2026-10-28
+
+Integrated `@gmana/km-translit@0.1.2` as a pinned production dependency. Browser regression coverage checks the upstream README example `ភ្នំពេញ` → `Phnom Penh`, confirms the engine status is displayed, and verifies that no IPA or Ukrainian candidate is fabricated. The package is MIT-licensed and dependency-free. Its own documentation explicitly says its ASCII output drops BGN/PCGN diacritics, so the UI calls it BGN/PCGN-derived rather than a conformant implementation. The exact branch head must pass clean-install CI; package-lock reproducibility is not considered verified until `npm ci` passes.
