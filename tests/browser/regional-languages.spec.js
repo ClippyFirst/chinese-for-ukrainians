@@ -14,7 +14,7 @@ test('regional example produces Latin and IPA candidate with explicit research w
   await expect(page.locator('#regional-results')).toBeVisible();
   await expect(page.locator('#regional-roman')).not.toHaveText('');
   await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
-  await expect(page.locator('#regional-warning')).toContainText('не повний фонологічний рушій');
+  await expect(page.locator('#regional-warning')).toContainText('не IPA-рушій');
   await expect(page.locator('#regional-status')).toHaveText('Дослідницький кандидат');
 });
 
@@ -78,4 +78,14 @@ test('Ukrainian candidate is derived from Burmese IPA and keeps unreviewed IPA m
   await page.locator('#regional-input').fill('မြို့');
   await expect(page.locator('#regional-ipa')).toHaveText('mjo̰');
   await expect(page.locator('#regional-ukrainian')).toHaveText('мйо⟦̰⟧');
+});
+
+test('Khmer romanization uses the upstream syllable-aware BGN/PCGN-derived engine', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('km');
+  await page.locator('#regional-input').fill('ភ្នំពេញ');
+  await expect(page.locator('#regional-roman')).toHaveText('Phnom Penh');
+  await expect(page.locator('#regional-status')).toHaveText('Upstream engine: @gmana/km-translit 0.1.2');
+  await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
+  await expect(page.locator('#regional-ukrainian')).toContainText('Український кандидат недоступний');
 });
