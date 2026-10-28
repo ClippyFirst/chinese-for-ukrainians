@@ -346,3 +346,10 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Further research surfaced a browser-native Khmer option, `@gmana/km-translit` (MIT, syllable-aware BGN/PCGN-derived romanization but explicitly not fully conformant), and Sinhala `SuhasDissa/Singlish` (JavaScript, 150 tests reported upstream, GPL-3.0). These are candidates, not integrated engines; the GPL package is not vendored pending licensing review.
 - Lao alternatives include Apache-2.0 LaoNLP (Python; recent IPA/MoH 2020 support) and Laonetics (JavaScript but CC-BY-NC-4.0, so not integrated due to non-commercial restrictions and age). `lao2ipa` remains the leading IPA-first candidate for a port.
 - Updated the research page to expose these options and their caveats. Current code change `cf5d4f56599040bd6db91d2b83af9a520b535235` is docs/UI only; no new exact-head CI run is available, so current-head verification remains BLOCKED / NOT VERIFIED.
+
+
+### Sinhala integration continuation — 2026-10-28
+
+- Added local browser ES-module integration of `sinhala-soft/sinhala-text-converters` 1.0.5 for Sinhala Unicode → Singlish. Upstream MIT license and UCSC/Sinhala Soft attribution are retained in `vendor/sinhala-text-converters/` and `public/vendor/sinhala-text-converters/`.
+- Added a browser regression assertion for upstream-documented `ආයුබෝවන්` → `aayubowan`. The test is present but has not been executed on the current head; Sinhala remains PARTIAL pending exact-head CI and independent validation.
+- Current engine coverage: Burmese uses Mya2Rom; Sinhala uses Sinhala Text Converters; Khmer and Lao still have provisional Latin adapters only. IPA is deliberately withheld for Khmer/Lao/Sinhala. Latest code integration commit: `8b45a7aa84c4dcb668cd8db5ff2fdc5b3bdf9056`; subsequent test/UI/license/documentation commits advance the branch. Exact-head CI is still NOT VERIFIED; connector does not expose workflow dispatch.
