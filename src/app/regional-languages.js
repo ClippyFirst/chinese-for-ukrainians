@@ -20,9 +20,9 @@ function ipaToUkrainianCandidate(ipa){
  const chars=Array.from(String(ipa).normalize('NFC'));let output='';
  for(let i=0;i<chars.length;){let matched='';for(const key of IPA_KEYS){const seq=Array.from(key);if(chars.slice(i,i+seq.length).join('')===key){matched=key;break;}}
   if(matched){output+=IPA_TO_UKRAINIAN[matched];i+=Array.from(matched).length;continue;}
-  const char=chars[i++];if(/\\s/u.test(char)||/[.,!?;:()\\[\\]{}«»“”]/u.test(char)){output+=char;continue;}
+  const char=chars[i++];if(char.trim()===''||'.,!?;:()[]{}«»“”'.includes(char)){output+=char;continue;}
   // Tone letters, combining phonation marks, and unsupported segments are preserved visibly.
-  if(/[\\u0300-\\u036fˈˌ˥˦˧˨˩↓↑]/u.test(char)){output+='⟦'+char+'⟧';continue;}
+  const cp=char.codePointAt(0);if((cp>=0x0300&&cp<=0x036f)||'ˈˌ˥˦˧˨˩↓↑'.includes(char)){output+='⟦'+char+'⟧';continue;}
   output+='⟦'+char+'⟧';
  }
  return output;
