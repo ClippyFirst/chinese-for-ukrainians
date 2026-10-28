@@ -353,3 +353,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Added local browser ES-module integration of `sinhala-soft/sinhala-text-converters` 1.0.5 for Sinhala Unicode → Singlish. Upstream MIT license and UCSC/Sinhala Soft attribution are retained in `vendor/sinhala-text-converters/` and `public/vendor/sinhala-text-converters/`.
 - Added a browser regression assertion for upstream-documented `ආයුබෝවන්` → `aayubowan`. The test is present but has not been executed on the current head; Sinhala remains PARTIAL pending exact-head CI and independent validation.
 - Current engine coverage: Burmese uses Mya2Rom; Sinhala uses Sinhala Text Converters; Khmer and Lao still have provisional Latin adapters only. IPA is deliberately withheld for Khmer/Lao/Sinhala. Latest code integration commit: `8b45a7aa84c4dcb668cd8db5ff2fdc5b3bdf9056`; subsequent test/UI/license/documentation commits advance the branch. Exact-head CI is still NOT VERIFIED; connector does not expose workflow dispatch.
+
+
+### Regional pipeline order correction — 2026-10-28
+
+- User-confirmed output order: **romanization → IPA → Ukrainian transcription**. The regional page now has three ordered result cards, indexed 01/02/03, and a browser regression test for the order.
+- Added a conservative IPA → Ukrainian candidate adapter. The third stage consumes IPA only; unsupported IPA symbols and diacritics remain visibly bracketed. This is a research candidate, not a validated transcription standard.
+- Burmese can populate all three visible stages using Mya2Rom's MLCTS2/IPA outputs and the provisional IPA adapter; the Ukrainian result remains uncertain where IPA contains unsupported phonation marks. Khmer/Lao lack integrated upstream romanizers and IPA engines; Sinhala has romanization but no IPA. These language integrations remain PARTIAL/BLOCKED on phonological evidence.
+- Added browser tests for exact display order, no Ukrainian output when IPA is unavailable, and IPA-derived Burmese candidate behavior.
+- Quality run `40740257204` passed on earlier commit `ef528de773764d821baae6e49faf571ba9797039`. Latest code changes were initially checked under run `40742716417`; follow-up documentation changes trigger new CI, so verify the latest branch head before claiming acceptance.
