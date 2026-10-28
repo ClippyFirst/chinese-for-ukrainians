@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         methodology: 'methodology.html',
+        regionalLanguages: 'regional-languages.html',
       },
     },
   },
