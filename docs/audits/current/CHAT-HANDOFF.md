@@ -215,3 +215,14 @@ Added a conservative browser-side IPA rule-port at `src/app/sinhala-ipa.js`, bas
 ## Lao rule-port continuation — 2026-10-28
 
 Added partial browser port `src/app/lao-ipa.js` based on Apache-2.0 `byu-matrix-lab/lao2ipa`, with license/notice in `vendor/lao2ipa/`. It emits MoH-style Latin and IPA with tones for common patterns; all unsupported complexity remains a limitation. Regression fixtures cover `ກາ` and `ສະບາຍດີ`. The Ukrainian candidate is derived from this IPA, with tone contours retained visibly rather than silently discarded. Exact-head CI passed on `5840f4ccf5da05efd211506b8b9c1031d5226e48` (77 browser tests passed, 1 skipped; https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40747486736). Independent Lao review and upstream-vector parity are still required; this is not a full port of upstream lao2ipa.
+
+
+## Latest continuation — source-backed IPA vectors — 2026-10-28
+
+Current executable-code head `1f694869ebcf14ed4dfed9971f9e50bfff9911a5` passed Quality CI [40750217130](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40750217130): **81 browser tests passed, 1 skipped**; unit/integration, clean dependency installation, production build, deterministic generated mappings, benchmark and release checks passed. The latest follow-up commits only update research/ledger/handoff documents.
+
+Added 17 Lao IPA regression vectors from the upstream `byu-matrix-lab/lao2ipa/tests/test_transliterate.py` and six Sinhala IPA vectors from VoiceLK ML's MIT-licensed `tests/test_frontend.py`. The vector corpus caught and fixed contextual parsing of `ວາ` in `ຄວາມ`.
+
+Khmer G2P blocker is now better scoped: MIT Python project `maohieng/khmerphonemizer` depends on `khmercut` and `sosap`, and ships a 35.2 MB FST plus 2.16 MB lexicon. It is not a drop-in browser dependency. A compatible JS/WASM/backend approach and reviewed conversion from the model's phoneme inventory to canonical IPA are still required. No fabricated IPA was added.
+
+Status: regional UI/order DONE_VERIFIED; Khmer romanization mechanically verified, Khmer IPA BLOCKED; Lao PARTIAL; Burmese PARTIAL; Sinhala PARTIAL; IPA→Ukrainian mapping PARTIAL. Keep PR #48 open. No production deployment. Overall project is still a research preview, not release-ready phonological support for all four languages.
