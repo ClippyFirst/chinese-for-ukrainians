@@ -170,3 +170,13 @@ test('Sinhala IPA rule port matches upstream VoiceLK regression examples', async
     await expect(page.locator('#regional-ukrainian'), input).not.toHaveText('');
   }
 });
+
+
+test('unknown Lao-block code points stay visibly marked instead of being dropped', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('lo');
+  await page.locator('#regional-input').fill('ກ໿');
+  await expect(page.locator('#regional-ipa')).toHaveText('k⟦໿⟧');
+  await expect(page.locator('#regional-roman')).toHaveText('k⟦໿⟧');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('к⟦໿⟧');
+});
