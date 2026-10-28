@@ -314,3 +314,13 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - The earlier note that no upstream code had been copied described the initial scaffold only and is superseded by this integration update.
 - Exact-head Quality run [40736212901](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40736212901) was still in progress at the time of this update; browser regression status and the final conclusion are not yet verified.
 - Status remains **PARTIAL / research preview**: Khmer, Lao and Sinhala are still provisional grapheme-level adapters. Their upstream candidates are Python-based or require source/data provenance review. Do not merge or publish this as complete four-language phonological support until those engines are ported/integrated with license compliance and source-backed tests.
+
+
+### Verification update — regional romanization PR #48, 2026-10-28
+
+- Latest implementation head checked: `ed84dd5c5a2ac8c4d2722cfa28a4510f831d8c12`. PR #48 remains open and unmerged; production main is unchanged.
+- Quality run [40736898938](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40736898938) passed unit/integration tests, production build, generated-mapping determinism, benchmark and release checks, then remained in progress at browser installation. Its browser suite has not yet produced a final result.
+- Earlier browser run [40736403283](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40736403283) failed on 13 cases: the newly added nav link caused 320px overflow and changed keyboard tab order, and the Mya2Rom adapter's Unicode-range regex failed to match Burmese characters. Follow-up commits added responsive nav wrapping, updated keyboard coverage, corrected the regex, and included the upstream expected-output regression. These fixes still require a passing exact-head browser run.
+- Mya2Rom 0.4.4 is integrated for Burmese MLCTS2 and IPA, with its CC-BY-SA-4.0 license and attribution/change notice kept under `vendor/mya2rom/` and copied into the static `public/` output.
+- Status remains **PARTIAL / research preview**. Khmer and Lao upstream candidates are Python-only in the researched repositories; Sinhala candidate source/data requires provenance review. The current grapheme adapters for those three languages are not full phonological engines. Do not merge or deploy this PR as complete four-language support.
+- Next acceptance gate: inspect the exact-head Quality run after browser tests finish; fix and rerun any remaining failures. Then port/package reviewed Khmer, Lao and Sinhala engines with source-backed fixtures before considering full completion.
