@@ -405,3 +405,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - Browser fixture added for `ආයුබෝවන්` → `aːjuboːʋan` → `айубован`. This checks deterministic behavior only; independent linguistic review and broader source-backed fixtures remain TODO.
 - Khmer romanization is now integrated through `@gmana/km-translit@0.1.2`; Khmer IPA remains TODO. Lao still lacks a reviewed browser-compatible romanizer/IPA engine. Burmese Mya2Rom is integrated but needs independent validation.
 - Exact-head Quality CI after these changes is pending. A prior run for Khmer-only code [40746219843](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40746219843) passed. Do not mark the Sinhala change verified until a workflow on the final code head passes all unit, build and browser tests.
+
+
+## Lao IPA/romanization rule-port follow-up — 2026-10-28
+
+- Added `src/app/lao-ipa.js`, a partial browser-side port of selected `byu-matrix-lab/lao2ipa` (Apache-2.0) syllable, vowel, consonant and tone rules. License and scope notice are preserved in `vendor/lao2ipa/`.
+- The Lao UI now shows a MoH-style Latin candidate and IPA with explicit tone contours, then passes that IPA through the Ukrainian candidate adapter. It is explicitly marked partial; it does not reproduce all upstream orthographic rewrites, clusters or tone-mark placements.
+- Browser fixtures cover `ກາ` → `ka` / `kaː˩˧` and `ສະບາຍດີ` → `sabaaydi` / `saʔ˧˥.baːj˩˧.diː˩˧`; these are implementation regression fixtures, not independent language validation.
+- Status: Khmer romanization integrated (IPA TODO); Lao romanization + partial IPA port integrated (PARTIAL); Sinhala romanization + partial IPA rule port integrated (PARTIAL); Burmese Mya2Rom MLCTS2/IPA integrated (needs independent validation). All Ukrainian outputs remain candidates, not normative results.
+- Latest Lao code/test head is awaiting Quality CI. Do not mark the full four-language task DONE_VERIFIED until the final exact-head workflow passes and broader upstream vectors plus independent linguistic review are complete.
