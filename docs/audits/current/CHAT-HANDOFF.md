@@ -188,3 +188,8 @@ Quality run `40743007634` passed on commit `6ec1927616595592041451609240c183837d
 ### Final UI update — 2026-10-28
 
 The regional results heading now explicitly reads **Romanization → IPA → Ukrainian transcription**. Latest UI commit at the time of this update is `3343ac2b52f871be75b4a37c35e620456f8e2cf0`. The successful Quality run `40743007634` predates the latest minor adapter, test, and heading edits; verify exact-head CI before considering the change fully accepted.
+
+
+### IPA adaptation safeguard — 2026-10-28
+
+Latest code commit `0566407bd90b67f412a5d98a54ad55e284c0dd96` avoids treating breathy/voiceless phonation or a glottal stop as aspiration. The apostrophe is used only for explicit aspirated IPA sequences; other unreviewed features remain bracketed. Quality run `40743692803` is still running at browser installation; earlier unit/integration, build, deterministic mapping, benchmark, and release checks have passed. Await browser-test completion.
