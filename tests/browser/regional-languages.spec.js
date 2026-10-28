@@ -125,7 +125,7 @@ test('Lao IPA port is regression-checked against upstream Wiktionary-derived vec
     ['ດີ', 'diː˩˧']
   ];
   const normalize = value => value
-    .replace(/[\\/().,;:?!\"'\\-]/gu, '')
+    .replace(/[\\/().,;:?!\"'-]/gu, '')
     .replaceAll('ʔ', '')
     .replaceAll('͡', '')
     .replaceAll('̯', '')
