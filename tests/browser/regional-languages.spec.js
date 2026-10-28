@@ -13,7 +13,7 @@ test('regional example produces Latin and IPA candidate with explicit research w
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-results')).toBeVisible();
   await expect(page.locator('#regional-roman')).not.toHaveText('');
-  await expect(page.locator('#regional-ipa')).not.toHaveText('');
+  await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
   await expect(page.locator('#regional-warning')).toContainText('не повний фонологічний рушій');
   await expect(page.locator('#regional-status')).toHaveText('Дослідницький кандидат');
 });
@@ -27,7 +27,7 @@ test('language switch changes the example and preserves unknown script signs vis
   await page.getByLabel('Мова').selectOption('si');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ආයුබෝවන්');
-  await expect(page.locator('#regional-ipa')).not.toHaveText('');
+  await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
 });
 
 test('clear returns regional page to its empty state', async ({ page }) => {
