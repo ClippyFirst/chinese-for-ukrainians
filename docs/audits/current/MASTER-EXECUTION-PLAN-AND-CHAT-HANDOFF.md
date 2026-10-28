@@ -352,14 +352,14 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 
 - Added local browser ES-module integration of `sinhala-soft/sinhala-text-converters` 1.0.5 for Sinhala Unicode → Singlish. Upstream MIT license and UCSC/Sinhala Soft attribution are retained in `vendor/sinhala-text-converters/` and `public/vendor/sinhala-text-converters/`.
 - Added a browser regression assertion for upstream-documented `ආයුබෝවන්` → `aayubowan`. The test is present but has not been executed on the current head; Sinhala remains PARTIAL pending exact-head CI and independent validation.
-- Current engine coverage: Burmese uses Mya2Rom; Sinhala uses Sinhala Text Converters; Khmer and Lao still have provisional Latin adapters only. IPA is deliberately withheld for Khmer/Lao/Sinhala. Latest code integration commit: `8b45a7aa84c4dcb668cd8db5ff2fdc5b3bdf9056`; subsequent test/UI/license/documentation commits advance the branch. Exact-head CI is still NOT VERIFIED; connector does not expose workflow dispatch.
+- Current engine coverage before the Khmer follow-up: Burmese uses Mya2Rom; Sinhala uses Sinhala Text Converters; Khmer and Lao had provisional Latin adapters only. IPA was withheld for Khmer/Lao/Sinhala. This historical note is superseded by the Khmer integration entry below.
 
 
 ### Regional pipeline order correction — 2026-10-28
 
 - User-confirmed output order: **romanization → IPA → Ukrainian transcription**. The regional page now has three ordered result cards, indexed 01/02/03, and a browser regression test for the order.
 - Added a conservative IPA → Ukrainian candidate adapter. The third stage consumes IPA only; unsupported IPA symbols and diacritics remain visibly bracketed. This is a research candidate, not a validated transcription standard.
-- Burmese can populate all three visible stages using Mya2Rom's MLCTS2/IPA outputs and the provisional IPA adapter; the Ukrainian result remains uncertain where IPA contains unsupported phonation marks. Khmer/Lao lack integrated upstream romanizers and IPA engines; Sinhala has romanization but no IPA. These language integrations remain PARTIAL/BLOCKED on phonological evidence.
+- Burmese can populate all three visible stages using Mya2Rom's MLCTS2/IPA outputs and the provisional IPA adapter; the Ukrainian result remains uncertain where IPA contains unsupported phonation marks. Khmer now has an integrated syllable-aware Latin romanizer but no IPA engine; Lao still has only a provisional Latin candidate and no IPA; Sinhala has romanization but no IPA. These language integrations remain PARTIAL/BLOCKED on phonological evidence.
 - Added browser tests for exact display order, no Ukrainian output when IPA is unavailable, and IPA-derived Burmese candidate behavior.
 - Quality run `40740257204` passed on earlier commit `ef528de773764d821baae6e49faf571ba9797039`. Latest code changes were initially checked under run `40742716417`; follow-up documentation changes trigger new CI, so verify the latest branch head before claiming acceptance.
 
@@ -387,3 +387,12 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 
 - Quality run `40743692803` completed **successfully** on executable-code head `0566407bd90b67f412a5d98a54ad55e284c0dd96`. Browser regression suite: **73 passed, 1 skipped**. Unit/integration tests, research benchmark validator, benchmark corpus guardrails, acoustic input guards, production build, generated-map determinism, conversion benchmark, and release constraints passed in the same run.
 - This run includes the ordered output UI, the main-page order regression test, IPA-to-Ukrainian candidate handling, the unknown-feature preservation correction, and the final regional heading. Later branch commits are documentation/PR metadata only. Exact executable-code head is verified; the overall regional language engine coverage remains PARTIAL, not release-ready.
+
+
+## Khmer upstream romanizer integration — 2026-10-28 (follow-up)
+
+- Integrated pinned dependency `@gmana/km-translit@0.1.2` (MIT) in `package.json` and `package-lock.json`; browser runtime calls `khmerToLatin` instead of the per-grapheme placeholder for Khmer.
+- This is a syllable-aware BGN/PCGN-derived ASCII profile, not a fully conformant BGN/PCGN implementation; its own documentation says diacritics are dropped. The UI explicitly labels this limitation and does not pretend that the romanizer supplies IPA.
+- Added browser regression fixture `ភ្នំពេញ` → `Phnom Penh`; test asserts no IPA or Ukrainian candidate is generated without IPA.
+- Status: Khmer romanization = PARTIAL / implementation integrated, awaiting exact-head clean-install CI and broader source-backed fixtures. Khmer IPA and IPA-derived Ukrainian output = TODO. Lao IPA/romanizer = TODO. Sinhala IPA = TODO. Burmese independent phonetic validation = TODO.
+- Required verification: `npm ci`, unit/integration suite, browser suite, production build, generated-artifact determinism and release checks on the updated branch head. No local runtime is available in this session; do not mark the change verified until GitHub Quality CI passes.
