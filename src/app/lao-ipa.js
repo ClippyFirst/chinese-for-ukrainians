@@ -23,7 +23,7 @@ const CLUSTERS = Object.freeze({
   "ຫຍ":["ɲ","ny","high"],"ຫລ":["l","l","high"],"ຫຼ":["l","l","high"],
   "ໝ":["m","m","high"],"ໜ":["n","n","high"],"ຫວ":["ʋ","v","high"],
   "ຫຣ":["r","r","high"],"ຄຣ":["kʰr","khr","low"],"ຄລ":["kʰl","khl","low"],
-  "ຄວ":["kʰʋ","khv","low"],"ຖວ":["tʰʋ","thv","high"],
+  "ຄວ":["kʰʋ","khv","low"],"ຖວ":["taʋ","thv","high"],
   "ຟຣ":["fr","fr","low"],"ຟຼ":["fl","fl","low"],"ຝຣ":["far","fr","high"],
   "ຝຮ":["far","fr","high"],"ຝຼ":["fal","fl","high"],"ພຣ":["pʰr","phr","low"],
   "ພລ":["pʰl","phl","low"],"ພຼ":["pʰl","phl","low"],"ຂວ":["kʰʋ","khv","high"],
@@ -45,7 +45,7 @@ const V = Object.freeze({
   "ເຍ":["iːə","ia","long"],"ຽ":["iːə","ia","long"],"ົວ":["uːə","oua","long"],
   "ົວະ":["uə","oua","short"],"ວ":["uːə","oua","long"],"ເຶອ":["ɯə","ua","short"],
   "ເືອ":["ɯːə","ua","long"],"ໃ":["aj","ai","short"],"ໄ":["aj","ai","short"],
-  "ເົາ":["aw","ao","short"],"ເັຽ":["iːə","ia","short"],"ຳ":["am","am","short"]
+  "ເົາ":["aw","ao","short"],"ເັຽ":["iːə","ia","short"],"ເັຍ":["iːə","ia","short"],"ຳ":["am","am","short"]
 });
 const PRE = new Set(["ເ","ແ","ໂ","ໃ","ໄ"]);
 const TONES = new Set(["່","້","໊","໋"]);
