@@ -23,7 +23,10 @@ test('language switch changes the example and preserves unknown script signs vis
   await page.getByLabel('Мова').selectOption('lo');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ສະບາຍດີ');
-  await expect(page.locator('#regional-roman')).not.toHaveText('');
+  await expect(page.locator('#regional-roman')).toHaveText('sabaaydi');
+  await expect(page.locator('#regional-ipa')).toHaveText('saʔ˧˥.baːj˩˧.diː˩˧');
+  await expect(page.locator('#regional-status')).toHaveText('Lao2IPA browser rule-port (partial)');
+  await expect(page.getByText('дослідницькими кандидатами')).toBeVisible();
   await page.getByLabel('Мова').selectOption('si');
   await page.getByRole('button', { name: 'Приклад' }).click();
   await expect(page.locator('#regional-input')).toHaveValue('ආයුබෝවන්');
@@ -89,4 +92,13 @@ test('Khmer romanization uses the upstream syllable-aware BGN/PCGN-derived engin
   await expect(page.locator('#regional-status')).toHaveText('Upstream engine: @gmana/km-translit 0.1.2');
   await expect(page.locator('#regional-ipa')).toContainText('IPA не сформовано');
   await expect(page.locator('#regional-ukrainian')).toContainText('Український кандидат недоступний');
+});
+
+test('Lao rule port derives a Ukrainian candidate from IPA and keeps tone marks explicit', async ({ page }) => {
+  await page.goto('/regional-languages.html');
+  await page.getByLabel('Мова').selectOption('lo');
+  await page.locator('#regional-input').fill('ກາ');
+  await expect(page.locator('#regional-roman')).toHaveText('ka');
+  await expect(page.locator('#regional-ipa')).toHaveText('kaː˩˧');
+  await expect(page.locator('#regional-ukrainian')).toHaveText('ка⟦˩⟧⟦˧⟧');
 });
