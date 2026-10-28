@@ -183,3 +183,8 @@ The required order is romanization → IPA → Ukrainian transcription. The regi
 ### CI status reconciliation — 2026-10-28
 
 Quality run `40743007634` passed on commit `6ec1927616595592041451609240c183837d18f8` with 71 browser tests passed and 1 skipped. It validates the regional three-card order and IPA-derived candidate tests. The latest branch head is `b9734aeff3692bfbb22c82e31bf407cabda6a751`; the main-converter order assertion and small IPA-affricate map extension came after the successful run, so exact latest-head CI remains unverified. The preceding run `40742716417` failed due a malformed regex in the adapter; that defect was fixed before run 40743007634. Keep PR #48 open.
+
+
+### Final UI update — 2026-10-28
+
+The regional results heading now explicitly reads **Romanization → IPA → Ukrainian transcription**. Latest UI commit at the time of this update is `3343ac2b52f871be75b4a37c35e620456f8e2cf0`. The successful Quality run `40743007634` predates the latest minor adapter, test, and heading edits; verify exact-head CI before considering the change fully accepted.
