@@ -210,3 +210,8 @@ Current state: Burmese has Mya2Rom MLCTS2/IPA; Sinhala has Sinhala Text Converte
 ## Sinhala IPA continuation — 2026-10-28
 
 Added a conservative browser-side IPA rule-port at `src/app/sinhala-ipa.js`, based on the MIT-licensed VoiceLK ML G2P mappings and schwa-rule implementation. The original Python tokenizer and domain lexicon are not included. License and attribution are in `vendor/voicelk-g2p/`. The Sinhala result order is now Singlish romanization → provisional IPA → provisional Ukrainian candidate. Regression fixture: `ආයුබෝවන්` → `aːjuboːʋan` → `айубован`; this proves determinism, not linguistic correctness. Khmer romanization is integrated, but Khmer IPA and all Lao engine support remain TODO. Current exact-head Quality run must pass before claiming this batch verified.
+
+
+## Lao rule-port continuation — 2026-10-28
+
+Added partial browser port `src/app/lao-ipa.js` based on Apache-2.0 `byu-matrix-lab/lao2ipa`, with license/notice in `vendor/lao2ipa/`. It emits MoH-style Latin and IPA with tones for common patterns; all unsupported complexity remains a limitation. Regression fixtures cover `ກາ` and `ສະບາຍດີ`. The Ukrainian candidate is derived from this IPA, with tone contours retained visibly rather than silently discarded. Await exact-head CI and independent Lao review; this is not a full port of upstream lao2ipa.
