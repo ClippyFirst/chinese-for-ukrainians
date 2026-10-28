@@ -153,3 +153,10 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 - Follow-up correction prevents unreviewed Khmer/Lao/Sinhala character mappings from being displayed as IPA. The UI reports that IPA is not generated for those languages until reviewed phonological engines are integrated. This intentionally avoids unsupported phonetic claims.
 - Research remains partial: Khmer MIT Python G2P and Lao Apache-2.0 syllable-based IPA/romanization are candidates requiring browser ports; Sinhala converter and data provenance need audit; Burmese Mya2Rom is locally integrated but not independently validated. See `docs/REGIONAL-ROMANIZATION-RESEARCH-2026-10-28.md`.
 - Do not merge or call this complete four-language phonological support yet. Acceptance: latest-head Quality CI green; source-backed fixtures and license review; full Khmer/Lao/Sinhala engines; independent linguistic review of the Burmese outputs and all expected results.
+
+
+### Final verification boundary — 2026-10-28
+
+- Code fixes are at `fcae7190c7cb506799989de169f4699d74b3119e`; the master register was then updated in `dd148a54b6e1230f89a277f87b85deb20d7c3e23`.
+- CI run [40737082982](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40737082982) passed on earlier SHA `c7028d4a291edd61800e1534b7cbbf746cb2960f`, not on the current code fixes. Latest-head CI remains NOT VERIFIED because the available GitHub actions do not expose workflow dispatch and no run is listed for the new commit.
+- Keep PR #48 open. The prototype is not release-ready as a complete four-language phonological romanizer. Next: run Quality CI on latest PR head; port reviewed Khmer/Lao engines; audit Sinhala provenance; independently verify Burmese and all fixtures.
