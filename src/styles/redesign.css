@@ -387,3 +387,8 @@ textarea::placeholder {
   right: 0;
   max-width: calc(100vw - 32px);
 }
+
+@media (max-width: 560px) {
+  /* Three navigation destinations must wrap rather than widen the viewport. */
+  .topline { flex-wrap: wrap; }
+}
