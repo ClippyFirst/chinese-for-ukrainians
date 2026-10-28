@@ -5,3 +5,6 @@ Vendored from [sinhala-soft/sinhala-text-converters](https://github.com/sinhala-
 The upstream README attributes the conversion algorithms to the Language Technology Research Laboratory, University of Colombo School of Computing (UCSC): https://ucsc.cmb.ac.lk/ltrl/services/feconverter. The package is maintained by Sinhala Soft Foundation.
 
 See LICENSE for the full MIT license text.
+
+
+Project-specific output-profile adjustment: the browser adapter normalizes the upstream alternate escaped long-vowel spellings to the package README's documented example profile and uses `w` rather than `v` for the Sinhala character ව in this interface. This is a narrow compatibility normalization, not an independent linguistic validation; broader Sinhala gold tests are still required.
