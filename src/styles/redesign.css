@@ -391,3 +391,10 @@ textarea::placeholder {
 /* Shared service-family type scale — 2026-10-30. */
 h1{font-size:clamp(2.65rem,5.8vw,5rem);line-height:1.03}
 @media(max-width:680px){h1{font-size:clamp(2.4rem,10.5vw,3.5rem);line-height:1.06}}
+
+
+/* Readability baseline: keep helper text and controls comfortably legible. */
+.eyebrow,.section-kicker,.control-label,.input-hint,.results-note,.result-meta p,.site-footer,.local-badge{font-size:.78rem;line-height:1.55}
+.control-help,.tone-key,.result-heading p,.issue-state p{font-size:.82rem;line-height:1.55}
+.section-number,.result-index{font-size:.72rem}
+.button,.copy-button,.site-nav a{min-height:44px;font-size:.8rem}
