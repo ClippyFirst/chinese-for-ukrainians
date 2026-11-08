@@ -381,3 +381,42 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 - The next implementation blocker is a Python-enabled environment for TDD, wheel build/inspection, clean-install tests and the Python CI matrix. PyPI name verification and source-data licensing review remain separate publication gates.
 
 **Documentation-only follow-up:** the subsequent commit that records this evidence changes only the master register and handoff; it does not change application code, data, scripts, workflows or tests. The exact tested implementation/documentation snapshot remains `2b8ee41a986b393b7e56b8925fb3c77cc9183049`.
+
+
+## Python engine implementation — 2026-11-08
+
+**Working branch:** `feat/python-engine-2026-11-08`  
+**PR:** [#51 — offline Python transcription package and cross-runtime golden tests](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/51)  
+**PR head at initial CI dispatch:** `f21b01a98af9a3fd0ba0a2522193b5b7e39a8156`  
+**Base:** `main` at `b5f21c206516c162cbd9413039b7c0b448f8b2d1`.
+
+### Implementation state
+
+- `python/pyproject.toml`: PEP 621 package, Python >=3.10, pinned `pypinyin==0.55.0`, `chuktrans` console entry point.
+- `python/src/zhua/`: typed result dataclasses, `convert()`, `transcribe()`, `transcribe_all()`, Unicode source scanner, Pinyin normalizer, broad IPA adapter, IPA-keyed CSV map loader, tone rendering and CLI.
+- `python/src/zhua/data/zh-in-ua.csv`: packaged copy of canonical root CSV. `scripts/generate-mappings.mjs` now regenerates both JS mappings and this package data.
+- `python/tests/fixtures/cross_runtime_golden.json`: six exact-parity Pinyin examples; both Node and pytest suites read the same fixture. This does not imply universal pypinyin/pinyin-pro parity.
+- `.github/workflows/quality.yml`: wheel build, isolated venv install, import and CLI smoke test from `/tmp`, Python 3.10–3.13 matrix, Python tests, existing JS and browser gates.
+- README, architecture, index, implementation plan and this handoff updated.
+
+### Status ledger
+
+| Area | Status | Evidence / acceptance |
+|---|---|---|
+| Package/API/CLI implementation | PARTIAL | Source files committed to PR #51; exact-head tests pending |
+| IPA-first Ukrainian mapping | PARTIAL | CSV-derived maps use segmental IPA keys; missing cells and unsupported IPA remain unresolved; exact tests pending |
+| Shared cross-runtime golden cases | PARTIAL | Both runtimes consume same fixture; exact CI run pending |
+| Package-data generation | PARTIAL | Generator and packaged copy committed; CI byte-drift test pending |
+| Wheel and clean install | TODO | CI job builds wheel and installs into isolated environment outside checkout; no pass claimed yet |
+| Python 3.10–3.13 | TODO | Matrix dispatched; results pending |
+| PyPI publication | DEFERRED | Not requested; distribution-name availability and metadata still provisional |
+| Data reuse rights | BLOCKED for publication | Source-specific rights have not been fully verified; wheel build is not publication permission |
+| Automatic script classification | PARTIAL | `script="auto"` currently reports `undetermined`; Traditional and Simplified are accepted by pypinyin but not classified/rewritten |
+| Universal engine parity | DEFERRED | Distinct G2P dictionaries; only six curated fixture cases are asserted |
+| Manual assistive-technology QA | TODO | Existing repository-wide screen-reader/device QA remains separate |
+
+### Verification boundary
+
+The execution environment cannot resolve `github.com` for local clone, so no local pytest, local wheel build, or local clean-install result is claimed. GitHub Actions run [42463805036](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42463805036) was queued/in progress when this entry was written; verify all five jobs on the exact latest PR head before marking any CI acceptance as `DONE_VERIFIED`.
+
+**Release posture:** Python package implementation is in review and not yet verified by completed CI. No PyPI publish, tag or release was created. Web product remains public beta / research preview.
