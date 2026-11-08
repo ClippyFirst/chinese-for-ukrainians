@@ -32,13 +32,13 @@ jobs:
       - name: Generate canonical maps and Python package data
         run: npm run generate:data
       - name: Verify generated files are committed and deterministic
-        run: git diff --exit-code -- src/generated/transcription-map.js python/src/zhua/data/zh-in-ua.csv
+        run: git diff --exit-code -- src/generated/transcription-map.js python/src/zhua/data/zh-in-ua.csv python/src/zhua/data/traditional-to-simplified.json
       - name: Build and install Python wheel in a clean virtual environment
         run: |
           python -m venv /tmp/zhua-wheel-venv
           /tmp/zhua-wheel-venv/bin/python -m pip install --upgrade pip build
           /tmp/zhua-wheel-venv/bin/python -m build python --outdir /tmp/zhua-dist
-          /tmp/zhua-wheel-venv/bin/python -c "import glob,zipfile; w=glob.glob('/tmp/zhua-dist/*.whl')[0]; z=zipfile.ZipFile(w); assert 'zhua/data/zh-in-ua.csv' in z.namelist(); assert 'zhua/__init__.py' in z.namelist(); print(z.namelist())"
+          /tmp/zhua-wheel-venv/bin/python -c "import glob,zipfile; w=glob.glob('/tmp/zhua-dist/*.whl')[0]; z=zipfile.ZipFile(w); assert 'zhua/data/zh-in-ua.csv' in z.namelist(); assert 'zhua/data/traditional-to-simplified.json' in z.namelist(); assert 'zhua/__init__.py' in z.namelist(); assert any(n.endswith('THIRD_PARTY_NOTICES.md') for n in z.namelist()); print(z.namelist())"
           /tmp/zhua-wheel-venv/bin/python -m pip install /tmp/zhua-dist/*.whl
           cd /tmp
           /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
