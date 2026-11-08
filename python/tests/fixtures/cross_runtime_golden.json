@@ -47,11 +47,9 @@
     "text": "銀行",
     "pinyin": "yín háng",
     "ipa": "in˧˥ xɑŋ˧˥",
-    "classification": "known-engine-difference",
+    "classification": "exact-parity",
     "source_url": "https://zdic.net/hans/%E9%8A%80%E8%A1%8C",
-    "scope": "The pinyin-pro Traditional dictionary resolves 行 as háng in 銀行; pypinyin 0.55.0 resolves it as xíng. This is a recorded engine difference, not a common gold target; each runtime is checked against its own explicit expected output.",
-    "pypinyin": "yín xíng",
-    "pypinyin_ipa": "in˧˥ ɕiŋ˧˥"
+    "scope": "Han Dian lexical entry gives yín háng. A package-level pypinyin phrase override is pinned to this source because the unmodified engine selected xíng for this Traditional-script phrase."
   },
   {
     "text": "重庆",
