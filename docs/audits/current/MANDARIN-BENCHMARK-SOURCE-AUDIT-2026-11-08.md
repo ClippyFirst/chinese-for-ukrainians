@@ -82,3 +82,8 @@ The sample `不过英特尔之后不会继续接受如此大的损失` is delibe
 
 
 The second candidate `替我播放相思风雨中` was removed after exact pinned-engine comparison: the public page's final syllable is `zong1`, while the engine and lexical reading of `中` in `风雨中` give `zhong1`. Without an adjudicated source explanation, it is excluded rather than forcing a disputed expected value.
+
+
+## CI discrepancy record — 2026-11-08
+
+The initial PR #57 Quality run `42496484017` exposed a disputed Pinyin label in the public AISHELL-3 baseline sample `替我播放相思风雨中`: page label `zong1` vs pinned engine `zhong1`. It was removed from exact-match assertions rather than silently changing the reference or engine. The `不会` sample remains excluded because `bu2` is a surface sandhi form. Current fixture: 11 smoke rows (10 Han Dian + 1 public AISHELL-3 example). Rerun `42503359303` targets SHA `d8bef9713f8916d2473d182f4ce39417b383c556`; still in progress at last check. PR remains open pending exact-head CI.
