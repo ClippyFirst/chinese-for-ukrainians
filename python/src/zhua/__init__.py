@@ -97,7 +97,17 @@ def scan_text(text):
         out.append((text[start:i],start,i,kind))
     return out
 
+@lru_cache(maxsize=1)
+def _load_phrase_overrides():
+    import json
+    from pypinyin import load_phrases_dict
+    raw=files("zhua").joinpath("data/pronunciation-overrides.json").read_text(encoding="utf-8")
+    records=json.loads(raw)
+    load_phrases_dict({row["phrase"]:row["pinyin"] for row in records})
+    return tuple(row["phrase"] for row in records)
+
 def _pronounce(text):
+    _load_phrase_overrides()
     from pypinyin import Style,pinyin
     values=pinyin(text,style=Style.TONE3,heteronym=False,errors=lambda chars:list(chars),neutral_tone_with_five=True,v_to_u=False)
     chars=list(text)
