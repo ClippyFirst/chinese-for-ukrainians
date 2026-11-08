@@ -165,4 +165,6 @@ AISHELL-3 (OpenSLR SLR93) has corroborated license metadata: OpenSLR's resource 
 
 ## Public AISHELL-3 sample smoke fixture — 2026-11-08
 
-Three Pinyin pairs displayed on the AISHELL-3 public baseline page are now included in the existing smoke fixture (total 13). They expand phrase/context coverage but remain smoke references, not archive-extracted held-out rows or independently adjudicated gold. The same-corpus competitor benchmark remains blocked until a locked eligible corpus and reproducible environments are available.
+Two Pinyin pairs displayed on the AISHELL-3 public baseline page are now included in the existing smoke fixture (total 12). They expand phrase/context coverage but remain smoke references, not archive-extracted held-out rows or independently adjudicated gold. The same-corpus competitor benchmark remains blocked until a locked eligible corpus and reproducible environments are available.
+
+The sample sentence with `不会` is excluded from exact lexical-Pinyin matching because the published `bu2` reflects surface tone sandhi, not the engine's lexical citation reading. The protocol keeps those evaluation layers separate.
