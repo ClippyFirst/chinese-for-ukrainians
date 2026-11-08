@@ -573,3 +573,13 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 - Current open gates: locked balanced G2P gold set; independently supported IPA targets; independent row-by-row collation of each Ukrainian method; same-corpus execution of g2pW/g2pM/g2pC; human screen-reader and physical-device QA; authenticated PyPI claimability/name decision.
 - Local clone/test execution remained unavailable in this environment due DNS resolution failure for github.com. Exact hosted Quality run supplies CI evidence for PR #55, not a substitute for independent linguistic review.
 - Current main SHA at merge: `49a5083076edafd71877824b3694bf0fba34f9e2`. This follow-up research branch is based on that merge commit; its own final SHA and PR Quality status must be recorded after review.
+
+
+## Continuation — AISHELL-3 metadata verification and PR #56 merge (2026-11-08)
+
+- Starting main SHA: `49a5083076edafd71877824b3694bf0fba34f9e2`.
+- PR [#56](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/56) merged after exact-head Quality run [42489252423](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42489252423) passed on `d2b41d69a030572de0f5c3726fe9181a89ec3684`. Merge commit: `9c7e665b48f317a03ffcebaaf25f4d7794536652`.
+- New branch: `research/aishell3-text-corpus-readiness-2026-11-08`, based on that merge commit.
+- AISHELL-3 catalog/license metadata = DONE_VERIFIED: OpenSLR SLR93 page, archive-side `info.txt`, and publisher page each state Apache License 2.0. Archive-side `checksum.md5` lists `6833e9dcb47709d4e153e2f669e5ddc8` for `data_aishell3.tgz`. Public baseline page confirms Chinese/Pinyin paired examples. Baseline code repository MIT license is separate from corpus license.
+- Archive schema = BLOCKED: 18–19 GB archive not downloaded/unpacked in this runtime; internal license/NOTICE, paths, split membership and transcript normalization remain unverified. No audio or corpus data copied.
+- Current evidence does not authorize held-out accuracy or a 90% maturity claim. Continue with text-only archive inspection/extraction when accessible; audio is not mandatory.
