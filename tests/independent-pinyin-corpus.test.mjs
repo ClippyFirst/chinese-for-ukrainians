@@ -26,7 +26,7 @@ function actualPinyin(text, traditional) {
 }
 
 test('independent lexical Pinyin corpus matches the pinned engine on sourced phrase readings', () => {
-  assert.equal(rows.length, 6, 'expand the independent corpus deliberately, not silently');
+  assert.equal(rows.length, 10, 'expand the independent corpus deliberately, not silently');
   for (const row of rows) {
     assert.match(row.sourceUrl, /^https:\/\/zdic\.net\//u, row.id + ': missing independent source URL');
     assert.ok(row.scope.length > 0, row.id + ': missing scope note');
