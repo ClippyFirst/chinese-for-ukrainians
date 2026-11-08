@@ -129,18 +129,18 @@
 
 | Workstream | Status | Evidence / remaining acceptance |
 |---|---|---|
-| Python package skeleton and typed API | DONE_VERIFIED | `python/pyproject.toml`, `python/src/zhua/__init__.py`; runtime test result pending exact-head CI |
-| Canonical data packaging | DONE_VERIFIED | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator now synchronizes it; byte-equality test added, CI pending |
-| Pypinyin and broad IPA adapters | DONE_VERIFIED | Implemented in `zhua`; exact behavior and collision gates pending CI |
-| IPA-keyed three-system maps | DONE_VERIFIED | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification pending |
-| Cross-runtime golden tests | DONE_VERIFIED | Shared fixture consumed by Node and pytest; exact parity only for six listed cases; CI pending |
-| CLI | DONE_VERIFIED | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON smoke tests pending CI |
-| Wheel and clean install | DONE_VERIFIED | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; must pass on exact PR HEAD |
-| Python 3.10–3.13 matrix | DONE_VERIFIED | Matrix added; must pass on exact PR HEAD |
+| Python package skeleton and typed API | DONE_VERIFIED | `python/pyproject.toml`, `python/src/zhua/__init__.py`; 10 pytest tests pass on Python 3.10–3.13 |
+| Canonical data packaging | DONE_VERIFIED | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator synchronizes it; byte-equality test passes in CI |
+| Pypinyin and broad IPA adapters | DONE_VERIFIED | Implemented in `zhua`; runtime, IPA collision and golden checks pass in CI |
+| IPA-keyed three-system maps | DONE_VERIFIED | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification passes in CI |
+| Cross-runtime golden tests | DONE_VERIFIED | Shared fixture consumed by Node and pytest; six curated cases assert Pinyin, IPA and all three UA outputs; Node/Python suites pass |
+| CLI | DONE_VERIFIED | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON tests pass in CI CI |
+| Wheel and clean install | DONE_VERIFIED | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; passed on exact PR head; isolated install/import/CLI smoke test passed |
+| Python 3.10–3.13 matrix | DONE_VERIFIED | Matrix added; all four Python versions passed |
 | Publication | DEFERRED | No PyPI publish. Package name, dependency notices and source-data rights remain unverified. |
 | Linguistic evidence and manual QA | BLOCKED / separate gates | Pypinyin-vs-pinyin-pro differences outside shared fixture, source-data rights, and manual assistive-tech QA remain open. |
 
-Local repository cloning was blocked by unavailable DNS resolution for github.com, so no local pytest/build/clean-install result is claimed. The CI workflow is the acceptance environment; the final ledger must be updated only from its exact-head results.
+Local repository cloning was blocked by unavailable DNS resolution for github.com. All required build, pytest, cross-runtime and clean-install acceptance was therefore executed in GitHub Actions and passed on exact PR head `2e94cad9279344726d0bf74b35636e303d81d100`.
 
 
 ## Final verification — 2026-11-08
