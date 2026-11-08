@@ -1,6 +1,6 @@
 # Python engine architecture
 
-**Status: alpha implementation present on `feat/python-engine-2026-11-08`; exact-head CI, wheel and clean-install verification pending. Not published.** The current repository ships a browser-only JavaScript converter. The existing Python files under `research/ipa-acoustic/` are research/measurement utilities, not a reusable transcription engine.
+**Status: alpha implementation merged to `main` at `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; Quality run 42464642753 passed all jobs, including wheel, clean install, Python matrix and browser gates. Not published.** The current repository ships a browser-only JavaScript converter. The existing Python files under `research/ipa-acoustic/` are research/measurement utilities, not a reusable transcription engine.
 
 ## Product boundary
 
