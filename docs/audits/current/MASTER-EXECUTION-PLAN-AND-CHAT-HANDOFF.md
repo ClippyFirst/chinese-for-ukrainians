@@ -595,3 +595,11 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 - Deliberately excluded the public example `不过英特尔之后不会继续接受如此大的损失` from exact-match assertions because its displayed `bu2` reflects surface tone sandhi; the current smoke test compares lexical Pinyin. Do not conflate the two layers.
 
 - Removed `替我播放相思风雨中`: the public baseline page gives `zong1` for final `中`, but the pinned engine/lexical reading returns `zhong1`. This discrepancy is unresolved and is excluded from exact-match assertions rather than treated as an engine failure or silently corrected.
+
+
+## CI failure triage — PR #57, 2026-11-08
+
+- First Quality run `42496484017` on `8ca0f926cb75c26eb27f994ce230f059cbd3a0aa` failed only in JS suite subtest `independent lexical Pinyin corpus matches the pinned engine on sourced phrase readings`; Python 3.10–3.13 all passed. The failing row was `替我播放相思风雨中`: public baseline page displayed final `zong1`, pinned engine returned `zhong1`. This is a disputed source label/context, not grounds to force an engine output.
+- Removed that row from exact-match smoke gold and documented the discrepancy. Also excluded `不会` sample due surface tone sandhi vs lexical Pinyin mismatch.
+- Current fixture has 11 rows: 10 Han Dian lexical cases + 1 AISHELL-3 public sample smoke reference. This remains smoke coverage only.
+- Rerun `42503359303` targets final SHA `d8bef9713f8916d2473d182f4ce39417b383c556`; at last check still `in_progress`. Do not merge until exact-head run completes successfully.
