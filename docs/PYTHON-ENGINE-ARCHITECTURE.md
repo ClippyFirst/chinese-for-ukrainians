@@ -1,6 +1,6 @@
 # Python engine architecture
 
-**Status: alpha implementation merged to `main` at `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; Quality run 42464642753 passed all jobs, including wheel, clean install, Python matrix and browser gates. Not published.** The repository now ships two interfaces: the static JavaScript browser converter and the alpha Python package `zhua` with the `chuktrans` CLI. The separate files under `research/ipa-acoustic/` remain research/measurement utilities.
+**Status: alpha implementation merged to `main` at `941d4f2c485e8503df7fcd7b1472bab846f90cd8`; Quality run 42466148142 passed all jobs on PR head `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`, including 14 Python tests per version, wheel/clean install, cross-runtime tests and 61 browser tests. Not published.** The repository now ships two interfaces: the static JavaScript browser converter and the alpha Python package `zhua` with the `chuktrans` CLI. The separate files under `research/ipa-acoustic/` remain research/measurement utilities.
 
 ## Product boundary
 
