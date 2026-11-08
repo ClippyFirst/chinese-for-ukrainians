@@ -31,7 +31,7 @@ Keep `chinese-ukrainian-transcription` as the preferred distribution name becaus
 
 ### Existing evidence that can be reused
 
-- `tests/fixtures/independent-pinyin-cases.csv` contains six Han Dian lexical cases: 银行, 銀行, 重庆, 音乐, 长大, 中国农业银行.
+- `tests/fixtures/independent-pinyin-cases.csv` contains ten Han Dian lexical cases: 银行, 銀行, 重庆, 音乐, 长大, 中国农业银行.
 - The cases have individual dictionary URLs and intended reading/sense notes. They are valuable source-backed smoke tests for selected Pinyin phrase readings.
 - The shared JS/Python golden fixture contains 12 cases and verifies deterministic cross-runtime behavior for Pinyin, broad IPA, and the three Ukrainian outputs.
 
