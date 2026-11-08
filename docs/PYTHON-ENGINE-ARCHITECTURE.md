@@ -56,7 +56,7 @@ The convenience functions must be thin wrappers over the same `convert()` implem
 
 ## Pronunciation dependency
 
-Use `pypinyin` as the initial Python Mandarin G2P adapter rather than implementing a new Pinyin dictionary. PyPI currently lists version `0.55.0` (released 2025-07-20), MIT licensing, and support for phrase-based pronunciation, heteronyms, Traditional Chinese and tone-number output. Its documented `Style.TONE3`, `v_to_u=True`, and `neutral_tone_with_five=True` options are suitable inputs to the project's normalized token contract.
+Use `pypinyin` as the initial Python Mandarin G2P adapter rather than implementing a new Pinyin dictionary. PyPI currently lists version `0.55.0` (released 2025-07-20), MIT licensing, and support for phrase-based pronunciation, heteronyms, Traditional Chinese and tone-number output. Its `Style.TONE3` and `neutral_tone_with_five=True` options are used. The implementation keeps `v_to_u=False` so ü/v spellings can be normalized explicitly at the package boundary.
 
 Important compatibility limit: the website currently uses pinned `pinyin-pro@3.29.4` plus `@pinyin-pro/data@1.3.1`. `pypinyin` is a different lexicon and resolver. It must not be described as output-identical to pinyin-pro for every polyphonic word, name or phrase. Cross-engine tests must distinguish:
 1. exact parity on a curated, reviewed shared fixture;
@@ -126,7 +126,7 @@ python/
         └── cross_engine_golden.csv
 ```
 
-This is a target layout, not a claim that these files already exist.
+This was the initial target layout. The current alpha is intentionally compact: most runtime logic is in `python/src/zhua/__init__.py`, the module entry point is `__main__.py`, and current regression tests are consolidated in `python/tests/test_engine.py`. Split modules only when the implementation stabilizes.
 
 ## Packaging and CLI
 
