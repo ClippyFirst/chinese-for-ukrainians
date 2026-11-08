@@ -1,6 +1,6 @@
 # Python engine architecture
 
-**Status: design accepted for implementation planning; no Python transcription package is shipped yet.** The current repository ships a browser-only JavaScript converter. The existing Python files under `research/ipa-acoustic/` are research/measurement utilities, not a reusable transcription engine.
+**Status: alpha implementation present on `feat/python-engine-2026-11-08`; exact-head CI, wheel and clean-install verification pending. Not published.** The current repository ships a browser-only JavaScript converter. The existing Python files under `research/ipa-acoustic/` are research/measurement utilities, not a reusable transcription engine.
 
 ## Product boundary
 
@@ -56,14 +56,14 @@ The convenience functions must be thin wrappers over the same `convert()` implem
 
 ## Pronunciation dependency
 
-Use `pypinyin` as the initial Python Mandarin G2P adapter rather than implementing a new Pinyin dictionary. PyPI currently lists version `0.55.0` (released 2025-07-20), MIT licensing, and support for phrase-based pronunciation, heteronyms, Traditional Chinese and tone-number output. Its documented `Style.TONE3`, `v_to_u=True`, and `neutral_tone_with_five=True` options are suitable inputs to the project's normalized token contract.
+Use `pypinyin` as the initial Python Mandarin G2P adapter rather than implementing a new Pinyin dictionary. PyPI currently lists version `0.55.0` (released 2025-07-20), MIT licensing, and support for phrase-based pronunciation, heteronyms, Traditional Chinese and tone-number output. Its `Style.TONE3` and `neutral_tone_with_five=True` options are used. The implementation keeps `v_to_u=False` so ü/v spellings can be normalized explicitly at the package boundary.
 
 Important compatibility limit: the website currently uses pinned `pinyin-pro@3.29.4` plus `@pinyin-pro/data@1.3.1`. `pypinyin` is a different lexicon and resolver. It must not be described as output-identical to pinyin-pro for every polyphonic word, name or phrase. Cross-engine tests must distinguish:
 1. exact parity on a curated, reviewed shared fixture;
 2. expected engine-specific pronunciation differences;
 3. unresolved or unsupported cases.
 
-Tone sandhi should remain disabled by default. The website's IPA convention represents lexical/citation tone and does not claim connected-speech tone-sandhi output.
+The adapter does not request or implement tone sandhi; its output is treated as lexical/citation-form Pinyin. The website's IPA convention does not claim connected-speech tone-sandhi output.
 
 Primary references:
 - [pypinyin on PyPI](https://pypi.org/project/pypinyin/)
@@ -126,7 +126,7 @@ python/
         └── cross_engine_golden.csv
 ```
 
-This is a target layout, not a claim that these files already exist.
+This was the initial target layout. The current alpha is intentionally compact: most runtime logic is in `python/src/zhua/__init__.py`, the module entry point is `__main__.py`, and current regression tests are consolidated in `python/tests/test_engine.py`. Split modules only when the implementation stabilizes.
 
 ## Packaging and CLI
 
@@ -160,3 +160,16 @@ Required before calling the Python engine implemented:
 - existing JavaScript unit, browser, build, generated-artifact, benchmark and release gates remain green.
 
 No PyPI publish, release tag, DOI or claim of production readiness is part of this design.
+
+
+## Implementation snapshot — 2026-11-08
+
+The current branch contains `python/src/zhua`, a PEP 621 package with the `convert()`, `transcribe()` and `transcribe_all()` APIs, a `chuktrans` entry point, a pypinyin 0.55.0 adapter, a port of the repository's broad IPA mapping, and three independent IPA-keyed Ukrainian maps. The generated data file is `python/src/zhua/data/zh-in-ua.csv`; `npm run generate:data` copies it from the root canonical CSV.
+
+The cross-runtime golden fixture is `python/tests/fixtures/cross_runtime_golden.json`. The Node suite and Python pytest suite both consume the same six exact-parity cases, asserting Pinyin, broad IPA and all three Ukrainian outputs; the Node test also compares the two runtime results directly. This is a narrow shared-golden assertion, not a claim that pypinyin and pinyin-pro are universally equivalent.
+
+Implementation caveats:
+- `script="auto"` reports `detected_script="undetermined"`; pypinyin accepts both Simplified and Traditional input directly, but this first alpha does not claim full script classification or normalize the source text.
+- The adapter uses pypinyin's `Style.TONE3`, `neutral_tone_with_five=True` and `v_to_u=False`; tone sandhi is not requested or applied by this adapter. Tones are treated as lexical/citation-form. It retains ü normalization and does not add OpenCC.
+- The package metadata/distribution name remains provisional. Do not publish: source-data reuse rights have not yet been cleared source-by-source, and PyPI name availability has not been verified.
+- Local clone access was unavailable in the implementation session. The workflow now owns pytest, Python 3.10–3.13 matrix verification, wheel build, isolated wheel install from outside the checkout, CLI smoke test, shared golden cases and the pre-existing JavaScript/browser gates. Mark these gates verified only after the exact PR-head run completes.

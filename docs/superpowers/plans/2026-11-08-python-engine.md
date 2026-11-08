@@ -81,7 +81,7 @@
 
 - [ ] Test non-Han preservation, Simplified/Traditional/mixed input, tone-number normalization, neutral tone, unsupported forms and representative IPA classes.
 - [ ] Verify each test fails for the intended missing behavior.
-- [ ] Implement the pypinyin adapter using `Style.TONE3`, `v_to_u=True`, `neutral_tone_with_five=True`, `tone_sandhi=False`.
+- [ ] Implement the pypinyin adapter using `Style.TONE3`, `v_to_u=False` (then normalize `v`/`u:` to `ü` in the package adapter), `neutral_tone_with_five=True`, no tone-sandhi argument (pypinyin does not expose that option in this API).
 - [ ] Port the existing JS broad-IPA mapping without changing its linguistic convention.
 - [ ] Build a reviewed cross-engine fixture. Classify each case as exact parity, known engine difference or unresolved; do not score a guessed answer as gold.
 - [ ] Run `python -m pytest` and the existing JS suite.
@@ -123,3 +123,21 @@
 - Python and JavaScript quality gates pass on the exact same commit.
 - Documentation and master handoff reflect the real code state.
 - PyPI publication remains a separate explicitly approved release action.
+
+
+## Execution ledger — 2026-11-08
+
+| Workstream | Status | Evidence / remaining acceptance |
+|---|---|---|
+| Python package skeleton and typed API | PARTIAL | `python/pyproject.toml`, `python/src/zhua/__init__.py`; runtime test result pending exact-head CI |
+| Canonical data packaging | PARTIAL | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator now synchronizes it; byte-equality test added, CI pending |
+| Pypinyin and broad IPA adapters | PARTIAL | Implemented in `zhua`; exact behavior and collision gates pending CI |
+| IPA-keyed three-system maps | PARTIAL | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification pending |
+| Cross-runtime golden tests | PARTIAL | Shared fixture consumed by Node and pytest; exact parity only for six listed cases; CI pending |
+| CLI | PARTIAL | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON smoke tests pending CI |
+| Wheel and clean install | TODO | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; must pass on exact PR HEAD |
+| Python 3.10–3.13 matrix | TODO | Matrix added; must pass on exact PR HEAD |
+| Publication | DEFERRED | No PyPI publish. Package name, dependency notices and source-data rights remain unverified. |
+| Linguistic evidence and manual QA | BLOCKED / separate gates | Pypinyin-vs-pinyin-pro differences outside shared fixture, source-data rights, and manual assistive-tech QA remain open. |
+
+Local repository cloning was blocked by unavailable DNS resolution for github.com, so no local pytest/build/clean-install result is claimed. The CI workflow is the acceptance environment; the final ledger must be updated only from its exact-head results.

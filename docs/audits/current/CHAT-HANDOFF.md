@@ -165,3 +165,20 @@ Do not mark this project release-ready because the documentation has been comple
 - The Python engine is designed and documented but not implemented. The next task is the test-first package implementation in `python/`, followed by a clean wheel install and Python CI. No PyPI publication was attempted.
 
 The current implementation snapshot remains public beta / research preview. Successful CI verifies the existing browser product and repository gates; it does not close linguistic source rights, manual assistive-technology QA, or Python package release readiness.
+
+
+## Python engine implementation continuation — 2026-11-08
+
+- Working branch: `feat/python-engine-2026-11-08`.
+- PR #51: https://github.com/ClippyFirst/chinese-for-ukrainians/pull/51.
+- Initial PR head: `f21b01a98af9a3fd0ba0a2522193b5b7e39a8156`; base main: `b5f21c206516c162cbd9413039b7c0b448f8b2d1`.
+- Implemented alpha package `zhua`, CLI `chuktrans`, pypinyin 0.55.0 G2P adapter, broad IPA port, three IPA-keyed Ukrainian maps, canonical CSV package data, shared JS/Python golden fixture and wheel/clean-install CI.
+- The canonical CSV is copied into the wheel by the generator; do not edit the packaged copy.
+- `script="auto"` intentionally reports undetermined in this first alpha; pypinyin accepts both scripts but no full script classifier/normalizer has been ported.
+- No local clone/tests/build could run because github.com DNS is unavailable. Quality workflow run #42463805036 was pending/in progress at handoff update; inspect its final exact-head result.
+- Do not publish: source-data rights and distribution-name availability remain unverified. pypinyin/pinyin-pro differences beyond the six golden cases remain outside parity claims.
+
+
+### CI defect and repair note — 2026-11-08
+
+The first Quality run #42463805036 built the wheel and confirmed the CSV is included, but failed on import because the initial Python IPA port incorrectly emitted an initial-only x for unsupported hm/hng, causing IPA map collisions. The implementation was corrected to match the JavaScript rule: if the final has no supported IPA mapping, the complete syllable remains unsupported. The regression suite explicitly checks both forms. A later workflow also inspects the wheel and builds the sdist. The latest PR-head run, not the first failed run, is the acceptance evidence.

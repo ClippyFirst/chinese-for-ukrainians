@@ -8,7 +8,7 @@
 
 ## Продукт і розробка
 - [Структура репозиторію та правила документації](./REPOSITORY-STRUCTURE.md)
-- [Архітектура Python-рушія (план, не реалізовано)](./PYTHON-ENGINE-ARCHITECTURE.md)
+- [Архітектура Python-рушія](./PYTHON-ENGINE-ARCHITECTURE.md) · [Python package usage](../python/README.md)
 - [Вимоги](./PRODUCT-REQUIREMENTS.md)
 - [Архітектура](./ARCHITECTURE.md)
 - [Специфікація даних](./DATA-SPEC.md)

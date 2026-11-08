@@ -1,0 +1,8 @@
+[
+{"text":"你好","pinyin":"nǐ hǎo","ipa":"ni˨˩˦ xɑʊ˨˩˦","classification":"exact-parity"},
+{"text":"中国","pinyin":"zhōng guó","ipa":"ʈʂʊŋ˥ kuɔ˧˥","classification":"exact-parity"},
+{"text":"北京","pinyin":"běi jīng","ipa":"peɪ˨˩˦ tɕiŋ˥","classification":"exact-parity"},
+{"text":"上海","pinyin":"shàng hǎi","ipa":"ʂɑŋ˥˩ xaɪ˨˩˦","classification":"exact-parity"},
+{"text":"汉语","pinyin":"hàn yǔ","ipa":"xan˥˩ y˨˩˦","classification":"exact-parity"},
+{"text":"学习","pinyin":"xué xí","ipa":"ɕɥɛ˧˥ ɕi˧˥","classification":"exact-parity"}
+]

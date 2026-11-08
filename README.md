@@ -56,7 +56,7 @@ npm run check:release
 
 ## Python library
 
-A Python library and CLI are planned for batch processing and integration workflows. **They are not implemented or published yet.** The current shipped product is the static browser application described above. The proposed Python API, data-packaging contract, dependency choices and implementation gates are documented in [Python engine architecture](./docs/PYTHON-ENGINE-ARCHITECTURE.md) and [the implementation plan](./docs/superpowers/plans/2026-11-08-python-engine.md).
+An alpha Python library and CLI now exist under `python/` for offline batch processing. They are not published to PyPI and are not a dependency of the static browser application. The Python runtime uses `pypinyin==0.55.0`; the website uses `pinyin-pro`, so parity is asserted only for the shared reviewed golden fixture. See [Python package usage](./python/README.md), [architecture](./docs/PYTHON-ENGINE-ARCHITECTURE.md) and [implementation plan](./docs/superpowers/plans/2026-11-08-python-engine.md).
 
 ## Дані та документація
 
