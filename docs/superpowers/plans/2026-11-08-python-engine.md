@@ -81,7 +81,7 @@
 
 - [ ] Test non-Han preservation, Simplified/Traditional/mixed input, tone-number normalization, neutral tone, unsupported forms and representative IPA classes.
 - [ ] Verify each test fails for the intended missing behavior.
-- [ ] Implement the pypinyin adapter using `Style.TONE3`, `v_to_u=False` (then normalize `v`/`u:` to `ü` in the package adapter), `neutral_tone_with_five=True`, `tone_sandhi=False`.
+- [ ] Implement the pypinyin adapter using `Style.TONE3`, `v_to_u=False` (then normalize `v`/`u:` to `ü` in the package adapter), `neutral_tone_with_five=True`, no tone-sandhi argument (pypinyin does not expose that option in this API).
 - [ ] Port the existing JS broad-IPA mapping without changing its linguistic convention.
 - [ ] Build a reviewed cross-engine fixture. Classify each case as exact parity, known engine difference or unresolved; do not score a guessed answer as gold.
 - [ ] Run `python -m pytest` and the existing JS suite.
