@@ -83,3 +83,11 @@ def test_auto_script_detection_reports_traditional_simplified_mixed_and_shared()
     assert zhua.detect_script("中国")["status"]=="simplified"
     assert zhua.detect_script("中国與國")["status"]=="mixed"
     assert zhua.detect_script("中文")["status"]=="undetermined"
+
+
+def test_packaged_script_map_is_present_and_parseable():
+    from importlib.resources import files
+    mapping=json.loads(files("zhua").joinpath("data/traditional-to-simplified.json").read_text(encoding="utf-8"))
+    assert mapping["國"]=="国"
+    assert mapping["與"]=="与"
+    assert len(mapping)>1000
