@@ -33,7 +33,7 @@ Purpose: identify reusable public evidence and datasets for the next same-corpus
 1. CPP and CVTE-Poly are research datasets for polyphone disambiguation; they are not gold for the project's IPA or any Ukrainian transcription convention.
 2. AISHELL Pinyin transcripts can support phrase-level G2P evaluation only after exact archive schema, transcript normalization, and license terms are checked. They do not independently adjudicate IPA or Ukrainian targets.
 3. A dataset's paper, code repository, model weights and annotations may have different licenses. Verify each separately.
-4. Existing project-owned Han Dian lexical fixture is now 10 cases (after PR #55). It remains a smoke set, not a statistically representative held-out benchmark.
+4. Existing project-owned Han Dian lexical fixture is now 13 smoke cases (10 Han Dian lexical + 3 AISHELL-3 public baseline samples). It remains a smoke set, not a statistically representative held-out benchmark.
 5. The owner-authored zh-in-ua.csv is valid as a project source table and may be used for deterministic reproduction/coverage checks, but cannot be presented as independent gold for its own runtime mapping.
 
 ## Execution ledger
@@ -71,3 +71,8 @@ This audit improves the research plan and identifies a plausible licensed data r
 - Not done: downloading/unpacking the 18–19 GB archive, verifying internal license/NOTICE, enumerating transcript paths/splits, or extracting text. No data/audio copied.
 - Status: AISHELL-3 catalog/license metadata = DONE_VERIFIED; archive schema = BLOCKED by unavailable large-archive access; text-only benchmark extraction = TODO pending schema/terms inspection.
 - Sources: https://openslr.org/93/ ; https://www.openslr.org/resources/93/info.txt ; https://www.openslr.org/resources/93/checksum.md5 ; https://www.aishelltech.com/aishell_3 ; https://sos1sos2sixteen.github.io/aishell3/ .
+
+
+## Public AISHELL-3 Pinyin smoke examples — 2026-11-08
+
+Three Chinese/Pinyin pairs shown directly on the public AISHELL-3 baseline page were added to `tests/fixtures/independent-pinyin-cases.csv`: `在教学楼内释放大量烟雾`, `不过英特尔之后不会继续接受如此大的损失`, and `替我播放相思风雨中`. The test asserts 13 total rows and permits the AISHELL-3 baseline page as a source URL. These are published-page smoke references, not extracted archive rows, a locked held-out split, or independent adjudication of every Pinyin token. Exact Quality CI on this PR head must pass before marking implementation DONE_VERIFIED.
