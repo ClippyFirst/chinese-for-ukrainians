@@ -33,6 +33,8 @@ jobs:
         run: npm run generate:data
       - name: Verify generated files are committed and deterministic
         run: git diff --exit-code -- src/generated/transcription-map.js python/src/zhua/data/zh-in-ua.csv python/src/zhua/data/traditional-to-simplified.json
+      - name: Probe public PyPI project-name endpoints (diagnostic only)
+        run: python scripts/check-pypi-project-names.py
       - name: Build and install Python wheel in a clean virtual environment
         run: |
           python -m venv /tmp/zhua-wheel-venv
