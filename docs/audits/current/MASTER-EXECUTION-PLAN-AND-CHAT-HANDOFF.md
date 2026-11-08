@@ -331,25 +331,25 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 
 | ID | Status | Task | Acceptance / evidence |
 |---|---|---|---|
-| REPO-001 | DONE_VERIFIED | Branch/PR reconciliation | Only `main` branch; no open PRs; #48 closed without merge by explicit scope correction; #50 merged. |
-| REPO-002 | DONE_VERIFIED | Exact-head web quality gates | Quality run 41084676837 passed all listed jobs/steps on `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`. |
+| REPO-001 | DONE_VERIFIED | Branch/PR reconciliation | `main` plus retained merged-work branch `feat/python-engine-2026-11-08`; PR #51 merged cleanly; #48 remains closed without merge by scope correction; #50 merged. No open PRs. |
+| REPO-002 | DONE_VERIFIED | Exact-head web quality gates | Historical run 41084676837 passed on the earlier baseline. Latest full Quality run 42464642753 passed all five jobs on PR head `2e94cad9279344726d0bf74b35636e303d81d100`, including Node, Python, wheel, clean install, benchmark and browser checks. |
 | REPO-003 | DONE_VERIFIED | Canonical documentation structure | Added repository structure guide, Python engine architecture, design spec and implementation plan; README/index/architecture/roadmap linked and reconciled in this commit. |
-| REPO-004 | DONE_VERIFIED | Master register/handoff freshness | This register and handoff now record verified documentation commit `2b8ee41a986b393b7e56b8925fb3c77cc9183049`, exact-head Quality run 42462895243, Pages run 42462895229, and the local DNS blocker. |
+| REPO-004 | DONE_VERIFIED | Master register/handoff freshness | This register and handoff updated after PR #51 merge `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; current main docs head `c7347ce91ec42d4427ed3810f27e4db72341f3b6`; latest package Quality evidence run 42464642753. |
 | PY-001 | DONE_VERIFIED | Python engine architecture decision | `docs/PYTHON-ENGINE-ARCHITECTURE.md` and design spec define API, package boundary, dependencies, data and quality gates. |
-| PY-002 | TODO | Implement Python package skeleton and typed API | `python/pyproject.toml`, `python/src/zhua/`, tests; acceptance: clean import/install from built wheel and API contract tests. |
-| PY-003 | TODO | Implement pypinyin pronunciation adapter | Pin pypinyin 0.55.0; test tone-number output, Traditional input, phrase/polyphonic cases and explicit engine differences. Acceptance: reviewed golden fixture; no universal pinyin-pro parity claim. |
-| PY-004 | TODO | Port broad IPA and IPA-keyed Ukrainian adapters | Port current JS IPA behavior and source-row provenance. Acceptance: class-level tests, no collisions, no Pinyin fallback, missing/unsupported cases preserved. |
-| PY-005 | TODO | Package canonical CSV deterministically | Generate package-data copy from root CSV. Acceptance: byte-identical drift check and wheel includes data; no second editable CSV. |
-| PY-006 | TODO | Add CLI and cross-runtime fixtures | `chuktrans` stdin/file/JSON behavior; reviewed parity/difference classifications. Acceptance: CLI clean-env smoke tests and golden fixture. |
-| PY-007 | TODO | Add Python CI and wheel verification | Supported Python matrix, pytest, sdist/wheel build, archive inspection, clean wheel install and CLI smoke test; existing JS gates remain green. |
+| PY-002 | DONE_VERIFIED | Implement Python package skeleton and typed API | `python/pyproject.toml`, `python/src/zhua/`, tests; acceptance: clean import/install from built wheel and API contract tests. |
+| PY-003 | DONE_VERIFIED | Implement pypinyin pronunciation adapter | Pin pypinyin 0.55.0; test tone-number output, Traditional input, phrase/polyphonic cases and explicit engine differences. Acceptance: reviewed golden fixture; no universal pinyin-pro parity claim. |
+| PY-004 | DONE_VERIFIED | Port broad IPA and IPA-keyed Ukrainian adapters | Port current JS IPA behavior and source-row provenance. Acceptance: class-level tests, no collisions, no Pinyin fallback, missing/unsupported cases preserved. |
+| PY-005 | DONE_VERIFIED | Package canonical CSV deterministically | Generate package-data copy from root CSV. Acceptance: byte-identical drift check and wheel includes data; no second editable CSV. |
+| PY-006 | DONE_VERIFIED | Add CLI and cross-runtime fixtures | `chuktrans` stdin/file/JSON behavior; reviewed parity/difference classifications. Acceptance: CLI clean-env smoke tests and golden fixture. |
+| PY-007 | DONE_VERIFIED | Add Python CI and wheel verification | Supported Python matrix, pytest, sdist/wheel build, archive inspection, clean wheel install and CLI smoke test; existing JS gates remain green. |
 | PY-008 | BLOCKED | Final PyPI distribution name | Candidate `chinese-ukrainian-transcription` was not confirmed through a successful registry availability check; no name is reserved or claimed available. Acceptance: verify PyPI JSON/name availability immediately before package metadata freeze. |
-| PY-009 | PARTIAL | OpenCC dependency decision | Core first release does not require OpenCC because pypinyin documents Traditional support. Optional script-normalization extra remains deferred until alignment behavior is tested. Prefer evaluating `opencc-py` over the older alpha `opencc-python-reimplemented`; no dependency added. |
+| PY-009 | DEFERRED | OpenCC dependency decision | Core first release does not require OpenCC because pypinyin documents Traditional support. Optional script-normalization extra remains deferred until alignment behavior is tested. Prefer evaluating `opencc-py` over the older alpha `opencc-python-reimplemented`; no dependency added. |
 | PY-010 | TODO | Package/data licensing clearance | Review pinned pypinyin notices and any optional OpenCC package plus the source CSV provenance before publication. Root MIT does not automatically license source-derived data. |
 
 ### Dependency evidence and limits
 
-- pypinyin PyPI page reports version 0.55.0, MIT licensing, and Traditional/phrase/heteronym/tone support. The implementation must use its tone-number API with tone sandhi disabled by default.
-- `opencc-py` PyPI describes a pure-Python OpenCC implementation, Apache-2.0 and Python >=3.9; its package-data dependency and exact version must be tested before adding it. The older `opencc-python-reimplemented` PyPI page reports version 0.1.7 from 2023 and Alpha classification, so it is not the default recommendation.
+- pypinyin PyPI page reports version 0.55.0, MIT licensing, and Traditional/phrase/heteronym/tone support. The implementation uses its tone-number API; this adapter does not request connected-speech tone sandhi and treats output as lexical/citation-form.
+- OpenCC remains optional and deferred: the alpha accepts Traditional input directly via pypinyin and does not rewrite source text. Revisit only if full script classification/normalization becomes a separately scoped requirement.
 - pypinyin and current pinyin-pro are separate G2P engines. Identical Chinese input does not imply identical phrase/heteronym resolution. Any parity fixture must be curated and must label known engine differences rather than forcing false gold values.
 
 ### External repository patterns adopted (not copied)
