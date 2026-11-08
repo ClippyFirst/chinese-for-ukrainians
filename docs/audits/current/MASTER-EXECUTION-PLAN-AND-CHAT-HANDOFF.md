@@ -550,3 +550,14 @@ The exact main documentation head `15c1c201e271c696a440091692806d48592a25e3` als
 See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contract, PyPI recommendation/acceptance steps and detailed gate boundaries.
 
 **Current posture:** source distribution and wheel build/test reproducibility are now CI-verified. Python alpha remains unpublished. The wider product remains a public beta/research preview, not research-complete or release-ready. The only way to close manual QA is a real device session; the owner must confirm the public PyPI name; independent linguistic gold requires source-by-source collation and review.
+
+
+## Continuation — independent Pinyin lexical smoke expansion (2026-11-08)
+
+- Branch: research/expand-independent-pinyin-gold-2026-11-08, based on main d1dc38628bc1d86c4c420245c52c4105b7874f8c.
+- Preserved the existing research/accessibility-gold-corpus-pypi-2026-11-08 branch unchanged; it is 3 commits ahead and 1 behind main and contains overlapping historical documentation, so it was not reused or merged blindly.
+- Added four source-linked Han Dian lexical cases (重复, 重量, 方便, 快乐) to the existing independent Pinyin fixture; total 10. Added an explicit fixture-size assertion in the existing test.
+- Sources and scoped status are recorded in OPEN-RESEARCH-GATES-2026-11-08.md.
+- This is a Pinyin G2P smoke-corpus expansion only. It is not an independently adjudicated held-out corpus, does not establish statistical accuracy, and supplies no independent IPA/Ukrainian gold labels.
+- Verification: source entries checked against their Han Dian lexical pages; hosted Quality workflow must pass on the exact PR head before this code change is marked DONE_VERIFIED. Local clone/test execution remains unavailable in this environment because DNS resolution for github.com failed.
+- Remaining genuine gates: larger phenomenon-balanced corpus with separate development/held-out/challenge partitions; independent broad-IPA and per-method Ukrainian adjudication; human screen-reader/device QA; maintainer decision and authenticated PyPI claimability check.
