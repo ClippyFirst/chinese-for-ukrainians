@@ -47,3 +47,8 @@ Playwright покриває стани порожнього/заповненог
 
 ## Межі приймання
 Зелений CI підтверджує лише визначені автоматизовані гейти на відповідному commit SHA. Він не доводить правильності всіх CSV-значень, очищення прав на сторонні джерела, роботу фізичного аудіовиходу, поведінку системного clipboard у кожному браузері або повну доступність для assistive technology. Ці критерії мають окремі записи в release checklist і master register.
+
+
+## Accessibility regression automation — 2026-11-08
+
+`tests/browser/accessibility.spec.js` adds browser checks for accessible names on interactive controls, valid `aria-describedby`/`aria-labelledby` references, page landmarks, language metadata, live regions, keyboard operation of script selection and the example action, and 200% text resizing without horizontal page overflow. These checks are automated regression guards; they do not replace manual NVDA/JAWS/VoiceOver/TalkBack testing, physical-device speech output, or real clipboard permission checks.

@@ -4,6 +4,7 @@ import csv, re, unicodedata
 from dataclasses import dataclass, asdict
 from importlib.resources import files
 from io import StringIO
+from functools import lru_cache
 
 SYSTEMS=("kirnosova","kirnosova_tsisar","nanu")
 HEADERS=("№","Піньїнь","Кірносова","Кірносова—Цісар","НАНУ")
@@ -96,7 +97,17 @@ def scan_text(text):
         out.append((text[start:i],start,i,kind))
     return out
 
+@lru_cache(maxsize=1)
+def _load_phrase_overrides():
+    import json
+    from pypinyin import load_phrases_dict
+    raw=files("zhua").joinpath("data/pronunciation-overrides.json").read_text(encoding="utf-8")
+    records=json.loads(raw)
+    load_phrases_dict({row["phrase"]:row["pinyin"] for row in records})
+    return tuple(row["phrase"] for row in records)
+
 def _pronounce(text):
+    _load_phrase_overrides()
     from pypinyin import Style,pinyin
     values=pinyin(text,style=Style.TONE3,heteronym=False,errors=lambda chars:list(chars),neutral_tone_with_five=True,v_to_u=False)
     chars=list(text)
@@ -107,6 +118,30 @@ def _pronounce(text):
         result.append((c,(base+str(tone)) if base and base!=c and tone else base, tone, "resolved" if base and base!=c else "unresolved"))
     return result
 
+@lru_cache(maxsize=1)
+def _script_variant_map():
+    import json
+    raw=files("zhua").joinpath("data/traditional-to-simplified.json").read_text(encoding="utf-8")
+    return json.loads(raw)
+
+def detect_script(text):
+    """Classify distinctive Han variants using the same generated map as the web app.
+
+    Shared-only Han text is intentionally undetermined; mixed text is reported as mixed.
+    This is character-evidence classification, not locale inference.
+    """
+    mapping=_script_variant_map()
+    traditional=set(mapping)
+    simplified_only={value for value in mapping.values() if value not in traditional}
+    has_traditional=has_simplified=False
+    ranges=((0x3400,0x4dbf),(0x4e00,0x9fff),(0xf900,0xfaff),(0x20000,0x2fa1f))
+    for char in text:
+        cp=ord(char)
+        if not any(start <= cp <= end for start,end in ranges): continue
+        if char in traditional: has_traditional=True
+        elif char in simplified_only: has_simplified=True
+    status="mixed" if has_traditional and has_simplified else "traditional" if has_traditional else "simplified" if has_simplified else "undetermined"
+    return {"status":status,"has_simplified":has_simplified,"has_traditional":has_traditional}
 def _ua_tone(value,tone):
     marks={1:"\u0304",2:"\u0301",3:"\u030c",4:"\u0300"}; chars=list(unicodedata.normalize("NFD",value))
     chars=[c for c in chars if c not in marks.values()]
@@ -140,7 +175,7 @@ def convert(text,*,script="auto",show_pinyin_tones=True,show_ukrainian_tones=Tru
                 elif entry["missing"]: outputs[s].append(char); issues.append(Issue("mapping","missing",char,s,base,entry["source_row"]))
                 else: outputs[s].append(_ua_tone(entry["value"],tone) if show_ukrainian_tones else entry["value"])
             prev=True
-    detected=script if script!="auto" else "undetermined"
+    detected=detect_script(text)["status"]
     return ConversionResult(text,script,detected,"".join(pparts),"".join(iparts),*("".join(outputs[s]) for s in SYSTEMS),tuple(toks),tuple(issues))
 
 def transcribe(text,system,*,show_tones=True):
@@ -162,4 +197,4 @@ def main():
         return 0
     except (OSError,ValueError,TypeError) as e: print(f"chuktrans: {e}",file=sys.stderr); return 2
 __version__="0.1.0"
-__all__=["convert","transcribe","transcribe_all","ConversionResult","Token","Issue","pinyin_to_ipa","load_mappings","main"]
+__all__=["convert","transcribe","transcribe_all","ConversionResult","Token","Issue","pinyin_to_ipa","load_mappings","detect_script","main"]

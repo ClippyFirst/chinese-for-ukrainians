@@ -76,7 +76,7 @@
 - [x] Test mixed Unicode/non-Han preservation, Traditional input, tone normalization, unsupported forms and representative IPA classes.
 - [x] Use pypinyin `Style.TONE3`, `v_to_u=False`, `neutral_tone_with_five=True`; no unsupported tone-sandhi argument is passed.
 - [x] Port the JS broad-IPA mapping, including unresolved IPA forms.
-- [x] Shared six-case fixture asserts Pinyin, IPA and all three UA outputs across both runtimes.
+- [x] Shared twelve-case fixture asserts Pinyin, IPA and all three UA outputs across both runtimes.
 - [x] Python pytest and JavaScript suites pass. Engine differences outside the fixture remain explicit.
 
 ### Task 4: CLI and user/developer documentation
@@ -104,7 +104,7 @@
 - [x] Canonical CSV/package-data byte equality passed.
 - [x] Existing JavaScript, browser, benchmark, generated-artifact, production-build and release gates passed.
 - [x] Exact commit/run evidence and remaining source/license/name blockers recorded in the master register.
-- [x] No PyPI publication; name availability and source-data rights remain unresolved.
+- [x] No PyPI publication; distribution-name endpoint probe is now part of CI; CSV inclusion is owner-authorized, and the CSV is not forced under MIT.
 
 ## Definition of done
 
@@ -124,12 +124,12 @@
 | Canonical data packaging | DONE_VERIFIED | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator synchronizes it; byte-equality test passes in CI |
 | Pypinyin and broad IPA adapters | DONE_VERIFIED | Implemented in `zhua`; runtime, IPA collision and golden checks pass in CI |
 | IPA-keyed three-system maps | DONE_VERIFIED | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification passes in CI |
-| Cross-runtime golden tests | DONE_VERIFIED | Shared fixture consumed by Node and pytest; six curated cases assert Pinyin, IPA and all three UA outputs; Node/Python suites pass |
+| Cross-runtime golden tests | DONE_VERIFIED | Shared fixture consumed by Node and pytest; twelve curated cases assert Pinyin, IPA and all three UA outputs; Node/Python suites pass |
 | CLI | DONE_VERIFIED | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON tests pass in CI CI |
 | Wheel and clean install | DONE_VERIFIED | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; passed on exact PR head; isolated install/import/CLI smoke test passed |
 | Python 3.10–3.13 matrix | DONE_VERIFIED | Matrix added; all four Python versions passed |
-| Publication | DEFERRED | No PyPI publish. Package name, dependency notices and source-data rights remain unverified. |
-| Linguistic evidence and manual QA | BLOCKED / separate gates | Pypinyin-vs-pinyin-pro differences outside shared fixture, source-data rights, and manual assistive-tech QA remain open. |
+| Publication | DEFERRED | No PyPI publish. Package-name availability remains unverified; upstream dependency notices are packaged, and the CSV owner has authorized inclusion. |
+| Linguistic evidence and manual QA | BLOCKED / separate gates | Pypinyin-vs-pinyin-pro differences outside the 12-case fixture and manual assistive-tech QA remain open. |
 
 Local repository cloning was blocked by unavailable DNS resolution for github.com. All required build, pytest, cross-runtime and clean-install acceptance was therefore executed in GitHub Actions and passed on exact PR head `2e94cad9279344726d0bf74b35636e303d81d100`.
 
@@ -138,7 +138,7 @@ Local repository cloning was blocked by unavailable DNS resolution for github.co
 
 PR #51 merged as `539720a5b9cebcd5f83a011cf107b65f89ae45d2` after [Quality run 42464642753](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753) passed. Python pytest: 10/10 on Python 3.10, 3.11, 3.12 and 3.13. The sdist and wheel built; the wheel was inspected, installed in an isolated virtualenv, imported from `/tmp`, and its `chuktrans --json` smoke test passed. Shared JS/Python golden tests passed for Pinyin, IPA and all three Ukrainian outputs. Full JavaScript, benchmark, build, release and Chromium/WebKit browser gates passed.
 
-The verified artifacts and SHA-256 checksums are recorded in the master execution register. Publication remains DEFERRED because source-specific rights for the packaged CSV and distribution-name availability remain unresolved. Manual assistive-technology QA remains TODO.
+The verified artifacts and SHA-256 checksums are recorded in the master execution register. Publication remains DEFERRED only pending live PyPI name availability and final maintainer release choice; the CSV owner has authorized inclusion. Manual assistive-technology QA remains TODO.
 
 
 ### As-built module boundary

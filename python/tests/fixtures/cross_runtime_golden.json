@@ -1,8 +1,86 @@
 [
-{"text":"你好","pinyin":"nǐ hǎo","ipa":"ni˨˩˦ xɑʊ˨˩˦","classification":"exact-parity"},
-{"text":"中国","pinyin":"zhōng guó","ipa":"ʈʂʊŋ˥ kuɔ˧˥","classification":"exact-parity"},
-{"text":"北京","pinyin":"běi jīng","ipa":"peɪ˨˩˦ tɕiŋ˥","classification":"exact-parity"},
-{"text":"上海","pinyin":"shàng hǎi","ipa":"ʂɑŋ˥˩ xaɪ˨˩˦","classification":"exact-parity"},
-{"text":"汉语","pinyin":"hàn yǔ","ipa":"xan˥˩ y˨˩˦","classification":"exact-parity"},
-{"text":"学习","pinyin":"xué xí","ipa":"ɕɥɛ˧˥ ɕi˧˥","classification":"exact-parity"}
+  {
+    "text": "你好",
+    "pinyin": "nǐ hǎo",
+    "ipa": "ni˨˩˦ xɑʊ˨˩˦",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "中国",
+    "pinyin": "zhōng guó",
+    "ipa": "ʈʂʊŋ˥ kuɔ˧˥",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "北京",
+    "pinyin": "běi jīng",
+    "ipa": "peɪ˨˩˦ tɕiŋ˥",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "上海",
+    "pinyin": "shàng hǎi",
+    "ipa": "ʂɑŋ˥˩ xaɪ˨˩˦",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "汉语",
+    "pinyin": "hàn yǔ",
+    "ipa": "xan˥˩ y˨˩˦",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "学习",
+    "pinyin": "xué xí",
+    "ipa": "ɕɥɛ˧˥ ɕi˧˥",
+    "classification": "exact-parity"
+  },
+  {
+    "text": "银行",
+    "pinyin": "yín háng",
+    "ipa": "in˧˥ xɑŋ˧˥",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E9%93%B6%E8%A1%8C",
+    "scope": "Independent lexical reading for 银行; phrase context selects háng."
+  },
+  {
+    "text": "銀行",
+    "pinyin": "yín háng",
+    "ipa": "in˧˥ xɑŋ˧˥",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E9%8A%80%E8%A1%8C",
+    "scope": "Han Dian lexical entry gives yín háng. A package-level pypinyin phrase override is pinned to this source because the unmodified engine selected xíng for this Traditional-script phrase."
+  },
+  {
+    "text": "重庆",
+    "pinyin": "chóng qìng",
+    "ipa": "ʈʂʰʊŋ˧˥ tɕʰiŋ˥˩",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E9%87%8D%E6%85%B6",
+    "scope": "Independent place-name reading 重庆."
+  },
+  {
+    "text": "音乐",
+    "pinyin": "yīn yuè",
+    "ipa": "in˥ ɥɛ˥˩",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E9%9F%B3%E4%B9%90",
+    "scope": "Independent lexical reading for 音乐."
+  },
+  {
+    "text": "长大",
+    "pinyin": "zhǎng dà",
+    "ipa": "ʈʂɑŋ˨˩˦ ta˥˩",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E9%95%BF%E5%A4%A7",
+    "scope": "Contextual grow-up reading; the source also records an alternate reading in other contexts."
+  },
+  {
+    "text": "中国农业银行",
+    "pinyin": "zhōng guó nóng yè yín háng",
+    "ipa": "ʈʂʊŋ˥ kuɔ˧˥ nʊŋ˧˥ jɛ˥˩ in˧˥ xɑŋ˧˥",
+    "classification": "exact-parity",
+    "source_url": "https://zdic.net/hans/%E4%B8%AD%E5%9B%BD%E5%86%9C%E4%B8%9A%E9%93%B6%E8%A1%8C",
+    "scope": "Long institutional name tests context-sensitive phrase reading and segmentation."
+  }
 ]

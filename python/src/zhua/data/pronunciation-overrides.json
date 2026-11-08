@@ -1,0 +1,15 @@
+[
+  {
+    "phrase": "銀行",
+    "pinyin": [
+      [
+        "yín"
+      ],
+      [
+        "háng"
+      ]
+    ],
+    "source_url": "https://zdic.net/hans/%E9%8A%80%E8%A1%8C",
+    "scope": "The lexical entry identifies 銀行 as yín háng; pypinyin 0.55.0 selects xíng for 行 in this Traditional-script phrase. This narrowly scoped override restores the sourced bank reading."
+  }
+]

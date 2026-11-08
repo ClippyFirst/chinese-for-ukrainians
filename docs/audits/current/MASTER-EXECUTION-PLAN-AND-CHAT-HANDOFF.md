@@ -478,3 +478,18 @@ The Python package test suite currently contains 10 tests and passed on every su
 - Manual screen-reader, keyboard-only, mobile and zoom QA remains a separate repository-wide TODO.
 
 **Release posture:** the Python alpha package is implementation- and CI-verified, but public package publication remains blocked by data-rights review. The wider project remains a research preview/public beta, not fully release-ready.
+
+
+## Follow-up implementation — script detection, parity and accessibility (2026-11-08)
+
+**Working branch:** `feat/script-detection-and-accessibility-2026-11-08` (PR pending exact-head CI).
+
+- CSV ownership: the repository owner confirms `zh-in-ua.csv` is their original work and authorizes its inclusion. The earlier source-rights publication blocker is removed for this CSV. Root MIT remains the code license; the owner has not been forced to license the CSV under MIT. See [updated scope note](../../LICENSE-AND-DATA-PROVENANCE.md).
+- Third-party script map: generator now emits a package JSON from pinned `@pinyin-pro/data@1.3.1`; the Python wheel packages it and includes the upstream ISC notice in `python/THIRD_PARTY_NOTICES.md`.
+- Automatic script detection: Python now shares the browser's character-variant map and reports `simplified`, `traditional`, `mixed`, or `undetermined`. Shared-only text remains undetermined. Source text is never rewritten. Tests share a seven-case detection fixture and verify generated map parity.
+- Cross-runtime golden coverage: extended from 6 to 12 cases. Six additional cases (银行, 銀行, 重庆, 音乐, 长大, 中国农业银行) carry independent Han Dian lexical references; the common fixture checks Pinyin and broad IPA in both runtimes and compares all three Ukrainian outputs between runtimes. These are scoped cases, not universal parity or accuracy claims.
+- Accessibility automation: added browser regression checks for programmatic names, landmarks, live-region metadata, keyboard operation, and 200% text resize/no horizontal overflow. Existing keyboard/mobile tests remain.
+- PyPI name availability: still BLOCKED. A live PyPI registry fetch could not be completed in this session because the connected registry/scraping service had no remaining credits. Search-engine absence is not proof of availability. No name is reserved and no release is published.
+- Manual accessibility: PARTIAL. Automated checks are added; actual screen-reader/assistive-technology, physical speech-output and device QA still require a human-operated device session.
+
+Acceptance on this branch: generator drift check (including the script map), Node suite, 12-case cross-runtime suite, Python 3.10–3.13 pytest matrix, wheel inspection including ISC notice, clean install, and browser suite including the new accessibility spec.

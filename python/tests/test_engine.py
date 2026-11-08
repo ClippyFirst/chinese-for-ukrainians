@@ -67,3 +67,35 @@ def test_tone_options_are_independent():
     assert plain_pinyin.pinyin=="ni hao"
     assert marked.pinyin=="nǐ hǎo"
     assert plain_ukrainian.kirnosova!=marked.kirnosova
+
+
+def test_shared_script_detection_fixture_matches_browser_classifier():
+    fixture=json.loads((pathlib.Path(__file__).resolve().parents[2]/"tests/fixtures/script_detection.json").read_text())
+    for case in fixture:
+        result=zhua.detect_script(case["text"])
+        assert result["status"]==case["status"],case["text"]
+        converted=zhua.convert(case["text"])
+        assert converted.detected_script==case["status"]
+
+
+def test_auto_script_detection_reports_traditional_simplified_mixed_and_shared():
+    assert zhua.detect_script("中國")["status"]=="traditional"
+    assert zhua.detect_script("中国")["status"]=="simplified"
+    assert zhua.detect_script("中国與國")["status"]=="mixed"
+    assert zhua.detect_script("中文")["status"]=="undetermined"
+
+
+def test_packaged_script_map_is_present_and_parseable():
+    from importlib.resources import files
+    mapping=json.loads(files("zhua").joinpath("data/traditional-to-simplified.json").read_text(encoding="utf-8"))
+    assert mapping["國"]=="国"
+    assert mapping["與"]=="与"
+    assert len(mapping)>1000
+
+
+def test_phrase_overrides_are_source_backed_and_fix_traditional_bank_reading():
+    records=json.loads((pathlib.Path(__file__).resolve().parents[1]/"src/zhua/data/pronunciation-overrides.json").read_text())
+    assert records[0]["phrase"]=="銀行"
+    assert records[0]["pinyin"]==[["yín"],["háng"]]
+    assert records[0]["source_url"].startswith("https://zdic.net/")
+    assert zhua.convert("銀行").pinyin=="yín háng"
