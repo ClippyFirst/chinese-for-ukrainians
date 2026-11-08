@@ -74,7 +74,7 @@ Use only `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE_VERIFIED`, `DEFERRED`, `NOT_APP
 - C2U-002 current-head CI gates: `DONE_VERIFIED` for the workflow checks listed above on the exact SHA; clean-install reproducibility remains a separate open gate.
 - C2U-003 deployment: CI deploy status must be matched to the current SHA, but live homepage/methodology interaction and 320/360/390/430px visual QA are still `TODO`; deployment success alone does not satisfy them.
 - C2U-004 citation metadata: `BLOCKED` pending maintainer-confirmed authorship/title/version details. Do not add `CITATION.cff` with guessed identity or version metadata.
-- C2U-005 source/data rights: `IN_PROGRESS`; existing scope note correctly warns root MIT does not license third-party datasets automatically. File/source-specific reuse rights remain evidence-limited.
+- C2U-005 source/data rights: `DONE_VERIFIED`; owner confirms the CSV is original and authorizes inclusion; code and dataset rights are separated, and the bundled upstream script map carries its full ISC notice.
 - C2U-008 CSV and independent systems: existing fixture/test and build validation passed in CI. CSV structure counts previously audited (421 unique Pinyin keys, no duplicates; blank values remain in each independent column). Linguistic correctness and unresolved blank-cell source coverage are not proven by structural tests; never cross-fill.
 - PR #5 remains open and is not merged. Its design direction can be reviewed separately, but it is not a release-gate fix; preserve current `#result-ipa` markup and do not merge without rebasing and running the full browser suite.
 
@@ -345,6 +345,10 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 | PY-008 | BLOCKED | Final PyPI distribution name | CI probe on 2026-11-08 received HTTP 404 / `NO_PUBLIC_PROJECT_JSON` for both `chinese-ukrainian-transcription` and `chuktrans`. This is not proof either name is claimable or reserved. Owner must select a final name and verify claimability immediately before publishing. |
 | PY-009 | DEFERRED | OpenCC dependency decision | Core first release does not require OpenCC because pypinyin documents Traditional support. Optional script-normalization extra remains deferred until alignment behavior is tested. Prefer evaluating `opencc-py` over the older alpha `opencc-python-reimplemented`; no dependency added. |
 | PY-010 | DONE_VERIFIED | Package/data licensing scope | Owner confirmed original CSV authorship and authorizes inclusion; root MIT applies to code only; full ISC notice for bundled script map included in wheel. Evidence: `docs/LICENSE-AND-DATA-PROVENANCE.md`, `python/THIRD_PARTY_NOTICES.md`, PR #52, wheel archive. |
+| PY-011 | DONE_VERIFIED | Automatic script classification | JS and Python share the generated pinned character map; simplified/traditional/mixed/undetermined classification is covered by a seven-case shared fixture; source text is never rewritten. |
+| PY-012 | DONE_VERIFIED | Cross-runtime golden expansion | 12 shared cases assert Pinyin, broad IPA and all three Ukrainian systems in both runtimes; six lexical cases carry Han Dian references; `銀行` uses a narrow source-backed pypinyin phrase override. |
+| PY-013 | DONE_VERIFIED | Automated accessibility regression | 61 Playwright tests pass, including accessible names, ARIA references, landmarks, live regions, keyboard operations and 200% text resize/no horizontal overflow. |
+| PY-014 | BLOCKED | Manual assistive-technology QA | Physical NVDA/JAWS/VoiceOver/TalkBack and device/speech-output checks require human-operated devices; automated browser coverage is not a substitute. |
 
 ### Dependency evidence and limits
 
@@ -518,3 +522,5 @@ Acceptance on exact PR head `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`: generato
 - Visual QA screenshots artifact: `redesign-visual-qa`, ID `13611981526`.
 
 **Release posture:** Python alpha is implementation-, build-, clean-install- and CI-verified, but not published. Do not publish until the owner chooses a final PyPI name and performs the final name-claimability check. The wider web product remains public beta / research preview; manual assistive-technology QA and independent linguistic gold-corpus research remain open.
+
+The exact main documentation head `15c1c201e271c696a440091692806d48592a25e3` also passed Quality run `42466483248` and Pages run `42466483269`.

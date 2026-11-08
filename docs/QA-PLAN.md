@@ -52,3 +52,8 @@ Playwright покриває стани порожнього/заповненог
 ## Accessibility regression automation — 2026-11-08
 
 `tests/browser/accessibility.spec.js` adds browser checks for accessible names on interactive controls, valid `aria-describedby`/`aria-labelledby` references, page landmarks, language metadata, live regions, keyboard operation of script selection and the example action, and 200% text resizing without horizontal page overflow. These checks are automated regression guards; they do not replace manual NVDA/JAWS/VoiceOver/TalkBack testing, physical-device speech output, or real clipboard permission checks.
+
+
+### Screenshot review — 2026-11-08
+
+The generated visual QA artifact (`redesign-visual-qa`, run `42466148142`) was inspected at 320px mobile and 1280px desktop for the converter, with a 320px methodology-page capture also reviewed. No obvious clipped content or horizontal overflow was visible in these captures. This is a limited visual screenshot review, not physical-device testing, browser zoom certification, or screen-reader/assistive-technology sign-off.
