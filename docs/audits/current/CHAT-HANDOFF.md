@@ -197,3 +197,10 @@ The first Quality run #42463805036 built the wheel and confirmed the CSV is incl
 - Downloadable wheel and sdist were exported to the conversation artifacts. SHA-256 values are in the master register.
 - Do not publish: CSV source-specific rights and PyPI name availability remain unresolved. `script="auto"` remains undetermined; universal engine parity is not claimed.
 - Manual accessibility QA remains a separate TODO.
+
+
+## Follow-up — script detection and accessibility — 2026-11-08
+
+Branch `feat/script-detection-and-accessibility-2026-11-08` adds shared Simplified/Traditional detection to Python using the pinned `@pinyin-pro/data@1.3.1` map, with `mixed` and `undetermined` states and no source rewriting. The generated JSON is included in the wheel with the upstream ISC notice. The shared JS/Python Pinyin+IPA+three-UA fixture is expanded to 12 cases, including six lexical examples sourced to Han Dian. A new browser accessibility spec checks control names, landmarks, ARIA references, live regions, keyboard actions and 200% text resizing.
+
+CSV ownership was confirmed by the repository owner: their original CSV is included with their authorization; root MIT applies to code and does not force the CSV under MIT. The earlier CSV-rights blocker is therefore closed. The PyPI distribution-name check remains unresolved because the live registry fetch service had no remaining credits; do not infer availability from search results. Manual screen-reader/device checks remain unperformed and must not be marked DONE.
