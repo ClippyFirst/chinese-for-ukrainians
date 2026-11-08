@@ -429,3 +429,52 @@ The first implementation CI run [42463805036](https://github.com/ClippyFirst/chi
 The same failed run proved that the wheel was buildable and that zhua/data/zh-in-ua.csv was included in the wheel archive, but import smoke testing then stopped at the collision. This is **not** a clean-install pass. The workflow was also strengthened to build both sdist and wheel and inspect the wheel's package-data members before installation.
 
 Latest CI status must be read from the latest PR-head run. Do not use the failed first run as evidence of a passing package.
+
+
+## Python engine — final verified state, 2026-11-08
+
+<badge color="success">DONE_VERIFIED — merged to main</badge>
+
+- **Starting main SHA:** `b5f21c206516c162cbd9413039b7c0b448f8b2d1`.
+- **Implementation branch:** `feat/python-engine-2026-11-08`.
+- **PR:** [#51](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/51), squash-merged after all checks passed.
+- **Merge commit / current main SHA at merge:** `539720a5b9cebcd5f83a011cf107b65f89ae45d2`.
+- **Exact verified PR head:** `2e94cad9279344726d0bf74b35636e303d81d100`.
+- **Quality run:** [42464642753](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753) — all five jobs passed.
+
+### Acceptance evidence
+
+| Gate | Result |
+|---|---|
+| Python 3.10 | PASS — 10 pytest tests |
+| Python 3.11 | PASS — 10 pytest tests |
+| Python 3.12 | PASS — 10 pytest tests |
+| Python 3.13 | PASS — 10 pytest tests |
+| sdist and pure-Python wheel build | PASS |
+| Wheel archive includes package code, LICENSE notice and canonical CSV | PASS |
+| Isolated virtualenv install from wheel | PASS |
+| Import and CLI JSON smoke test from `/tmp`, outside checkout | PASS |
+| Canonical CSV generation and byte-drift check | PASS |
+| Shared JS/Python golden tests: Pinyin, IPA, all three UA systems | PASS |
+| JavaScript unit/integration suite | PASS |
+| Benchmark validator, corpus checks, acoustic input guards | PASS |
+| Production build, generated mapping drift, conversion benchmark, release constraints | PASS |
+| Chromium/WebKit browser regression suite | PASS |
+
+The Python package test suite currently contains 10 tests and passed on every supported Python version. The full workflow also ran `npm ci`, `npm run generate:data`, `python -m build python`, clean-wheel installation and the existing repository checks.
+
+### Built artifacts
+
+- Wheel: `chinese_ukrainian_transcription-0.1.0-py3-none-any.whl` — SHA-256 `d02adbb13d806cb461a330c4e4a5b0edd0dd7e0862b2619c61e3e6960db98c9d`.
+- Source distribution: `chinese_ukrainian_transcription-0.1.0.tar.gz` — SHA-256 `03e98a363e1deb1ae5863b02b453b78f52df395f2bd41c906e10134e2a78dc95`.
+- CI artifact: `zhua-python-distributions`, artifact ID `13610504221`, uploaded from the successful run.
+
+### Remaining boundaries
+
+- **Do not publish to PyPI yet.** Source-specific rights for the bundled canonical CSV have not been fully verified. The wheel is a build/verification artifact, not permission to redistribute the dataset.
+- PyPI distribution-name availability has not been verified; the current project name is provisional.
+- `script="auto"` currently reports `undetermined`; the package accepts Simplified and Traditional input but does not claim full script classification/normalization.
+- Exact pypinyin/pinyin-pro parity is claimed only for the six reviewed golden examples; polyphonic names and unlisted vocabulary remain engine-dependent.
+- Manual screen-reader, keyboard-only, mobile and zoom QA remains a separate repository-wide TODO.
+
+**Release posture:** the Python alpha package is implementation- and CI-verified, but public package publication remains blocked by data-rights review. The wider project remains a research preview/public beta, not fully release-ready.
