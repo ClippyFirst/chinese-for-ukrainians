@@ -104,7 +104,7 @@
 - [x] Canonical CSV/package-data byte equality passed.
 - [x] Existing JavaScript, browser, benchmark, generated-artifact, production-build and release gates passed.
 - [x] Exact commit/run evidence and remaining source/license/name blockers recorded in the master register.
-- [x] No PyPI publication; name availability and source-data rights remain unresolved.
+- [x] No PyPI publication; distribution-name endpoint probe is now part of CI; CSV inclusion is owner-authorized, and the CSV is not forced under MIT.
 
 ## Definition of done
 
