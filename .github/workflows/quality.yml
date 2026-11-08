@@ -13,37 +13,48 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22.12.0'
           cache: npm
-      - name: Install dependencies
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Node dependencies
         run: npm ci
-      - name: Record dependency audit findings for disposition
+      - name: Generate canonical maps and Python package data
+        run: npm run generate:data
+      - name: Verify generated files are committed and deterministic
+        run: git diff --exit-code -- src/generated/transcription-map.js python/src/zhua/data/zh-in-ua.csv
+      - name: Build and install Python wheel in a clean virtual environment
         run: |
-          npm audit --json > npm-audit-report.json || true
-          node --input-type=module -e "import fs from 'node:fs'; const a=JSON.parse(fs.readFileSync('npm-audit-report.json','utf8')); console.log(JSON.stringify({metadata:a.metadata?.vulnerabilities, advisories:Object.entries(a.vulnerabilities ?? {}).map(([name,v])=>({name,severity:v.severity,range:v.range,via:v.via.map(x=>typeof x==='string'?x:{title:x.title,url:x.url,range:x.range}),fixAvailable:v.fixAvailable}))},null,2))"
-      - name: Run unit and integration tests
+          python -m venv /tmp/zhua-wheel-venv
+          /tmp/zhua-wheel-venv/bin/python -m pip install --upgrade pip build
+          /tmp/zhua-wheel-venv/bin/python -m build python --wheel --outdir /tmp/zhua-dist
+          /tmp/zhua-wheel-venv/bin/python -m pip install --no-deps /tmp/zhua-dist/*.whl
+          cd /tmp
+          /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
+          /tmp/zhua-wheel-venv/bin/chuktrans --json "你好" > /tmp/zhua-smoke.json
+          /tmp/zhua-wheel-venv/bin/python -c "import json; d=json.load(open('/tmp/zhua-smoke.json')); assert d['source']=='你好'"
+      - name: Run Python package tests
+        run: |
+          python -m pip install pytest
+          python -m pytest -q python/tests
+      - name: Run JavaScript unit and integration tests
         run: npm test
       - name: Run research benchmark corpus validator regression tests
         run: node tests/research-benchmark-validator.test.mjs
       - name: Validate benchmark corpus structure and scoring guardrails
         run: npm run validate:benchmark-corpus
-      - name: Set up Python for acoustic-pipeline validation tests
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - name: Validate acoustic measurement pipeline input guards
         run: python research/ipa-acoustic/test_measure_formants.py
       - name: Build production bundle
         run: npm run build
-      - name: Verify generated mappings are committed and deterministic
-        run: git diff --exit-code -- src/generated/transcription-map.js
+      - name: Verify generated mappings are deterministic
+        run: git diff --exit-code -- src/generated/transcription-map.js python/src/zhua/data/zh-in-ua.csv
       - name: Run conversion benchmark
         run: npm run benchmark
       - name: Check release constraints
