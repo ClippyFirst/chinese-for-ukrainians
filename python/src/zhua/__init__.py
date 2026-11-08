@@ -59,7 +59,10 @@ def pinyin_to_ipa(value,include_tone=False):
         if initial=="r" and final=="i": out="ɻ̩"
         elif initial in ("zh","ch","sh") and final=="i": out=ini+"ɻ̩"
         elif initial in ("z","c","s") and final=="i": out=ini+"ɹ̩"
-        else: out=ini+("uɔ" if initial in ("b","p","m","f") and final=="o" else FINALS.get(final,""))
+        else:
+            final_ipa="uɔ" if initial in ("b","p","m","f") and final=="o" else FINALS.get(final,"")
+            if not final_ipa: return ""
+            out=ini+final_ipa
     return out+(CONTOURS.get(tone,"") if include_tone and out else "")
 
 def _csv_text():
