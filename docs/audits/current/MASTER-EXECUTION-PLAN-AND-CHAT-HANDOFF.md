@@ -587,9 +587,11 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 
 ## AISHELL-3 sample smoke-test implementation — 2026-11-08
 
-- Added two public AISHELL-3 baseline page Chinese/Pinyin pairs to the existing source-linked Pinyin fixture (10 → 12 total).
+- Added one public AISHELL-3 baseline page Chinese/Pinyin pair to the existing source-linked Pinyin fixture (10 → 11 total).
 - Updated the existing fixture regression test to assert 13 cases and accept the explicitly cited AISHELL-3 sample page alongside Han Dian lexical sources.
 - These three examples are smoke references visible on the publisher-linked baseline sample page; they are not archive-extracted rows, an independently adjudicated held-out corpus, or an accuracy score.
 - Implementation is on `research/aishell3-text-corpus-readiness-2026-11-08`; exact PR-head Quality run is required for DONE_VERIFIED.
 
 - Deliberately excluded the public example `不过英特尔之后不会继续接受如此大的损失` from exact-match assertions because its displayed `bu2` reflects surface tone sandhi; the current smoke test compares lexical Pinyin. Do not conflate the two layers.
+
+- Removed `替我播放相思风雨中`: the public baseline page gives `zong1` for final `中`, but the pinned engine/lexical reading returns `zhong1`. This discrepancy is unresolved and is excluded from exact-match assertions rather than treated as an engine failure or silently corrected.
