@@ -1,6 +1,6 @@
 # Python Engine Implementation Plan
 
-> **For agentic workers:** Execute task-by-task. Keep the master register current. Every production behavior change requires a failing test first and a passing full suite afterward.
+**Execution status: COMPLETED and merged to `main`.** This document began as an implementation plan. Its initial proposed module split was simplified during implementation; the as-built layout and exact CI evidence below supersede any target-file names that differ.
 
 **Goal:** Ship an offline Python library and CLI that reuse the Chinese-for-Ukrainians transcription data and IPA-first adapter contract.
 
@@ -32,73 +32,64 @@
 
 ### Task 1: Python project and public API skeleton
 
-**Files:**
-- Create: `python/pyproject.toml`
-- Create: `python/src/zhua/__init__.py`
-- Create: `python/src/zhua/api.py`
-- Create: `python/src/zhua/models.py`
-- Test: `python/tests/test_api.py`
+**As-built files:**
+- `python/pyproject.toml`
+- `python/src/zhua/__init__.py` (public API and typed result models)
+- `python/src/zhua/__main__.py`
+- `python/tests/test_engine.py`
 
 **Interfaces:**
 - `convert(text: str, *, script: str = "auto", show_pinyin_tones: bool = True, show_ukrainian_tones: bool = True) -> ConversionResult`
 - `transcribe(text: str, system: str, *, show_tones: bool = True) -> str`
 - `transcribe_all(text: str, *, show_tones: bool = True) -> dict[str, str]`
 
-- [ ] Test empty input, invalid system, stable system keys and result model shape.
-- [ ] Verify tests fail because the API is absent.
-- [ ] Implement the minimal typed API and package metadata.
-- [ ] Run `python -m pytest` and `python -m build`; verify wheel import from outside the repository.
+- [x] Empty input, invalid system, stable system keys and result model shape are tested.
+- [x] Implemented the public API and package metadata.
+- [x] Python pytest and wheel import from outside the repository passed in CI.
+- [ ] A strict test-first/red-before-implementation sequence was not followed; CI exposed defects which were corrected before the final green run.
 
 ### Task 2: Canonical CSV packaging and IPA-keyed mappings
 
-**Files:**
-- Modify: `scripts/generate-mappings.mjs`
-- Create: `python/src/zhua/data/zh-in-ua.csv` (generated)
-- Create: `python/src/zhua/mappings.py`
-- Test: `python/tests/test_mappings.py`
+**As-built files:**
+- `scripts/generate-mappings.mjs`
+- generated `python/src/zhua/data/zh-in-ua.csv`
+- `python/src/zhua/__init__.py` (CSV loader, IPA-key maps and validation)
+- `python/tests/test_engine.py`
 
 **Interfaces:**
 - `load_mappings() -> MappingBundle`
 - `validate_packaged_data() -> ValidationReport`
 
-- [ ] Test CSV schema, aliases, missing cells, source row provenance, duplicate normalized keys and packaged-data drift.
-- [ ] Verify the new tests fail before implementation.
-- [ ] Extend generation to produce the package-data copy from the root CSV.
-- [ ] Build IPA-keyed maps with collision detection and explicit missing markers.
-- [ ] Run Python tests and `npm run validate:data && npm run generate:data && git diff --exit-code -- src/generated/transcription-map.js`.
+- [x] CSV schema, missing cells, source-row provenance, unsupported forms and byte-identical package data are tested.
+- [x] Generation produces the Python package-data copy from the root CSV.
+- [x] IPA-keyed maps detect collisions and retain explicit missing markers.
+- [x] CI runs the generator and byte-drift check successfully.
 
 ### Task 3: Pinyin, scanner and IPA pipeline
 
-**Files:**
-- Create: `python/src/zhua/scanner.py`
-- Create: `python/src/zhua/pinyin.py`
-- Create: `python/src/zhua/ipa.py`
-- Create: `python/src/zhua/tones.py`
-- Test: `python/tests/test_scanner.py`
-- Test: `python/tests/test_pinyin.py`
-- Test: `python/tests/test_ipa.py`
-- Test: `python/tests/fixtures/cross_engine_golden.csv`
+**As-built files:**
+- `python/src/zhua/__init__.py` (scanner, pypinyin adapter, tone normalization and broad IPA port in one compact module)
+- `python/tests/test_engine.py`
+- `python/tests/fixtures/cross_runtime_golden.json`
+- `tests/python-cross-runtime-golden.test.mjs`
 
-- [ ] Test non-Han preservation, Simplified/Traditional/mixed input, tone-number normalization, neutral tone, unsupported forms and representative IPA classes.
-- [ ] Verify each test fails for the intended missing behavior.
-- [ ] Implement the pypinyin adapter using `Style.TONE3`, `v_to_u=False` (then normalize `v`/`u:` to `ü` in the package adapter), `neutral_tone_with_five=True`, no tone-sandhi argument (pypinyin does not expose that option in this API).
-- [ ] Port the existing JS broad-IPA mapping without changing its linguistic convention.
-- [ ] Build a reviewed cross-engine fixture. Classify each case as exact parity, known engine difference or unresolved; do not score a guessed answer as gold.
-- [ ] Run `python -m pytest` and the existing JS suite.
+- [x] Test mixed Unicode/non-Han preservation, Traditional input, tone normalization, unsupported forms and representative IPA classes.
+- [x] Use pypinyin `Style.TONE3`, `v_to_u=False`, `neutral_tone_with_five=True`; no unsupported tone-sandhi argument is passed.
+- [x] Port the JS broad-IPA mapping, including unresolved IPA forms.
+- [x] Shared six-case fixture asserts Pinyin, IPA and all three UA outputs across both runtimes.
+- [x] Python pytest and JavaScript suites pass. Engine differences outside the fixture remain explicit.
 
 ### Task 4: CLI and user/developer documentation
 
-**Files:**
-- Create: `python/src/zhua/cli.py`
-- Modify: `python/pyproject.toml`
-- Create: `python/README.md`
-- Modify: `README.md`, `docs/INDEX.md`, `docs/ARCHITECTURE.md`, `docs/USER-GUIDE.md`
+**As-built files:**
+- `python/src/zhua/__main__.py` and `zhua:main` console entry point in `python/pyproject.toml`
+- `python/README.md`
+- root README and docs index/architecture/hand-off
 
-- [ ] Test stdin, UTF-8 file input, system selection, JSON output, error exit codes and preservation of stdout/stderr separation.
-- [ ] Verify CLI tests fail before implementation.
-- [ ] Add `chuktrans` entry point and bilingual API/CLI examples.
-- [ ] Confirm docs distinguish the shipped website from the Python package until the latter is actually released.
-- [ ] Run CLI smoke tests from a clean environment.
+- [x] Test stdin, UTF-8 file input, system selection, JSON output, error exit codes and stdout/stderr separation.
+- [x] Add the `chuktrans` entry point and API/CLI examples.
+- [x] Docs distinguish the browser app from the unpublished Python alpha.
+- [x] Clean-environment CLI smoke test passed.
 
 ### Task 5: CI, wheel reproducibility and release gates
 
@@ -108,12 +99,12 @@
 - Modify: `docs/audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md`
 - Modify: `docs/audits/current/CHAT-HANDOFF.md`
 
-- [ ] Add a supported Python-version matrix and run pytest.
-- [ ] Build sdist/wheel, inspect archive data, install wheel into a clean environment and run import/CLI smoke tests.
-- [ ] Verify canonical CSV/package-data byte equality.
-- [ ] Run all existing JavaScript quality, browser, benchmark, generated-artifact and release checks.
-- [ ] Record exact commit SHA, CI run URLs, commands and remaining source/license/name blockers.
-- [ ] Do not publish to PyPI until the distribution name is confirmed available, metadata is verified, dependency notices are reviewed and source-data rights are sufficiently clear.
+- [x] Python 3.10–3.13 matrix passed (10 pytest tests per version).
+- [x] Built sdist and wheel, inspected archive, installed wheel in a clean venv, imported from `/tmp`, and ran CLI JSON smoke test.
+- [x] Canonical CSV/package-data byte equality passed.
+- [x] Existing JavaScript, browser, benchmark, generated-artifact, production-build and release gates passed.
+- [x] Exact commit/run evidence and remaining source/license/name blockers recorded in the master register.
+- [x] No PyPI publication; name availability and source-data rights remain unresolved.
 
 ## Definition of done
 
@@ -148,3 +139,8 @@ Local repository cloning was blocked by unavailable DNS resolution for github.co
 PR #51 merged as `539720a5b9cebcd5f83a011cf107b65f89ae45d2` after [Quality run 42464642753](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753) passed. Python pytest: 10/10 on Python 3.10, 3.11, 3.12 and 3.13. The sdist and wheel built; the wheel was inspected, installed in an isolated virtualenv, imported from `/tmp`, and its `chuktrans --json` smoke test passed. Shared JS/Python golden tests passed for Pinyin, IPA and all three Ukrainian outputs. Full JavaScript, benchmark, build, release and Chromium/WebKit browser gates passed.
 
 The verified artifacts and SHA-256 checksums are recorded in the master execution register. Publication remains DEFERRED because source-specific rights for the packaged CSV and distribution-name availability remain unresolved. Manual assistive-technology QA remains TODO.
+
+
+### As-built module boundary
+
+The implementation is compact rather than following the original multi-file split: the public API, dataclasses, scanner, pypinyin adapter, tone normalization, IPA port, CSV loader and CLI function live in `python/src/zhua/__init__.py`; `__main__.py` provides `python -m zhua`. This was tested as shipped. Refactoring into smaller modules is optional maintenance work, not an acceptance blocker.
