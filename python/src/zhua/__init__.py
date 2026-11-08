@@ -98,7 +98,7 @@ def scan_text(text):
 
 def _pronounce(text):
     from pypinyin import Style,pinyin
-    values=pinyin(text,style=Style.TONE3,heteronym=False,errors=lambda chars:list(chars),neutral_tone_with_five=True,v_to_u=False,tone_sandhi=False)
+    values=pinyin(text,style=Style.TONE3,heteronym=False,errors=lambda chars:list(chars),neutral_tone_with_five=True,v_to_u=False)
     chars=list(text)
     if len(values)!=len(chars): return [(c,"",0,"unresolved") for c in chars]
     result=[]
