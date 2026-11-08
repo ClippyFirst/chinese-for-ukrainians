@@ -161,3 +161,8 @@ Updated execution status: dataset discovery = DONE_VERIFIED; source/license clea
 ## AISHELL-3 verification continuation — 2026-11-08
 
 AISHELL-3 (OpenSLR SLR93) has corroborated license metadata: OpenSLR's resource page, archive-side `info.txt`, and publisher page state Apache License 2.0. The archive checksum file lists MD5 `6833e9dcb47709d4e153e2f669e5ddc8` for `data_aishell3.tgz`. Public samples expose Chinese/Pinyin pairs. No archive/audio downloaded; internal file layout, split manifests, exact transcript paths and normalization remain unverified. Corpus metadata/license = DONE_VERIFIED; benchmark extraction = BLOCKED pending archive inspection.
+
+
+## Public AISHELL-3 sample smoke fixture — 2026-11-08
+
+Three Pinyin pairs displayed on the AISHELL-3 public baseline page are now included in the existing smoke fixture (total 13). They expand phrase/context coverage but remain smoke references, not archive-extracted held-out rows or independently adjudicated gold. The same-corpus competitor benchmark remains blocked until a locked eligible corpus and reproducible environments are available.
