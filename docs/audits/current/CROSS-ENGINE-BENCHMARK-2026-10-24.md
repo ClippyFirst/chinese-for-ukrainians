@@ -147,3 +147,12 @@ The Node job passed dependency installation, the project regression suite, `npm 
 **g2pC is still BLOCKED.** Its job succeeded by recording a blocker artifact after the upstream `pkuseg` native extension failed to compile on Python 3.10, even with `numpy<2`. The artifact contains no predictions. No g2pC accuracy or runtime result is available.
 
 No shared held-out linguistic corpus has yet been evaluated; g2pW/g2pM remain unexecuted, IPA adapters remain unscored, and Ukrainian system accuracy remains evidence-limited. Therefore no comparative winner or accuracy claim is authorized.
+
+
+## Source-audit continuation — 2026-11-08
+
+The detailed source and licensing triage is now recorded in [MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md](./MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md). It identifies CPP/g2pM and CVTE-Poly as major polyphone benchmark candidates, and AISHELL-3 (OpenSLR SLR93) as a potentially reusable Apache-2.0 phrase-level Pinyin source. AISHELL-1 is marked academic-use only by its catalog and is not assumed redistributable. CVTE-Poly dataset licensing was not verified, so no data was copied.
+
+The project-owned lexical fixture now contains 10 source-linked Han Dian entries after PR #55. Exact Quality run [42488650345](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42488650345) passed on PR head `8ddd4e7cf43409e550552281ed7a6922d75b0eaf`; PR #55 was merged as `49a5083076edafd71877824b3694bf0fba34f9e2`. This is a smoke-test improvement, not a held-out accuracy result.
+
+Updated execution status: dataset discovery = DONE_VERIFIED; source/license clearance for external corpora = PARTIAL/BLOCKED by exact archive/repository terms; competitor execution = BLOCKED pending corpus eligibility and pinned runnable environments; IPA and Ukrainian accuracy = TODO/evidence-limited. No ranking or accuracy percentage is claimed.
