@@ -77,3 +77,17 @@ Do not claim an accuracy percentage, a winner, or that the project is more accur
 The repeatable test matrix and task script are maintained in [ACCESSIBILITY-MANUAL-QA-PROTOCOL.md](../ACCESSIBILITY-MANUAL-QA-PROTOCOL.md). Automated browser checks and screenshot review are not manual sign-off. Required real-device coverage includes NVDA, VoiceOver, TalkBack, keyboard-only operation, actual clipboard permissions, zoom/text enlargement, and physical mobile speech output.
 
 **Status: BLOCKED** pending a human-operated session. The protocol is prepared; no manual pass is claimed.
+
+
+## Follow-up — independent Pinyin smoke corpus expansion (2026-11-08)
+
+A research branch adds four additional Han Dian lexical entries to tests/fixtures/independent-pinyin-cases.csv, taking the scoped Pinyin smoke set from 6 to 10 cases:
+
+- 重复 → chong2 fu4 (repeat/duplicate sense): https://zdic.net/hans/%E9%87%8D%E5%A4%8D
+- 重量 → zhong4 liang4 (physical weight): https://zdic.net/hans/%E9%87%8D%E9%87%8F
+- 方便 → fang1 bian4 (convenient/suitable): https://zdic.net/hans/%E6%96%B9%E4%BE%BF
+- 快乐 → kuai4 le4 (happy/cheerful): https://zdic.net/hans/%E5%BF%AB%E4%B9%90
+
+The test now asserts the explicit ten-case corpus size, so accidental fixture shrinkage is caught. These are source-backed lexical checks for the pinned Pinyin engine only. They do not validate IPA or Ukrainian outputs, do not form a statistically representative held-out set, and are not an accuracy percentage. The four source entries were checked for their cited reading/sense; exact runtime acceptance still depends on the PR-head Quality workflow.
+
+Status: Pinyin lexical smoke corpus = PARTIAL (10 source-linked cases); representative development/held-out/challenge corpus = TODO; broad IPA and Ukrainian independent gold remain TODO/evidence-limited.
