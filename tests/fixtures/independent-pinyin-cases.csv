@@ -5,3 +5,7 @@ zdic-chongqing;重庆;chong2 qing4;false;https://zdic.net/hans/%E9%87%8D%E6%85%B
 zdic-music;音乐;yin1 yue4;false;https://zdic.net/hans/%E9%9F%B3%E4%B9%90;Lexical entry gives yīn yuè
 zdic-grow-up;长大;zhang3 da4;false;https://zdic.net/hans/%E9%95%BF%E5%A4%A7;Fixture selects the documented grow-up reading, while the dictionary also records an alternate cháng dà reading
 zdic-agricultural-bank;中国农业银行;zhong1 guo2 nong2 ye4 yin2 hang2;false;https://zdic.net/hans/%E4%B8%AD%E5%9B%BD%E5%86%9C%E4%B8%9A%E9%93%B6%E8%A1%8C;Long institutional name tests phrase segmentation and context-sensitive 银行 reading
+zdic-repeat;重复;chong2 fu4;false;https://zdic.net/hans/%E9%87%8D%E5%A4%8D;Han Dian lexical entry gives chóng fù for the repeat/duplicate sense
+zdic-weight;重量;zhong4 liang4;false;https://zdic.net/hans/%E9%87%8D%E9%87%8F;Han Dian lexical entry gives zhòng liàng for physical weight
+zdic-convenient;方便;fang1 bian4;false;https://zdic.net/hans/%E6%96%B9%E4%BE%BF;Han Dian lexical entry gives fāng biàn for convenient/suitable
+zdic-happy;快乐;kuai4 le4;false;https://zdic.net/hans/%E5%BF%AB%E4%B9%90;Han Dian lexical entry gives kuài lè for happy/cheerful
