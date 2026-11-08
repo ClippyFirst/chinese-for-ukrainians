@@ -231,3 +231,10 @@ PR #55 is merged as `49a5083076edafd71877824b3694bf0fba34f9e2`. The independent 
 A separate benchmark source audit is in `MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md`. It identifies CPP, CVTE-Poly and AISHELL-3 as candidates with different evidence and licensing status. No third-party data was copied because exact dataset license/archive conditions were not fully verified. Do not claim G2P accuracy or engine superiority from the 10-case smoke fixture.
 
 Next genuine work: verify AISHELL-3 archive metadata/schema; obtain a license-cleared locked corpus; pin and run competing G2P engines on the same corpus; independently adjudicate IPA and each Ukrainian method; complete manual NVDA/VoiceOver/TalkBack and physical-device QA. Audio is not a mandatory blocker where documentary phonetic evidence suffices.
+
+
+## AISHELL-3 source verification continuation — 2026-11-08
+
+PR #56 merged as `9c7e665b48f317a03ffcebaaf25f4d7794536652` after exact-head Quality run `42489252423` passed. AISHELL-3 metadata is cross-checked against OpenSLR page, archive-side `info.txt` and checksum file, and publisher page; all state Apache License 2.0. Archive checksum listed by OpenSLR: `6833e9dcb47709d4e153e2f669e5ddc8` (MD5). Public samples confirm Chinese text paired with numbered-tone Pinyin.
+
+The large archive was not downloaded or unpacked. Exact internal license/NOTICE, transcript paths, data splits, and normalization rules remain open; no corpus data/audio copied. Next action is text-only archive listing and transcript inspection, then a source-attributed locked benchmark split.
