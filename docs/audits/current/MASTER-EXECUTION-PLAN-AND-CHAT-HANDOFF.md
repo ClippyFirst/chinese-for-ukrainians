@@ -420,3 +420,12 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 The execution environment cannot resolve `github.com` for local clone, so no local pytest, local wheel build, or local clean-install result is claimed. GitHub Actions run [42463805036](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42463805036) was queued/in progress when this entry was written; verify all five jobs on the exact latest PR head before marking any CI acceptance as `DONE_VERIFIED`.
 
 **Release posture:** Python package implementation is in review and not yet verified by completed CI. No PyPI publish, tag or release was created. Web product remains public beta / research preview.
+
+
+### CI failure analysis and corrective change — 2026-11-08
+
+The first implementation CI run [42463805036](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42463805036) failed after a successful wheel build and install. The failure exposed a real IPA-port defect: the Python port returned the initial-only fragment x for unsupported hm/hng, whereas the JS adapter returns an empty result when the final is unsupported. This also caused false IPA-key collisions during map construction. The port now returns unresolved for any unsupported final, matching src/app/ipa.js; regression assertions cover both interjections.
+
+The same failed run proved that the wheel was buildable and that zhua/data/zh-in-ua.csv was included in the wheel archive, but import smoke testing then stopped at the collision. This is **not** a clean-install pass. The workflow was also strengthened to build both sdist and wheel and inspect the wheel's package-data members before installation.
+
+Latest CI status must be read from the latest PR-head run. Do not use the failed first run as evidence of a passing package.
