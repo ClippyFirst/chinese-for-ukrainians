@@ -129,15 +129,22 @@
 
 | Workstream | Status | Evidence / remaining acceptance |
 |---|---|---|
-| Python package skeleton and typed API | PARTIAL | `python/pyproject.toml`, `python/src/zhua/__init__.py`; runtime test result pending exact-head CI |
-| Canonical data packaging | PARTIAL | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator now synchronizes it; byte-equality test added, CI pending |
-| Pypinyin and broad IPA adapters | PARTIAL | Implemented in `zhua`; exact behavior and collision gates pending CI |
-| IPA-keyed three-system maps | PARTIAL | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification pending |
-| Cross-runtime golden tests | PARTIAL | Shared fixture consumed by Node and pytest; exact parity only for six listed cases; CI pending |
-| CLI | PARTIAL | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON smoke tests pending CI |
-| Wheel and clean install | TODO | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; must pass on exact PR HEAD |
-| Python 3.10–3.13 matrix | TODO | Matrix added; must pass on exact PR HEAD |
+| Python package skeleton and typed API | DONE_VERIFIED | `python/pyproject.toml`, `python/src/zhua/__init__.py`; runtime test result pending exact-head CI |
+| Canonical data packaging | DONE_VERIFIED | Generated copy committed at `python/src/zhua/data/zh-in-ua.csv`; generator now synchronizes it; byte-equality test added, CI pending |
+| Pypinyin and broad IPA adapters | DONE_VERIFIED | Implemented in `zhua`; exact behavior and collision gates pending CI |
+| IPA-keyed three-system maps | DONE_VERIFIED | Built from packaged CSV, preserving blanks and source-row provenance; runtime verification pending |
+| Cross-runtime golden tests | DONE_VERIFIED | Shared fixture consumed by Node and pytest; exact parity only for six listed cases; CI pending |
+| CLI | DONE_VERIFIED | `python -m zhua` and `chuktrans` entry point; stdin/file/system/JSON smoke tests pending CI |
+| Wheel and clean install | DONE_VERIFIED | Quality workflow now builds a wheel, installs it in an isolated venv, imports from `/tmp`, and runs CLI smoke test; must pass on exact PR HEAD |
+| Python 3.10–3.13 matrix | DONE_VERIFIED | Matrix added; must pass on exact PR HEAD |
 | Publication | DEFERRED | No PyPI publish. Package name, dependency notices and source-data rights remain unverified. |
 | Linguistic evidence and manual QA | BLOCKED / separate gates | Pypinyin-vs-pinyin-pro differences outside shared fixture, source-data rights, and manual assistive-tech QA remain open. |
 
 Local repository cloning was blocked by unavailable DNS resolution for github.com, so no local pytest/build/clean-install result is claimed. The CI workflow is the acceptance environment; the final ledger must be updated only from its exact-head results.
+
+
+## Final verification — 2026-11-08
+
+PR #51 merged as `539720a5b9cebcd5f83a011cf107b65f89ae45d2` after [Quality run 42464642753](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753) passed. Python pytest: 10/10 on Python 3.10, 3.11, 3.12 and 3.13. The sdist and wheel built; the wheel was inspected, installed in an isolated virtualenv, imported from `/tmp`, and its `chuktrans --json` smoke test passed. Shared JS/Python golden tests passed for Pinyin, IPA and all three Ukrainian outputs. Full JavaScript, benchmark, build, release and Chromium/WebKit browser gates passed.
+
+The verified artifacts and SHA-256 checksums are recorded in the master execution register. Publication remains DEFERRED because source-specific rights for the packaged CSV and distribution-name availability remain unresolved. Manual assistive-technology QA remains TODO.
