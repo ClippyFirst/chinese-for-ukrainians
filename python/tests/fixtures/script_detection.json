@@ -1,0 +1,30 @@
+[
+  {
+    "text": "中國",
+    "status": "traditional"
+  },
+  {
+    "text": "中国",
+    "status": "simplified"
+  },
+  {
+    "text": "中国與國",
+    "status": "mixed"
+  },
+  {
+    "text": "中文",
+    "status": "undetermined"
+  },
+  {
+    "text": "Hello, 123!",
+    "status": "undetermined"
+  },
+  {
+    "text": "漢字",
+    "status": "traditional"
+  },
+  {
+    "text": "汉字",
+    "status": "simplified"
+  }
+]
