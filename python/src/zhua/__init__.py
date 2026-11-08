@@ -4,6 +4,7 @@ import csv, re, unicodedata
 from dataclasses import dataclass, asdict
 from importlib.resources import files
 from io import StringIO
+from functools import lru_cache
 
 SYSTEMS=("kirnosova","kirnosova_tsisar","nanu")
 HEADERS=("№","Піньїнь","Кірносова","Кірносова—Цісар","НАНУ")
@@ -107,15 +108,19 @@ def _pronounce(text):
         result.append((c,(base+str(tone)) if base and base!=c and tone else base, tone, "resolved" if base and base!=c else "unresolved"))
     return result
 
+@lru_cache(maxsize=1)
+def _script_variant_map():
+    import json
+    raw=files("zhua").joinpath("data/traditional-to-simplified.json").read_text(encoding="utf-8")
+    return json.loads(raw)
+
 def detect_script(text):
     """Classify distinctive Han variants using the same generated map as the web app.
 
     Shared-only Han text is intentionally undetermined; mixed text is reported as mixed.
     This is character-evidence classification, not locale inference.
     """
-    import json
-    raw=files("zhua").joinpath("data/traditional-to-simplified.json").read_text(encoding="utf-8")
-    mapping=json.loads(raw)
+    mapping=_script_variant_map()
     traditional=set(mapping)
     simplified_only={value for value in mapping.values() if value not in traditional}
     has_traditional=has_simplified=False
