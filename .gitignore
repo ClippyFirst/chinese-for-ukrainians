@@ -4,3 +4,10 @@ test-results/
 playwright-report/
 coverage/
 *.local
+python/build/
+python/dist/
+python/*.egg-info/
+python/.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
