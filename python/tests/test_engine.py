@@ -56,3 +56,11 @@ def test_cli_stdin_file_and_error_channels(tmp_path):
     assert from_file.returncode==0 and from_file.stdout.strip()
     bad=subprocess.run([sys.executable,"-m","zhua","--script","invalid","你好"],text=True,capture_output=True)
     assert bad.returncode==2 and bad.stderr and not bad.stdout
+
+def test_tone_options_are_independent():
+    marked=zhua.convert("你好")
+    plain_pinyin=zhua.convert("你好",show_pinyin_tones=False)
+    plain_ukrainian=zhua.convert("你好",show_ukrainian_tones=False)
+    assert plain_pinyin.pinyin=="ni hao"
+    assert marked.pinyin=="nǐ hǎo"
+    assert plain_ukrainian.kirnosova!=marked.kirnosova
