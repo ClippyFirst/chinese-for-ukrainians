@@ -433,7 +433,7 @@ Latest CI status must be read from the latest PR-head run. Do not use the failed
 
 ## Python engine — final verified state, 2026-11-08
 
-<badge color="success">DONE_VERIFIED — merged to main</badge>
+**Status: DONE_VERIFIED — merged to main.**
 
 - **Starting main SHA:** `b5f21c206516c162cbd9413039b7c0b448f8b2d1`.
 - **Implementation branch:** `feat/python-engine-2026-11-08`.
