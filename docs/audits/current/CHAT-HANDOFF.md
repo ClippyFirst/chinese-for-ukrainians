@@ -182,3 +182,18 @@ The current implementation snapshot remains public beta / research preview. Succ
 ### CI defect and repair note — 2026-11-08
 
 The first Quality run #42463805036 built the wheel and confirmed the CSV is included, but failed on import because the initial Python IPA port incorrectly emitted an initial-only x for unsupported hm/hng, causing IPA map collisions. The implementation was corrected to match the JavaScript rule: if the final has no supported IPA mapping, the complete syllable remains unsupported. The regression suite explicitly checks both forms. A later workflow also inspects the wheel and builds the sdist. The latest PR-head run, not the first failed run, is the acceptance evidence.
+
+
+## Final Python package handoff — 2026-11-08
+
+- PR #51 merged to main by squash.
+- Merge commit: `539720a5b9cebcd5f83a011cf107b65f89ae45d2`.
+- Verified source head: `2e94cad9279344726d0bf74b35636e303d81d100`.
+- Successful CI run: https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753.
+- All 5 jobs passed: full Quality verify plus Python 3.10, 3.11, 3.12 and 3.13. Each Python matrix job reports 10 passed tests.
+- Wheel and sdist built. The wheel was installed into a fresh virtual environment and imported from `/tmp`; CLI JSON smoke test passed. Canonical CSV and license notice are included in the archive.
+- Shared golden fixture compares Pinyin, broad IPA and the three Ukrainian systems between JavaScript and Python for six curated cases; both suites passed.
+- Existing Node/browser, production build, benchmark and release gates passed, including Chromium/WebKit browser regression.
+- Downloadable wheel and sdist were exported to the conversation artifacts. SHA-256 values are in the master register.
+- Do not publish: CSV source-specific rights and PyPI name availability remain unresolved. `script="auto"` remains undetermined; universal engine parity is not claimed.
+- Manual accessibility QA remains a separate TODO.
