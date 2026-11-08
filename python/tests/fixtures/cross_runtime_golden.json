@@ -1,0 +1,8 @@
+[
+{"text":"你好","pinyin":"nǐ hǎo","classification":"exact-parity"},
+{"text":"中国","pinyin":"zhōng guó","classification":"exact-parity"},
+{"text":"北京","pinyin":"běi jīng","classification":"exact-parity"},
+{"text":"上海","pinyin":"shàng hǎi","classification":"exact-parity"},
+{"text":"汉语","pinyin":"hàn yǔ","classification":"exact-parity"},
+{"text":"学习","pinyin":"xué xí","classification":"exact-parity"}
+]
