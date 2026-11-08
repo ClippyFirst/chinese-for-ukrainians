@@ -44,6 +44,14 @@ jobs:
           /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
           /tmp/zhua-wheel-venv/bin/chuktrans --json "你好" > /tmp/zhua-smoke.json
           /tmp/zhua-wheel-venv/bin/python -c "import json; d=json.load(open('/tmp/zhua-smoke.json')); assert d['source']=='你好'"
+      - name: Upload built Python distributions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zhua-python-distributions
+          path: /tmp/zhua-dist/*
+          if-no-files-found: warn
+          retention-days: 7
       - name: Install Python package and test dependencies
         run: python -m pip install -e "python[test]"
       - name: Run Python package tests
