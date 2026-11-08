@@ -1,0 +1,2 @@
+recursive-include tests *.py *.json
+include README.md LICENSE THIRD_PARTY_NOTICES.md

@@ -46,6 +46,18 @@ jobs:
           /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
           /tmp/zhua-wheel-venv/bin/chuktrans --json "你好" > /tmp/zhua-smoke.json
           /tmp/zhua-wheel-venv/bin/python -c "import json; d=json.load(open('/tmp/zhua-smoke.json')); assert d['source']=='你好'"
+      - name: Verify source distribution contains runnable tests and fixtures
+        run: |
+          mkdir -p /tmp/zhua-sdist
+          tar -xzf /tmp/zhua-dist/*.tar.gz -C /tmp/zhua-sdist
+          SDIST_DIR="$(find /tmp/zhua-sdist -mindepth 1 -maxdepth 1 -type d | head -n 1)"
+          test -f "$SDIST_DIR/tests/test_engine.py"
+          test -f "$SDIST_DIR/tests/fixtures/cross_runtime_golden.json"
+          test -f "$SDIST_DIR/tests/fixtures/script_detection.json"
+          python -m venv /tmp/zhua-sdist-venv
+          /tmp/zhua-sdist-venv/bin/python -m pip install "$SDIST_DIR[test]"
+          cd "$SDIST_DIR"
+          /tmp/zhua-sdist-venv/bin/python -m pytest -q tests
       - name: Upload built Python distributions
         if: always()
         uses: actions/upload-artifact@v4
