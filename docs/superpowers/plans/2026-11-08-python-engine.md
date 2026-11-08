@@ -144,3 +144,16 @@ The verified artifacts and SHA-256 checksums are recorded in the master executio
 ### As-built module boundary
 
 The implementation is compact rather than following the original multi-file split: the public API, dataclasses, scanner, pypinyin adapter, tone normalization, IPA port, CSV loader and CLI function live in `python/src/zhua/__init__.py`; `__main__.py` provides `python -m zhua`. This was tested as shipped. Refactoring into smaller modules is optional maintenance work, not an acceptance blocker.
+
+
+## Follow-up implementation and final verification — PR #52
+
+**DONE_VERIFIED:** shared script classification, 12-case cross-runtime golden suite, source-backed `銀行` phrase override, full ISC notice packaging, generated-data drift checks, 200% text-resize/accessibility automation, wheel/sdist rebuild and clean install.
+
+- PR #52 merged as `941d4f2c485e8503df7fcd7b1472bab846f90cd8`.
+- Exact tested head `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`; Quality run 42466148142 passed.
+- Python 3.10–3.13: 14/14 tests each. Browser: 61/61.
+- Wheel SHA-256 `5f881ed7c3d2b6175a43cd93f2ad004924938ecb2ba0cae1d4d1f8e93b112dde`; sdist SHA-256 `9817bb130cf81b649a8111d711c24abf66d92c36b3793b51a7e689efc305cb78`.
+- CSV rights are owner-confirmed and inclusion is authorized; CSV remains owner-controlled. Full ISC notice for bundled character-variant data is in the wheel.
+- PyPI endpoint probe returned 404 for both proposed names; no claimability/reservation conclusion. Final name decision remains BLOCKED.
+- Manual screen-reader/physical device QA remains BLOCKED; automated browser accessibility coverage is verified.
