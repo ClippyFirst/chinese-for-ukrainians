@@ -46,3 +46,13 @@ def test_blank_cells_remain_missing_in_their_own_system():
     # The canonical ê row deliberately leaves the NANU value blank.
     assert maps["nanu"]["ɛ"]["missing"] is True
     assert maps["kirnosova"]["ɛ"]["missing"] is False
+
+def test_cli_stdin_file_and_error_channels(tmp_path):
+    piped=subprocess.run([sys.executable,"-m","zhua","--json"],input="你好",text=True,capture_output=True)
+    assert piped.returncode==0 and json.loads(piped.stdout)["source"]=="你好"
+    source=tmp_path/"input.txt"
+    source.write_text("中国",encoding="utf-8")
+    from_file=subprocess.run([sys.executable,"-m","zhua","--file",str(source),"--system","kirnosova"],text=True,capture_output=True)
+    assert from_file.returncode==0 and from_file.stdout.strip()
+    bad=subprocess.run([sys.executable,"-m","zhua","--script","invalid","你好"],text=True,capture_output=True)
+    assert bad.returncode==2 and bad.stderr and not bad.stdout
