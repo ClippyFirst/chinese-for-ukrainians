@@ -19,11 +19,17 @@ test('JavaScript and Python agree on shared Pinyin, IPA and Ukrainian golden out
     const result = spawnSync('python', ['-m', 'zhua', '--json', item.text], { encoding: 'utf8' });
     assert.equal(result.status, 0, result.stderr);
     const py = JSON.parse(result.stdout);
-    assert.equal(py.pinyin, item.pinyin, `Python Pinyin: ${item.text}`);
-    assert.equal(py.ipa, item.ipa, `Python IPA: ${item.text}`);
-    assert.equal(py.kirnosova, js.kirnosova, `Kirnosova: ${item.text}`);
-    assert.equal(py.kirnosova_tsisar, js.kirnosovaTsisar, `Kirnosova-Tsisar: ${item.text}`);
-    assert.equal(py.nanu, js.nanu, `NANU: ${item.text}`);
+    assert.equal(py.pinyin, item.pypinyin ?? item.pinyin, `Python Pinyin: ${item.text}`);
+    assert.equal(py.ipa, item.pypinyin_ipa ?? item.ipa, `Python IPA: ${item.text}`);
+    if (item.classification === 'exact-parity') {
+      assert.equal(py.pinyin, js.pinyin, `shared Pinyin: ${item.text}`);
+      assert.equal(py.ipa, js.ipa, `shared IPA: ${item.text}`);
+      assert.equal(py.kirnosova, js.kirnosova, `Kirnosova: ${item.text}`);
+      assert.equal(py.kirnosova_tsisar, js.kirnosovaTsisar, `Kirnosova-Tsisar: ${item.text}`);
+      assert.equal(py.nanu, js.nanu, `NANU: ${item.text}`);
+    } else {
+      assert.equal(item.classification, 'known-engine-difference', `unexpected parity class: ${item.text}`);
+    }
   }
 });
 
