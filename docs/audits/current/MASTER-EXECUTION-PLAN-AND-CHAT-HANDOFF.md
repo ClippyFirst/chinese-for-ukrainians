@@ -524,3 +524,29 @@ Acceptance on exact PR head `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`: generato
 **Release posture:** Python alpha is implementation-, build-, clean-install- and CI-verified, but not published. Do not publish until the owner chooses a final PyPI name and performs the final name-claimability check. The wider web product remains public beta / research preview; manual assistive-technology QA and independent linguistic gold-corpus research remain open.
 
 The exact main documentation head `15c1c201e271c696a440091692806d48592a25e3` also passed Quality run `42466483248` and Pages run `42466483269`.
+
+
+## Continuation — sdist reproducibility and remaining research gates (2026-11-08)
+
+### PR #53: source distribution test reproducibility
+
+- [PR #53](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/53) merged to main as `7baad88eb2d8a17b6563968dcb99ea7ffbef8d46`.
+- Exact tested PR head: `1ddcd190ec7598cf22ea0e447b4cb475d7b914fc`.
+- Quality run [42482289127](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42482289127) completed SUCCESS; all five jobs passed.
+- Four Python versions (3.10–3.13) passed. The workflow builds the sdist, verifies test and fixture inclusion, extracts it into a clean directory, installs its test extra in a fresh virtual environment, and runs pytest from the extracted source tree. The full verify job also passed.
+- Change: `python/MANIFEST.in` includes Python tests and JSON fixtures; fixture lookup is now relative to the test package; repository-only canonical CSV byte comparison is conditional on the checkout being present, while packaged-data validation always runs.
+
+### Remaining gates classified
+
+| Gate | Status | Current evidence / acceptance |
+|---|---|---|
+| Manual screen-reader and physical-device QA | BLOCKED | Protocol added at `docs/ACCESSIBILITY-MANUAL-QA-PROTOCOL.md`. NVDA, VoiceOver, TalkBack, keyboard-only, actual clipboard, mobile speech output and zoom still require human-operated devices. No manual pass is claimed. |
+| PyPI distribution name | BLOCKED | Preferred recommendation is `chinese-ukrainian-transcription`; `chuktrans` remains CLI name. Earlier anonymous JSON 404 responses do not prove claimability. Requires maintainer confirmation and authenticated PyPI claimability check. No publication authorized or performed. |
+| Independent Pinyin gold corpus | PARTIAL | Six Han Dian lexical examples are source-backed smoke cases only. A representative locked held-out corpus, reviewer/adjudication metadata and separate development partition remain TODO. |
+| Independent broad-IPA gold | TODO / evidence-limited | 403 UW inventory is a notation/source snapshot, not universal phonetic truth. Exact target variety, transcription depth and class-specific evidence must be adjudicated. Audio is not an absolute prerequisite, but evidence must support the exact output convention. |
+| Independent Ukrainian gold | TODO / evidence-limited | Canonical CSV supports reproduction/coverage only. Each method requires row-level collation against its primary publication/table, independent review and rights/reuse notes. |
+| Cross-engine accuracy ranking | BLOCKED | No accuracy percentage or winner until layer-specific held-out gold partitions and reproducible model environments/raw predictions exist. |
+
+See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contract, PyPI recommendation/acceptance steps and detailed gate boundaries.
+
+**Current posture:** source distribution and wheel build/test reproducibility are now CI-verified. Python alpha remains unpublished. The wider product remains a public beta/research preview, not research-complete or release-ready. The only way to close manual QA is a real device session; the owner must confirm the public PyPI name; independent linguistic gold requires source-by-source collation and review.
