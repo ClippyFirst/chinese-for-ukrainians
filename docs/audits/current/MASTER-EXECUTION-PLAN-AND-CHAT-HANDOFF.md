@@ -561,3 +561,15 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 - This is a Pinyin G2P smoke-corpus expansion only. It is not an independently adjudicated held-out corpus, does not establish statistical accuracy, and supplies no independent IPA/Ukrainian gold labels.
 - Verification: source entries checked against their Han Dian lexical pages; hosted Quality workflow must pass on the exact PR head before this code change is marked DONE_VERIFIED. Local clone/test execution remains unavailable in this environment because DNS resolution for github.com failed.
 - Remaining genuine gates: larger phenomenon-balanced corpus with separate development/held-out/challenge partitions; independent broad-IPA and per-method Ukrainian adjudication; human screen-reader/device QA; maintainer decision and authenticated PyPI claimability check.
+
+
+## One-pass continuation — Pinyin smoke expansion and benchmark source audit (2026-11-08)
+
+- Starting main SHA: `d1dc38628bc1d86c4c420245c52c4105b7874f8c`.
+- PR [#55](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/55) expanded the source-linked Han Dian Pinyin fixture from 6 to 10 and added a fixture-size regression assertion. It was merged after exact Quality run [42488650345](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42488650345) completed successfully on head `8ddd4e7cf43409e550552281ed7a6922d75b0eaf`. Merge commit: `49a5083076edafd71877824b3694bf0fba34f9e2`.
+- Successful exact-run gates: Python 3.10–3.13, Python tests, JS unit/integration, benchmark corpus validator tests, benchmark structure/scoring guards, acoustic input guards, production build, generated mapping determinism, conversion performance benchmark, release constraints, browser regression tests and artifact steps. Workflow run conclusion: success.
+- Preserved current architecture and all pre-existing data. The four added cases are Pinyin lexical smoke evidence only; they do not validate IPA/Ukrainian outputs or constitute representative gold.
+- New source audit: `MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md`. CPP/g2pM and CVTE-Poly are benchmark candidates; AISHELL-3 is a possible Apache-2.0 phrase-level Pinyin source, pending archive-level verification. CVTE-Poly data license was not verified; no external data copied.
+- Current open gates: locked balanced G2P gold set; independently supported IPA targets; independent row-by-row collation of each Ukrainian method; same-corpus execution of g2pW/g2pM/g2pC; human screen-reader and physical-device QA; authenticated PyPI claimability/name decision.
+- Local clone/test execution remained unavailable in this environment due DNS resolution failure for github.com. Exact hosted Quality run supplies CI evidence for PR #55, not a substitute for independent linguistic review.
+- Current main SHA at merge: `49a5083076edafd71877824b3694bf0fba34f9e2`. This follow-up research branch is based on that merge commit; its own final SHA and PR Quality status must be recorded after review.
