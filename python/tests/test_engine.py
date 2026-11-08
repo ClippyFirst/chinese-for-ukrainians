@@ -32,7 +32,7 @@ def test_traditional_and_cli():
 
 def test_shared_cross_runtime_golden():
     cases=json.loads((pathlib.Path(__file__).parent/"fixtures/cross_runtime_golden.json").read_text())
-    for c in cases: assert zhua.convert(c["text"]).pinyin==c["pinyin"],c["text"]
+    for c in cases:\n        r=zhua.convert(c["text"])\n        assert r.pinyin==c["pinyin"],c["text"]\n        assert r.ipa==c["ipa"],c["text"]
 
 def test_package_data_matches_canonical_source_byte_for_byte():
     from importlib.resources import files
