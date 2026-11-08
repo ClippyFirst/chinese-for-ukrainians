@@ -34,7 +34,7 @@ jobs:
           python -m venv /tmp/zhua-wheel-venv
           /tmp/zhua-wheel-venv/bin/python -m pip install --upgrade pip build
           /tmp/zhua-wheel-venv/bin/python -m build python --wheel --outdir /tmp/zhua-dist
-          /tmp/zhua-wheel-venv/bin/python -m pip install --no-deps /tmp/zhua-dist/*.whl
+          /tmp/zhua-wheel-venv/bin/python -m pip install /tmp/zhua-dist/*.whl
           cd /tmp
           /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
           /tmp/zhua-wheel-venv/bin/chuktrans --json "你好" > /tmp/zhua-smoke.json
