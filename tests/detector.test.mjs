@@ -47,3 +47,9 @@ test('real dictionary distinguishes common traditional, simplified, mixed and sh
   assert.equal(detectScript('中国與國',traditionalToSimplified).status,'mixed');
   assert.equal(detectScript('中文',traditionalToSimplified).status,'undetermined');
 });
+
+
+test('generated Python script map stays byte-for-byte aligned with the pinned npm data package', async () => {
+  const generated=JSON.parse(await fs.readFile(new URL('../python/src/zhua/data/traditional-to-simplified.json',import.meta.url),'utf8'));
+  assert.deepEqual(generated,traditionalToSimplified);
+});
