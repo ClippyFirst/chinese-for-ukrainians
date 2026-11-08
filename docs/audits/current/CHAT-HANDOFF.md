@@ -222,3 +222,12 @@ PR [#52](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/52) is merge
 - Final sdist SHA-256: `9817bb130cf81b649a8111d711c24abf66d92c36b3793b51a7e689efc305cb78`.
 
 The package remains unpublished. The remaining release gates are the owner's final PyPI name choice/name-claimability check and manual assistive-technology/device QA; broader independent linguistic gold-corpus work remains research scope.
+
+
+## One-pass follow-up — 2026-11-08
+
+PR #55 is merged as `49a5083076edafd71877824b3694bf0fba34f9e2`. The independent Pinyin lexical smoke fixture has 10 Han Dian source-linked entries. Exact Quality run [42488650345](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42488650345) passed on tested head `8ddd4e7cf43409e550552281ed7a6922d75b0eaf`.
+
+A separate benchmark source audit is in `MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md`. It identifies CPP, CVTE-Poly and AISHELL-3 as candidates with different evidence and licensing status. No third-party data was copied because exact dataset license/archive conditions were not fully verified. Do not claim G2P accuracy or engine superiority from the 10-case smoke fixture.
+
+Next genuine work: verify AISHELL-3 archive metadata/schema; obtain a license-cleared locked corpus; pin and run competing G2P engines on the same corpus; independently adjudicate IPA and each Ukrainian method; complete manual NVDA/VoiceOver/TalkBack and physical-device QA. Audio is not a mandatory blocker where documentary phonetic evidence suffices.

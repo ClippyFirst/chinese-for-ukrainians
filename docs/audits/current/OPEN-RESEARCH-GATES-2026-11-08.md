@@ -31,7 +31,7 @@ Keep `chinese-ukrainian-transcription` as the preferred distribution name becaus
 
 ### Existing evidence that can be reused
 
-- `tests/fixtures/independent-pinyin-cases.csv` contains six Han Dian lexical cases: 银行, 銀行, 重庆, 音乐, 长大, 中国农业银行.
+- `tests/fixtures/independent-pinyin-cases.csv` contains ten Han Dian lexical cases: 银行, 銀行, 重庆, 音乐, 长大, 中国农业银行.
 - The cases have individual dictionary URLs and intended reading/sense notes. They are valuable source-backed smoke tests for selected Pinyin phrase readings.
 - The shared JS/Python golden fixture contains 12 cases and verifies deterministic cross-runtime behavior for Pinyin, broad IPA, and the three Ukrainian outputs.
 
@@ -91,3 +91,12 @@ A research branch adds four additional Han Dian lexical entries to tests/fixture
 The test now asserts the explicit ten-case corpus size, so accidental fixture shrinkage is caught. These are source-backed lexical checks for the pinned Pinyin engine only. They do not validate IPA or Ukrainian outputs, do not form a statistically representative held-out set, and are not an accuracy percentage. The four source entries were checked for their cited reading/sense; exact runtime acceptance still depends on the PR-head Quality workflow.
 
 Status: Pinyin lexical smoke corpus = PARTIAL (10 source-linked cases); representative development/held-out/challenge corpus = TODO; broad IPA and Ukrainian independent gold remain TODO/evidence-limited.
+
+
+## Dataset discovery update — 2026-11-08
+
+See [Mandarin benchmark source audit](./MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md). The Pinyin lexical smoke fixture is now 10 source-linked cases, not six, after PR #55; exact Quality run 42488650345 passed and PR #55 merged as 49a5083076edafd71877824b3694bf0fba34f9e2. The representative locked corpus remains TODO.
+
+New candidate sources: CPP/g2pM (99,264 polyphone-labelled sentences), CVTE-Poly (845,254 samples), and AISHELL-3 (88,035 utterances with character/Pinyin transcripts; OpenSLR catalog states Apache-2.0). CVTE-Poly license was not verified; AISHELL-3 archive-level metadata/schema still require verification. AISHELL-1 catalog says free for academic use only, which is not a commercial redistribution grant. No third-party dataset has been copied into this repository.
+
+The additional discovery does not close the G2P, IPA, or Ukrainian gold gates. Competitor benchmarking remains BLOCKED until an eligible locked corpus and reproducible pinned candidate environments are available. Manual assistive-technology QA still requires human-operated devices.

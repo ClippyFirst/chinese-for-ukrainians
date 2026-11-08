@@ -43,3 +43,8 @@
 - [Acoustic research tools](../research/ipa-acoustic/README.md)
 
 Не видаляйте датовані матеріали лише через їхній вік або відсутність імпорту в runtime: спершу перевіряйте посилання з тестів, генераторів і реєстрів доказів.
+
+
+## Current Mandarin benchmarking
+- [Mandarin benchmark source audit and dataset/license triage](./audits/current/MANDARIN-BENCHMARK-SOURCE-AUDIT-2026-11-08.md)
+- [Cross-engine benchmark protocol and execution ledger](./audits/current/CROSS-ENGINE-BENCHMARK-2026-10-24.md)
