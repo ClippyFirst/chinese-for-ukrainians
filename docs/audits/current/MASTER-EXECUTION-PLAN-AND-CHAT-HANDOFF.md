@@ -583,3 +583,11 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 - AISHELL-3 catalog/license metadata = DONE_VERIFIED: OpenSLR SLR93 page, archive-side `info.txt`, and publisher page each state Apache License 2.0. Archive-side `checksum.md5` lists `6833e9dcb47709d4e153e2f669e5ddc8` for `data_aishell3.tgz`. Public baseline page confirms Chinese/Pinyin paired examples. Baseline code repository MIT license is separate from corpus license.
 - Archive schema = BLOCKED: 18–19 GB archive not downloaded/unpacked in this runtime; internal license/NOTICE, paths, split membership and transcript normalization remain unverified. No audio or corpus data copied.
 - Current evidence does not authorize held-out accuracy or a 90% maturity claim. Continue with text-only archive inspection/extraction when accessible; audio is not mandatory.
+
+
+## AISHELL-3 sample smoke-test implementation — 2026-11-08
+
+- Added three public AISHELL-3 baseline page Chinese/Pinyin pairs to the existing source-linked Pinyin fixture (10 → 13 total).
+- Updated the existing fixture regression test to assert 13 cases and accept the explicitly cited AISHELL-3 sample page alongside Han Dian lexical sources.
+- These three examples are smoke references visible on the publisher-linked baseline sample page; they are not archive-extracted rows, an independently adjudicated held-out corpus, or an accuracy score.
+- Implementation is on `research/aishell3-text-corpus-readiness-2026-11-08`; exact PR-head Quality run is required for DONE_VERIFIED.
