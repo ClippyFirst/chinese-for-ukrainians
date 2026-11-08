@@ -204,3 +204,21 @@ The first Quality run #42463805036 built the wheel and confirmed the CSV is incl
 Branch `feat/script-detection-and-accessibility-2026-11-08` adds shared Simplified/Traditional detection to Python using the pinned `@pinyin-pro/data@1.3.1` map, with `mixed` and `undetermined` states and no source rewriting. The generated JSON is included in the wheel with the upstream ISC notice. The shared JS/Python Pinyin+IPA+three-UA fixture is expanded to 12 cases, including six lexical examples sourced to Han Dian. A new browser accessibility spec checks control names, landmarks, ARIA references, live regions, keyboard actions and 200% text resizing.
 
 CSV ownership was confirmed by the repository owner: their original CSV is included with their authorization; root MIT applies to code and does not force the CSV under MIT. The earlier CSV-rights blocker is therefore closed. The PyPI distribution-name check remains unresolved because the live registry fetch service had no remaining credits; do not infer availability from search results. Manual screen-reader/device checks remain unperformed and must not be marked DONE.
+
+
+## Final handoff — PR #52 merged and verified (2026-11-08)
+
+PR [#52](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/52) is merged to `main` as `941d4f2c485e8503df7fcd7b1472bab846f90cd8`. Exact tested head: `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`. Quality run [42466148142](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42466148142) passed all five jobs after the Python 3.10 setup job was retried.
+
+- Python: 14 tests pass on 3.10, 3.11, 3.12, 3.13.
+- Browser: 61 Playwright tests pass, including new accessibility regression tests.
+- Wheel/sdist build, archive inspection, isolated wheel install, import outside checkout and CLI JSON smoke test pass.
+- Shared JS/Python golden set has 12 cases, including six Han Dian lexical references. A source-backed pypinyin phrase override handles `銀行`; universal engine parity is not claimed.
+- Python `script="auto"` now reports simplified/traditional/mixed/undetermined from the shared character map without rewriting input.
+- The CSV is owner-authored and its owner authorizes inclusion. Root MIT remains code scope; the CSV remains owner-controlled. The bundled @pinyin-pro/data character map carries a full ISC notice.
+- CI PyPI probe: `chinese-ukrainian-transcription` and `chuktrans` both returned HTTP 404 / no public project JSON. This does not prove either name is claimable; keep final name selection blocked until maintainer decision and final registry check.
+- Automated accessibility checks pass; actual screen-reader and physical-device QA remain unperformed.
+- Final wheel SHA-256: `5f881ed7c3d2b6175a43cd93f2ad004924938ecb2ba0cae1d4d1f8e93b112dde`.
+- Final sdist SHA-256: `9817bb130cf81b649a8111d711c24abf66d92c36b3793b51a7e689efc305cb78`.
+
+The package remains unpublished. The remaining release gates are the owner's final PyPI name choice/name-claimability check and manual assistive-technology/device QA; broader independent linguistic gold-corpus work remains research scope.
