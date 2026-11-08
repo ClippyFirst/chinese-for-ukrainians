@@ -15,7 +15,7 @@ The package must preserve the documented processing order:
 ```text
 Chinese input
 → source-span scanning / non-Han preservation
-→ pypinyin Mandarin pronunciation resolution (Simplified and Traditional accepted; full script classification is not implemented)
+→ shared Traditional/Simplified character evidence classification → pypinyin Mandarin pronunciation resolution
 → normalized Pinyin tokens with tone and source alignment
 → broad segmental IPA + lexical-tone metadata
 → IPA-keyed Ukrainian adapters
@@ -145,7 +145,7 @@ The CLI reads stdin when no input file is supplied, writes only result text/JSON
 
 ## Licensing and provenance
 
-The root MIT license covers repository code only to the extent stated by its terms; it does not automatically relicense source-derived transcription data, third-party dictionaries or reference materials. Package metadata must not claim broader data rights than the repository's provenance register supports. Review the pypinyin and optional OpenCC dependency licenses and notices at the pinned versions before publishing. Keep the source CSV attribution and data-use caveats inside the wheel.
+The root MIT license covers project code. The owner confirms the canonical CSV is their original work and authorizes its inclusion; it remains under their control unless separately licensed. Preserve upstream `pypinyin` and `@pinyin-pro/data` notices; the generated character-variant dictionary carries its ISC notice in the wheel.
 
 ## Quality gates
 
@@ -164,12 +164,12 @@ No PyPI publish, release tag, DOI or claim of production readiness is part of th
 
 ## Implementation snapshot — 2026-11-08
 
-The current branch contains `python/src/zhua`, a PEP 621 package with the `convert()`, `transcribe()` and `transcribe_all()` APIs, a `chuktrans` entry point, a pypinyin 0.55.0 adapter, a port of the repository's broad IPA mapping, and three independent IPA-keyed Ukrainian maps. The generated data file is `python/src/zhua/data/zh-in-ua.csv`; `npm run generate:data` copies it from the root canonical CSV.
+The current branch contains `python/src/zhua`, a PEP 621 package with the `convert()`, `transcribe()` and `transcribe_all()` APIs, a `chuktrans` entry point, a pypinyin 0.55.0 adapter, a port of the repository's broad IPA mapping, three independent IPA-keyed Ukrainian maps, and a generated Traditional/Simplified classifier map. `npm run generate:data` synchronizes both package data files from their pinned sources.
 
 The cross-runtime golden fixture is `python/tests/fixtures/cross_runtime_golden.json`. The Node suite and Python pytest suite both consume the same six exact-parity cases, asserting Pinyin, broad IPA and all three Ukrainian outputs; the Node test also compares the two runtime results directly. This is a narrow shared-golden assertion, not a claim that pypinyin and pinyin-pro are universally equivalent.
 
 Implementation caveats:
-- `script="auto"` reports `detected_script="undetermined"`; pypinyin accepts both Simplified and Traditional input directly, but this first alpha does not claim full script classification or normalize the source text.
+- `script="auto"` classifies distinctive Simplified, Traditional and mixed character evidence using the same pinned `@pinyin-pro/data` map as the browser. Shared-only Han text remains `undetermined`; this does not infer Taiwan/Hong Kong locale and never rewrites source text.
 - The adapter uses pypinyin's `Style.TONE3`, `neutral_tone_with_five=True` and `v_to_u=False`; tone sandhi is not requested or applied by this adapter. Tones are treated as lexical/citation-form. It retains ü normalization and does not add OpenCC.
-- The package metadata/distribution name remains provisional. Do not publish: source-data reuse rights have not yet been cleared source-by-source, and PyPI name availability has not been verified.
+- The package metadata/distribution name remains provisional. The owner-authorized CSV is not a source-rights blocker. The PyPI name availability still needs a live registry check before metadata freeze.
 - Local clone access was unavailable in the implementation session. The workflow now owns pytest, Python 3.10–3.13 matrix verification, wheel build, isolated wheel install from outside the checkout, CLI smoke test, shared golden cases and the pre-existing JavaScript/browser gates. Mark these gates verified only after the exact PR-head run completes.
