@@ -34,10 +34,8 @@ def test_shared_cross_runtime_golden():
     cases=json.loads((pathlib.Path(__file__).parent/"fixtures/cross_runtime_golden.json").read_text())
     for c in cases:
         r=zhua.convert(c["text"])
-        expected_pinyin=c.get("pypinyin",c["pinyin"])
-        expected_ipa=c.get("pypinyin_ipa",c["ipa"])
-        assert r.pinyin==expected_pinyin,c["text"]
-        assert r.ipa==expected_ipa,c["text"]
+        assert r.pinyin==c["pinyin"],c["text"]
+        assert r.ipa==c["ipa"],c["text"]
 
 def test_package_data_matches_canonical_source_byte_for_byte():
     from importlib.resources import files
@@ -93,3 +91,11 @@ def test_packaged_script_map_is_present_and_parseable():
     assert mapping["國"]=="国"
     assert mapping["與"]=="与"
     assert len(mapping)>1000
+
+
+def test_phrase_overrides_are_source_backed_and_fix_traditional_bank_reading():
+    records=json.loads((pathlib.Path(__file__).resolve().parents[1]/"src/zhua/data/pronunciation-overrides.json").read_text())
+    assert records[0]["phrase"]=="銀行"
+    assert records[0]["pinyin"]==[["yín"],["háng"]]
+    assert records[0]["source_url"].startswith("https://zdic.net/")
+    assert zhua.convert("銀行").pinyin=="yín háng"
