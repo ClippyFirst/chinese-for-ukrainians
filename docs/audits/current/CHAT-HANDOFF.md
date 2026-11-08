@@ -238,3 +238,6 @@ Next genuine work: verify AISHELL-3 archive metadata/schema; obtain a license-cl
 PR #56 merged as `9c7e665b48f317a03ffcebaaf25f4d7794536652` after exact-head Quality run `42489252423` passed. AISHELL-3 metadata is cross-checked against OpenSLR page, archive-side `info.txt` and checksum file, and publisher page; all state Apache License 2.0. Archive checksum listed by OpenSLR: `6833e9dcb47709d4e153e2f669e5ddc8` (MD5). Public samples confirm Chinese text paired with numbered-tone Pinyin.
 
 The large archive was not downloaded or unpacked. Exact internal license/NOTICE, transcript paths, data splits, and normalization rules remain open; no corpus data/audio copied. Next action is text-only archive listing and transcript inspection, then a source-attributed locked benchmark split.
+
+
+The current research branch adds three public AISHELL-3 baseline page Chinese/Pinyin pairs to the existing smoke fixture, taking it from 10 to 13. The regression test checks the fixture count and source URL scope. This does not create a held-out corpus or independent accuracy result; await exact PR-head Quality CI.
