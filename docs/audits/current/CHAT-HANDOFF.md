@@ -240,6 +240,8 @@ PR #56 merged as `9c7e665b48f317a03ffcebaaf25f4d7794536652` after exact-head Qua
 The large archive was not downloaded or unpacked. Exact internal license/NOTICE, transcript paths, data splits, and normalization rules remain open; no corpus data/audio copied. Next action is text-only archive listing and transcript inspection, then a source-attributed locked benchmark split.
 
 
-The current research branch adds two public AISHELL-3 baseline page Chinese/Pinyin pairs to the existing smoke fixture, taking it from 10 to 12. The regression test checks the fixture count and source URL scope. This does not create a held-out corpus or independent accuracy result; await exact PR-head Quality CI.
+The current research branch adds one public AISHELL-3 baseline page Chinese/Pinyin pair to the existing smoke fixture, taking it from 10 to 11. The regression test checks the fixture count and source URL scope. This does not create a held-out corpus or independent accuracy result; await exact PR-head Quality CI.
 
 The public sample containing `不会` was intentionally not added to exact lexical-Pinyin assertions because the displayed `bu2` is a surface sandhi form. This preserves the distinction between lexical tone and connected-speech sandhi.
+
+The sample `替我播放相思风雨中` was excluded after the source page's `zong1` conflicted with the engine/lexical `zhong1`; unresolved label discrepancies are not used as gold.
