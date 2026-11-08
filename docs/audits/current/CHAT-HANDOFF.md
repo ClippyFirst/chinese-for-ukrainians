@@ -1,6 +1,6 @@
 # Актуальна передача контексту — Chinese for Ukrainians
 
-**Оновлено:** 2026-10-23, repository hygiene / documentation consolidation.  
+**Оновлено:** 2026-11-08, repository structure and Python engine design handoff.  
 **Репозиторій:** https://github.com/ClippyFirst/chinese-for-ukrainians  
 **Master register:** [MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md](./MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)  
 **Документація:** [індекс](../../INDEX.md)
@@ -153,3 +153,15 @@ Core technical decisions:
 5. Continue manual accessibility/device checks and source-data rights review.
 
 Do not mark this project release-ready because the documentation has been completed. The Python package remains TODO, PyPI naming is BLOCKED pending registry evidence, and the web project remains public beta / research preview.
+
+
+## Final verification — 2026-11-08
+
+- Verified documentation snapshot: `2b8ee41a986b393b7e56b8925fb3c77cc9183049`.
+- Quality run [42462895243](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42462895243) passed on that exact SHA, including the full Playwright browser suite.
+- GitHub Pages deployment [42462895229](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42462895229) passed on the same SHA.
+- Internal Markdown links: 48/48 resolved across README and docs index.
+- Local clone and local commands remain unavailable because this runtime cannot resolve `github.com`; do not claim local pytest/npm runs.
+- The Python engine is designed and documented but not implemented. The next task is the test-first package implementation in `python/`, followed by a clean wheel install and Python CI. No PyPI publication was attempted.
+
+The current implementation snapshot remains public beta / research preview. Successful CI verifies the existing browser product and repository gates; it does not close linguistic source rights, manual assistive-technology QA, or Python package release readiness.

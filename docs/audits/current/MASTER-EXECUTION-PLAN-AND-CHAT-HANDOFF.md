@@ -334,7 +334,7 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 | REPO-001 | DONE_VERIFIED | Branch/PR reconciliation | Only `main` branch; no open PRs; #48 closed without merge by explicit scope correction; #50 merged. |
 | REPO-002 | DONE_VERIFIED | Exact-head web quality gates | Quality run 41084676837 passed all listed jobs/steps on `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`. |
 | REPO-003 | DONE_VERIFIED | Canonical documentation structure | Added repository structure guide, Python engine architecture, design spec and implementation plan; README/index/architecture/roadmap linked and reconciled in this commit. |
-| REPO-004 | PARTIAL | Master register/handoff freshness | This snapshot supersedes older stale statements; exact new commit SHA and its CI result must be appended after the documentation commit completes. |
+| REPO-004 | DONE_VERIFIED | Master register/handoff freshness | This register and handoff now record verified documentation commit `2b8ee41a986b393b7e56b8925fb3c77cc9183049`, exact-head Quality run 42462895243, Pages run 42462895229, and the local DNS blocker. |
 | PY-001 | DONE_VERIFIED | Python engine architecture decision | `docs/PYTHON-ENGINE-ARCHITECTURE.md` and design spec define API, package boundary, dependencies, data and quality gates. |
 | PY-002 | TODO | Implement Python package skeleton and typed API | `python/pyproject.toml`, `python/src/zhua/`, tests; acceptance: clean import/install from built wheel and API contract tests. |
 | PY-003 | TODO | Implement pypinyin pronunciation adapter | Pin pypinyin 0.55.0; test tone-number output, Traditional input, phrase/polyphonic cases and explicit engine differences. Acceptance: reviewed golden fixture; no universal pinyin-pro parity claim. |
@@ -368,3 +368,16 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 4. Continue source-by-source rights review and manual device/screen-reader QA. The current CI pass does not satisfy those manual gates.
 
 **Release posture:** the web app remains public beta / research preview. The repository is not yet Python-package-ready or fully release-ready. No PyPI publication, release tag or DOI was created.
+
+
+### Final documentation verification — 2026-11-08
+
+- Verified documentation commit: `2b8ee41a986b393b7e56b8925fb3c77cc9183049`.
+- Exact-head Quality workflow [42462895243](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42462895243) completed successfully. The `verify` job passed dependency installation, unit/integration tests, benchmark corpus validator tests, benchmark corpus validation, Python acoustic input guards, production build, generated mapping drift, conversion benchmark, release constraints, browser installation and Playwright browser regressions.
+- Exact-head Pages deployment [42462895229](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42462895229) completed successfully.
+- Documentation link validation: 31/31 relative links in `docs/INDEX.md` and 17/17 relative links in `README.md` resolve in the commit tree.
+- The Quality workflow's Python step still covers only `research/ipa-acoustic/test_measure_formants.py`; it does not test a Python transcription engine, which remains unimplemented.
+- No local test command was run: the local clone failed with `Could not resolve host: github.com`. CI is the actual code/test evidence for the verified commit.
+- The next implementation blocker is a Python-enabled environment for TDD, wheel build/inspection, clean-install tests and the Python CI matrix. PyPI name verification and source-data licensing review remain separate publication gates.
+
+**Documentation-only follow-up:** the subsequent commit that records this evidence changes only the master register and handoff; it does not change application code, data, scripts, workflows or tests. The exact tested implementation/documentation snapshot remains `2b8ee41a986b393b7e56b8925fb3c77cc9183049`.
