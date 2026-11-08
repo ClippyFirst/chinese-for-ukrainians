@@ -11,5 +11,5 @@ const packageData = new URL('../python/src/zhua/data/zh-in-ua.csv', import.meta.
 await fs.mkdir(new URL('../python/src/zhua/data/', import.meta.url), { recursive: true });
 await fs.copyFile(new URL('../zh-in-ua.csv', import.meta.url), packageData);
 const scriptMap = new URL('../python/src/zhua/data/traditional-to-simplified.json', import.meta.url);
-await fs.writeFile(scriptMap, `${JSON.stringify(traditionalToSimplified)}\\n`, 'utf8');
+await fs.writeFile(scriptMap, JSON.stringify(traditionalToSimplified) + '\n', 'utf8');
 console.log(`Generated ${output.length} bytes of JS maps, synchronized Python CSV data and ${Object.keys(traditionalToSimplified).length} script variants.`);
