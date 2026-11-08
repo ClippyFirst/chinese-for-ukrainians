@@ -166,7 +166,7 @@ No PyPI publish, release tag, DOI or claim of production readiness is part of th
 
 The current branch contains `python/src/zhua`, a PEP 621 package with the `convert()`, `transcribe()` and `transcribe_all()` APIs, a `chuktrans` entry point, a pypinyin 0.55.0 adapter, a port of the repository's broad IPA mapping, and three independent IPA-keyed Ukrainian maps. The generated data file is `python/src/zhua/data/zh-in-ua.csv`; `npm run generate:data` copies it from the root canonical CSV.
 
-The cross-runtime golden fixture is `python/tests/fixtures/cross_runtime_golden.json`. The Node suite and Python pytest suite both consume the same six exact-parity cases. This is a narrow shared-golden assertion, not a claim that pypinyin and pinyin-pro are universally equivalent.
+The cross-runtime golden fixture is `python/tests/fixtures/cross_runtime_golden.json`. The Node suite and Python pytest suite both consume the same six exact-parity cases, asserting Pinyin, broad IPA and all three Ukrainian outputs; the Node test also compares the two runtime results directly. This is a narrow shared-golden assertion, not a claim that pypinyin and pinyin-pro are universally equivalent.
 
 Implementation caveats:
 - `script="auto"` reports `detected_script="undetermined"`; pypinyin accepts both Simplified and Traditional input directly, but this first alpha does not claim full script classification or normalize the source text.
