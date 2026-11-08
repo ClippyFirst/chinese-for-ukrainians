@@ -30,7 +30,7 @@
 - [Master execution plan](./audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)
 - [Chat handoff](./audits/current/CHAT-HANDOFF.md)
 - [Design QA evidence](./audits/current/DESIGN-QA-2026-10-22.md)
-- [IPA adapter execution addendum](./audits/current/IPA-ADAPTER-EXECUTION-ADDENDUM-2026-10-23.md)
+- [Historical IPA adapter implementation addendum (superseded)](./audits/current/IPA-ADAPTER-EXECUTION-ADDENDUM-2026-10-23.md)
 
 ## Дослідницькі докази
 - [Publication readiness](./PUBLICATION-READINESS-2026-10-18.md)
