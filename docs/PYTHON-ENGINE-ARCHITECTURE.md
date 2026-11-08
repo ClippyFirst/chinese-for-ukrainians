@@ -1,6 +1,6 @@
 # Python engine architecture
 
-**Status: alpha implementation merged to `main` at `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; Quality run 42464642753 passed all jobs, including wheel, clean install, Python matrix and browser gates. Not published.** The current repository ships a browser-only JavaScript converter. The existing Python files under `research/ipa-acoustic/` are research/measurement utilities, not a reusable transcription engine.
+**Status: alpha implementation merged to `main` at `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; Quality run 42464642753 passed all jobs, including wheel, clean install, Python matrix and browser gates. Not published.** The repository now ships two interfaces: the static JavaScript browser converter and the alpha Python package `zhua` with the `chuktrans` CLI. The separate files under `research/ipa-acoustic/` remain research/measurement utilities.
 
 ## Product boundary
 
@@ -15,7 +15,7 @@ The package must preserve the documented processing order:
 ```text
 Chinese input
 → source-span scanning / non-Han preservation
-→ script-aware Mandarin pronunciation resolution
+→ pypinyin Mandarin pronunciation resolution (Simplified and Traditional accepted; full script classification is not implemented)
 → normalized Pinyin tokens with tone and source alignment
 → broad segmental IPA + lexical-tone metadata
 → IPA-keyed Ukrainian adapters
@@ -24,7 +24,7 @@ Chinese input
 
 The three Ukrainian systems remain independent. A blank CSV cell is a meaningful missing value; it is never filled from another system. An unsupported IPA form remains unresolved; it must not fall back to a Pinyin-keyed lookup. The package must preserve source text, token boundaries, tones, mapping provenance, and issue states.
 
-### Public API proposal
+### Implemented public API
 
 The stable system identifiers already used by the JavaScript runtime are authoritative:
 
@@ -32,7 +32,7 @@ The stable system identifiers already used by the JavaScript runtime are authori
 - `kirnosova_tsisar`
 - `nanu`
 
-Proposed convenience API:
+Implemented convenience API:
 
 ```python
 import zhua
