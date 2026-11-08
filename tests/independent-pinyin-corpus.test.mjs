@@ -6,6 +6,8 @@ import { normalizePinyinSyllable } from '../src/app/pinyin.js';
 
 // Independent lexical reference cases are sourced from Han Dian (zdic.net),
 // not from zh-in-ua.csv or from the expected-output fixtures used by the app.
+// One AISHELL-3 public baseline pair is included as a smoke reference only,
+// not as held-out gold; disputed surface-sandhi and lexical labels are excluded.
 const fixtureUrl = new URL('./fixtures/independent-pinyin-cases.csv', import.meta.url);
 const rows = (await fs.readFile(fixtureUrl, 'utf8')).trim().split(/\r?\n/u).slice(1)
   .map((line) => {
@@ -26,9 +28,9 @@ function actualPinyin(text, traditional) {
 }
 
 test('independent lexical Pinyin corpus matches the pinned engine on sourced phrase readings', () => {
-  assert.equal(rows.length, 10, 'expand the independent corpus deliberately, not silently');
+  assert.equal(rows.length, 11, 'expand the independent corpus deliberately, not silently');
   for (const row of rows) {
-    assert.match(row.sourceUrl, /^https:\/\/zdic\.net\//u, row.id + ': missing independent source URL');
+    assert.match(row.sourceUrl, /^https:\/\/(?:zdic\.net\/|sos1sos2sixteen\.github\.io\/aishell3\/$)/u, row.id + ': missing independent source URL');
     assert.ok(row.scope.length > 0, row.id + ': missing scope note');
     assert.deepEqual(
       actualPinyin(row.han, row.traditional),

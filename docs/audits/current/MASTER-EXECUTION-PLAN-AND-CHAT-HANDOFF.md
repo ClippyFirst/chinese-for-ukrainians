@@ -573,3 +573,33 @@ See `docs/audits/current/OPEN-RESEARCH-GATES-2026-11-08.md` for the corpus contr
 - Current open gates: locked balanced G2P gold set; independently supported IPA targets; independent row-by-row collation of each Ukrainian method; same-corpus execution of g2pW/g2pM/g2pC; human screen-reader and physical-device QA; authenticated PyPI claimability/name decision.
 - Local clone/test execution remained unavailable in this environment due DNS resolution failure for github.com. Exact hosted Quality run supplies CI evidence for PR #55, not a substitute for independent linguistic review.
 - Current main SHA at merge: `49a5083076edafd71877824b3694bf0fba34f9e2`. This follow-up research branch is based on that merge commit; its own final SHA and PR Quality status must be recorded after review.
+
+
+## Continuation — AISHELL-3 metadata verification and PR #56 merge (2026-11-08)
+
+- Starting main SHA: `49a5083076edafd71877824b3694bf0fba34f9e2`.
+- PR [#56](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/56) merged after exact-head Quality run [42489252423](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42489252423) passed on `d2b41d69a030572de0f5c3726fe9181a89ec3684`. Merge commit: `9c7e665b48f317a03ffcebaaf25f4d7794536652`.
+- New branch: `research/aishell3-text-corpus-readiness-2026-11-08`, based on that merge commit.
+- AISHELL-3 catalog/license metadata = DONE_VERIFIED: OpenSLR SLR93 page, archive-side `info.txt`, and publisher page each state Apache License 2.0. Archive-side `checksum.md5` lists `6833e9dcb47709d4e153e2f669e5ddc8` for `data_aishell3.tgz`. Public baseline page confirms Chinese/Pinyin paired examples. Baseline code repository MIT license is separate from corpus license.
+- Archive schema = BLOCKED: 18–19 GB archive not downloaded/unpacked in this runtime; internal license/NOTICE, paths, split membership and transcript normalization remain unverified. No audio or corpus data copied.
+- Current evidence does not authorize held-out accuracy or a 90% maturity claim. Continue with text-only archive inspection/extraction when accessible; audio is not mandatory.
+
+
+## AISHELL-3 sample smoke-test implementation — 2026-11-08
+
+- Added one public AISHELL-3 baseline page Chinese/Pinyin pair to the existing source-linked Pinyin fixture (10 → 11 total).
+- Updated the existing fixture regression test to assert 13 cases and accept the explicitly cited AISHELL-3 sample page alongside Han Dian lexical sources.
+- These three examples are smoke references visible on the publisher-linked baseline sample page; they are not archive-extracted rows, an independently adjudicated held-out corpus, or an accuracy score.
+- Implementation is on `research/aishell3-text-corpus-readiness-2026-11-08`; exact PR-head Quality run is required for DONE_VERIFIED.
+
+- Deliberately excluded the public example `不过英特尔之后不会继续接受如此大的损失` from exact-match assertions because its displayed `bu2` reflects surface tone sandhi; the current smoke test compares lexical Pinyin. Do not conflate the two layers.
+
+- Removed `替我播放相思风雨中`: the public baseline page gives `zong1` for final `中`, but the pinned engine/lexical reading returns `zhong1`. This discrepancy is unresolved and is excluded from exact-match assertions rather than treated as an engine failure or silently corrected.
+
+
+## CI failure triage — PR #57, 2026-11-08
+
+- First Quality run `42496484017` on `8ca0f926cb75c26eb27f994ce230f059cbd3a0aa` failed only in JS suite subtest `independent lexical Pinyin corpus matches the pinned engine on sourced phrase readings`; Python 3.10–3.13 all passed. The failing row was `替我播放相思风雨中`: public baseline page displayed final `zong1`, pinned engine returned `zhong1`. This is a disputed source label/context, not grounds to force an engine output.
+- Removed that row from exact-match smoke gold and documented the discrepancy. Also excluded `不会` sample due surface tone sandhi vs lexical Pinyin mismatch.
+- Current fixture has 11 rows: 10 Han Dian lexical cases + 1 AISHELL-3 public sample smoke reference. This remains smoke coverage only.
+- Rerun `42503359303` targets final SHA `d8bef9713f8916d2473d182f4ce39417b383c556`; at last check still `in_progress`. Do not merge until exact-head run completes successfully.
