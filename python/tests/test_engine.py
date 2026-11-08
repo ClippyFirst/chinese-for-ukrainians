@@ -33,3 +33,16 @@ def test_traditional_and_cli():
 def test_shared_cross_runtime_golden():
     cases=json.loads((pathlib.Path(__file__).parent/"fixtures/cross_runtime_golden.json").read_text())
     for c in cases: assert zhua.convert(c["text"]).pinyin==c["pinyin"],c["text"]
+
+def test_package_data_matches_canonical_source_byte_for_byte():
+    from importlib.resources import files
+    root_csv=pathlib.Path(__file__).resolve().parents[2]/"zh-in-ua.csv"
+    packaged=files("zhua").joinpath("data/zh-in-ua.csv").read_bytes()
+    assert packaged==root_csv.read_bytes()
+    assert zhua.validate_packaged_data()["valid"] is True
+
+def test_blank_cells_remain_missing_in_their_own_system():
+    maps=zhua.load_mappings()
+    # The canonical ê row deliberately leaves the NANU value blank.
+    assert maps["nanu"]["ɛ"]["missing"] is True
+    assert maps["kirnosova"]["ɛ"]["missing"] is False
