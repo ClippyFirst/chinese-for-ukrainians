@@ -64,6 +64,12 @@ def pinyin_to_ipa(value,include_tone=False):
 
 def _csv_text():
     return files("zhua").joinpath("data/zh-in-ua.csv").read_text(encoding="utf-8-sig")
+def validate_packaged_data():
+    """Return the packaged CSV size and digest for clean-wheel verification."""
+    import hashlib
+    raw=files("zhua").joinpath("data/zh-in-ua.csv").read_bytes()
+    return {"valid": bool(raw), "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+
 def load_mappings():
     reader=csv.DictReader(StringIO(_csv_text()),delimiter=";")
     if tuple(reader.fieldnames or ())!=HEADERS: raise ValueError("Invalid canonical CSV header")
