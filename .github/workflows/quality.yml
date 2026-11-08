@@ -33,7 +33,8 @@ jobs:
         run: |
           python -m venv /tmp/zhua-wheel-venv
           /tmp/zhua-wheel-venv/bin/python -m pip install --upgrade pip build
-          /tmp/zhua-wheel-venv/bin/python -m build python --wheel --outdir /tmp/zhua-dist
+          /tmp/zhua-wheel-venv/bin/python -m build python --outdir /tmp/zhua-dist
+          /tmp/zhua-wheel-venv/bin/python -c "import glob,zipfile; w=glob.glob('/tmp/zhua-dist/*.whl')[0]; z=zipfile.ZipFile(w); assert 'zhua/data/zh-in-ua.csv' in z.namelist(); assert 'zhua/__init__.py' in z.namelist(); print(z.namelist())"
           /tmp/zhua-wheel-venv/bin/python -m pip install /tmp/zhua-dist/*.whl
           cd /tmp
           /tmp/zhua-wheel-venv/bin/python -c "import zhua; r=zhua.convert('你好'); assert r.pinyin == 'nǐ hǎo'; print(r.pinyin, r.ipa)"
