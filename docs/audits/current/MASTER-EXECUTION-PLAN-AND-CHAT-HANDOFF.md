@@ -36,7 +36,7 @@ Use only `TODO`, `IN_PROGRESS`, `BLOCKED`, `DONE_VERIFIED`, `DEFERRED`, `NOT_APP
 | C2U-002 | P0 | Establish current-HEAD quality status, including the independent Pinyin corpus and generated-file drift check. | IN_PROGRESS | — | Data validation/generation, unit/integration tests, acoustic input guards, production build, generated mapping drift check, benchmark, release constraints and browser regression checks pass on the exact main SHA. | Baseline SHA `69cb29ffcdf53fc67f3d08609613b08d92d3e6a4` passed [Quality run 39484629325](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629325). New tests and CI steps were committed after that baseline; latest-head status must be checked before marking done. The audit baseline also exposed an incomplete `package-lock.json`, so clean-install reproducibility remains open. |
 | C2U-003 | P0 | Verify current public deployment and production UI. | IN_PROGRESS | C2U-002 | Homepage and methodology load; critical controls work; no console/runtime failures; check Chromium and 320/360/390/430px viewports. | Deployment passed for baseline SHA `69cb29ffcdf53fc67f3d08609613b08d92d3e6a4`: [Pages run 39484629491](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/39484629491). This proves build/deploy only; manual live visual/mobile smoke test remains unverified. |
 | C2U-004 | P1 | Citation metadata absent at root: `CITATION.cff` fetch returned 404. | TODO | confirm credited author(s), ORCID if intended, title, repository URL, license and version | Valid CFF metadata with no invented author identifiers; GitHub citation parser accepts it. | `CITATION.cff`, validator output and commit. |
-| C2U-005 | P1 | Confirm release metadata and licensing scope. MIT `LICENSE` exists, but code/data/documentation/source-data rights may differ. | IN_PROGRESS | C2U-004; source/license inventory | Explicitly document what MIT covers and identify third-party/source-data terms; do not imply all cited source material is relicensed. | Added and linked [`docs/LICENSE-AND-DATA-PROVENANCE.md`](../../LICENSE-AND-DATA-PROVENANCE.md); this is a scope note, not file-by-file rights clearance. Upstream package notices and source-data terms remain to be reviewed. |
+| C2U-005 | P1 | Confirm release metadata and licensing scope. | DONE_VERIFIED | C2U-004; source/license inventory | Explicitly separate owner-authored CSV rights, project-code MIT, and bundled upstream dependency notices. | Owner confirms `zh-in-ua.csv` is their original work and authorizes inclusion; CSV is not forced under MIT. Python wheel contains the project LICENSE and full ISC notice for the generated `@pinyin-pro/data` character map. PR #52 / Quality run 42466148142. |
 | C2U-006 | P1 | Verify release reproducibility and tags. Current package version is 0.1.0; no release/tag/Zenodo evidence checked yet. | TODO | C2U-002, C2U-004, C2U-005 | A version can be rebuilt from a clean checkout; release notes describe scope and limitations; no claim of release/DOI until confirmed. | Reproducibility transcript, tag/release URL if created, artifact checksum. |
 | C2U-007 | P1 | Confirm methodology/source links and public limitations remain consistent with the implementation. Audits contain settled choices and caveats; runtime test results are not yet observed. | IN_PROGRESS | C2U-002, C2U-003 | No unsupported universal narrow-IPA claim; neutral tone, tone sandhi, polyphony and Ukrainian-system independence explained accurately. | Source files, relevant tests, manual review record. |
 | C2U-008 | P1 | Audit 421-row CSV and all source-specific blanks/edge keys. | IN_PROGRESS | C2U-002 | Counts match source; no silent cross-system fallback; edge keys `ten`, `yo`, standalone `o` reviewed against primary evidence or explicitly left unresolved. | Direct `zh-in-ua.csv` parse: 421 rows/unique keys, zero duplicate keys, blank counts 1/1/10 across the three system columns. `docs/REFERENCE-INVENTORY-EXCEPTIONS-2026-10-18.md` documents source-coverage context; primary-page image verification remains outstanding for some rows. |
@@ -214,7 +214,7 @@ The GitHub repository interface was used to inspect the current tree, package sc
 | C2U-IPA-007 | Inventory audit of IPA key coverage and collisions | DONE_VERIFIED | Quality run #40010524093: 421 aliases, 417 supported keys, 4 unsupported, 0 collision groups; structural finding only, not a phonetic accuracy claim. |
 | C2U-IPA-008 | Route Ukrainian output through IPA-keyed adapters | DONE_VERIFIED | PR #34 merged as `21b3e440fa8631a82273802f1880e31c9e8f7135`. Quality run #40012228389 passed 72 tests and all configured gates on the code-identical PR head; exact-main-SHA Quality run #40012724723 passed all configured checks. |
 | C2U-IPA-009 | Adjudicate marginal/unsupported forms | DONE_VERIFIED | PR #38 merged as `fba393964757459df4bd6d7c435fe7b99c8b9286`. Quality run [#40019246182](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40019246182) passed on tested head `bc3d3088f3ef4158b9159a48fb6e80e219b4cc7a`, including unit/integration tests, deterministic inventory audit (421 aliases; exactly 2 unsupported: `hm`, `hng`; zero IPA-key collisions), production build, release constraints, browser regression tests and QA artifacts. `ê → ɛ`; `yo → jɔ` as a stated broad-IPA convention; `hm`/`hng` intentionally unsupported due insufficient phonetic evidence. This closes the implementation task, not narrow-acoustic accuracy or source-image verification of legacy Ukrainian cells. |
-| C2U-LIC-010 | Source-by-source rights review | BLOCKED | Reuse/redistribution evidence required for every reproduced source; citations alone are not a rights grant. |
+| C2U-LIC-010 | Rights for distributed data and third-party map | DONE_VERIFIED | Owner-authorized original CSV; project code remains MIT; bundled `@pinyin-pro/data@1.3.1` map carries the full ISC notice in wheel. This closes the distributed-artifact scope; cited publications are references, not relicensed content. |
 | C2U-QA-011 | Manual assistive-technology/device QA | BLOCKED | Screen-reader, physical speech-output and clipboard-permission tests need a real device/browser session. |
 
 The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence source. Runtime output lookup now uses the segmental IPA key and carries source-row/Pinyin provenance. Unsupported IPA keys remain unresolved. Do not describe this as full linguistic validation; the adapter boundary is an architectural property, while each mapping still needs evidence.
@@ -342,9 +342,9 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 | PY-005 | DONE_VERIFIED | Package canonical CSV deterministically | Generate package-data copy from root CSV. Acceptance: byte-identical drift check and wheel includes data; no second editable CSV. |
 | PY-006 | DONE_VERIFIED | Add CLI and cross-runtime fixtures | `chuktrans` stdin/file/JSON behavior; reviewed parity/difference classifications. Acceptance: CLI clean-env smoke tests and golden fixture. |
 | PY-007 | DONE_VERIFIED | Add Python CI and wheel verification | Supported Python matrix, pytest, sdist/wheel build, archive inspection, clean wheel install and CLI smoke test; existing JS gates remain green. |
-| PY-008 | BLOCKED | Final PyPI distribution name | Candidate `chinese-ukrainian-transcription` was not confirmed through a successful registry availability check; no name is reserved or claimed available. Acceptance: verify PyPI JSON/name availability immediately before package metadata freeze. |
+| PY-008 | BLOCKED | Final PyPI distribution name | CI probe on 2026-11-08 received HTTP 404 / `NO_PUBLIC_PROJECT_JSON` for both `chinese-ukrainian-transcription` and `chuktrans`. This is not proof either name is claimable or reserved. Owner must select a final name and verify claimability immediately before publishing. |
 | PY-009 | DEFERRED | OpenCC dependency decision | Core first release does not require OpenCC because pypinyin documents Traditional support. Optional script-normalization extra remains deferred until alignment behavior is tested. Prefer evaluating `opencc-py` over the older alpha `opencc-python-reimplemented`; no dependency added. |
-| PY-010 | TODO | Package/data licensing clearance | Review pinned pypinyin notices and any optional OpenCC package plus the source CSV provenance before publication. Root MIT does not automatically license source-derived data. |
+| PY-010 | DONE_VERIFIED | Package/data licensing scope | Owner confirmed original CSV authorship and authorizes inclusion; root MIT applies to code only; full ISC notice for bundled script map included in wheel. Evidence: `docs/LICENSE-AND-DATA-PROVENANCE.md`, `python/THIRD_PARTY_NOTICES.md`, PR #52, wheel archive. |
 
 ### Dependency evidence and limits
 
@@ -411,9 +411,9 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 | Python 3.10–3.13 | TODO | Matrix dispatched; results pending |
 | PyPI publication | DEFERRED | Not requested; distribution-name availability and metadata still provisional |
 | Data reuse rights | BLOCKED for publication | Source-specific rights have not been fully verified; wheel build is not publication permission |
-| Automatic script classification | PARTIAL | `script="auto"` currently reports `undetermined`; Traditional and Simplified are accepted by pypinyin but not classified/rewritten |
-| Universal engine parity | DEFERRED | Distinct G2P dictionaries; only six curated fixture cases are asserted |
-| Manual assistive-technology QA | TODO | Existing repository-wide screen-reader/device QA remains separate |
+| Automatic script classification | DONE_VERIFIED | Shared map classifies distinctive Simplified, Traditional, mixed and undetermined cases in JS and Python; source text is never rewritten; shared fixture parity passes |
+| Universal engine parity | DEFERRED | 12 curated exact-parity cases pass, including six externally sourced lexical cases and one narrow source-backed Traditional phrase override. Universal equivalence outside the fixture is not claimed. |
+| Manual assistive-technology QA | BLOCKED | Automated browser regression is verified (61 tests), but physical screen-reader/device and real speech-output QA require human-operated devices. |
 
 ### Verification boundary
 
@@ -482,14 +482,39 @@ The Python package test suite currently contains 10 tests and passed on every su
 
 ## Follow-up implementation — script detection, parity and accessibility (2026-11-08)
 
-**Working branch:** `feat/script-detection-and-accessibility-2026-11-08` (PR pending exact-head CI).
+**Implementation branch:** `feat/script-detection-and-accessibility-2026-11-08`; [PR #52](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/52) merged.
 
 - CSV ownership: the repository owner confirms `zh-in-ua.csv` is their original work and authorizes its inclusion. The earlier source-rights publication blocker is removed for this CSV. Root MIT remains the code license; the owner has not been forced to license the CSV under MIT. See [updated scope note](../../LICENSE-AND-DATA-PROVENANCE.md).
 - Third-party script map: generator now emits a package JSON from pinned `@pinyin-pro/data@1.3.1`; the Python wheel packages it and includes the upstream ISC notice in `python/THIRD_PARTY_NOTICES.md`.
 - Automatic script detection: Python now shares the browser's character-variant map and reports `simplified`, `traditional`, `mixed`, or `undetermined`. Shared-only text remains undetermined. Source text is never rewritten. Tests share a seven-case detection fixture and verify generated map parity.
 - Cross-runtime golden coverage: extended from 6 to 12 cases. Six additional cases (银行, 銀行, 重庆, 音乐, 长大, 中国农业银行) carry independent Han Dian lexical references; the common fixture checks Pinyin and broad IPA in both runtimes and compares all three Ukrainian outputs between runtimes. These are scoped cases, not universal parity or accuracy claims.
 - Accessibility automation: added browser regression checks for programmatic names, landmarks, live-region metadata, keyboard operation, and 200% text resize/no horizontal overflow. Existing keyboard/mobile tests remain.
-- PyPI name availability: still BLOCKED. A live PyPI registry fetch could not be completed in this session because the connected registry/scraping service had no remaining credits. Search-engine absence is not proof of availability. No name is reserved and no release is published.
+- PyPI name: CI directly queried PyPI. Both candidates returned HTTP 404 / no public project JSON. This does not prove claimability or reservation; keep name selection BLOCKED until owner chooses and performs a final claimability check. No release is published.
 - Manual accessibility: PARTIAL. Automated checks are added; actual screen-reader/assistive-technology, physical speech-output and device QA still require a human-operated device session.
 
-Acceptance on this branch: generator drift check (including the script map), Node suite, 12-case cross-runtime suite, Python 3.10–3.13 pytest matrix, wheel inspection including ISC notice, clean install, and browser suite including the new accessibility spec.
+Acceptance on exact PR head `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`: generator drift check, Node suite, 12-case cross-runtime suite, 14 Python tests on 3.10–3.13, wheel/sdist build, wheel inspection (including CSV, script map, phrase overrides and full ISC notice), isolated clean install/import/CLI smoke test, and 61 browser tests including the new accessibility spec. Quality run [42466148142](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42466148142) passed all five jobs after retrying a transient Python 3.10 setup failure.
+
+
+## Final follow-up verification — 2026-11-08 (supersedes earlier snapshot notes)
+
+- **PR #52:** merged by squash. Merge commit: `941d4f2c485e8503df7fcd7b1472bab846f90cd8`.
+- **Exact tested PR head:** `5fadfcbf8c07b52375e2575b24b16fd8365f8c11`.
+- **Quality run:** [42466148142](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42466148142), final conclusion SUCCESS. All five jobs passed; Python 3.10 initially failed during `actions/setup-python`, then the failed job was rerun and passed.
+- **Python:** 14/14 tests on each of Python 3.10, 3.11, 3.12 and 3.13.
+- **Browser:** 61/61 Playwright tests passed, including accessible names, landmarks, ARIA references, live regions, keyboard interactions and 200% text resize.
+- **Build/install:** deterministic generated maps; wheel and sdist built; wheel archive inspection passed for `zhua` code, canonical CSV, shared script map, pronunciation override JSON, project LICENSE and full upstream ISC notice; clean virtualenv installation, import from `/tmp` and `chuktrans --json` passed.
+- **Cross-runtime:** 12 shared Pinyin/IPA cases and all three Ukrainian outputs passed between JS and Python. One narrow source-backed phrase override handles Traditional `銀行`; this does not establish universal engine parity.
+- **Script detection:** shared dictionary and seven-case fixture pass for simplified, traditional, mixed and undetermined; source is not normalized.
+- **CSV ownership:** owner confirms original authorship and authorizes inclusion. The CSV remains owner-controlled; project MIT applies to code, not automatically to the CSV.
+- **Third-party notice:** `@pinyin-pro/data@1.3.1` script map is bundled with its complete ISC notice.
+- **PyPI diagnostic:** both `chinese-ukrainian-transcription` and `chuktrans` returned HTTP 404 / no public project JSON at the time of CI. This is not proof of claimability or reservation; final name selection remains BLOCKED pending maintainer decision and final registry check.
+- **Manual accessibility:** automated checks pass; physical screen-reader, assistive-technology and device QA remains BLOCKED pending a real device session.
+
+### Final artifacts
+
+- Wheel SHA-256: `5f881ed7c3d2b6175a43cd93f2ad004924938ecb2ba0cae1d4d1f8e93b112dde`.
+- sdist SHA-256: `9817bb130cf81b649a8111d711c24abf66d92c36b3793b51a7e689efc305cb78`.
+- CI distribution artifact: `zhua-python-distributions`, ID `13611357984`.
+- Visual QA screenshots artifact: `redesign-visual-qa`, ID `13611981526`.
+
+**Release posture:** Python alpha is implementation-, build-, clean-install- and CI-verified, but not published. Do not publish until the owner chooses a final PyPI name and performs the final name-claimability check. The wider web product remains public beta / research preview; manual assistive-technology QA and independent linguistic gold-corpus research remain open.
