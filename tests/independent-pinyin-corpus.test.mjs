@@ -5,7 +5,9 @@ import { pinyinProEngine } from '../src/app/pinyin-pro-adapter.js';
 import { normalizePinyinSyllable } from '../src/app/pinyin.js';
 
 // Independent lexical reference cases are sourced from Han Dian (zdic.net),
-// not from zh-in-ua.csv or from the expected-output fixtures used by the app. AISHELL-3 public baseline examples are explicitly smoke references, not held-out corpus rows.
+// not from zh-in-ua.csv or from the expected-output fixtures used by the app.
+// One AISHELL-3 public baseline pair is included as a smoke reference only,
+// not as held-out gold; disputed surface-sandhi and lexical labels are excluded.
 const fixtureUrl = new URL('./fixtures/independent-pinyin-cases.csv', import.meta.url);
 const rows = (await fs.readFile(fixtureUrl, 'utf8')).trim().split(/\r?\n/u).slice(1)
   .map((line) => {
