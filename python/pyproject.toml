@@ -19,7 +19,7 @@ include-package-data=true
 [tool.setuptools.packages.find]
 where=["src"]
 [tool.setuptools.package-data]
-zhua=["data/*.csv"]
+zhua=["data/*.csv","data/*.json"]
 [tool.pytest.ini_options]
 testpaths=["tests"]
 addopts="-ra"
