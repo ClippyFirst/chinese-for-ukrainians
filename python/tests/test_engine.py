@@ -67,3 +67,19 @@ def test_tone_options_are_independent():
     assert plain_pinyin.pinyin=="ni hao"
     assert marked.pinyin=="nǐ hǎo"
     assert plain_ukrainian.kirnosova!=marked.kirnosova
+
+
+def test_shared_script_detection_fixture_matches_browser_classifier():
+    fixture=json.loads((pathlib.Path(__file__).parent/"fixtures/script_detection.json").read_text())
+    for case in fixture:
+        result=zhua.detect_script(case["text"])
+        assert result["status"]==case["status"],case["text"]
+        converted=zhua.convert(case["text"])
+        assert converted.detected_script==case["status"]
+
+
+def test_auto_script_detection_reports_traditional_simplified_mixed_and_shared():
+    assert zhua.detect_script("中國")["status"]=="traditional"
+    assert zhua.detect_script("中国")["status"]=="simplified"
+    assert zhua.detect_script("中国與國")["status"]=="mixed"
+    assert zhua.detect_script("中文")["status"]=="undetermined"
