@@ -70,7 +70,7 @@ def test_tone_options_are_independent():
 
 
 def test_shared_script_detection_fixture_matches_browser_classifier():
-    fixture=json.loads((pathlib.Path(__file__).parent/"fixtures/script_detection.json").read_text())
+    fixture=json.loads((pathlib.Path(__file__).resolve().parents[2]/"tests/fixtures/script_detection.json").read_text())
     for case in fixture:
         result=zhua.detect_script(case["text"])
         assert result["status"]==case["status"],case["text"]
