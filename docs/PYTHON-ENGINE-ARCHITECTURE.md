@@ -63,7 +63,7 @@ Important compatibility limit: the website currently uses pinned `pinyin-pro@3.2
 2. expected engine-specific pronunciation differences;
 3. unresolved or unsupported cases.
 
-Tone sandhi should remain disabled by default. The website's IPA convention represents lexical/citation tone and does not claim connected-speech tone-sandhi output.
+The adapter does not request or implement tone sandhi; its output is treated as lexical/citation-form Pinyin. The website's IPA convention does not claim connected-speech tone-sandhi output.
 
 Primary references:
 - [pypinyin on PyPI](https://pypi.org/project/pypinyin/)
@@ -170,6 +170,6 @@ The cross-runtime golden fixture is `python/tests/fixtures/cross_runtime_golden.
 
 Implementation caveats:
 - `script="auto"` reports `detected_script="undetermined"`; pypinyin accepts both Simplified and Traditional input directly, but this first alpha does not claim full script classification or normalize the source text.
-- The adapter sets `tone_sandhi=False`; tones are lexical/citation-form. It retains ü normalization and does not add OpenCC.
+- The adapter uses pypinyin's `Style.TONE3`, `neutral_tone_with_five=True` and `v_to_u=False`; tone sandhi is not requested or applied by this adapter. Tones are treated as lexical/citation-form. It retains ü normalization and does not add OpenCC.
 - The package metadata/distribution name remains provisional. Do not publish: source-data reuse rights have not yet been cleared source-by-source, and PyPI name availability has not been verified.
 - Local clone access was unavailable in the implementation session. The workflow now owns pytest, Python 3.10–3.13 matrix verification, wheel build, isolated wheel install from outside the checkout, CLI smoke test, shared golden cases and the pre-existing JavaScript/browser gates. Mark these gates verified only after the exact PR-head run completes.
