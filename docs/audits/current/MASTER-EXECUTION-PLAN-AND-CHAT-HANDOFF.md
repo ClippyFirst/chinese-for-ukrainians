@@ -294,3 +294,77 @@ The IPA adapter migration retains the Pinyin-keyed CSV as the editable evidence 
 - PR [#46](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/46) merged at `58cd2f1dba754172c4e8561d2afe6564516f6440`: made the methodology comparison tables accessible at 320/360/390/430px and added keyboard-scroll Playwright coverage. Exact-head Quality run [40195321277](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40195321277) passed, including browser regression tests.
 - The dedicated `research-benchmark.yml` workflow now includes a `main` push trigger for relevant paths. The available connector only surfaced PR-triggered workflow runs, so the post-merge push-run conclusion and its `node-baseline-and-manifest`, `python-candidate-install-contracts`, and `g2pc-documented-example-smoke` artifacts are **NOT VERIFIED in this pass**. Do not mark that separate runner complete until the run and artifacts are inspected. The g2pC job is designed to emit `BLOCKED` rather than fabricate output if its legacy native dependency fails.
 - Research boundary unchanged: benchmark corpus example rows are `NOT_GOLD`; no engine ranking or IPA/Ukrainian accuracy claim is made. Independent, source-backed, rights-reviewed held-out IPA and Ukrainian target gold remain the main scientific blocker.
+
+
+---
+
+## Current execution snapshot — 2026-11-08
+
+**Snapshot branch:** `main`  
+**Snapshot HEAD before this documentation commit:** `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`  
+**Repository state checked:** GitHub repository metadata, recursive main tree, branch list, PR inventory, current README/architecture/data spec/roadmap, package metadata and latest Quality workflow.
+
+### Repository and branch reconciliation
+
+- The repository default branch is `main`; the branch search currently returns only `main`. There are no additional live branches to merge.
+- No open pull requests were returned by the repository-scoped PR search.
+- PR #50 was merged into main as `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`; its latest Quality run is [41084676837](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/41084676837).
+- PR #48 was explicitly closed without merge because it attempted to put Khmer/Lao/Burmese/Sinhala research into the Chinese repository. Its branch is not present in the current branch list. Do not merge or revive it here; those language projects belong in their respective repositories.
+- Historical PRs already merged into main are preserved as commit history. No branch deletion, force-push or blind PR merge was performed.
+
+### Exact-head verification observed
+
+Quality run [41084676837](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/41084676837) completed with conclusion `success` on exact SHA `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`. The `verify` job passed: dependency installation, unit/integration tests, benchmark corpus validator tests, benchmark corpus validation, Python acoustic-pipeline input guards, production build, generated mapping drift check, conversion benchmark, release constraints, browser installation and browser regression tests.
+
+This is GitHub Actions evidence. A local clone attempt in this environment failed with `Could not resolve host: github.com`; no local npm or pytest execution is claimed. CI's Python step tests only `research/ipa-acoustic/test_measure_formants.py`; it does not mean a Python transcription package exists.
+
+### Corrected current architecture facts
+
+- The browser runtime is JavaScript/Vite and remains static/offline.
+- The actual runtime chain is Chinese input → source scanner/script detection → pinned `pinyin-pro` → normalized Pinyin tokens → broad IPA/segmental IPA key → three independent IPA-keyed Ukrainian adapters.
+- Root `zh-in-ua.csv` remains the editable canonical source. `src/generated/transcription-map.js` is generated. No Python transcription package, CLI, wheel or PyPI release exists at this snapshot.
+- `research/ipa-acoustic/` contains research measurement utilities only; it is not the application engine.
+- `package-lock.json` is populated (lockfile v3 with dependency entries); the old note that it is an empty lockfile is superseded. Exact-head CI passed dependency installation. Do not repeat the stale empty-lockfile claim.
+- The previous roadmap statement that IPA and Ukrainian outputs are parallel outputs is stale; the IPA-keyed adapter boundary is implemented. The roadmap has been corrected in this update.
+
+### Current task ledger
+
+| ID | Status | Task | Acceptance / evidence |
+|---|---|---|---|
+| REPO-001 | DONE_VERIFIED | Branch/PR reconciliation | Only `main` branch; no open PRs; #48 closed without merge by explicit scope correction; #50 merged. |
+| REPO-002 | DONE_VERIFIED | Exact-head web quality gates | Quality run 41084676837 passed all listed jobs/steps on `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`. |
+| REPO-003 | DONE_VERIFIED | Canonical documentation structure | Added repository structure guide, Python engine architecture, design spec and implementation plan; README/index/architecture/roadmap linked and reconciled in this commit. |
+| REPO-004 | PARTIAL | Master register/handoff freshness | This snapshot supersedes older stale statements; exact new commit SHA and its CI result must be appended after the documentation commit completes. |
+| PY-001 | DONE_VERIFIED | Python engine architecture decision | `docs/PYTHON-ENGINE-ARCHITECTURE.md` and design spec define API, package boundary, dependencies, data and quality gates. |
+| PY-002 | TODO | Implement Python package skeleton and typed API | `python/pyproject.toml`, `python/src/zhua/`, tests; acceptance: clean import/install from built wheel and API contract tests. |
+| PY-003 | TODO | Implement pypinyin pronunciation adapter | Pin pypinyin 0.55.0; test tone-number output, Traditional input, phrase/polyphonic cases and explicit engine differences. Acceptance: reviewed golden fixture; no universal pinyin-pro parity claim. |
+| PY-004 | TODO | Port broad IPA and IPA-keyed Ukrainian adapters | Port current JS IPA behavior and source-row provenance. Acceptance: class-level tests, no collisions, no Pinyin fallback, missing/unsupported cases preserved. |
+| PY-005 | TODO | Package canonical CSV deterministically | Generate package-data copy from root CSV. Acceptance: byte-identical drift check and wheel includes data; no second editable CSV. |
+| PY-006 | TODO | Add CLI and cross-runtime fixtures | `chuktrans` stdin/file/JSON behavior; reviewed parity/difference classifications. Acceptance: CLI clean-env smoke tests and golden fixture. |
+| PY-007 | TODO | Add Python CI and wheel verification | Supported Python matrix, pytest, sdist/wheel build, archive inspection, clean wheel install and CLI smoke test; existing JS gates remain green. |
+| PY-008 | BLOCKED | Final PyPI distribution name | Candidate `chinese-ukrainian-transcription` was not confirmed through a successful registry availability check; no name is reserved or claimed available. Acceptance: verify PyPI JSON/name availability immediately before package metadata freeze. |
+| PY-009 | PARTIAL | OpenCC dependency decision | Core first release does not require OpenCC because pypinyin documents Traditional support. Optional script-normalization extra remains deferred until alignment behavior is tested. Prefer evaluating `opencc-py` over the older alpha `opencc-python-reimplemented`; no dependency added. |
+| PY-010 | TODO | Package/data licensing clearance | Review pinned pypinyin notices and any optional OpenCC package plus the source CSV provenance before publication. Root MIT does not automatically license source-derived data. |
+
+### Dependency evidence and limits
+
+- pypinyin PyPI page reports version 0.55.0, MIT licensing, and Traditional/phrase/heteronym/tone support. The implementation must use its tone-number API with tone sandhi disabled by default.
+- `opencc-py` PyPI describes a pure-Python OpenCC implementation, Apache-2.0 and Python >=3.9; its package-data dependency and exact version must be tested before adding it. The older `opencc-python-reimplemented` PyPI page reports version 0.1.7 from 2023 and Alpha classification, so it is not the default recommendation.
+- pypinyin and current pinyin-pro are separate G2P engines. Identical Chinese input does not imply identical phrase/heteronym resolution. Any parity fixture must be curated and must label known engine differences rather than forcing false gold values.
+
+### External repository patterns adopted (not copied)
+
+- `unlazy`: acceptance ledger, runnable gates, exact evidence and re-verification.
+- `ui-ux-pro-max-skill`: canonical source versus generated/synchronized artifacts and drift checks.
+- `obra/superpowers`: design → plan → test-first implementation → verification.
+- `mattpocock/skills`: focused workflows with explicit scope and triggers.
+- `ponytail`: proportionate tests and explicit disclosure of skipped checks.
+
+### Remaining blockers and next executable work
+
+1. Implement the Python package in `python/` according to the linked plan. This session cannot clone the repository because outbound GitHub DNS resolution fails; therefore local TDD RED/GREEN, wheel inspection and pytest are unavailable here. Do not mark Python implementation complete based on this design documentation.
+2. Verify the candidate PyPI distribution name via the live registry before finalizing metadata; no package name is reserved.
+3. Build and test the package in a working Python environment, then add Python CI to the existing Quality workflow.
+4. Continue source-by-source rights review and manual device/screen-reader QA. The current CI pass does not satisfy those manual gates.
+
+**Release posture:** the web app remains public beta / research preview. The repository is not yet Python-package-ready or fully release-ready. No PyPI publication, release tag or DOI was created.

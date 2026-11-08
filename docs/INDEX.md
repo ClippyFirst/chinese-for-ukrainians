@@ -7,6 +7,8 @@
 - [Методологія](https://clippyfirst.github.io/chinese-for-ukrainians/methodology.html)
 
 ## Продукт і розробка
+- [Структура репозиторію та правила документації](./REPOSITORY-STRUCTURE.md)
+- [Архітектура Python-рушія (план, не реалізовано)](./PYTHON-ENGINE-ARCHITECTURE.md)
 - [Вимоги](./PRODUCT-REQUIREMENTS.md)
 - [Архітектура](./ARCHITECTURE.md)
 - [Специфікація даних](./DATA-SPEC.md)
@@ -19,6 +21,10 @@
 - [IPA adapter readiness](./IPA-ADAPTER-READINESS.md)
 - [Current edge-form research reconciliation](./audits/current/EDGE-FORM-RESEARCH-RECONCILIATION-2026-10-23.md)
 - [Marginal interjection IPA decisions (ê, yo, hm, hng)](./IPA-MARGINAL-INTERJECTION-DECISIONS-2026-10-23.md)
+
+## Проєктування та реалізація
+- [Python engine design specification](./superpowers/specs/2026-11-08-python-engine-design.md)
+- [Python engine implementation plan](./superpowers/plans/2026-11-08-python-engine.md)
 
 ## Актуальні робочі реєстри
 - [Master execution plan](./audits/current/MASTER-EXECUTION-PLAN-AND-CHAT-HANDOFF.md)

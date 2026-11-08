@@ -54,6 +54,10 @@ npm run check:release
 
 Команда build перевіряє дані, генерує src/generated/transcription-map.js з CSV та будує статичний сайт. Не редагуйте generated-файл вручну. Після зміни CSV запускайте тести й перевіряйте відсутність незакоміченого generated diff.
 
+## Python library
+
+A Python library and CLI are planned for batch processing and integration workflows. **They are not implemented or published yet.** The current shipped product is the static browser application described above. The proposed Python API, data-packaging contract, dependency choices and implementation gates are documented in [Python engine architecture](./docs/PYTHON-ENGINE-ARCHITECTURE.md) and [the implementation plan](./docs/superpowers/plans/2026-11-08-python-engine.md).
+
 ## Дані та документація
 
 zh-in-ua.csv — канонічне джерело трьох українських систем; src/generated/transcription-map.js — похідний артефакт, який відтворюється генератором. Порожні клітинки навмисно зберігаються. Кількість рядків не є доказом правильності всіх фонетичних значень.

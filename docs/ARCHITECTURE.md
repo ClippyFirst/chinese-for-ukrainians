@@ -81,3 +81,10 @@ The UI renders user-controlled result strings as text, not HTML. The application
 ## Research versus runtime
 
 The docs/audits files, source ledger, UW differential and research/ipa-acoustic scripts are not runtime dependencies, but they are active research provenance, validation or reproducibility assets. Do not delete them merely because the application does not import them.
+
+
+## Python distribution — planned, not implemented
+
+The current product remains a static browser application. There is no Python transcription package, CLI or PyPI distribution in the current runtime. The existing `research/ipa-acoustic/` directory contains research measurement tools only.
+
+The planned `python/` project will be an offline library/CLI using pypinyin as a Python pronunciation adapter, the same canonical CSV (packaged as a generated copy), and a parity-tested port of the current segmental IPA adapter. It will not become a web backend. See [Python engine architecture](./PYTHON-ENGINE-ARCHITECTURE.md) for the contract, limitations and target layout.

@@ -115,3 +115,41 @@ Working branch: `research/cross-engine-benchmark-2026-10-24`.
 - PR [#46](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/46) merged at `58cd2f1dba754172c4e8561d2afe6564516f6440`: made the methodology comparison tables accessible at 320/360/390/430px and added keyboard-scroll Playwright coverage. Exact-head Quality run [40195321277](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/40195321277) passed, including browser regression tests.
 - The dedicated `research-benchmark.yml` workflow now includes a `main` push trigger for relevant paths. The available connector only surfaced PR-triggered workflow runs, so the post-merge push-run conclusion and its `node-baseline-and-manifest`, `python-candidate-install-contracts`, and `g2pc-documented-example-smoke` artifacts are **NOT VERIFIED in this pass**. Do not mark that separate runner complete until the run and artifacts are inspected. The g2pC job is designed to emit `BLOCKED` rather than fabricate output if its legacy native dependency fails.
 - Research boundary unchanged: benchmark corpus example rows are `NOT_GOLD`; no engine ranking or IPA/Ukrainian accuracy claim is made. Independent, source-backed, rights-reviewed held-out IPA and Ukrainian target gold remain the main scientific blocker.
+
+
+---
+
+## Handoff update — 2026-11-08
+
+**Verified starting main SHA:** `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`. This update records the state before the documentation commit; the resulting commit SHA and exact-head workflow outcome must be appended once available.
+
+### What is current
+
+- Only `main` is currently listed as a branch; no open PRs were found. No branch merge operation was necessary.
+- PR #48 is closed without merge by explicit scope correction; it belongs to separate Khmer/Lao/Burmese/Sinhala repositories. PR #50 is merged into the current main head.
+- Quality workflow [41084676837](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/41084676837) passed on exact SHA `91e94b8dd6826927a8e2588a0010bfc1e0bc00ae`, including Node install, JS tests, research validators, acoustic guard tests, build, generated-file drift, conversion benchmark, release checks and Playwright browser tests.
+- Local clone is blocked in this execution environment: `git clone https://github.com/ClippyFirst/chinese-for-ukrainians.git` failed with `Could not resolve host: github.com`. No local test command is claimed.
+- The populated `package-lock.json` is lockfile v3; older notes describing it as empty are stale.
+- The web app's IPA-first architecture is already implemented. The current runtime is not a Python package.
+
+### Python engine scope
+
+The new [Python engine architecture](../../PYTHON-ENGINE-ARCHITECTURE.md), [repository structure guide](../../REPOSITORY-STRUCTURE.md), [design spec](../../superpowers/specs/2026-11-08-python-engine-design.md) and [implementation plan](../../superpowers/plans/2026-11-08-python-engine.md) define the intended package boundary. The proposed import is `zhua`, CLI `chuktrans`, and PyPI distribution name remains provisional pending a live registry check.
+
+Core technical decisions:
+- use pypinyin 0.55.0 as the Python G2P adapter, not a new Pinyin dictionary;
+- do not claim pypinyin and pinyin-pro produce identical results for every polyphonic word/name;
+- preserve the IPA-first adapter contract and port the existing broad-IPA function with parity tests;
+- keep root `zh-in-ua.csv` canonical and generate a package-data copy for the wheel;
+- do not add OpenCC to the first core dependency set; evaluate `opencc-py` only as an optional extra if a tested use case requires explicit script conversion;
+- no Python transcription package, CLI, wheel or PyPI release has been created yet.
+
+### Next work
+
+1. Implement the package and tests from the plan in a Python-enabled local workspace.
+2. Generate and verify the package CSV copy; build and inspect sdist/wheel; test clean installation and CLI outside the checkout.
+3. Add a Python version matrix to Quality CI and preserve all current JavaScript gates.
+4. Confirm PyPI name availability and dependency/data licensing before publication.
+5. Continue manual accessibility/device checks and source-data rights review.
+
+Do not mark this project release-ready because the documentation has been completed. The Python package remains TODO, PyPI naming is BLOCKED pending registry evidence, and the web project remains public beta / research preview.
