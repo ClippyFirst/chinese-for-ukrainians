@@ -334,7 +334,7 @@ This is GitHub Actions evidence. A local clone attempt in this environment faile
 | REPO-001 | DONE_VERIFIED | Branch/PR reconciliation | `main` plus retained merged-work branch `feat/python-engine-2026-11-08`; PR #51 merged cleanly; #48 remains closed without merge by scope correction; #50 merged. No open PRs. |
 | REPO-002 | DONE_VERIFIED | Exact-head web quality gates | Historical run 41084676837 passed on the earlier baseline. Latest full Quality run 42464642753 passed all five jobs on PR head `2e94cad9279344726d0bf74b35636e303d81d100`, including Node, Python, wheel, clean install, benchmark and browser checks. |
 | REPO-003 | DONE_VERIFIED | Canonical documentation structure | Added repository structure guide, Python engine architecture, design spec and implementation plan; README/index/architecture/roadmap linked and reconciled in this commit. |
-| REPO-004 | DONE_VERIFIED | Master register/handoff freshness | This register and handoff updated after PR #51 merge `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; current main docs head `c7347ce91ec42d4427ed3810f27e4db72341f3b6`; latest package Quality evidence run 42464642753. |
+| REPO-004 | DONE_VERIFIED | Master register/handoff freshness | This register and handoff were reconciled after PR #51 merge `539720a5b9cebcd5f83a011cf107b65f89ae45d2`; latest package Quality evidence is run 42464642753. Subsequent main-branch commits update this register, plan and architecture in place. |
 | PY-001 | DONE_VERIFIED | Python engine architecture decision | `docs/PYTHON-ENGINE-ARCHITECTURE.md` and design spec define API, package boundary, dependencies, data and quality gates. |
 | PY-002 | DONE_VERIFIED | Implement Python package skeleton and typed API | `python/pyproject.toml`, `python/src/zhua/`, tests; acceptance: clean import/install from built wheel and API contract tests. |
 | PY-003 | DONE_VERIFIED | Implement pypinyin pronunciation adapter | Pin pypinyin 0.55.0; test tone-number output, Traditional input, phrase/polyphonic cases and explicit engine differences. Acceptance: reviewed golden fixture; no universal pinyin-pro parity claim. |
@@ -438,7 +438,7 @@ Latest CI status must be read from the latest PR-head run. Do not use the failed
 - **Starting main SHA:** `b5f21c206516c162cbd9413039b7c0b448f8b2d1`.
 - **Implementation branch:** `feat/python-engine-2026-11-08`.
 - **PR:** [#51](https://github.com/ClippyFirst/chinese-for-ukrainians/pull/51), squash-merged after all checks passed.
-- **Merge commit / current main SHA at merge:** `539720a5b9cebcd5f83a011cf107b65f89ae45d2`.
+- **Merge commit:** `539720a5b9cebcd5f83a011cf107b65f89ae45d2`.
 - **Exact verified PR head:** `2e94cad9279344726d0bf74b35636e303d81d100`.
 - **Quality run:** [42464642753](https://github.com/ClippyFirst/chinese-for-ukrainians/actions/runs/42464642753) — all five jobs passed.
 
